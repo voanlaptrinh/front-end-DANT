@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 type Props = {}
 
 const Header = (props: Props) => {
   return (
     <div>
+
       <div>
         {/* main nav */}
         <div className="container-fluid fluid-nav">
@@ -21,7 +23,7 @@ const Header = (props: Props) => {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto tnav-left tn-nav">
                   <li className="nav-item">
-                    <a className="nav-link" href="search.html">Việc Làm IT</a>
+                    <a className="nav-link" href=""> <NavLink to="/search">Việc Làm IT</NavLink> </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">Tin Tức</a>
@@ -44,10 +46,37 @@ const Header = (props: Props) => {
                       kiếm</span></a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="">Đăng Ký</a>
+                    <a className="nav-link" href="#modal">Đăng Ký</a>
                   </li>
+                  <div className='bodymodal'>
+                    <div id="modal" className="overlay">
+                      <div className="popup">
+                        <h2>Chào bạn, </h2>
+                        <a className="close" href="#">&times;</a>
+                        <span>bạn hãy dành vài giây để xác nhận thông tin này nhé</span>
+                        <div className="content">
+                          <div>Để tối ưu tốt nhất cho trải nghiệm của bạn với Website,
+                            vui lòng lựa chọn nhóm phù hợp nhất với bạn.</div>
+                          <div className='bodyntd'>
+                            <div className='contenrmodal'>
+                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
+                              <div>
+                                <a href="" className="btn btn-primary"> <NavLink to="/login/signupempoly">Nhà tuyển dụng</NavLink></a>
+                              </div>
+                            </div>
+                            <div className='contenrmodal'>
+                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
+                              <div>
+                                <a href="" className="btn btn-primary"> <Link to="/login/signupcandidate">Ứng viên</Link></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <li className="nav-item">
-                    <a className="nav-link" href="login-employees.html">Đăng Nhập</a>
+                    <a className="nav-link" href="login-employees.html"> <NavLink to="/login"> Đăng Nhập</NavLink></a>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -175,6 +204,7 @@ const Header = (props: Props) => {
         </div>
         {/* (end) search section */}
       </div>
+      {/* modal click chọn bên đăng ký */}
 
     </div>
   )
