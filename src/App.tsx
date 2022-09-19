@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Routes, Route, Router } from 'react-router-dom'
 import './App.css'
-import Websitelayout from './layout/Websitelayout'
-import Home from './pages/Home'
 import Login from './pages/Login'
-import SearchIT from './pages/SearchIT'
-import Signupcandidate from './pages/Signupcandidate'
-import Signupemploer from './pages/Signupemploer'
+import Signupcandidate from './pages/candidate/Signupcandidate'
+import Signupemploer from './pages/employer/Signupemploer'
+import Homecan from './pages/candidate/Homecan'
+import SearchITcan from './pages/candidate/SearchITcan'
+import Websitelayoutcan from './layout/candidate/Websitelayoutcan'
+import Websitelayoutemp from './layout/employer/Websitelayoutemp'
+import Homeemp from './pages/employer/Homeemp'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,9 +17,12 @@ function App() {
     <div className="App">
       <main>
         <Routes>
-          <Route path='/' element={<Websitelayout />}>
-            <Route index element={<Home />} />
-            <Route path='search' element={<SearchIT />} />
+          <Route path='/' element={<Websitelayoutcan />}>
+            <Route index element={<Homecan />} />
+            <Route path='search' element={<SearchITcan />} />
+          </Route>
+          <Route path='employer' element={<Websitelayoutemp />}>
+            <Route index element={<Homeemp />} />
           </Route>
           <Route path='/login/signupcandidate' element={<Signupcandidate />} />
           <Route path='/login/signupempoly' element={<Signupemploer />} />

@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const Home = (props: Props) => {
+const Homecan = (props: Props) => {
     return (
         <div>
             <div>
@@ -385,4 +385,4 @@ const Home = (props: Props) => {
     )
 }
 
-export default Home
+export default Homecan

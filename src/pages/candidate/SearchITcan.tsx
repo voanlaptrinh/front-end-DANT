@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const SearchIT = (props: Props) => {
+const SearchITcan = (props: Props) => {
     return (
         <div>
             <div>
@@ -464,4 +464,4 @@ const SearchIT = (props: Props) => {
     )
 }
 
-export default SearchIT
+export default SearchITcan

@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 type Props = {}
 
-const Header = (props: Props) => {
+const Headercan = (props: Props) => {
   return (
     <div>
 
@@ -23,7 +23,7 @@ const Header = (props: Props) => {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto tnav-left tn-nav">
                   <li className="nav-item">
-                    <a className="nav-link" href=""> <NavLink to="/search">Việc Làm IT</NavLink> </a>
+                    <NavLink to="/search" className="nav-link" >Việc Làm IT</NavLink>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">Tin Tức</a>
@@ -48,6 +48,7 @@ const Header = (props: Props) => {
                   <li className="nav-item">
                     <a className="nav-link" href="#modal">Đăng Ký</a>
                   </li>
+                  {/* modal signup */}
                   <div className='bodymodal'>
                     <div id="modal" className="overlay">
                       <div className="popup">
@@ -59,15 +60,15 @@ const Header = (props: Props) => {
                             vui lòng lựa chọn nhóm phù hợp nhất với bạn.</div>
                           <div className='bodyntd'>
                             <div className='contenrmodal'>
-                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
+                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="300px" height="300px" />
                               <div>
-                                <a href="" className="btn btn-primary"> <NavLink to="/login/signupempoly">Nhà tuyển dụng</NavLink></a>
+                                <NavLink to="/login/signupempoly" className="btn btn-primary">Nhà tuyển dụng</NavLink>
                               </div>
                             </div>
                             <div className='contenrmodal'>
-                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
+                              <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="300px" height="300px" />
                               <div>
-                                <a href="" className="btn btn-primary"> <Link to="/login/signupcandidate">Ứng viên</Link></a>
+                                <Link to="/login/signupcandidate" className="btn btn-primary">Ứng viên</Link>
                               </div>
                             </div>
                           </div>
@@ -76,7 +77,7 @@ const Header = (props: Props) => {
                     </div>
                   </div>
                   <li className="nav-item">
-                    <a className="nav-link" href="login-employees.html"> <NavLink to="/login"> Đăng Nhập</NavLink></a>
+                    <NavLink to="/login" className="nav-link"> Đăng Nhập</NavLink>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,7 +88,7 @@ const Header = (props: Props) => {
                     </div>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link btn-employers" href="#" tabIndex={-1} aria-disabled="true">Nhà Tuyển Dụng</a>
+                    <Link to="/employer" className="nav-link btn-employers" tabIndex={-1} aria-disabled="true">Nhà Tuyển Dụng</Link>
                   </li>
                 </ul>
               </div>
@@ -210,4 +211,4 @@ const Header = (props: Props) => {
   )
 }
 
-export default Header
+export default Headercan

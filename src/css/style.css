@@ -111,6 +111,118 @@ textarea {
     color: #222;
 }
 
+/* body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #444;
+    font-size: 14px;
+    line-height: 18px;
+    background-color: #eef1f2;
+} */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+    color: #222;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -817,11 +929,11 @@ ul.tnav-right {
 -----------------------------------*/
 .search-wrapper {
     /*margin-top: -11rem;*/
-    z-index: 9999;
+    z-index: 0;
 }
 
 .nav-tabs .nav-item {
-    z-index: 9999;
+    z-index: 0;
 }
 
 .btn-search {
@@ -2090,7 +2202,7 @@ ul.job-add li {
 }
 
 .another-page a.nav-link.btn-employers {
-    color: #fff !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .main-wrapper {
@@ -2742,6 +2854,7 @@ ul.rec-nav-right li {
     float: left;
     margin-left: 10px;
     box-shadow: 0 3px 5px 0 rgba(17, 43, 129, 0.37);
+    list-style: none;
 }
 
 ul.rec-nav-right li a {
@@ -2993,6 +3106,7 @@ ul.navbar-nav.nav-recuitment-li li a {
     /* transition: opacity 500ms; */
     visibility: hidden;
     opacity: 0;
+    z-index: 999999;
 }
 
 .overlay:target {
@@ -3053,7 +3167,7 @@ ul.navbar-nav.nav-recuitment-li li a {
 }
 .contenrmodal{
     padding-top: 10px;
-    padding-left: 60px;
+    padding-left: 110px;
 }
 .contenrmodal a{
     color: #FFFFFF;
@@ -3061,10 +3175,11 @@ ul.navbar-nav.nav-recuitment-li li a {
 }
 .contenrmodal img{
     border-radius: 50%;
+    border: 50%;
 }
 .bodyntd{
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: 370px;
-    padding-top: 50px;
+    padding-top: 20px;
 }
