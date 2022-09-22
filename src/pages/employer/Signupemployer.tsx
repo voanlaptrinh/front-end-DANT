@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const Signupemploer = (props: Props) => {
+const Signupemployer = (props: Props) => {
   return (
     <div><div>
       <div className="container-fluid login-fluid clear-left clear-right">
@@ -151,4 +151,4 @@ const Signupemploer = (props: Props) => {
   )
 }
 
-export default Signupemploer
+export default Signupemployer

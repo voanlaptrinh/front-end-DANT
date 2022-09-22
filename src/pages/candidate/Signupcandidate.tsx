@@ -1,8 +1,17 @@
+import axios from 'axios'
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {}
 
 const Signupcandidate = (props: Props) => {
+  const navigate = useNavigate()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const onSignup: SubmitHandler<any> = async () => {
+    const { data } = await axios.post()
+    navigate("/homecan")
+  }
   return (
     <div><div>
       <div className="container-fluid login-fluid clear-left clear-right">
@@ -37,38 +46,38 @@ const Signupcandidate = (props: Props) => {
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
-                  <form className="login-form reg-form">
+                  <form className="login-form reg-form" onSubmit={handleSubmit(onSignup)}>
                     <div className="login-main-header">
                       <h3>Đăng Ký</h3>
                     </div>
                     <div className="input-div one">
                       <div className="div lg-lable">
                         <h5>Họ Và Tên<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" />
+                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})} />
                       </div>
                     </div>
                     <div className="input-div one">
                       <div className="div lg-lable">
                         <h5>Địa Chỉ Email<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" />
+                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})}/>
                       </div>
                     </div>
                     <div className="input-div one">
                       <div className="div lg-lable">
                         <h5>Số điện thoại<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" />
+                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})}/>
                       </div>
                     </div>
                     <div className="input-div one">
                       <div className="div lg-lable">
                         <h5>Mật khẩu<span className="req">*</span></h5>
-                        <input type="password" className="input form-control-lgin" />
+                        <input type="password" className="input form-control-lgin" {...register('name', {required:true})}/>
                       </div>
                     </div>
                     <div className="input-div one">
                       <div className="div lg-lable">
                         <h5>Nhập Lại Mật khẩu<span className="req">*</span></h5>
-                        <input type="password" className="input form-control-lgin" />
+                        <input type="password" className="input form-control-lgin" {...register('name', {required:true})}/>
                       </div>
                     </div>
                     <div className="form-group d-block frm-text">

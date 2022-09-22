@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 type Props = {}
 const Headeremp = (props: Props) => {
@@ -35,28 +36,6 @@ const Headeremp = (props: Props) => {
                                             <div className="dropdown-divider" />
                                             <a className="dropdown-item" href="#">Something else here</a>
                                         </div>
-                                    </li>
-                                </ul>
-                                <ul className="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav">
-                                    <li className="nav-item active">
-                                        <a className="nav-link" href="#"><i className="fa fa-search" aria-hidden="true" /> <span className="hidden-text">Tìm kiếm</span></a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Đăng Ký</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Đăng Nhập</a>
-                                    </li>
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            VI
-                                        </a>
-                                        <div className="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
-                                            <a className="dropdown-item" href="#">English</a>
-                                        </div>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link btn-employers" href="#" tabIndex={-1} aria-disabled="true" style={{ color: '#fff!important' }}>Nhà Tuyển Dụng</a>
                                     </li>
                                 </ul>
                             </div>

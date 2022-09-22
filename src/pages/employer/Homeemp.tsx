@@ -327,70 +327,70 @@ const Homeemp = (props: Props) => {
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chăm sóc sức khỏe</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Laptop</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch nước ngoài</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>phụ cấp thâm niên</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đào tạo</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Phụ cấp</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đồng phục</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Nghỉ phép năm</span>
-                                <input type="checkbox" name defaultValue={1} />
+                                <input type="checkbox"  defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
@@ -436,83 +436,7 @@ const Homeemp = (props: Props) => {
                                 <span className="checkmark" />
                               </label>
                             </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox" name defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="filter-topic">
-                              <label className="label-container">
-                                <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
-                                <span className="checkmark" />
-                              </label>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>

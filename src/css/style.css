@@ -7,119 +7,6 @@
 5. JOB BOARD & SIDEBAR SECTION
 -----------------------------------*/
 
-/*--- TechJobs template ----------
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-caption,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-html,
-button,
-input,
-select,
-textarea {
-    font-family: sans-serif;
-    color: #222;
-}
-
-/* body {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    color: #444;
-    font-size: 14px;
-    line-height: 18px;
-    background-color: #eef1f2;
-} */
 html,
 body,
 div,
@@ -307,6 +194,19 @@ h6 {
 }
 
 
+::-moz-selection {
+    background: rgba(2, 139, 255, 1);
+    /* blue */
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background: rgba(2, 139, 255, 1);
+    /* blue */
+    color: #fff;
+    text-shadow: none;
+}
 
 .bg-main {
     background: #ccc;
@@ -3103,7 +3003,7 @@ ul.navbar-nav.nav-recuitment-li li a {
     left: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
-    /* transition: opacity 500ms; */
+    /* transition: opacity 0s; */
     visibility: hidden;
     opacity: 0;
     z-index: 999999;
