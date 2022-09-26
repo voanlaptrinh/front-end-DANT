@@ -1,16 +1,43 @@
-import axios from 'axios'
-import React from 'react'
+import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { getData, signup } from '../../api/auth'
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux'
+import { signUpByUser } from '../../features/auth/authSlice'
 
 type Props = {}
+interface FormValues {
+  id: number,
+  fullName: string,
+  email: string,
+  password: string,
+  comfirmPassword: string
+}
+
+const schema = yup.object({
+  fullName: yup.string().required('Vui lòng nhập tên'),
+  email: yup.string().required('Vui lòng nhập email').email('Không đúng định dạng email'),
+  password: yup.string().required('Vui lòng nhập mật khẩu'),
+  comfirmPassword: yup.string().required('Vui lòng nhập mật khẩu')
+    .oneOf([yup.ref('password'), null], ('Mật khẩu không trùng khớp'))
+}).required();
+
 
 const Signupcandidate = (props: Props) => {
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors } } = useForm()
-  const onSignup: SubmitHandler<any> = async () => {
-    const { data } = await axios.post()
-    navigate("/homecan")
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+    resolver: yupResolver(schema)
+  })
+
+
+
+
+  const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
+    const { data } = await signup(formData)
+    console.log(data);
+    // navigate("/homecan")
   }
   return (
     <div><div>
@@ -46,39 +73,38 @@ const Signupcandidate = (props: Props) => {
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
-                  <form className="login-form reg-form" onSubmit={handleSubmit(onSignup)}>
+                  <form className="login-form reg-form" method='POST' onSubmit={handleSubmit(onSignup)}>
                     <div className="login-main-header">
                       <h3>Đăng Ký</h3>
                     </div>
+                    <input type="text" hidden value='1' {...register('id')} />
                     <div className="input-div one">
+                      <label htmlFor="fullName" className='fs-6 fw-normal py-2'>Họ và tên</label>
                       <div className="div lg-lable">
-                        <h5>Họ Và Tên<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})} />
+                        <input type="text" className="input form-control-lgin" placeholder='Nhập họ và tên của bạn' {...register('fullName', { required: true })} />
                       </div>
+                      <p className='text-danger pt-1'>{errors.fullName?.message}</p>
                     </div>
                     <div className="input-div one">
+                      <label htmlFor="email" className='fs-6 fw-normal py-2'>Email</label>
                       <div className="div lg-lable">
-                        <h5>Địa Chỉ Email<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})}/>
+                        <input type="text" className="input form-control-lgin" placeholder='Nhập email của bạn' {...register('email', { required: true })} />
                       </div>
+                      <p className='text-danger pt-1'>{errors.email?.message}</p>
                     </div>
                     <div className="input-div one">
+                      <label htmlFor="password" className='fs-6 fw-normal py-2'>Mật khẩu</label>
                       <div className="div lg-lable">
-                        <h5>Số điện thoại<span className="req">*</span></h5>
-                        <input type="text" className="input form-control-lgin" {...register('name', {required:true})}/>
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', { required: true })} />
                       </div>
+                      <p className='text-danger pt-1'>{errors.password?.message}</p>
                     </div>
                     <div className="input-div one">
+                      <label htmlFor="comfirmPassword" className='fs-6 fw-normal py-2'>Nhập lại mật khẩu</label>
                       <div className="div lg-lable">
-                        <h5>Mật khẩu<span className="req">*</span></h5>
-                        <input type="password" className="input form-control-lgin" {...register('name', {required:true})}/>
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', { required: true })} />
                       </div>
-                    </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <h5>Nhập Lại Mật khẩu<span className="req">*</span></h5>
-                        <input type="password" className="input form-control-lgin" {...register('name', {required:true})}/>
-                      </div>
+                      <p className='text-danger pt-1'>{errors.comfirmPassword?.message}</p>
                     </div>
                     <div className="form-group d-block frm-text">
                       <a href="#" className="fg-login d-inline-block" />
@@ -93,13 +119,13 @@ const Signupcandidate = (props: Props) => {
                         <div className="col-sm-6 col-12 pr-7">
                           <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
                             <i className="fa fa-facebook" aria-hidden="true" />
-                            <span>Đăng nhập bằng Facebook</span>
+                            <span>Facebook</span>
                           </button>
                         </div>
                         <div className="col-sm-6 col-12 pl-7">
                           <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
                             <i className="fa fa-google" aria-hidden="true" />
-                            <span>Đăng nhập bằng Google</span>
+                            <span>Google</span>
                           </button>
                         </div>
                       </div>
