@@ -9,7 +9,7 @@ const Signupcandidate = (props: Props) => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm()
   const onSignup: SubmitHandler<any> = async () => {
-    const { data } = await axios.post()
+    // const { data } = await axios.post()
     navigate("/homecan")
   }
   return (

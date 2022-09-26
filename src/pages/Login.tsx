@@ -22,7 +22,7 @@ const Login = (props: Props) => {
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
-                                    <a href="#" className="btn btn-return"> <Link to="/">Return Home</Link></a>
+                                    <a className="btn btn-return"> <Link to="/">Return Home</Link></a>
                                 </div>
                             </div>
                         </div>
