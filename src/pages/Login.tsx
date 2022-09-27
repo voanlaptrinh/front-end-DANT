@@ -1,9 +1,18 @@
 import React from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { signin } from '../api/auth'
 
 type Props = {}
 
 const Login = (props: Props) => {
+    const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const onSignin: SubmitHandler<any> = async (user: any) => {
+        const { data } = await signin(user)
+        console.log(user);
+        // navigate("/")
+    }
     return (
         <div>
             <div>
@@ -22,7 +31,7 @@ const Login = (props: Props) => {
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
-                                    <a href="#" className="btn btn-return"> <Link to="/">Return Home</Link></a>
+                                    <a className="btn btn-return"> <Link to="/">Return Home</Link></a>
                                 </div>
                             </div>
                         </div>
@@ -39,20 +48,18 @@ const Login = (props: Props) => {
                                     </div>
                                     {/* login main form */}
                                     <div className="col-md-6 col-sm-12 col-12 login-main-right">
-                                        <form className="login-form">
+                                        <form className="login-form" method='POST' onSubmit={handleSubmit(onSignin)}>
                                             <div className="login-main-header">
                                                 <h3>Đăng Nhập</h3>
                                             </div>
                                             <div className="input-div one">
                                                 <div className="div lg-lable">
-                                                    <h5>Username</h5>
-                                                    <input type="text" className="input form-control-lgin" />
+                                                    <input type="text" className="input form-control-lgin" placeholder='nhận email' {...register('email', { required: true })} />
                                                 </div>
                                             </div>
                                             <div className="input-div pass">
                                                 <div className="div lg-lable">
-                                                    <h5>Password</h5>
-                                                    <input type="password" className="input form-control-lgin" />
+                                                    <input type="password" className="input form-control-lgin" placeholder='nhập password'{...register('password', { required: true })} />
                                                 </div>
                                             </div>
                                             <div className="form-group d-block frm-text">

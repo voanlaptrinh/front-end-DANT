@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { getData, signup } from '../../api/auth'
+import { signup } from '../../api/auth'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux'
@@ -22,18 +22,14 @@ const schema = yup.object({
   password: yup.string().required('Vui lòng nhập mật khẩu'),
   comfirmPassword: yup.string().required('Vui lòng nhập mật khẩu')
     .oneOf([yup.ref('password'), null], ('Mật khẩu không trùng khớp'))
+    // .val([yup.ref('password'),(val.length == 0 || (val.length >= 2 && val.length <= 10)])
 }).required();
-
 
 const Signupcandidate = (props: Props) => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(schema)
   })
-
-
-
-
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData)
     console.log(data);
@@ -95,14 +91,14 @@ const Signupcandidate = (props: Props) => {
                     <div className="input-div one">
                       <label htmlFor="password" className='fs-6 fw-normal py-2'>Mật khẩu</label>
                       <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', { required: true })} />
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', {  required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.password?.message}</p>
                     </div>
                     <div className="input-div one">
                       <label htmlFor="comfirmPassword" className='fs-6 fw-normal py-2'>Nhập lại mật khẩu</label>
                       <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', { required: true })} />
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', {required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.comfirmPassword?.message}</p>
                     </div>
