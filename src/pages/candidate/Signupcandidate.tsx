@@ -24,16 +24,11 @@ const schema = yup.object({
     .oneOf([yup.ref('password'), null], ('Mật khẩu không trùng khớp'))
 }).required();
 
-
 const Signupcandidate = (props: Props) => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(schema)
   })
-
-
-
-
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData)
     console.log(data);
