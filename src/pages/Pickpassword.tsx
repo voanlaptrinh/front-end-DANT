@@ -1,27 +1,19 @@
-import Password from 'antd/lib/input/Password'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { signin } from '../api/auth'
+import { Link, useNavigate } from 'react-router-dom'
+import { pick } from '../api/auth'
 
 type Props = {}
 
-const Login = (props: Props) => {
-    const navigate = useNavigate()
+const Pickpassword = (props: Props) => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const onSignin: SubmitHandler<any> = async (user: any) => {
-        const { data } = await signin(user)
-        // if (data.password == data.Password) {
-        //     if (data.role_id == 1) {
-        //         navigate("/")
-        //     } else (
-        //         navigate("/employer")
-        //     )
-        //     navigate("/")
-        // }
-
+    const onSpick: SubmitHandler<any> = async (formData:any) => {
+        const {data} = await pick(formData)
+        console.log(formData);
+        
     }
     return (
+
         <div>
             <div>
                 <div className="container-fluid login-fluid clear-left clear-right">
@@ -36,7 +28,7 @@ const Login = (props: Props) => {
                                             <img src="img/techjobs_bgw.png" alt="TechJobs" />
                                         </a>
                                     </h3>
-                                    <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
+                                    <span className="login-breadcrumb"><em>/</em>Quên mật khẩu</span>
                                 </div>
                                 <div className="login-right">
                                     <a className="btn btn-return"> <Link to="/">Return Home</Link></a>
@@ -56,44 +48,17 @@ const Login = (props: Props) => {
                                     </div>
                                     {/* login main form */}
                                     <div className="col-md-6 col-sm-12 col-12 login-main-right">
-                                        <form className="login-form" method='POST' onSubmit={handleSubmit(onSignin)}>
+                                        <form className="login-form" method='POST' onSubmit={handleSubmit(onSpick)}>
                                             <div className="login-main-header">
-                                                <h3>Đăng Nhập</h3>
+                                                <h3>Quên mật khẩu</h3>
                                             </div>
                                             <div className="input-div one">
                                                 <div className="div lg-lable">
                                                     <input type="text" className="input form-control-lgin" placeholder='nhận email' {...register('email', { required: true })} />
                                                 </div>
                                             </div>
-                                            <div className="input-div pass">
-                                                <div className="div lg-lable">
-                                                    <input type="password" className="input form-control-lgin" placeholder='nhập password'{...register('password', { required: true })} />
-                                                </div>
-                                            </div>
-                                            <div className="form-group d-block frm-text">
-                                                <Link to="/pickpassword" className="fg-login d-inline-block">Quên mật khẩu</Link>
-                                                <a href="#modal" className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
-                                            </div>
+
                                             <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">Đăng Nhập</button>
-                                            <div className="form-group d-block w-100 mt-5">
-                                                <div className="text-or text-center">
-                                                    <span>Hoặc</span>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-6 col-12 pr-7">
-                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
-                                                            <i className="fa fa-facebook" aria-hidden="true" />
-                                                            <span>Đăng nhập bằng Facebook</span>
-                                                        </button>
-                                                    </div>
-                                                    <div className="col-sm-6 col-12 pl-7">
-                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
-                                                            <i className="fa fa-google" aria-hidden="true" />
-                                                            <span>Đăng nhập bằng Google</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -155,4 +120,4 @@ const Login = (props: Props) => {
     )
 }
 
-export default Login
+export default Pickpassword

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 type Props = {}
 
@@ -47,7 +48,7 @@ const Homecan = (props: Props) => {
                                                     </div>
                                                 </div>
                                                 <div className="wrap-btn-appl">
-                                                    <a href="jd-page.html" className="btn btn-appl">Apply Now</a>
+                                                     <NavLink to="/idemployer" className="btn btn-appl">Apply Now</NavLink>
                                                 </div>
                                             </div>
                                         </div>                      
