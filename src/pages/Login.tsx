@@ -1,5 +1,5 @@
 import Password from 'antd/lib/input/Password'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { signin } from '../api/auth'
@@ -11,15 +11,19 @@ const Login = (props: Props) => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onSignin: SubmitHandler<any> = async (user: any) => {
         const { data } = await signin(user)
-        // if (data.password == data.Password) {
-        //     if (data.role_id == 1) {
-        //         navigate("/")
-        //     } else (
-        //         navigate("/employer")
-        //     )
-        //     navigate("/")
-        // }
-
+        if (data.role_id) {
+            if (data.role_id == 1) {
+                navigate('/');
+                return true
+            }
+            if (data.role_id == 2) {
+                navigate('/employer');
+                return true
+            }
+            return true
+        }else{
+            alert(data.mesegse)
+        }
     }
     return (
         <div>

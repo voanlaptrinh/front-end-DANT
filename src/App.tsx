@@ -31,7 +31,6 @@ function App() {
           <Route path='/login/signupempoly' element={<Signupemployer />} />
           <Route path='/login' element={<Login />} />
           <Route path='/Pickpassword' element={<Pickpassword />} />
-
         </Routes>
       </main>
     </div>
