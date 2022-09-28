@@ -9,7 +9,8 @@ import Websitelayoutcan from './layout/candidate/Websitelayoutcan'
 import Websitelayoutemp from './layout/employer/Websitelayoutemp'
 import Homeemp from './pages/employer/Homeemp'
 import Signupemployer from './pages/employer/Signupemployer'
-import Idemployer from './pages/candidate/idemployer'
+import Idemployer from './pages/candidate/Idemployer'
+import Pickpassword from './pages/Pickpassword'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ function App() {
           <Route path='/login/signupcandidate' element={<Signupcandidate />} />
           <Route path='/login/signupempoly' element={<Signupemployer />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/Pickpassword' element={<Pickpassword />} />
         </Routes>
       </main>
     </div>
