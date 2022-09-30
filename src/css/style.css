@@ -2990,9 +2990,12 @@ ul.navbar-nav.nav-recuitment-li li a {
 
 .can img {
   width: 300px;
+  height: 300px;
+  border-radius: 50%;
 }
 
 .emp img {
   width: 300px;
-  border-radius: 30px;
+  height: 300px;
+  border-radius: 50%;
 }

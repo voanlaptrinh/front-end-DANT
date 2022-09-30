@@ -151,7 +151,7 @@ const Headercan = (props: Props) => {
                             </div>
                           </div>
                           <div className="col-md-4">
-                            <select id="computer-languages">
+                            <select className="form-select form-select-lg mb-3" >
                               <option value="" selected hidden>Tất cả ngôn ngữ</option>
                               <option>Java</option>
                               <option>.NET</option>
@@ -163,10 +163,9 @@ const Headercan = (props: Props) => {
                               <option>Tester</option>
                               <option>Ruby</option>
                             </select>
-                            <i className="fa fa-code sfa" aria-hidden="true" />
                           </div>
                           <div className="col-md-3">
-                            <select id="s-provinces">
+                            <select className="form-select form-select-lg mb-3">
                               <option value="" selected hidden>Tất cả địa điểm</option>
                               <option>Đà Nẵng</option>
                               <option>Hà Nội</option>
@@ -175,7 +174,6 @@ const Headercan = (props: Props) => {
                               <option>Quy Nhơn</option>
                               <option>Nha Trang</option>
                             </select>
-                            <i className="fa fa-map-marker sfa" aria-hidden="true" />
                           </div>
                         </div>
                       </div>

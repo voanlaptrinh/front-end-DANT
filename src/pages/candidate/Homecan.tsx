@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { signin } from '../../api/auth'
+import { listCandidate } from '../../api/home'
 
 type Props = {}
 
 const Homecan = (props: Props) => {
+    const [candidate, setCandidate] = useState<any>()
+    useEffect(() => {
+        const getCandidate = async () => {
+            const {data} = await listCandidate() 
+            setCandidate(data)
+            console.log(data);
+            
+        }
+        getCandidate();
+    })
     return (
         <div>
             <div>
@@ -48,10 +60,10 @@ const Homecan = (props: Props) => {
                                                     </div>
                                                 </div>
                                                 <div className="wrap-btn-appl">
-                                                     <NavLink to="/idemployer" className="btn btn-appl">Apply Now</NavLink>
+                                                    <NavLink to="/idemployer" className="btn btn-appl">Apply Now</NavLink>
                                                 </div>
                                             </div>
-                                        </div>                      
+                                        </div>
                                         <div className="readmorestyle-wrap">
                                             <a href="#" className="readallstyle reads1">Xem tất cả</a>
                                         </div>
@@ -131,7 +143,7 @@ const Homecan = (props: Props) => {
                                         </a><a className="company" href="#">Orient Software</a>
                                             <p className="address"><i className="fa fa-map-marker pr-1" aria-hidden="true" /> Đà Nẵng</p>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +179,7 @@ const Homecan = (props: Props) => {
                                                 <h3 className="company">mgm technology</h3>
                                             </a>
                                         </div>
-                                    </div>                                  
+                                    </div>
                                 </div>
                             </div>
                         </div>

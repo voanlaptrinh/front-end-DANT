@@ -2900,7 +2900,8 @@ fieldset:disabled a.btn {
 .btn-primary {
     color: #fff;
     background-color: #007bff;
-    border-color: #007bff
+    border-color: #007bff;
+    margin-top: 2%;
 }
 
 .btn-primary:hover {
@@ -6634,7 +6635,7 @@ a.close.disabled {
     display: grid;
     grid-template-columns: auto auto;
     text-align: center;
-    padding: 10% 0px 10% 0px;
+    padding: 5% 0px 5% 0px;
 }
 
 .modal-footer {
