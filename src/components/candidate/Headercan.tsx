@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { listCandidate } from '../../api/home'
 
 type Props = {}
 
 const Headercan = (props: Props) => {
+  const [candidate, setCandidate] = useState<any>([])
+  useEffect(() => {
+    const getCandidate = async () => {
+      const { data } = await listCandidate()
+      console.log(data);
+
+      setCandidate(data)
+    }
+    getCandidate();
+  }, [])
   return (
     <div>
 
@@ -149,15 +160,9 @@ const Headercan = (props: Props) => {
                           <div className="col-md-4">
                             <select id="computer-languages">
                               <option value="" selected hidden>Tất cả ngôn ngữ</option>
-                              <option>Java</option>
-                              <option>.NET</option>
-                              <option>Javascript</option>
-                              <option>Php</option>
-                              <option>Python</option>
-                              <option>QC QC</option>
-                              <option>Business Analyst</option>
-                              <option>Tester</option>
-                              <option>Ruby</option>
+                              {candidate.skill?.map((item: any) => {
+                                return <option value={item.name}>{item.name}</option>
+                              })}
                             </select>
                             <i className="fa fa-code sfa" aria-hidden="true" />
                           </div>
