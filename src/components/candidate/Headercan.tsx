@@ -159,9 +159,9 @@ const Headercan = (props: Props) => {
                           </div>
                           <div className="col-md-4">
                             <select id="computer-languages">
-                              <option value="" selected hidden>Tất cả ngôn ngữ</option>
+                              <option value="" hidden>Tất cả ngôn ngữ</option>
                               {candidate.skill?.map((item: any) => {
-                                return <option value={item.name}>{item.name}</option>
+                                return <option key={item.id} value={item.name}>{item.name}</option>
                               })}
                             </select>
                             <i className="fa fa-code sfa" aria-hidden="true" />
