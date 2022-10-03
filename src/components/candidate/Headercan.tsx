@@ -10,6 +10,7 @@ const Headercan = (props: Props) => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
       console.log(data);
+      console.log(data);
 
       setCandidate(data)
     }
