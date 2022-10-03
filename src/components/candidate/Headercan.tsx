@@ -168,8 +168,7 @@ const Headercan = (props: Props) => {
                               {candidate.skill?.map((item: any) => {
                                 return <option key={item.id} value={item.name}>{item.name}</option>
                               })}
-
-
+                            </select>
                           </div>
                           <div className="col-md-3">
                             <select className="form-select form-select-lg mb-3">
