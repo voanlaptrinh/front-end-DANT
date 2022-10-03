@@ -7,7 +7,7 @@ import { listCandidate } from '../../api/home'
 type Props = {}
 
 const Homecan = (props: Props) => {
-    const [candidate, setCandidate] = useState<any[]>([])
+    const [candidate, setCandidate] = useState<any>([])
     useEffect(() => {
         const getCandidate = async () => {
             const { data } = await listCandidate()
@@ -16,7 +16,7 @@ const Homecan = (props: Props) => {
 
         }
         getCandidate();
-    })
+    },[])
     return (
         <div>
             <div>

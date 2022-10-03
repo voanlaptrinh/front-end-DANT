@@ -162,8 +162,7 @@ const Headercan = (props: Props) => {
                             </div>
                           </div>
                           <div className="col-md-4">
-
-                            <select id="computer-languages">
+                            <select className='form-select1'>
                               <option value="" hidden>Tất cả ngôn ngữ</option>
                               {candidate.skill?.map((item: any) => {
                                 return <option key={item.id} value={item.name}>{item.name}</option>
@@ -171,7 +170,7 @@ const Headercan = (props: Props) => {
                             </select>
                           </div>
                           <div className="col-md-3">
-                            <select className="form-select form-select-lg mb-3">
+                            <select className='form-select1'>
                               <option value="" selected hidden>Tất cả địa điểm</option>
                               <option>Đà Nẵng</option>
                               <option>Hà Nội</option>
