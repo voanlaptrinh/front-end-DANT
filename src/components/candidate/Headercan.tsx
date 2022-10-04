@@ -162,15 +162,16 @@ const Headercan = (props: Props) => {
                             </div>
                           </div>
                           <div className="col-md-4">
-                            <select className='form-select1'>
-                              <option value="" hidden>Tất cả ngôn ngữ</option>
-                              {candidate.skill?.map((item: any) => {
+                            <select id="computer-languages">
+                              <option value="" selected hidden>Tất cả ngôn ngữ</option>
+                              {candidate.skill?.map((item:any) =>{
                                 return <option key={item.id} value={item.name}>{item.name}</option>
                               })}
                             </select>
+                            <i className="fa fa-code sfa" aria-hidden="true" />
                           </div>
                           <div className="col-md-3">
-                            <select className='form-select1'>
+                            <select id="s-provinces">
                               <option value="" selected hidden>Tất cả địa điểm</option>
                               <option>Đà Nẵng</option>
                               <option>Hà Nội</option>
@@ -179,6 +180,7 @@ const Headercan = (props: Props) => {
                               <option>Quy Nhơn</option>
                               <option>Nha Trang</option>
                             </select>
+                            <i className="fa fa-map-marker sfa" aria-hidden="true" />
                           </div>
                         </div>
                       </div>
@@ -187,6 +189,7 @@ const Headercan = (props: Props) => {
                       </div>
                     </div>
                   </form>
+
                 </div>
                 {/* (end) content tab 1 */}
                 {/* content tab 2 */}
