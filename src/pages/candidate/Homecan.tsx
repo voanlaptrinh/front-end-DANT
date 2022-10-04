@@ -14,7 +14,7 @@ const Homecan = (props: Props) => {
             setCandidate(data)
             console.log(data);
 
-        }
+        }   
         getCandidate();
     },[])
     return (
