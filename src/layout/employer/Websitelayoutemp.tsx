@@ -4,6 +4,8 @@ import Headercan from '../../components/candidate/Headercan'
 import Headeremp from '../../components/employer/Headeremp'
 import Footer from '../../components/Footer'
 
+import '../../js/jobdata.js'
+
 type Props = {}
 
 const Websitelayoutemp = (props: Props) => {

@@ -44,6 +44,7 @@ const Login = (props: Props) => {
                                 </div>
                                 <div className="login-right">
                                     <a className="btn btn-return" href='/'> Return Home</a>
+                                    <Link to="/">ádasd</Link>
                                 </div>
                             </div>
                         </div>

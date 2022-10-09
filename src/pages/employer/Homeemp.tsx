@@ -1,8 +1,16 @@
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { addNews } from '../../api/home'
 
 type Props = {}
 
 const Homeemp = (props: Props) => {
+  const navigate = useNavigate()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const onAdd: SubmitHandler<any> = async (Data: any) => {
+    const{data} = await addNews(Data)
+  }
   return (
     <div>
       <div>
@@ -29,61 +37,61 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tiêu đề<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="text" className="form-control" placeholder="Nhập tiêu đề" />
+                              <input type="text" className="form-control" placeholder="Nhập tiêu đề" {...register('title',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="1" />
+                              <input type="number" className="form-control" placeholder="1" {...register('quatity',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobGender">
+                              <select typeof="text" className="form-control" id="jobGender" {...register('sex',{required:true})}>
                                 <option value="">Chọn giới tính</option>
-                                <option value="">Không yêu cầu</option>
-                                <option value="">Nam</option>
-                                <option value="">Nữ</option>
+                                <option value={0}>Không yêu cầu</option>
+                                <option value={1}>Nam</option>
+                                <option value={2}>Nữ</option>
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mô tả công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập mô tả công việc" rows={5} defaultValue={""} />
+                              <textarea typeof="text" className="form-control" placeholder="Nhập mô tả công việc" rows={5} defaultValue={""}   {...register('describe',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Yêu cầu công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc" rows={5} defaultValue={""} />
+                            <textarea typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc" rows={5} defaultValue={""}   {...register('sex',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tính chất công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="natureWork">
+                              <select typeof="text" className="form-control" id="natureWork" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn tính chất công việc</option>
-                                <option value={18}>Giờ hành chính</option>
-                                <option value={10}>Việc làm thu nhập cao</option>
-                                <option value={11}>Việc làm thêm/Làm việc ngoài giờ</option>
-                                <option value={12}>Thầu dự án/Freelance/Việc làm tự do</option>
-                                <option value={13}>Việc làm online</option>
-                                <option value={14}>Kinh doanh mạng lưới</option>
-                                <option value={15}>Giúp việc gia đình</option>
-                                <option value={16}>Hợp tác lao động/Nước ngoài</option>
-                                <option value={17}>Việc làm người khuyết tật</option>
-                                <option value={19}>Việc làm theo ca/Đổi ca</option>
-                                <option value={20}>Việc làm cho trí thức lớn tuổi (trên 50 tuổi)</option>
+                                <option value={1}>Giờ hành chính</option>
+                                <option value={2}>Việc làm thu nhập cao</option>
+                                <option value={3}>Việc làm thêm/Làm việc ngoài giờ</option>
+                                <option value={4}>Thầu dự án/Freelance/Việc làm tự do</option>
+                                <option value={5}>Việc làm online</option>
+                                <option value={6}>Kinh doanh mạng lưới</option>
+                                <option value={7}>Giúp việc gia đình</option>
+                                <option value={8}>Hợp tác lao động/Nước ngoài</option>
+                                <option value={9}>Việc làm người khuyết tật</option>
+                                <option value={10}>Việc làm theo ca/Đổi ca</option>
+                                <option value={11}>Việc làm cho trí thức lớn tuổi (trên 50 tuổi)</option>
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Trình độ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobLevel">
+                              <select typeof="text" className="form-control" id="jobLevel" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn trình độ</option>
                                 <option value={6}>Đại học</option>
                                 <option value={5}>Cao đẳng</option>
@@ -99,7 +107,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobExperience">
+                              <select typeof="text" className="form-control" id="jobExperience" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn kinh nghiệm</option>
                                 <option value={0}>Chưa có kinh nghiệm</option>
                                 <option value={7}>Dưới 1 năm</option>
@@ -116,7 +124,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mức lương<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobSalary">
+                              <select typeof="text" className="form-control" id="jobSalary" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn mức lương</option>
                                 <option value={2}>Dưới 3 triệu</option>
                                 <option value={4}>3-5 triệu</option>
@@ -136,7 +144,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobWorkTime">
+                              <select typeof="text" className="form-control" id="jobWorkTime" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn hình thức làm việc</option>
                                 <option value={1}>Nhân viên chính thức</option>
                                 <option value={2}>Nhân viên thời vụ</option>
@@ -149,7 +157,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Thời gian thử việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select type="text" className="form-control" id="jobProbation">
+                              <select type="text" className="form-control" id="jobProbation" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn thời gian thử việc</option>
                                 <option value={0}>Nhận việc ngay</option>
                                 <option value={1}>1 tháng</option>
@@ -162,13 +170,13 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quyền lợi<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Quyền lợi công việc" rows={5} defaultValue={""} />
+                              <textarea typeof="text" className="form-control" placeholder="Quyền lợi công việc" rows={5} defaultValue={""} {...register('sex',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Ngành nghề</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobType">
+                              <select typeof="text" className="form-control" id="jobType" {...register('sex',{required:true})}>
                                 <option selected="selected" value="">Chọn ngành nghề</option>
                                 <option value={32}>Kinh doanh</option>
                                 <option value={10}>Bán hàng</option>
@@ -232,7 +240,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobProvince">
+                              <select typeof="text" className="form-control" id="jobProvince" {...register('sex',{required:true})}>
                                 <option value={1}>Hồ Chí Minh</option>
                                 <option value={2}>Hà Nội</option>
                                 <option value={3}>An Giang</option>
@@ -327,116 +335,116 @@ const Homeemp = (props: Props) => {
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chăm sóc sức khỏe</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Laptop</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch nước ngoài</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>phụ cấp thâm niên</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đào tạo</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Phụ cấp</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đồng phục</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Nghỉ phép năm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ thưởng</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Tăng lương</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Xe đưa đón</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Công tác phí</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>CLB thể thao</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
-                            
+
                           </div>
                         </div>
                       </div>
@@ -905,7 +913,7 @@ const Homeemp = (props: Props) => {
         </div>
         {/* (end) published recuitment */}
         <div className="clearfix" />
-        
+
       </div>
 
     </div>
