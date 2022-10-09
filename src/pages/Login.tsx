@@ -21,7 +21,7 @@ const Login = (props: Props) => {
                 return true
             }
             return true
-        }else{
+        } else {
             alert(data.mesegse)
         }
     }
@@ -85,13 +85,13 @@ const Login = (props: Props) => {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-sm-6 col-12 pr-7">
-                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left" >
                                                             <i className="fa fa-facebook" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Facebook</span>
                                                         </button>
                                                     </div>
                                                     <div className="col-sm-6 col-12 pl-7">
-                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left" >
                                                             <i className="fa fa-google" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Google</span>
                                                         </button>

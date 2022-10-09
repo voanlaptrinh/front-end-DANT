@@ -65,7 +65,6 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Tính chất công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="natureWork">
-                                <option selected="selected" value="">Chọn tính chất công việc</option>
                                 <option value={18}>Giờ hành chính</option>
                                 <option value={10}>Việc làm thu nhập cao</option>
                                 <option value={11}>Việc làm thêm/Làm việc ngoài giờ</option>
@@ -84,7 +83,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Trình độ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobLevel">
-                                <option selected="selected" value="">Chọn trình độ</option>
+                                <option >Chọn trình độ</option>
                                 <option value={6}>Đại học</option>
                                 <option value={5}>Cao đẳng</option>
                                 <option value={4}>Trung cấp</option>
@@ -100,7 +99,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobExperience">
-                                <option selected="selected" value="">Chọn kinh nghiệm</option>
+                                <option >Chọn kinh nghiệm</option>
                                 <option value={0}>Chưa có kinh nghiệm</option>
                                 <option value={7}>Dưới 1 năm</option>
                                 <option value={1}>1 năm</option>
@@ -117,7 +116,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Mức lương<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobSalary">
-                                <option selected="selected" value="">Chọn mức lương</option>
+                                <option value="">Chọn mức lương</option>
                                 <option value={2}>Dưới 3 triệu</option>
                                 <option value={4}>3-5 triệu</option>
                                 <option value={5}>5-7 triệu</option>
@@ -137,7 +136,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobWorkTime">
-                                <option selected="selected" value="">Chọn hình thức làm việc</option>
+                                <option >Chọn hình thức làm việc</option>
                                 <option value={1}>Nhân viên chính thức</option>
                                 <option value={2}>Nhân viên thời vụ</option>
                                 <option value={3}>Bán thời gian</option>
@@ -149,8 +148,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Thời gian thử việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select type="text" className="form-control" id="jobProbation">
-                                <option selected="selected" value="">Chọn thời gian thử việc</option>
+                              <select className="form-control" id="jobProbation">
+                                <option value="">Chọn thời gian thử việc</option>
                                 <option value={0}>Nhận việc ngay</option>
                                 <option value={1}>1 tháng</option>
                                 <option value={2}>2 tháng</option>
@@ -169,7 +168,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Ngành nghề</label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobType">
-                                <option selected="selected" value="">Chọn ngành nghề</option>
+                                <option >Chọn ngành nghề</option>
                                 <option value={32}>Kinh doanh</option>
                                 <option value={10}>Bán hàng</option>
                                 <option value={21}>Chăm sóc khách hàng</option>
@@ -327,116 +326,116 @@ const Homeemp = (props: Props) => {
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chăm sóc sức khỏe</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Laptop</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch nước ngoài</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>phụ cấp thâm niên</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Du lịch</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đào tạo</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Phụ cấp</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Đồng phục</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Nghỉ phép năm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ thưởng</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Tăng lương</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Xe đưa đón</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Công tác phí</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>CLB thể thao</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
                             <div className="filter-topic">
                               <label className="label-container">
                                 <span>Chế độ bảo hiểm</span>
-                                <input type="checkbox"  defaultValue={1} />
+                                <input type="checkbox" defaultValue={1} />
                                 <span className="checkmark" />
                               </label>
                             </div>
-                            
+
                           </div>
                         </div>
                       </div>
@@ -589,7 +588,7 @@ const Homeemp = (props: Props) => {
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobEmployerScale">
                                 <option value="">Chọn quy mô</option>
-                                <option selected="selected" value={1}>Dưới 20 người</option>
+                                <option value={1}>Dưới 20 người</option>
                                 <option value={2}>20 - 150 người</option>
                                 <option value={3}>150 - 300 người</option>
                                 <option value={4}>Trên 300 người</option>
@@ -599,7 +598,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự</label>
                             <div className="col-sm-9">
-                              <select type="text" className="form-control" id="jobFieldsActivity">
+                              <select className="form-control" id="jobFieldsActivity">
                                 <optgroup label="NÔNG NGHIỆP, LÂM NGHIỆP VÀ THUỶ SẢN">
                                   <option value={22}>Nông nghiệp và hoạt động dịch vụ có liên quan</option>
                                   <option value={23}>Lâm nghiệp và hoạt động dịch vụ có liên quan</option>
@@ -740,7 +739,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Logo</label>
                             <div className="col-sm-9 ">
                               <div id="drop-area">
-                                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                                <input type="file" id="fileElem" multiple accept="image/*" />
                                 <label style={{ cursor: 'pointer' }} htmlFor="fileElem">Tải ảnh lên hoặc kéo thả vào đây</label>
                                 <progress id="progress-bar" max={100} value={0} className="d-none" />
                                 <div id="gallery" />
@@ -905,7 +904,7 @@ const Homeemp = (props: Props) => {
         </div>
         {/* (end) published recuitment */}
         <div className="clearfix" />
-        
+
       </div>
 
     </div>
