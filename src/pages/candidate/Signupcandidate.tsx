@@ -52,7 +52,7 @@ const Signupcandidate = (props: Props) => {
                 <span className="login-breadcrumb"><em>/</em> Register</span>
               </div>
               <div className="login-right">
-                <a href="#" className="btn btn-return">Return Home</a>
+                <a href="/" className="btn btn-return">Return Home</a>
               </div>
             </div>
           </div>

@@ -1,8 +1,16 @@
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { addNews } from '../../api/home'
 
 type Props = {}
 
 const Homeemp = (props: Props) => {
+  const navigate = useNavigate()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const onAdd: SubmitHandler<any> = async (Data: any) => {
+    const{data} = await addNews(Data)
+  }
   return (
     <div>
       <div>
@@ -29,36 +37,36 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tiêu đề<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="text" className="form-control" placeholder="Nhập tiêu đề" />
+                              <input type="text" className="form-control" placeholder="Nhập tiêu đề" {...register('title',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="1" />
+                              <input type="number" className="form-control" placeholder="1" {...register('quatity',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobGender">
+                              <select typeof="text" className="form-control" id="jobGender" {...register('sex',{required:true})}>
                                 <option value="">Chọn giới tính</option>
-                                <option value="">Không yêu cầu</option>
-                                <option value="">Nam</option>
-                                <option value="">Nữ</option>
+                                <option value={0}>Không yêu cầu</option>
+                                <option value={1}>Nam</option>
+                                <option value={2}>Nữ</option>
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mô tả công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập mô tả công việc" rows={5} defaultValue={""} />
+                              <textarea typeof="text" className="form-control" placeholder="Nhập mô tả công việc" rows={5} defaultValue={""}   {...register('describe',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Yêu cầu công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc" rows={5} defaultValue={""} />
+                            <textarea typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc" rows={5} defaultValue={""}   {...register('sex',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -98,6 +106,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
+
                               <select typeof="text" className="form-control" id="jobExperience">
                                 <option >Chọn kinh nghiệm</option>
                                 <option value={0}>Chưa có kinh nghiệm</option>
@@ -161,7 +170,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quyền lợi<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Quyền lợi công việc" rows={5} defaultValue={""} />
+                              <textarea typeof="text" className="form-control" placeholder="Quyền lợi công việc" rows={5} defaultValue={""} {...register('sex',{required:true})}/>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -231,7 +240,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobProvince">
+                              <select typeof="text" className="form-control" id="jobProvince" {...register('sex',{required:true})}>
                                 <option value={1}>Hồ Chí Minh</option>
                                 <option value={2}>Hà Nội</option>
                                 <option value={3}>An Giang</option>
