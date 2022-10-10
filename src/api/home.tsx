@@ -8,3 +8,7 @@ export const addNews = (data:any) =>{
     const url =`/employer/store`
     return instance.post(url,data)
 }
+export const listNews = () =>{
+    const url = `/employer/create`
+    return instance.get(url)
+}
