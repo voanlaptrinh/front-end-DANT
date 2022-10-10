@@ -20,7 +20,7 @@ const Homeemp = (props: Props) => {
       console.log(data);
     }
     getNews()
-  },[])
+  }, [])
   return (
     <div>
       <div>
