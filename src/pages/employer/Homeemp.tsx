@@ -72,27 +72,26 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tính chất công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="natureWork" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn tính chất công việc</option>
-                                <option value={1}>Giờ hành chính</option>
-                                <option value={2}>Việc làm thu nhập cao</option>
-                                <option value={3}>Việc làm thêm/Làm việc ngoài giờ</option>
-                                <option value={4}>Thầu dự án/Freelance/Việc làm tự do</option>
-                                <option value={5}>Việc làm online</option>
-                                <option value={6}>Kinh doanh mạng lưới</option>
-                                <option value={7}>Giúp việc gia đình</option>
-                                <option value={8}>Hợp tác lao động/Nước ngoài</option>
-                                <option value={9}>Việc làm người khuyết tật</option>
-                                <option value={10}>Việc làm theo ca/Đổi ca</option>
-                                <option value={11}>Việc làm cho trí thức lớn tuổi (trên 50 tuổi)</option>
+                              <select typeof="text" className="form-control" id="natureWork">
+                                <option value={18}>Giờ hành chính</option>
+                                <option value={10}>Việc làm thu nhập cao</option>
+                                <option value={11}>Việc làm thêm/Làm việc ngoài giờ</option>
+                                <option value={12}>Thầu dự án/Freelance/Việc làm tự do</option>
+                                <option value={13}>Việc làm online</option>
+                                <option value={14}>Kinh doanh mạng lưới</option>
+                                <option value={15}>Giúp việc gia đình</option>
+                                <option value={16}>Hợp tác lao động/Nước ngoài</option>
+                                <option value={17}>Việc làm người khuyết tật</option>
+                                <option value={19}>Việc làm theo ca/Đổi ca</option>
+                                <option value={20}>Việc làm cho trí thức lớn tuổi (trên 50 tuổi)</option>
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Trình độ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobLevel" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn trình độ</option>
+                              <select typeof="text" className="form-control" id="jobLevel">
+                                <option >Chọn trình độ</option>
                                 <option value={6}>Đại học</option>
                                 <option value={5}>Cao đẳng</option>
                                 <option value={4}>Trung cấp</option>
@@ -107,8 +106,9 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobExperience" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn kinh nghiệm</option>
+
+                              <select typeof="text" className="form-control" id="jobExperience">
+                                <option >Chọn kinh nghiệm</option>
                                 <option value={0}>Chưa có kinh nghiệm</option>
                                 <option value={7}>Dưới 1 năm</option>
                                 <option value={1}>1 năm</option>
@@ -124,8 +124,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mức lương<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobSalary" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn mức lương</option>
+                              <select typeof="text" className="form-control" id="jobSalary">
+                                <option value="">Chọn mức lương</option>
                                 <option value={2}>Dưới 3 triệu</option>
                                 <option value={4}>3-5 triệu</option>
                                 <option value={5}>5-7 triệu</option>
@@ -144,8 +144,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobWorkTime" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn hình thức làm việc</option>
+                              <select typeof="text" className="form-control" id="jobWorkTime">
+                                <option >Chọn hình thức làm việc</option>
                                 <option value={1}>Nhân viên chính thức</option>
                                 <option value={2}>Nhân viên thời vụ</option>
                                 <option value={3}>Bán thời gian</option>
@@ -157,8 +157,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Thời gian thử việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select type="text" className="form-control" id="jobProbation" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn thời gian thử việc</option>
+                              <select className="form-control" id="jobProbation">
+                                <option value="">Chọn thời gian thử việc</option>
                                 <option value={0}>Nhận việc ngay</option>
                                 <option value={1}>1 tháng</option>
                                 <option value={2}>2 tháng</option>
@@ -176,8 +176,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Ngành nghề</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobType" {...register('sex',{required:true})}>
-                                <option selected="selected" value="">Chọn ngành nghề</option>
+                              <select typeof="text" className="form-control" id="jobType">
+                                <option >Chọn ngành nghề</option>
                                 <option value={32}>Kinh doanh</option>
                                 <option value={10}>Bán hàng</option>
                                 <option value={21}>Chăm sóc khách hàng</option>
@@ -597,7 +597,7 @@ const Homeemp = (props: Props) => {
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobEmployerScale">
                                 <option value="">Chọn quy mô</option>
-                                <option selected="selected" value={1}>Dưới 20 người</option>
+                                <option value={1}>Dưới 20 người</option>
                                 <option value={2}>20 - 150 người</option>
                                 <option value={3}>150 - 300 người</option>
                                 <option value={4}>Trên 300 người</option>
@@ -607,7 +607,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự</label>
                             <div className="col-sm-9">
-                              <select type="text" className="form-control" id="jobFieldsActivity">
+                              <select className="form-control" id="jobFieldsActivity">
                                 <optgroup label="NÔNG NGHIỆP, LÂM NGHIỆP VÀ THUỶ SẢN">
                                   <option value={22}>Nông nghiệp và hoạt động dịch vụ có liên quan</option>
                                   <option value={23}>Lâm nghiệp và hoạt động dịch vụ có liên quan</option>
@@ -748,7 +748,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Logo</label>
                             <div className="col-sm-9 ">
                               <div id="drop-area">
-                                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                                <input type="file" id="fileElem" multiple accept="image/*" />
                                 <label style={{ cursor: 'pointer' }} htmlFor="fileElem">Tải ảnh lên hoặc kéo thả vào đây</label>
                                 <progress id="progress-bar" max={100} value={0} className="d-none" />
                                 <div id="gallery" />
