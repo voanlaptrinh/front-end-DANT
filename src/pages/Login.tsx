@@ -1,16 +1,30 @@
-import Password from 'antd/lib/input/Password'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signin } from '../api/auth'
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup'
+import BannerLogin from '../assets/images/banner-login.png';
 
 type Props = {}
+type FormValues = {
+    email: string,
+    password: string,
+}
 
-const Login = (props: Props) => {
+const schema = yup.object({
+    email: yup.string().email('Vui lòng nhập đúng định dạng email').required('Vui lòng nhập email'),
+    password: yup.string().required('Vui lòng nhập mật khẩu')
+})
+
+const Login: React.FC = (props: Props) => {
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const onSignin: SubmitHandler<any> = async (user: any) => {
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+        resolver: yupResolver(schema)
+    })
+    const onSignin: SubmitHandler<FormValues> = async (user: FormValues) => {
         const { data } = await signin(user)
+        localStorage.setItem('user', JSON.stringify(data))
         if (data.role_id) {
             if (data.role_id == 1) {
                 navigate('/');
@@ -21,7 +35,7 @@ const Login = (props: Props) => {
                 return true
             }
             return true
-        }else{
+        } else {
             alert(data.mesegse)
         }
     }
@@ -43,7 +57,7 @@ const Login = (props: Props) => {
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
-                                    <a className="btn btn-return"> <Link to="/">Return Home</Link></a>
+                                    <a className="btn btn-return"> <Link to="/">Trang chủ</Link></a>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +70,7 @@ const Login = (props: Props) => {
                                 <div className="row">
                                     {/* login main descriptions */}
                                     <div className="col-md-6 col-sm-12 col-12 login-main-left">
-                                        <img src="img/banner-login.png" />
+                                        <img src={BannerLogin} />
                                     </div>
                                     {/* login main form */}
                                     <div className="col-md-6 col-sm-12 col-12 login-main-right">
@@ -65,18 +79,22 @@ const Login = (props: Props) => {
                                                 <h3>Đăng Nhập</h3>
                                             </div>
                                             <div className="input-div one">
+                                                <label htmlFor="email" className='py-2'>Tên email</label>
                                                 <div className="div lg-lable">
-                                                    <input type="text" className="input form-control-lgin" placeholder='nhận email' {...register('email', { required: true })} />
+                                                    <input type="text" className="input form-control-lgin" placeholder='nhận email' {...register('email')} />
                                                 </div>
+                                                <p className='text-danger py-2'>{errors.email?.message}</p>
                                             </div>
                                             <div className="input-div pass">
+                                                <label htmlFor="password" className='py-2'>Mật khẩu</label>
                                                 <div className="div lg-lable">
-                                                    <input type="password" className="input form-control-lgin" placeholder='nhập password'{...register('password', { required: true })} />
+                                                    <input type="password" className="input form-control-lgin" placeholder='nhập password'{...register('password')} />
                                                 </div>
+                                                <p className='text-danger py-2'>{errors.password?.message}</p>
                                             </div>
                                             <div className="form-group d-block frm-text">
                                                 <Link to="/pickpassword" className="fg-login d-inline-block">Quên mật khẩu</Link>
-                                                <a href="#modal" className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
+                                                <a data-bs-toggle='modal' data-bs-target='#signup-form' className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
                                             </div>
                                             <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">Đăng Nhập</button>
                                             <div className="form-group d-block w-100 mt-5">
@@ -113,7 +131,7 @@ const Login = (props: Props) => {
                             {/* login footer left */}
                             <div className="col-md-6 col-sm-12 col-12 login-footer-left">
                                 <div className="login-copyright">
-                                    <p>Copyright © 2020 <a href="#"> TechJobs</a>. All Rights Reserved.</p>
+                                    <p>Copyright © 2020 <a href="#"> Itwork</a>. All Rights Reserved.</p>
                                 </div>
                             </div>
                             {/* login footer right */}
@@ -127,35 +145,31 @@ const Login = (props: Props) => {
                     </div>
                 </footer>
             </div>
-            {/* modal click chọn bên đăng ký */}
-            <div className='bodymodal'>
-                <div id="modal" className="overlay">
-                    <div className="popup">
-                        <h2>Chào bạn, </h2>
-                        <a className="close" href="#">&times;</a>
-                        <span>bạn hãy dành vài giây để xác nhận thông tin này nhé</span>
-                        <div className="content">
-                            <div>Để tối ưu tốt nhất cho trải nghiệm của bạn với Website,
-                                vui lòng lựa chọn nhóm phù hợp nhất với bạn.</div>
-                            <div className='bodyntd'>
-                                <div className='contenrmodal'>
-                                    <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
-                                    <div>
-                                        <a href="" className="btn btn-primary"> <Link to="signupempoly">Nhà tuyển dụng</Link></a>
-                                    </div>
-                                </div>
-                                <div className='contenrmodal'>
-                                    <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
-                                    <div>
-                                        <a href="" className="btn btn-primary"> <Link to="signupcandidate">Ứng viên</Link></a>
-                                    </div>
-                                </div>
+
+            {/* Modal signup */}
+            <div className="modal fade" id="signup-form" tabIndex={-1} aria-labelledby="signup-form" aria-hidden="true" style={{ minWidth: '800px ' }}>
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <p className="modal-title  text-center" id="signup-form">
+                                Chào bạn,bạn hãy dành vài giây để xác nhận thông tin này nhé
+                            </p>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body d-flex justify-content-around">
+                            <div className='contenrmodal '>
+                                <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" className='rounded-circle' width="250" height="250" />
+                                <a className="d-block btn btn-primary text-white" href="/login/signupempoly" >Nhà tuyển dụng</a>
+                            </div>
+                            <div className='contenrmodal '>
+                                <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" className='rounded-circle' width="250" height="250" />
+                                <a className="d-block btn btn-primary text-white" href="/login/signupcandidate" >Ứng viên</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
