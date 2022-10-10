@@ -21,7 +21,7 @@ const Login = (props: Props) => {
                 return true
             }
             return true
-        }else{
+        } else {
             alert(data.mesegse)
         }
     }
@@ -43,7 +43,7 @@ const Login = (props: Props) => {
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
-                                    <a className="btn btn-return"> <Link to="/">Return Home</Link></a>
+                                    <a className="btn btn-return" href='/'> Return Home</a>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ const Login = (props: Props) => {
                                             </div>
                                             <div className="form-group d-block frm-text">
                                                 <Link to="/pickpassword" className="fg-login d-inline-block">Quên mật khẩu</Link>
-                                                <a href="#modal" className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
+                                                <Link to="" data-bs-toggle="modal" data-bs-target="#exampleModal" className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</Link>
                                             </div>
                                             <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">Đăng Nhập</button>
                                             <div className="form-group d-block w-100 mt-5">
@@ -85,13 +85,13 @@ const Login = (props: Props) => {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-sm-6 col-12 pr-7">
-                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left" >
                                                             <i className="fa fa-facebook" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Facebook</span>
                                                         </button>
                                                     </div>
                                                     <div className="col-sm-6 col-12 pl-7">
-                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left" >
                                                             <i className="fa fa-google" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Google</span>
                                                         </button>
@@ -128,33 +128,38 @@ const Login = (props: Props) => {
                 </footer>
             </div>
             {/* modal click chọn bên đăng ký */}
-            <div className='bodymodal'>
-                <div id="modal" className="overlay">
-                    <div className="popup">
-                        <h2>Chào bạn, </h2>
-                        <a className="close" href="#">&times;</a>
-                        <span>bạn hãy dành vài giây để xác nhận thông tin này nhé</span>
-                        <div className="content">
-                            <div>Để tối ưu tốt nhất cho trải nghiệm của bạn với Website,
-                                vui lòng lựa chọn nhóm phù hợp nhất với bạn.</div>
-                            <div className='bodyntd'>
-                                <div className='contenrmodal'>
-                                    <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
-                                    <div>
-                                        <a href="" className="btn btn-primary"> <Link to="signupempoly">Nhà tuyển dụng</Link></a>
-                                    </div>
-                                </div>
-                                <div className='contenrmodal'>
-                                    <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" alt="" width="400px" height="300px" />
-                                    <div>
-                                        <a href="" className="btn btn-primary"> <Link to="signupcandidate">Ứng viên</Link></a>
-                                    </div>
-                                </div>
+            {/* Modal */}
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">
+                                Chào bạn,
+                                <div><span>Để có được trải nghiệm tốt nhất mới bạn chọn bên mà mình muôn đăng ký</span></div>
+                            </h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                        </div>
+                        <div className="modal-body">
+                            <div className='can'>
+                                <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png" alt="" />
                             </div>
+                            <div className='emp'>
+                                <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png" alt="" />
+                            </div>
+                            <div>
+                                <a href="/login/signupempoly" className="btn btn-primary">Nhà tuyển dụng</a>
+                            </div>
+                            <div>
+                                <a href="/login/signupcandidate" className="btn btn-primary">Ứng viên</a>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* end modal */}
         </div>
     )
 }

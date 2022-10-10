@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { listCandidate } from '../../api/home'
 
+import '../../js/jobdata.js'
 type Props = {}
 
 const Headercan = (props: Props) => {
