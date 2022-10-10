@@ -3,15 +3,15 @@ import { Link, NavLink } from 'react-router-dom'
 import { listCandidate } from '../../api/home'
 
 import '../../js/jobdata.js'
+import { Categories } from '../../types/candidate'
+import { Skill } from '../../types/skill'
 type Props = {}
 
 const Headercan = (props: Props) => {
-  const [candidate, setCandidate] = useState<any>([])
+  const [candidate, setCandidate] = useState<Categories>()
   useEffect(() => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
-      console.log(data);
-
       setCandidate(data)
     }
     getCandidate();
@@ -165,7 +165,7 @@ const Headercan = (props: Props) => {
                           <div className="col-md-4">
                             <select id="computer-languages">
                               <option value="" selected hidden>Tất cả ngôn ngữ</option>
-                              {candidate.skill?.map((item:any) =>{
+                              {candidate?.skill.map((item: Skill) => {
                                 return <option key={item.id} value={item.name}>{item.name}</option>
                               })}
                             </select>

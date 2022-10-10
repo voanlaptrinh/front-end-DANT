@@ -1,22 +1,8 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { signin } from '../../api/auth'
-import { listCandidate } from '../../api/home'
 
 type Props = {}
 
 const Homecan = (props: Props) => {
-    const [candidate, setCandidate] = useState<any>([])
-    useEffect(() => {
-        const getCandidate = async () => {
-            const { data } = await listCandidate()
-            setCandidate(data)
-            console.log(data);
-
-        }   
-        getCandidate();
-    },[])
     return (
         <div>
             <div>
