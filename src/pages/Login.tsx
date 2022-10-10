@@ -57,7 +57,9 @@ const Login: React.FC = (props: Props) => {
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
+
                                     <a className="btn btn-return"> <Link to="/">Trang chủ</Link></a>
+
                                 </div>
                             </div>
                         </div>
@@ -95,6 +97,7 @@ const Login: React.FC = (props: Props) => {
                                             <div className="form-group d-block frm-text">
                                                 <Link to="/pickpassword" className="fg-login d-inline-block">Quên mật khẩu</Link>
                                                 <a data-bs-toggle='modal' data-bs-target='#signup-form' className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
+
                                             </div>
                                             <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">Đăng Nhập</button>
                                             <div className="form-group d-block w-100 mt-5">
@@ -103,13 +106,13 @@ const Login: React.FC = (props: Props) => {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-sm-6 col-12 pr-7">
-                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left" >
                                                             <i className="fa fa-facebook" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Facebook</span>
                                                         </button>
                                                     </div>
                                                     <div className="col-sm-6 col-12 pl-7">
-                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
+                                                        <button className="btn btn-secondary btn-login-google btnw w-100 float-left" >
                                                             <i className="fa fa-google" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Google</span>
                                                         </button>
@@ -165,11 +168,24 @@ const Login: React.FC = (props: Props) => {
                                 <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714590/news2_pgluai.jpg" className='rounded-circle' width="250" height="250" />
                                 <a className="d-block btn btn-primary text-white" href="/login/signupcandidate" >Ứng viên</a>
                             </div>
+                            <div className='emp'>
+                                <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png" alt="" />
+                            </div>
+                            <div>
+                                <a href="/login/signupempoly" className="btn btn-primary">Nhà tuyển dụng</a>
+                            </div>
+                            <div>
+                                <a href="/login/signupcandidate" className="btn btn-primary">Ứng viên</a>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div >
         </div >
+
     )
 }
 
