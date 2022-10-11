@@ -9,12 +9,16 @@ type Props = {}
 
 const Headercan = (props: Props) => {
   const [candidate, setCandidate] = useState<Categories>()
+  const [user, setUser] = useState<any>()
   useEffect(() => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
       setCandidate(data)
     }
-    getCandidate();
+    // getCandidate();
+    // const getUser = async () =>{
+    //   const {data} =
+    // }
   }, [])
   return (
     <div>

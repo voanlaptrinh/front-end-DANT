@@ -20,6 +20,7 @@ const Homeemp = (props: Props) => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
+      
     }
     getNews()
   }, [])

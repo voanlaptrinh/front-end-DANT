@@ -15,4 +15,8 @@ export const listNews = () => {
 export const createNews = (data: any) => {
     const url = `/employer/store`
     return instance.post(url, data)
+}  
+export const listNewsemp = () =>{
+    const url = `/employer/show`
+    return instance.get(url)
 }
