@@ -12,3 +12,10 @@ export const listNews = () =>{
     const url = `/employer/create`
     return instance.get(url)
 }
+export const listEmployer = () =>{
+    const url = ``
+}
+export const listNewsemp = () =>{
+    const url = `/employer/show`
+    return instance.get(url)
+}
