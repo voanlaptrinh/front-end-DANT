@@ -5,9 +5,10 @@ import { User } from '../../types/user';
 
 interface authState {
    loading: boolean,
-   data: {
+   user: {
       email: string,
       accessToken: string,
+      role_id: number
    },
    error: string
 }
@@ -27,6 +28,7 @@ export const signInByUser = createAsyncThunk(
          const data = await signin(userData);
          toast.success('Đăng nhập thành công')
 
+
          return data;
       } catch (error: any) {
          toast.error(error.message);
@@ -37,9 +39,10 @@ export const signInByUser = createAsyncThunk(
 
 const initialState: authState = {
    loading: false,
-   data: {
+   user: {
       email: '',
       accessToken: '',
+      role_id: 0
    },
    error: ''
 }
@@ -56,8 +59,8 @@ export const authSlice = createSlice({
       });
       builder.addCase(signInByUser.fulfilled, (state, action) => {
          state.loading = false;
-         state.data = action.payload?.data;
-         localStorage.setItem('user', JSON.stringify(state.data))
+         state.user = action.payload?.data;
+         localStorage.setItem('user', JSON.stringify(state.user))
       });
       builder.addCase(signInByUser.rejected, (state, action) => {
          state.loading = false;

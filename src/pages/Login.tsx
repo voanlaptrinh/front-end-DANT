@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { signInByUser } from '../features/auth/authSlice';
 import { toast } from 'react-toastify';
 import Logo from '../assets/images/logo.jpg';
+import { signin } from '../api/auth';
 
 type Props = {}
 type FormValues = {
@@ -25,32 +26,27 @@ const schema = yup.object({
 })
 
 const Login: React.FC = (props: Props) => {
-    const auth = useSelector((state: RootState) => state.auth);
+    // const auth = useSelector((state: RootState) => state.auth);
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
         resolver: yupResolver(schema)
     })
-    const onSignin: SubmitHandler<FormValues> = (user: FormValues) => {
-        dispatch(signInByUser(user))
-        if (auth.data.accessToken) {
-            navigate('/employer')
-        } else {
-            navigate('/');
+
+    const onSignin: SubmitHandler<FormValues> = async (user: FormValues) => {
+        const { data } = await signin(user);
+        localStorage.setItem('user', JSON.stringify(data));
+        console.log(data.data);
+        if (data.data) {
+            if (data.data.role_id == 1) {
+                navigate('/');
+                return true
+            }
+            if (data.data.role_id == 2) {
+                navigate('/employer');
+                return true
+            }
         }
-        // if (data.role_id) {
-        //     if (data.role_id == 1) {
-        //         navigate('/');
-        //         return true
-        //     }
-        //     if (data.role_id == 2) {
-        //         navigate('/employer');
-        //         return true
-        //     }
-        //     return true
-        // } else {
-        //     alert(data.mesegse)
-        // }
     }
     return (
         <div>
@@ -108,13 +104,14 @@ const Login: React.FC = (props: Props) => {
                                                 <a data-bs-toggle='modal' data-bs-target='#signup-form' className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
                                             </div>
                                             <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">
-                                                {
+                                                {/* {
                                                     auth.loading ?
                                                         <div className="spinner-border text-light" role="status">
                                                             <span className="visually-hidden">Loading...</span>
                                                         </div> :
-                                                        "Đăng Nhập"
-                                                }
+                                                        
+                                                } */}
+                                                Đăng Nhập
                                             </button>
                                             <div className="form-group d-block w-100 mt-5">
                                                 <div className="text-or text-center">
