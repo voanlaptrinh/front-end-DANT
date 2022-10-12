@@ -20,7 +20,7 @@ const Homecan = (props: Props) => {
                                             <div className="job-content">
                                                 <div className="job-logo">
                                                     <a href="#">
-                                                        <img src="img/fpt-logo.png" className="job-logo-ima" alt="job-logo" />
+                                                        <img className="job-logo-ima" alt="job-logo" />
                                                     </a>
                                                 </div>
                                                 <div className="job-desc">
@@ -28,8 +28,11 @@ const Homecan = (props: Props) => {
                                                         <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
                                                     </div>
                                                     <div className="job-company">
-                                                        <a href="#">Fpt Software</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
+                                                        <a href="#">Fpt Software</a> |
+                                                        <a href="#" className="job-address">
+                                                            <i className="fa fa-map-marker" aria-hidden="true" />
+                                                            Đà Nẵng
+                                                        </a>
                                                     </div>
                                                     <div className="job-inf">
                                                         <div className="job-main-skill">
@@ -90,7 +93,7 @@ const Homecan = (props: Props) => {
                                 </div>
                                 <div className="job-sidebar">
                                     <div className="sb-banner">
-                                        <img src="img/ads1.jpg" className="advertisement" />
+                                        <img className="advertisement" />
                                     </div>
                                 </div>
                             </div>
@@ -112,22 +115,27 @@ const Homecan = (props: Props) => {
                                     <div className="item job-latest-item">
                                         <a href="#" className="job-latest-group">
                                             <div className="job-lt-logo">
-                                                <img src="img/fpt-logo.png" />
+                                                <img />
                                             </div>
-                                        </a><div className="job-lt-info"><a href="#" className="job-latest-group">
-                                            <h3>[HCM] 02 Solution Architects–Up to $2000 #1</h3>
-                                        </a><a className="company" href="#">FPT Software</a>
+                                        </a><div className="job-lt-info">
+                                            <a href="#" className="job-latest-group">
+                                                <h3>[HCM] 02 Solution Architects–Up to $2000 #1</h3>
+                                            </a>
+                                            <a className="company" href="#">FPT Software</a>
                                             <p className="address"><i className="fa fa-map-marker pr-1" aria-hidden="true" /> Đà Nẵng</p>
                                         </div>
                                     </div>
                                     <div className="item job-latest-item">
                                         <a href="#" className="job-latest-group">
                                             <div className="job-lt-logo">
-                                                <img src="img/alipay-logo.png" />
+                                                <img />
                                             </div>
-                                        </a><div className="job-lt-info"><a href="#" className="job-latest-group">
-                                            <h3>Fullstack .NET Developer (Angular/React) #2</h3>
-                                        </a><a className="company" href="#">Orient Software</a>
+                                        </a>
+                                        <div className="job-lt-info">
+                                            <a href="#" className="job-latest-group">
+                                                <h3>Fullstack .NET Developer (Angular/React) #2</h3>
+                                            </a>
+                                            <a className="company" href="#">Orient Software</a>
                                             <p className="address"><i className="fa fa-map-marker pr-1" aria-hidden="true" /> Đà Nẵng</p>
                                         </div>
                                     </div>
@@ -151,7 +159,7 @@ const Homecan = (props: Props) => {
                                         <div className="top-employer-item">
                                             <a href="#">
                                                 <div className="emp-img-thumb">
-                                                    <img src="img/fpt-logo.png" />
+                                                    <img />
                                                 </div>
                                                 <h3 className="company">FPT Software</h3>
                                             </a>
@@ -161,7 +169,7 @@ const Homecan = (props: Props) => {
                                         <div className="top-employer-item">
                                             <a href="#">
                                                 <div className="emp-img-thumb">
-                                                    <img src="img/nvg-logo.png" />
+                                                    <img alt='mgm technology' />
                                                 </div>
                                                 <h3 className="company">mgm technology</h3>
                                             </a>
@@ -187,7 +195,7 @@ const Homecan = (props: Props) => {
                                 <div className="job-inner-over-item">
                                     <a href="#wrap">
                                         <div className="thumbnail">
-                                            <img src="img/fitech-logo.jpg" alt="company logo image" />
+                                            <img alt="company logo image" />
                                         </div>
                                     </a><div className="content"><a href="#wrap">
                                         <div className="job-name">
@@ -207,13 +215,16 @@ const Homecan = (props: Props) => {
                                 <div className="job-inner-over-item">
                                     <a href="#wrap">
                                         <div className="thumbnail">
-                                            <img src="img/hdbank-logo.png" alt="company logo image" />
+                                            <img alt="company logo image" />
                                         </div>
-                                    </a><div className="content"><a href="#wrap">
-                                        <div className="job-name">
-                                            Java Developer (.NET, PL/SQL)
-                                        </div>
-                                    </a><a href="#company" className="company">
+                                    </a>
+                                    <div className="content">
+                                        <a href="#wrap">
+                                            <div className="job-name">
+                                                Java Developer (.NET, PL/SQL)
+                                            </div>
+                                        </a>
+                                        <a href="#company" className="company">
                                             HD Bank
                                         </a>
                                     </div>
@@ -233,7 +244,7 @@ const Homecan = (props: Props) => {
                             <div className="col-md-12">
                                 <div className="home-ads">
                                     <a href="#">
-                                        <img src="img/hna.jpg" />
+                                        <img alt='hna' />
                                     </a>
                                 </div>
                             </div>
@@ -253,7 +264,7 @@ const Homecan = (props: Props) => {
                                 <div className="job-inner-over-item">
                                     <a href="#wrap">
                                         <div className="thumbnail">
-                                            <img src="img/fitech-logo.jpg" alt="company logo image" />
+                                            <img alt="company logo image" />
                                         </div>
                                     </a><div className="content"><a href="#wrap">
                                         <div className="job-name">
@@ -273,7 +284,7 @@ const Homecan = (props: Props) => {
                                 <div className="job-inner-over-item">
                                     <a href="#wrap">
                                         <div className="thumbnail">
-                                            <img src="img/hdbank-logo.png" alt="company logo image" />
+                                            <img alt="company logo image" />
                                         </div>
                                     </a><div className="content"><a href="#wrap">
                                         <div className="job-name">
@@ -299,7 +310,7 @@ const Homecan = (props: Props) => {
                             <div className="col-md-12">
                                 <div className="home-ads">
                                     <a href="#">
-                                        <img src="img/hna2.jpg" />
+                                        <img />
                                     </a>
                                 </div>
                             </div>

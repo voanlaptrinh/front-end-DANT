@@ -1,10 +1,14 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { signin } from '../api/auth'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 import BannerLogin from '../assets/images/banner-login.png';
+import { RootState, useAppDispatch } from '../app/store';
+import { useSelector } from 'react-redux';
+import { signInByUser } from '../features/auth/authSlice';
+import { toast } from 'react-toastify';
+import Logo from '../assets/images/logo.jpg';
 
 type Props = {}
 type FormValues = {
@@ -21,26 +25,32 @@ const schema = yup.object({
 })
 
 const Login: React.FC = (props: Props) => {
+    const auth = useSelector((state: RootState) => state.auth);
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
         resolver: yupResolver(schema)
     })
-    const onSignin: SubmitHandler<FormValues> = async (user: FormValues) => {
-        const { data } = await signin(user)
-        localStorage.setItem('user', JSON.stringify(data))
-        if (data.role_id) {
-            if (data.role_id == 1) {
-                navigate('/');
-                return true
-            }
-            if (data.role_id == 2) {
-                navigate('/employer');
-                return true
-            }
-            return true
+    const onSignin: SubmitHandler<FormValues> = (user: FormValues) => {
+        dispatch(signInByUser(user))
+        if (auth.data.accessToken) {
+            navigate('/employer')
         } else {
-            alert(data.mesegse)
+            navigate('/');
         }
+        // if (data.role_id) {
+        //     if (data.role_id == 1) {
+        //         navigate('/');
+        //         return true
+        //     }
+        //     if (data.role_id == 2) {
+        //         navigate('/employer');
+        //         return true
+        //     }
+        //     return true
+        // } else {
+        //     alert(data.mesegse)
+        // }
     }
     return (
         <div>
@@ -50,17 +60,15 @@ const Login: React.FC = (props: Props) => {
                         {/* login header */}
                         <div className="login-header">
                             <div className="w-login m-auto">
-                                <div className="login-logo">
-                                    <h3>
-                                        {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
-                                        <a href="#">
-                                            <img src="img/techjobs_bgw.png" alt="TechJobs" />
-                                        </a>
-                                    </h3>
+                                <div className="login-logo d-flex align-items-center">
+                                    {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
+                                    <Link to="/">
+                                        <img src={Logo} alt="itWork" width={70} height={70} />
+                                    </Link>
                                     <span className="login-breadcrumb"><em>/</em> Đăng Nhập</span>
                                 </div>
                                 <div className="login-right">
-                                    <a className="btn btn-return"> <Link to="/">Trang chủ</Link></a>
+                                    <Link to="/" className="btn btn-return">Trang chủ</Link>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +107,15 @@ const Login: React.FC = (props: Props) => {
                                                 <Link to="/pickpassword" className="fg-login d-inline-block">Quên mật khẩu</Link>
                                                 <a data-bs-toggle='modal' data-bs-target='#signup-form' className="fg-login float-right d-inline-block">Bạn chưa có tài khoản? Đăng ký</a>
                                             </div>
-                                            <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">Đăng Nhập</button>
+                                            <button type="submit" className="btn btn-primary float-right btn-login d-block w-100">
+                                                {
+                                                    auth.loading ?
+                                                        <div className="spinner-border text-light" role="status">
+                                                            <span className="visually-hidden">Loading...</span>
+                                                        </div> :
+                                                        "Đăng Nhập"
+                                                }
+                                            </button>
                                             <div className="form-group d-block w-100 mt-5">
                                                 <div className="text-or text-center">
                                                     <span>Hoặc</span>
@@ -107,13 +123,13 @@ const Login: React.FC = (props: Props) => {
                                                 <div className="row">
                                                     <div className="col-sm-6 col-12 pr-7">
                                                         <button className="btn btn-secondary btn-login-facebook btnw w-100 float-left">
-                                                            <i className="fa fa-facebook" aria-hidden="true" />
+                                                            <i className="fa fa-facebook mx-2" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Facebook</span>
                                                         </button>
                                                     </div>
                                                     <div className="col-sm-6 col-12 pl-7">
                                                         <button className="btn btn-secondary btn-login-google btnw w-100 float-left">
-                                                            <i className="fa fa-google" aria-hidden="true" />
+                                                            <i className="fa fa-google mx-2" aria-hidden="true" />
                                                             <span>Đăng nhập bằng Google</span>
                                                         </button>
                                                     </div>
