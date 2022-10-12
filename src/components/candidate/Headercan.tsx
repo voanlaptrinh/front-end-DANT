@@ -91,7 +91,7 @@ const Headercan = (props: Props) => {
                   </div>
                   {/* end modal */}
                   {
-                    user.email ? <li className="nav-item d-flex align-items-center">
+                    user ? <li className="nav-item d-flex align-items-center">
                       <p className='text-white'>Xin chào, {user.email}</p>
                       <button className="nav-link btn-employers" onClick={() => logout()}> Đăng xuất</button>
                     </li>
