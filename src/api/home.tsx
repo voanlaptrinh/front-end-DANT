@@ -4,11 +4,19 @@ export const listCandidate = () => {
     const url = `/index/list`
     return instance.get(url)
 }
-export const addNews = (data:any) =>{
-    const url =`/employer/store`
-    return instance.post(url,data)
+export const addNews = (data: any) => {
+    const url = `/employer/store`
+    return instance.post(url, data)
 }
-export const listNews = () =>{
+export const listNews = () => {
     const url = `/employer/create`
+    return instance.get(url)
+}
+export const createNews = (data: any) => {
+    const url = `/employer/store`
+    return instance.post(url, data)
+}  
+export const listNewsemp = () =>{
+    const url = `/employer/show`
     return instance.get(url)
 }

@@ -13,13 +13,15 @@ const Headercan = (props: Props) => {
   console.log(user);
 
   const [candidate, setCandidate] = useState<Categories>()
-
   useEffect(() => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
       setCandidate(data)
     }
-    getCandidate();
+    // getCandidate();
+    // const getUser = async () =>{
+    //   const {data} =
+    // }
   }, [])
   return (
     <div>
