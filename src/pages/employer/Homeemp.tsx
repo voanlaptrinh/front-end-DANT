@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { addNews, listNews } from '../../api/home'
+import { addNews, listNews, createNews } from '../../api/home'
 
 type Props = {}
 
@@ -10,14 +10,17 @@ const Homeemp = (props: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [news, setNews] = useState<any>([])
 
-  const onAdd: SubmitHandler<any> = async (Data: any) => {
-    const { data } = await addNews(Data)
-  };
+  const oncreate: SubmitHandler<any> = async (formData: any) => {
+    const { data } = await createNews(formData)
+    console.log(data);
+  }
+
   useEffect(() => {
     const getNews = async () => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
+      
     }
     getNews()
   }, [])
@@ -29,7 +32,7 @@ const Homeemp = (props: Props) => {
           <div className="container published-recuitment-content">
             <div className="row">
               <div className="col-md-8 col-sm-12 col-12 recuitment-inner">
-                <form className="recuitment-form">
+                <form className="recuitment-form" method='POST' onSubmit={handleSubmit(oncreate)}>
                   <div className="accordion" id="accordionExample">
                     <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="headingOne">
@@ -53,7 +56,7 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="1" {...register('quatity', { required: true })} />
+                              <input type="number" className="form-control" placeholder="1" {...register('Quatity', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
@@ -70,33 +73,34 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mô tả công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập mô tả công việc" rows={5} defaultValue={""}   {...register('describe', { required: true })} />
+                              <input typeof="text" className="form-control" placeholder="Nhập mô tả công việc"    {...register('describe', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Yêu cầu công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc" rows={5} defaultValue={""}   {...register('Candidate_requirements', { required: true })} />
+                              <input typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc"    {...register('Candidate_requirements', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Tính chất công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                            <label className="col-sm-3 col-form-label text-right label">Chuyên Ngành<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="natureWork">
-                                <option value={18}>Giờ hành chính</option>
-                                <option value={10}>Việc làm thu nhập cao</option>
-                                <option value={11}>Việc làm thêm/Làm việc ngoài giờ</option>
-                                <option value={20}>Việc làm cho trí thức lớn tuổi (trên 50 tuổi)</option>
+                              <select typeof="text" className="form-control" id="natureWork" {...register('profession_id', { required: true })}>
+                                {news.profession?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Trình độ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobLevel">
-                                <option >Chọn trình độ</option>
-                                <option value={6}>Đại học</option>
-                                <option value={5}>Cao đẳng</option>
+                              <select typeof="text" className="form-control" id="jobLevel" {...register('level_id', { required: true })}>
+                                <option value="" selected hidden>Trình độ</option>
+                                {news.lever?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
+
                               </select>
                             </div>
                           </div>
@@ -104,25 +108,26 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
 
-                              <select typeof="text" className="form-control" id="jobExperience">
-                                <option >Chọn kinh nghiệm</option>
-                                <option value={0}>Chưa có kinh nghiệm</option>
-                                <option value={7}>Dưới 1 năm</option>
-                                <option value={1}>1 năm</option>
+                              <select typeof="text" className="form-control" id="jobExperience" {...register('experience_id', { required: true })}>
+                                <option value="" selected hidden>Kinh Nghiệm</option>
+                                {news.experience?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mức lương<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobSalary">
+                              <select typeof="text" className="form-control" id="jobSalary" {...register('Wage_id', { required: true })}>
                                 <option value="">Chọn mức lương</option>
-                                <option value={2}>Dưới 3 triệu</option>
-                                <option value={4}>3-5 triệu</option>
+                                {news.wage?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
-                          <div className="form-group row">
+                          {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobWorkTime">
@@ -130,43 +135,49 @@ const Homeemp = (props: Props) => {
                                 <option value={1}>Nhân viên chính thức</option>
                               </select>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Thời gian thử việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                            <label className="col-sm-3 col-form-label text-right label">Thời gian làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select className="form-control" id="jobProbation">
-                                <option value="">Chọn thời gian thử việc</option>
-                                <option value={0}>Nhận việc ngay</option>
-                                <option value={1}>1 tháng</option>
-                                <option value={2}>2 tháng</option>
-                                <option value={3}>3 tháng</option>
-                                <option value={4}>Trao đổi trực tiếp khi phỏng vấn</option>
+                              <select className="form-control" id="jobProbation" {...register('time_work_id', { required: true })}>
+                                <option value="">Thời gian làm việc</option>
+                                {news.timework?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quyền lợi<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Quyền lợi công việc" rows={5} defaultValue={""} {...register('benefit', { required: true })} />
+                              <input typeof="text" className="form-control" placeholder="Quyền lợi công việc"   {...register('benefit', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Ngành nghề</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobType">
-                                <option >Chọn ngành nghề</option>
-                                <option value={32}>Kinh doanh</option>
-                                <option value={10}>Bán hàng</option>
+                              <select typeof="text" className="form-control" id="jobType" {...register('majors_id', { required: true })}>
+                                {news.majors?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
-                          <div className="form-group row">
+
+                          {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobProvince" {...register('sex', { required: true })}>
-                                <option value={1}>Hồ Chí Minh</option>
-                                <option value={2}>Hà Nội</option>
+                              <select typeof="text" className="form-control" id="jobProvince" {...register('location_id', { required: true })}>
+                                {news.location?.map((item: any) => {
+                                  return <option key={item.id} value={item.name}>{item.name}</option>
+                                })}
                               </select>
+                            </div>
+                          </div> */}
+                          <div className="form-group row">
+                            <label className="col-sm-3 col-form-label text-right label">Địa chỉ cụ thể</label>
+                            <div className="col-sm-9">
+                              <input type="text" className="form-control" {...register('Address', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
@@ -178,8 +189,38 @@ const Homeemp = (props: Props) => {
                         </div>
                       </div>
                     </div>
-
                     <div className="card recuitment-card">
+                      <div className="card-header recuitment-card-header" id="headingTwo">
+                        <h2 className="mb-0">
+                          <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Kỹ năng
+                            <span id="clickc1_advance3" className="clicksd">
+                              <i className="fa fa fa-angle-up" />
+                            </span>
+                          </a>
+                        </h2>
+                      </div>
+                      <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div className="card-body recuitment-body">
+                          <div className="checkboxsec" id="checkboxSection">
+                            <label className="label-container">
+                              {news.skill?.map((item: any) => {
+                                return (
+                                  <div className="filter-topic">
+                                    <label className="label-container">
+                                      <span>{item.name}</span>
+                                      <input type="checkbox" defaultValue={item.id} {...register('skill_id', { required: true })} />
+                                      <span className="checkmark" />
+                                    </label>
+                                  </div>
+                                )
+                              })}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="headingThree">
                         <h2 className="mb-0">
                           <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -212,7 +253,7 @@ const Homeemp = (props: Props) => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="heading4">
                         <h2 className="mb-0">
@@ -229,50 +270,44 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tên công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="text" className="form-control" placeholder="Tên công ty" />
+                              <input type="text" className="form-control" placeholder="Tên công ty" {...register('name', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="text" className="form-control" placeholder="Nhập địa chỉ" />
+                              <input type="text" className="form-control" placeholder="Nhập địa chỉ" {...register('address', { required: true })} />
                             </div>
                           </div>
-                          <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                          {/* <div className="form-group row">
+                            <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="Nhập số điện thoại" />
+                              <input type="email" className="form-control" placeholder="Nhập Email" />
                             </div>
-                          </div>
-                          <div className="form-group row">
+                          </div> */}
+                          {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tỉnh/ Thành phô<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobProvince2">
-                                <option value={1}>Hồ Chí Minh</option>
-                                <option value={2}>Hà Nội</option>
-                                <option value={3}>An Giang</option>
+                                {news.location?.map((item: any) => {
+                                  return <option key={item.id} value={item.name}>{item.name}</option>
+                                })}
                               </select>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobEmployerScale">
-                                <option value="">Chọn quy mô</option>
-                                <option value={1}>Dưới 20 người</option>
-                                <option value={2}>20 - 150 người</option>
-                                <option value={3}>150 - 300 người</option>
-                                <option value={4}>Trên 300 người</option>
-                              </select>
+                              <input type="text" className="form-control" placeholder="Nhập số lượng nhân viên"  {...register('number_member', { required: true })} />
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty" rows={5} defaultValue={""} />
+                              <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty"  {...register('Desceibe', { required: true })} />
                             </div>
                           </div>
-                          <div className="form-group row">
+                          {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Logo</label>
                             <div className="col-sm-9 ">
                               <div id="drop-area">
@@ -282,13 +317,13 @@ const Homeemp = (props: Props) => {
                                 <div id="gallery" />
                               </div>
                             </div>
-                          </div>
-                          <div className="form-group row">
+                          </div> */}
+                          {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Website</label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Website" />
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
