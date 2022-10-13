@@ -1,9 +1,11 @@
 import React from 'react'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signup } from '../../api/auth';
+import Banner from '../../assets/images/banner-login.png';
+import Logo from '../../assets/images/logo.jpg';
 
 type Props = {}
 
@@ -49,17 +51,17 @@ const Signupemployer = (props: Props) => {
           {/* login header */}
           <div className="login-header">
             <div className="w-login m-auto">
-              <div className="login-logo">
-                <h3>
-                  {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
-                  <a href="#">
-                    <img src="img/techjobs_bgw.png" alt="TechJobs" />
-                  </a>
-                </h3>
-                <span className="login-breadcrumb"><em>/</em> Register as Employer</span>
+              <div className="login-logo d-flex align-items-center">
+
+                {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
+                <Link to="">
+                  <img src={Logo} alt="itwork" width={70} height={70} />
+                </Link>
+
+                <span className="login-breadcrumb"><em>/</em> Đăng ký Nhà tuyển dụng</span>
               </div>
               <div className="login-right">
-                <a href="/" className="btn btn-return">Return Home</a>
+                <Link to="/" className="btn btn-return">Trang chủ</Link>
               </div>
             </div>
           </div>
@@ -72,7 +74,7 @@ const Signupemployer = (props: Props) => {
               <div className="row">
                 {/* login main descriptions */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
-                  <img src="img/banner-login.png" />
+                  <img src={Banner} />
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">

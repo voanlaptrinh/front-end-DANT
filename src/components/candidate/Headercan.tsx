@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { listCandidate } from '../../api/home'
+import { Categories } from '../../types/candidate'
+import { Skill } from '../../types/skill'
+import Logo from '../../assets/images/logo.jpg'
+import { isAuthenticate, logout } from '../../api/auth'
 
-import '../../js/jobdata.js'
 type Props = {}
 
 const Headercan = (props: Props) => {
-  const [candidate, setCandidate] = useState<any>([])
+  const user = isAuthenticate();
+  console.log(user);
+
+  const [candidate, setCandidate] = useState<Categories>()
   useEffect(() => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
-      console.log(data);
-
       setCandidate(data)
     }
-    getCandidate();
+    // getCandidate();
+    // const getUser = async () =>{
+    //   const {data} =
+    // }
   }, [])
   return (
     <div>
@@ -25,9 +32,9 @@ const Headercan = (props: Props) => {
           <div className="container cnt-tnar">
             <nav className="navbar navbar-expand-lg navbar-light bg-light tjnav-bar">
               {/* <a class="navbar-brand" href="#">Navbar</a> */}
-              <a href="#" className="nav-logo">
-                <img src="img/techjobs_bgb.png" />
-              </a>
+              <Link to="" >
+                <img src='' alt='itWork' />
+              </Link>
               <button className="navbar-toggler tnavbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 {/* <span class="navbar-toggler-icon"></span> */}
                 <i className="fa fa-bars icn-res" aria-hidden="true" />
@@ -53,13 +60,6 @@ const Headercan = (props: Props) => {
                   </li>
                 </ul>
                 <ul className="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav">
-                  <li className="nav-item active">
-                    <a className="nav-link" href="#"><i className="fa fa-search" aria-hidden="true" /> <span className="hidden-text">Tìm
-                      kiếm</span></a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" >Đăng Ký</a>
-                  </li>
                   {/* Modal */}
                   <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -92,20 +92,26 @@ const Headercan = (props: Props) => {
                     </div>
                   </div>
                   {/* end modal */}
-                  <li className="nav-item">
+                  {
+                    user ? <li className="nav-item d-flex align-items-center">
+                      <p className='text-white'>Xin chào, {user.email}</p>
+                      <button className="nav-link btn-employers" onClick={() => logout()}> Đăng xuất</button>
+                    </li>
+                      : <li className="nav-item d-flex align-items-center">
+                        <div className="nav-item">
+                          <a className="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" >Đăng Ký</a>
+                        </div>
+                        <div className="nav-item">
+                          <NavLink to="/login" className="nav-link btn-employers"> Đăng Nhập</NavLink>
+                        </div>
+                      </li>
+                  }
+                  {/* <li className="nav-item">
                     <NavLink to="/login" className="nav-link"> Đăng Nhập</NavLink>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      VI
-                    </a>
-                    <div className="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
-                      <a className="dropdown-item" href="#">English</a>
-                    </div>
-                  </li>
-                  <li className="nav-item">
+                  </li> */}
+                  {/* <li className="nav-item">
                     <Link to="/employer" className="nav-link btn-employers" tabIndex={-1} aria-disabled="true">Nhà Tuyển Dụng</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </nav>
@@ -163,9 +169,9 @@ const Headercan = (props: Props) => {
                             </div>
                           </div>
                           <div className="col-md-4">
-                            <select id="computer-languages">
-                              <option value="" selected hidden>Tất cả ngôn ngữ</option>
-                              {candidate.skill?.map((item:any) =>{
+                            <select id="computer-languages" >
+                              <option value={0} hidden>Tất cả ngôn ngữ</option>
+                              {candidate?.skill && candidate?.skill.map((item: any) => {
                                 return <option key={item.id} value={item.name}>{item.name}</option>
                               })}
                             </select>
@@ -173,7 +179,7 @@ const Headercan = (props: Props) => {
                           </div>
                           <div className="col-md-3">
                             <select id="s-provinces">
-                              <option value="" selected hidden>Tất cả địa điểm</option>
+                              <option value={0} hidden>Tất cả địa điểm</option>
                               <option>Đà Nẵng</option>
                               <option>Hà Nội</option>
                               <option>Hồ Chí Minh</option>
@@ -216,7 +222,6 @@ const Headercan = (props: Props) => {
         </div>
         {/* (end) search section */}
       </div>
-      {/* modal click chọn bên đăng ký */}
 
     </div>
   )
