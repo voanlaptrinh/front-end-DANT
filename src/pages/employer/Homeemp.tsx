@@ -2,15 +2,55 @@ import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { addNews, listNews, createNews } from '../../api/home'
+import { Select } from 'antd';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// const handleChange = (value: string) => {
+//   console.log(`selected ${value}`);
+// };
+
+// const { Option } = Select;
+
+interface FormValues {
+  id: number
+  title: string
+  Quatity: number
+  sex: string
+  describe: string
+  level_id: number
+  experience_id: number
+  Wage_id: number
+  skill_id: number
+  benefit: string
+  profession_id: number
+  Address: string
+  time_job: string
+  time_work_id: number
+  employer_id: number
+  Candidate_requirements: string
+  created_at: string
+  updated_at: string
+  majors_id: number
+}
+
+const schema = yup.object({
+  title: yup.string()
+    .required('Vui lòng nhập mô tả'),
+  Quatity: yup.string()
+    .required('Vui lòng nhập số lượng')
+})
 
 type Props = {}
 
 const Homeemp = (props: Props) => {
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+    resolver: yupResolver(schema)
+  })
   const [news, setNews] = useState<any>([])
 
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
+  const oncreate: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await createNews(formData)
     console.log(data);
   }
@@ -20,7 +60,7 @@ const Homeemp = (props: Props) => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
-      
+
     }
     getNews()
   }, [])
@@ -52,17 +92,20 @@ const Homeemp = (props: Props) => {
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Nhập tiêu đề" {...register('title', { required: true })} />
                             </div>
+                            <p className='text-danger pt-1'>{errors.title?.message}</p>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="1" {...register('Quatity', { required: true })} />
+                              <input type="number" className="form-control" placeholder="1" {...register('Quatity', { required: true })} min={1}/>
                             </div>
+                            <p className='text-danger pt-1'>{errors.Quatity?.message}</p>
+
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobGender" {...register('sex', { required: true })}>
+                              <select typeof="text" className="form-control" defaultValue="lucy" id="jobGender" {...register('sex', { required: true })}>
                                 <option value="">Chọn giới tính</option>
                                 <option value={0}>Không yêu cầu</option>
                                 <option value={1}>Nam</option>
