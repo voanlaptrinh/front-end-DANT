@@ -2,15 +2,97 @@ import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { addNews, listNews, createNews } from '../../api/home'
+import { Select } from 'antd';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// const handleChange = (value: string) => {
+//   console.log(`selected ${value}`);
+// };
+
+// const { Option } = Select;
+
+interface FormValues {
+  id: number
+  title: string
+  Quatity: number
+  sex: string
+  describe: string
+  level_id: string
+  experience_id: number
+  Wage_id: number
+  skill_id: number
+  benefit: string
+  profession_id: number
+  Address: string
+  time_job: string
+  time_work_id: number
+  employer_id: number
+  Candidate_requirements: string
+  created_at: string
+  updated_at: string
+  majors_id: number
+  name: string
+  address: string
+  number_member: number
+  Desceibe: string
+  wk_form_id: string
+}
+
+const schema = yup.object({
+  title: yup.string()
+    .required('Vui lòng nhập mô tả'),
+  Quatity: yup.string()
+    .required('Vui lòng nhập số lượng'),
+  sex: yup.string()
+    .required('Vui lòng chọn giới tính'),
+  describe: yup.string()
+    .required('Vui lòng nhập mô tả công việc'),
+  level_id: yup.string()
+    .required('Vui lòng chọn trình độ học '),
+  experience_id: yup.string()
+    .required('Vui lòng chọ kinh nghiệm'),
+  Wage_id: yup.string()
+    .required('Vui lòng chọn mức lương'),
+  skill_id: yup.string()
+    .required('Vui lòng chọn kỹ năng '),
+  benefit: yup.string()
+    .required('Vui lòng nhập phúc lợi'),
+  profession_id: yup.string()
+    .required('Vui lòng chọn chuyên ngành'),
+  Address: yup.string()
+    .required('Vui lòng địa chỉ làm việc '),
+  address: yup.string()
+    .required('Vui lòng địa chỉ làm việc '),
+  time_job: yup.string()
+    .required('Vui lòng chọn yêu cầu thời gian làm việc'),
+  Candidate_requirements: yup.string()
+    .required('Vui lòng nhập yêu cầu ứng viên'),
+  created_at: yup.string()
+    .required('Vui lòng nhập số lượng'),
+  updated_at: yup.string()
+    .required('Vui lòng nhập số lượng'),
+  majors_id: yup.string()
+    .required('Vui lòng nhập số lượng'),
+  name: yup.string()
+    .required('Vui lòng nhập tên công ty'),
+  number_member: yup.string()
+    .required('Vui lòng chọn số lượng thành viên'),
+  Desceibe: yup.string()
+    .required('Vui lòng nhập mô tả'),
+
+})
 
 type Props = {}
 
 const Homeemp = (props: Props) => {
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+    resolver: yupResolver(schema)
+  })
   const [news, setNews] = useState<any>([])
 
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
+  const oncreate: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await createNews(formData)
     console.log(data);
   }
@@ -20,7 +102,7 @@ const Homeemp = (props: Props) => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
-      
+
     }
     getNews()
   }, [])
@@ -51,35 +133,40 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Tiêu đề<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Nhập tiêu đề" {...register('title', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.title?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Số lượng cần tuyển</label>
                             <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="1" {...register('Quatity', { required: true })} />
+                              <input type="number" className="form-control" placeholder="1" {...register('Quatity', { required: true })} min={1} />
+                              <p className='text-danger pt-1'>{errors.Quatity?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobGender" {...register('sex', { required: true })}>
+                              <select typeof="text" className="form-control" defaultValue="lucy" id="jobGender" {...register('sex', { required: true })}>
                                 <option value="">Chọn giới tính</option>
                                 <option value={0}>Không yêu cầu</option>
                                 <option value={1}>Nam</option>
                                 <option value={2}>Nữ</option>
                               </select>
+                              <p className='text-danger pt-1'>{errors.sex?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Mô tả công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input typeof="text" className="form-control" placeholder="Nhập mô tả công việc"    {...register('describe', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.describe?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Yêu cầu công việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input typeof="text" className="form-control" placeholder="Nhập yêu cầu công việc"    {...register('Candidate_requirements', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.Candidate_requirements?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -90,6 +177,7 @@ const Homeemp = (props: Props) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.profession_id?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -100,20 +188,20 @@ const Homeemp = (props: Props) => {
                                 {news.lever?.map((item: any) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
-
                               </select>
+                              <p className='text-danger pt-1'>{errors.level_id?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Kinh nghiệm<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-
                               <select typeof="text" className="form-control" id="jobExperience" {...register('experience_id', { required: true })}>
                                 <option value="" selected hidden>Kinh Nghiệm</option>
                                 {news.experience?.map((item: any) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.experience_id?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -125,6 +213,7 @@ const Homeemp = (props: Props) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.Wage_id?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -147,12 +236,15 @@ const Homeemp = (props: Props) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.time_job?.message}</p>
+
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quyền lợi<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input typeof="text" className="form-control" placeholder="Quyền lợi công việc"   {...register('benefit', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.benefit?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -163,6 +255,7 @@ const Homeemp = (props: Props) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.majors_id?.message}</p>
                             </div>
                           </div>
 
@@ -180,12 +273,14 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Địa chỉ cụ thể</label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" {...register('Address', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.Address?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hạn nộp hồ sơ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="date" className="form-control" {...register('time_job', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.time_job?.message}</p>
                             </div>
                           </div>
                         </div>
@@ -212,6 +307,7 @@ const Homeemp = (props: Props) => {
                                     <label className="label-container">
                                       <span>{item.name}</span>
                                       <input type="checkbox" defaultValue={item.id} {...register('skill_id', { required: true })} />
+                                      <p className='text-danger pt-1'>{errors.skill_id?.message}</p>
                                       <span className="checkmark" />
                                     </label>
                                   </div>
@@ -273,12 +369,14 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Tên công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Tên công ty" {...register('name', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.name?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Nhập địa chỉ" {...register('address', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.address?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
@@ -301,12 +399,14 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="text" className="form-control" placeholder="Nhập số lượng nhân viên"  {...register('number_member', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.number_member?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty"  {...register('Desceibe', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.Desceibe?.message}</p>
                             </div>
                           </div>
                           <div className="form-group row">
