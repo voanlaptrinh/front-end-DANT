@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signup } from '../../api/auth'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux'
 import { signUpByUser } from '../../features/auth/authSlice'
+import Banner from '../../assets/images/banner-login.png';
+import Logo from '../../assets/images/logo.jpg';
 
 type Props = {}
 interface FormValues {
@@ -22,7 +24,7 @@ const schema = yup.object({
   password: yup.string().required('Vui lòng nhập mật khẩu'),
   comfirmPassword: yup.string().required('Vui lòng nhập mật khẩu')
     .oneOf([yup.ref('password'), null], ('Mật khẩu không trùng khớp'))
-    // .val([yup.ref('password'),(val.length == 0 || (val.length >= 2 && val.length <= 10)])
+  // .val([yup.ref('password'),(val.length == 0 || (val.length >= 2 && val.length <= 10)])
 }).required();
 
 const Signupcandidate = (props: Props) => {
@@ -42,17 +44,15 @@ const Signupcandidate = (props: Props) => {
           {/* login header */}
           <div className="login-header">
             <div className="w-login m-auto">
-              <div className="login-logo">
-                <h3>
-                  {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
-                  <a href="#">
-                    <img src="img/techjobs_bgw.png" alt="TechJobs" />
-                  </a>
-                </h3>
-                <span className="login-breadcrumb"><em>/</em> Register</span>
+              <div className="login-logo d-flex align-items-center">
+                {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
+                <Link to="">
+                  <img src={Logo} alt="itWork" width={70} height={70} />
+                </Link>
+                <span className="login-breadcrumb"><em>/</em> Đăng kí</span>
               </div>
               <div className="login-right">
-                <a href="/" className="btn btn-return">Return Home</a>
+                <a href="/" className="btn btn-return">Trang chủ</a>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ const Signupcandidate = (props: Props) => {
               <div className="row">
                 {/* login main descriptions */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
-                  <img src="img/banner-login.png" />
+                  <img src={Banner} />
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
@@ -91,14 +91,14 @@ const Signupcandidate = (props: Props) => {
                     <div className="input-div one">
                       <label htmlFor="password" className='fs-6 fw-normal py-2'>Mật khẩu</label>
                       <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', {  required: true })} />
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.password?.message}</p>
                     </div>
                     <div className="input-div one">
                       <label htmlFor="comfirmPassword" className='fs-6 fw-normal py-2'>Nhập lại mật khẩu</label>
                       <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', {required: true })} />
+                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.comfirmPassword?.message}</p>
                     </div>

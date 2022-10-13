@@ -1,54 +1,72 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { signup } from '../../api/auth';
-
+import { toast } from 'react-toastify';
+import { signin, signup } from '../../api/auth';
+import { User } from '../../types/user';
 
 interface authState {
+   loading: boolean,
    user: {
-      fullName: string,
       email: string,
-      phoneNumber: number,
-      password: string,
-      comfirmPassword: string,
+      accessToken: string,
+      role_id: number
    },
-   accessToken: string
+   error: string
 }
 
-export const signUpByUser: any = createAsyncThunk(
-   'auth,signUpByUser',
-   async (userData: any, { rejectWithValue }) => {
+export const signUpByUser = createAsyncThunk(
+   'user/signUpByUser',
+   async (userData: User) => {
+      const data = await signup(userData);
+      return data;
+   }
+)
+
+export const signInByUser = createAsyncThunk(
+   'user/signinByUser',
+   async (userData: User, { rejectWithValue }) => {
       try {
-         const data = await signup(userData);
+         const data = await signin(userData);
+         toast.success('Đăng nhập thành công')
+
+
          return data;
-      } catch (error) {
+      } catch (error: any) {
+         toast.error(error.message);
          return rejectWithValue(error)
       }
    }
 )
 
 const initialState: authState = {
+   loading: false,
    user: {
-      fullName: '',
       email: '',
-      phoneNumber: 0,
-      password: '',
-      comfirmPassword: '',
+      accessToken: '',
+      role_id: 0
    },
-   accessToken: ''
+   error: ''
 }
 
 export const authSlice = createSlice({
    name: 'user',
    initialState,
-   reducers: {},
-   extraReducers(builder) {
-      builder.addCase(signUpByUser.pending, (state, action) => {
-         state.user = action.playload;
-      }),
-         builder.addCase(signUpByUser.fullfied, (state, action) => {
+   reducers: {
 
-         }),
-         builder.addCase(signUpByUser.rejected, (state, action) => {
-
-         })
    },
+   extraReducers(builder) {
+      builder.addCase(signInByUser.pending, (state, action) => {
+         state.loading = true
+      });
+      builder.addCase(signInByUser.fulfilled, (state, action) => {
+         state.loading = false;
+         state.user = action.payload?.data;
+         localStorage.setItem('user', JSON.stringify(state.user))
+      });
+      builder.addCase(signInByUser.rejected, (state, action) => {
+         state.loading = false;
+
+      })
+   }
 })
+
+export default authSlice.reducer;
