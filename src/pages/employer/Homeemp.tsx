@@ -126,15 +126,17 @@ const Homeemp = (props: Props) => {
                               </select>
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobWorkTime">
                                 <option >Chọn hình thức làm việc</option>
-                                <option value={1}>Nhân viên chính thức</option>
+                                {news.workingform?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
                             </div>
-                          </div> */}
+                          </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Thời gian làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
@@ -163,7 +165,7 @@ const Homeemp = (props: Props) => {
                             </div>
                           </div>
 
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobProvince" {...register('location_id', { required: true })}>
@@ -172,7 +174,7 @@ const Homeemp = (props: Props) => {
                                 })}
                               </select>
                             </div>
-                          </div> */}
+                          </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Địa chỉ cụ thể</label>
                             <div className="col-sm-9">
@@ -219,7 +221,7 @@ const Homeemp = (props: Props) => {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="card recuitment-card">
+                    <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="headingThree">
                         <h2 className="mb-0">
                           <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -252,7 +254,7 @@ const Homeemp = (props: Props) => {
                           </div>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                     <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="heading4">
                         <h2 className="mb-0">
@@ -278,13 +280,13 @@ const Homeemp = (props: Props) => {
                               <input type="text" className="form-control" placeholder="Nhập địa chỉ" {...register('address', { required: true })} />
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <input type="email" className="form-control" placeholder="Nhập Email" />
                             </div>
-                          </div> */}
-                          {/* <div className="form-group row">
+                          </div>
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tỉnh/ Thành phô<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobProvince2">
@@ -293,7 +295,7 @@ const Homeemp = (props: Props) => {
                                 })}
                               </select>
                             </div>
-                          </div> */}
+                          </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
@@ -306,7 +308,7 @@ const Homeemp = (props: Props) => {
                               <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty"  {...register('Desceibe', { required: true })} />
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Logo</label>
                             <div className="col-sm-9 ">
                               <div id="drop-area">
@@ -316,7 +318,7 @@ const Homeemp = (props: Props) => {
                                 <div id="gallery" />
                               </div>
                             </div>
-                          </div> */}
+                          </div>
                           {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Website</label>
                             <div className="col-sm-9">
