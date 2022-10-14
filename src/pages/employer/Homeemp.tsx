@@ -102,7 +102,6 @@ const Homeemp = (props: Props) => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
-
     }
     getNews()
   }, [])
@@ -424,6 +423,13 @@ const Homeemp = (props: Props) => {
                               <input type="text" className="form-control" placeholder="Website" />
                             </div>
                           </div> */}
+                          <div className="form-group row">
+                            <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                            <div className="col-sm-9">
+                              <input type="text" className="form-control" placeholder="Nhập số lượng nhân viên"  {...register('number_member', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.number_member?.message}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
