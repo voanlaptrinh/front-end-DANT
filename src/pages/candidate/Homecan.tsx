@@ -11,7 +11,7 @@ const Homecan = (props: Props) => {
         const getNews = async () => {
             const { data } = await listNewsemp()
             setNews(data)
-            // console.log(data);
+            console.log(data);
         }
         getNews()
     }, [])
