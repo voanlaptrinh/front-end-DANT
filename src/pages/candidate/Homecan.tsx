@@ -9,6 +9,14 @@ const Homecan = (props: Props) => {
     const [news, setNews] = useState<any>([])
     const [profile, setprofile] = useState<any>([])
     useEffect(() => {
+<<<<<<< HEAD
+=======
+        const getNews = async () => {
+            const { data } = await listNewsemp()
+            setNews(data)
+            console.log(data);
+        }
+>>>>>>> dev
         getNews()
         
     }, [])
