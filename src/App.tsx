@@ -11,7 +11,7 @@ import Homeemp from './pages/employer/Homeemp'
 import Signupemployer from './pages/employer/Signupemployer'
 import Idemployer from './pages/candidate/Idemployer'
 import Pickpassword from './pages/Pickpassword'
-import News from './pages/candidate/News'
+import News from './pages/employer/News'
 
 function App() {
   return (
@@ -21,11 +21,11 @@ function App() {
           <Route path='/' element={<Websitelayoutcan />}>
             <Route index element={<Homecan />} />
             <Route path='search' element={<SearchITcan />} />
-            <Route path='news' element={<News />} />
             <Route path='idemployer' element={<Idemployer />} />
           </Route>
           <Route path='employer' element={<Websitelayoutemp />}>
             <Route index element={<Homeemp />} />
+            <Route path='news' element={<News />} />
           </Route>
           <Route path='/login/signupcandidate' element={<Signupcandidate />} />
           <Route path='/login/signupempoly' element={<Signupemployer />} />
