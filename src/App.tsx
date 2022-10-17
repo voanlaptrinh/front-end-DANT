@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route, Router } from 'react-router-dom'
 import './App.css'
+
 import Login from './pages/Login'
 import Signupcandidate from './pages/candidate/Signupcandidate'
 import Homecan from './pages/candidate/Homecan'

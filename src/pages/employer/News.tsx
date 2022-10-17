@@ -1,7 +1,7 @@
+import { DeleteOutlined, EditOutlined, RightOutlined } from '@ant-design/icons';
 import React from 'react'
-
+import * as Icon from 'react-bootstrap-icons';
 type Props = {}
-
 const News = (props: Props) => {
     return (
         <div>
@@ -26,11 +26,16 @@ const News = (props: Props) => {
                                                     <div className="job-title">
                                                         <a href="#">IVI System Test Engineer</a>
                                                     </div>
+                                                    <div className="wrap-btn-appl">
+                                                            <a href="#" className="btn "><EditOutlined /></a>
+                                                            <a href="#" className="btn"><DeleteOutlined /></a>
+                                                        </div>
                                                     <div className="job-company">
                                                         <a href="#">NVG TECHNOLOGY</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
                                                             Đà Nẵng</a>
                                                     </div>
                                                     <div className="job-inf">
+                                                        
                                                         <div className="job-main-skill">
                                                             <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Javascript</a>
                                                         </div>
@@ -43,13 +48,12 @@ const News = (props: Props) => {
                                                             <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
                                                                 <strong>31/12/2019</strong></span>
                                                         </div>
+
                                                     </div>
                                                 </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-success">sửa</a>
-                                                    <a href="#" className="btn btn-success">xóa bài</a>
-                                                </div>
+
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
