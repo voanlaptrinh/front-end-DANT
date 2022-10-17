@@ -18,115 +18,11 @@ const News = (props: Props) => {
                                             <div className="job-content">
                                                 <div className="job-logo">
                                                     <a href="#">
-                                                        <img src="img/fpt-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">Fpt Software</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Java</a>
-                                                        </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
-                                                        </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img src="img/alipay-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">Fullstack .NET Developer (Angular/React)</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">Orient Software</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Hà Nội</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> .NET</a>
-                                                        </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
-                                                        </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/02/2020</strong></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img src="img/nvg-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">Frontend Developer (JavaScript, ReactJS)</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">mgm technology</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> JavaScript, ReactJS</a>
-                                                        </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
-                                                        </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
                                                         <img src="img/luxoft-vietnam-logo.png" className="job-logo-ima" alt="job-logo" />
                                                     </a>
                                                 </div>
                                                 <div className="job-desc">
+
                                                     <div className="job-title">
                                                         <a href="#">IVI System Test Engineer</a>
                                                     </div>
@@ -150,77 +46,8 @@ const News = (props: Props) => {
                                                     </div>
                                                 </div>
                                                 <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img src="img/fpt-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">Fpt Software</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Java</a>
-                                                        </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
-                                                        </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img src="img/fpt-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">Fpt Software</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Java</a>
-                                                        </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
-                                                        </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="wrap-btn-appl">
-                                                    <a href="#" className="btn btn-appl">Apply Now</a>
+                                                    <a href="#" className="btn btn-success">sửa</a>
+                                                    <a href="#" className="btn btn-success">xóa bài</a>
                                                 </div>
                                             </div>
                                         </div>
