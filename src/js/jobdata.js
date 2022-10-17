@@ -1,9 +1,9 @@
- $(document).ready(function()
+  $(document).ready(function()
+ 
      {
         var listjob=
-         [
-            // you can type default data below
-            // "Java"
+         [ 
+
         ];
         $("#computer-languages").select2({
              data:listjob

@@ -7,11 +7,11 @@ import * as yup from 'yup';
 import { profile1 } from '../../api/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// const handleChange = (value: string) => {
-//   console.log(`selected ${value}`);
-// };
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`);
+};
 
-// const { Option } = Select;
+const { Option } = Select;
 
 interface FormValues {
   id: number
@@ -46,7 +46,10 @@ interface FormValues {
   emailCompany: string
   id_Employer: number
 }
-
+const SelectSchema = yup.object().shape({
+  sex: yup.string()
+    .required('Vui lòng chọn giới tính'),
+});
 const schema = yup.object({
   title: yup.string()
     .required('Vui lòng nhập mô tả')
