@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { addNews, listNews, createNews } from '../../api/home'
 import { Select } from 'antd';
 import * as yup from 'yup';
+import { profile1 } from '../../api/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const handleChange = (value: string) => {
@@ -15,28 +16,35 @@ const { Option } = Select;
 interface FormValues {
   id: number
   title: string
-  Quatity: number
+  Quatity: string
   sex: string
   describe: string
   level_id: string
-  experience_id: number
-  Wage_id: number
+  experience_id: string
+  Wage_id: string
   skill_id: number
   benefit: string
-  profession_id: number
+  profession_id: string
   Address: string
-  time_job: string
-  time_work_id: number
-  employer_id: number
+  end_job_time: string
+  time_work_id: string
+  employer_id: string
   Candidate_requirements: string
-  created_at: string
-  updated_at: string
-  majors_id: number
+  majors_id: string
   name: string
   address: string
-  number_member: number
+  number_member: string
   Desceibe: string
   wk_form_id: string
+  location_id: string
+  nameEmployer: string
+  email: string
+  phone: number
+  addressEmployer: string
+  logo: string
+  emailEmployer: string
+  emailCompany: string
+  id_Employer: number
 }
 const SelectSchema = yup.object().shape({
   sex: yup.string()
@@ -44,46 +52,66 @@ const SelectSchema = yup.object().shape({
 });
 const schema = yup.object({
   title: yup.string()
-    .required('Vui lòng nhập mô tả'),
+    .required('Vui lòng nhập mô tả')
+    .max(255, 'Tiêu đề không vượt quá 255 ký tự'),
   Quatity: yup.string()
-    .required('Vui lòng nhập số lượng'),
+    .required('vui lòng nhập là số'),
   sex: yup.string()
     .required('Vui lòng chọn giới tính'),
   describe: yup.string()
-    .required('Vui lòng nhập mô tả công việc'),
+    .required('Vui lòng nhập mô tả công việc')
+    .max(255, 'Mô tả không vượt quá 255 ký tự'),
   level_id: yup.string()
     .required('Vui lòng chọn trình độ học '),
   experience_id: yup.string()
     .required('Vui lòng chọ kinh nghiệm'),
   Wage_id: yup.string()
     .required('Vui lòng chọn mức lương'),
-  skill_id: yup.string()
+  skill_id: yup.number()
     .required('Vui lòng chọn kỹ năng '),
   benefit: yup.string()
-    .required('Vui lòng nhập phúc lợi'),
+    .required('Vui lòng nhập phúc lợi')
+    .max(255, 'phúc lợi không vượt quá 255 ký tự'),
   profession_id: yup.string()
     .required('Vui lòng chọn chuyên ngành'),
   Address: yup.string()
-    .required('Vui lòng địa chỉ làm việc '),
+    .required('Vui lòng địa chỉ làm việc ')
+    .max(255, 'Địa chỉ không vượt quá 255 ký tự'),
   address: yup.string()
-    .required('Vui lòng địa chỉ làm việc '),
-  time_job: yup.string()
+    .required('Vui lòng địa chỉ làm việc ')
+    .max(255, 'Địa chỉ không vượt quá 255 ký tự'),
+  end_job_time: yup.string()
     .required('Vui lòng chọn yêu cầu thời gian làm việc'),
   Candidate_requirements: yup.string()
-    .required('Vui lòng nhập yêu cầu ứng viên'),
-  created_at: yup.string()
-    .required('Vui lòng nhập số lượng'),
-  updated_at: yup.string()
-    .required('Vui lòng nhập số lượng'),
+    .required('Vui lòng nhập yêu cầu ứng viên')
+    .max(255, 'không vượt quá 255 ký tự'),
   majors_id: yup.string()
-    .required('Vui lòng nhập số lượng'),
+    .required('Vui lòng chọn ngành nghề'),
   name: yup.string()
-    .required('Vui lòng nhập tên công ty'),
+    .required('Vui lòng nhập tên công ty')
+    .max(255, 'không vượt quá 255 ký tự'),
   number_member: yup.string()
-    .required('Vui lòng chọn số lượng thành viên'),
+    .required('Vui lòng chọn số lượng thành viên')
+    .max(255, 'không vượt quá 255 ký tự'),
   Desceibe: yup.string()
-    .required('Vui lòng nhập mô tả'),
-
+    .required('Vui lòng nhập mô tả')
+    .max(255, 'không vượt quá 255 ký tự'),
+  location_id: yup.string()
+    .required('Vui lòng chọn thành phố'),
+  logo: yup.string()
+    .required('Vui lòng chọn logo'),
+  wk_form_id: yup.string()
+    .required('Vui lòng chọn hình thức làm việc'),
+  time_work_id: yup.string()
+    .required('Vui lòng chọn thời gian làm việc'),
+  email: yup.string()
+    .required('Vui lòng nhập email công ty'),
+  phone: yup.number()
+    .required('Vui lòng chọn số điện thoại'),
+  emailEmployer: yup.string()
+    .required('Vui lòng nhập email'),
+  emailCompany: yup.string()
+    .required('Vui lòng nhập email'),
 })
 
 type Props = {}
@@ -91,23 +119,35 @@ type Props = {}
 const Homeemp = (props: Props) => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
-    resolver: yupResolver(schema)
+    // resolver: yupResolver(schema)
   })
   const [news, setNews] = useState<any>([])
+  const [profile, setprofile] = useState<any>([])
 
   const oncreate: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await createNews(formData)
     console.log(data);
   }
-
   useEffect(() => {
+
     const getNews = async () => {
       const { data } = await listNews()
       setNews(data)
       console.log(data);
     }
     getNews()
+    getProfile()
   }, [])
+  const getNews = async () => {
+    const { data } = await listNews()
+    setNews(data)
+    console.log(data);
+  }
+  const getProfile = async () => {
+    const { data } = await profile1()
+    setprofile(data)
+    console.log(data);
+  }
   return (
     <div>
       <div>
@@ -148,11 +188,11 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" defaultValue="lucy" id="jobGender" {...register('sex', { required: true })}>
+                              <select typeof="number" className="form-control" defaultValue="lucy" id="jobGender" {...register('sex', { required: true })}>
                                 <option value="">Chọn giới tính</option>
                                 <option value={0}>Không yêu cầu</option>
-                                <option value={1}>Nam</option>
-                                <option value={2}>Nữ</option>
+                                <option value={'nam'}>Nam</option>
+                                <option value={'nữ'}>Nữ</option>
                               </select>
                               <p className='text-danger pt-1'>{errors.sex?.message}</p>
                             </div>
@@ -175,6 +215,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Chuyên Ngành<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="natureWork" {...register('profession_id', { required: true })}>
+                                <option value="" selected hidden>Chọn chuyên ngành</option>
                                 {news.profession?.map((item: any) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
@@ -218,15 +259,18 @@ const Homeemp = (props: Props) => {
                               <p className='text-danger pt-1'>{errors.Wage_id?.message}</p>
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hình thức làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobWorkTime">
-                                <option >Chọn hình thức làm việc</option>
-                                <option value={1}>Nhân viên chính thức</option>
+                              <select typeof="text" className="form-control" id="jobWorkTime" {...register('wk_form_id', { required: true })}>
+                                <option value="">Chọn mức lương</option>
+                                {news.workingform?.map((item: any) => {
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
+                                })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.wk_form_id?.message}</p>
                             </div>
-                          </div> */}
+                          </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Thời gian làm việc<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
@@ -236,7 +280,7 @@ const Homeemp = (props: Props) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
-                              <p className='text-danger pt-1'>{errors.time_job?.message}</p>
+                              <p className='text-danger pt-1'>{errors.time_work_id?.message}</p>
 
                             </div>
                           </div>
@@ -251,6 +295,7 @@ const Homeemp = (props: Props) => {
                             <label className="col-sm-3 col-form-label text-right label">Ngành nghề</label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobType" {...register('majors_id', { required: true })}>
+                                {/* <option>Chọn ngành nghề</option> */}
                                 {news.majors?.map((item: any) => {
                                   return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
@@ -259,16 +304,18 @@ const Homeemp = (props: Props) => {
                             </div>
                           </div>
 
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Nơi làm việc</label>
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobProvince" {...register('location_id', { required: true })}>
+                                <option value="">Chọn mức lương</option>
                                 {news.location?.map((item: any) => {
-                                  return <option key={item.id} value={item.name}>{item.name}</option>
+                                  return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
                               </select>
+                              <p className='text-danger pt-1'>{errors.location_id?.message}</p>
                             </div>
-                          </div> */}
+                          </div>
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Địa chỉ cụ thể</label>
                             <div className="col-sm-9">
@@ -279,8 +326,8 @@ const Homeemp = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Hạn nộp hồ sơ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="date" className="form-control" {...register('time_job', { required: true })} />
-                              <p className='text-danger pt-1'>{errors.time_job?.message}</p>
+                              <input type="date" className="form-control" {...register('end_job_time', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.end_job_time?.message}</p>
                             </div>
                           </div>
                         </div>
@@ -307,51 +354,67 @@ const Homeemp = (props: Props) => {
                                     <label className="label-container">
                                       <span>{item.name}</span>
                                       <input type="checkbox" defaultValue={item.id} {...register('skill_id', { required: true })} />
-                                      <p className='text-danger pt-1'>{errors.skill_id?.message}</p>
                                       <span className="checkmark" />
                                     </label>
                                   </div>
                                 )
                               })}
                             </label>
+
                           </div>
+
                         </div>
+
                       </div>
+                      <p className='text-danger pt-1'>{errors.skill_id?.message}</p>
+
                     </div>
-                    {/* <div className="card recuitment-card">
-                      <div className="card-header recuitment-card-header" id="headingThree">
-                        <h2 className="mb-0">
-                          <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Thông tin liên hệ
-                            <span id="clickc1_advance1" className="clicksd">
-                              <i className="fa fa fa-angle-up" />
-                            </span>
-                          </a>
-                        </h2>
-                      </div>
-                      <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div className="card-body recuitment-body">
-                          <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                            <div className="col-sm-9">
-                              <input type="text" className="form-control" placeholder="Tên người liên hệ" />
+
+                    {profile?.map((item: any) => (
+                      <div className="card recuitment-card">
+                        <div className="card-header recuitment-card-header" id="headingThree">
+                          <h2 className="mb-0">
+                            <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Thông tin liên hệ
+                              <span id="clickc1_advance1" className="clicksd">
+                                <i className="fa fa fa-angle-up" />
+                              </span>
+                            </a>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div className="card-body recuitment-body">
+                            <input type="hidden"  value={item[0].id} {...register('id_Employer', { required: true })} />
+                            <div className="form-group row">
+                              <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                              <div className="col-sm-9">
+                                <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item[0].name} {...register('nameEmployer', { required: true })} />
+                              </div>
                             </div>
-                          </div>
-                          <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                            <div className="col-sm-9">
-                              <input type="mail" className="form-control" placeholder="Địa chỉ email" />
+                            <div className="form-group row">
+                              <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                              <div className="col-sm-9">
+                                <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item[0].email} {...register('emailEmployer', { required: true })} />
+                              </div>
                             </div>
-                          </div>
-                          <div className="form-group row">
-                            <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                            <div className="col-sm-9">
-                              <input type="number" className="form-control" placeholder="Nhập số điện thoại" />
+                            <div className="form-group row">
+                              <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                              <div className="col-sm-9">
+                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item[0].phone} {...register('phone', { required: true })} />
+                              </div>
+                            </div>
+                            <div className="form-group row">
+                              <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                              <div className="col-sm-9">
+                                <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item[0].address} {...register('addressEmployer', { required: true })} />
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div> */}
+                    ))
+
+                    }
                     <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="heading4">
                         <h2 className="mb-0">
@@ -379,16 +442,17 @@ const Homeemp = (props: Props) => {
                               <p className='text-danger pt-1'>{errors.address?.message}</p>
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <input type="email" className="form-control" placeholder="Nhập Email" />
+                              <input type="email" className="form-control" placeholder="Nhập Email" {...register('emailCompany', { required: true })} />
+                              <p className='text-danger pt-1'>{errors.email?.message}</p>
                             </div>
-                          </div> */}
+                          </div>
                           {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Tỉnh/ Thành phô<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="text" className="form-control" id="jobProvince2">
+                              <select typeof="text" className="form-control" id="jobProvince2" {...register('addressEmployer', { required: true })}>
                                 {news.location?.map((item: any) => {
                                   return <option key={item.id} value={item.name}>{item.name}</option>
                                 })}
@@ -409,17 +473,17 @@ const Homeemp = (props: Props) => {
                               <p className='text-danger pt-1'>{errors.Desceibe?.message}</p>
                             </div>
                           </div>
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Logo</label>
                             <div className="col-sm-9 ">
                               <div id="drop-area">
-                                <input type="file" id="fileElem" multiple accept="image/*" />
                                 <label style={{ cursor: 'pointer' }} htmlFor="fileElem">Tải ảnh lên hoặc kéo thả vào đây</label>
-                                <progress id="progress-bar" max={100} value={0} className="d-none" />
+                                {/* <progress id="progress-bar" max={100} value={0} className="d-none" /> */}
+                                <input type="text" className='form-control' {...register('logo', { required: true })} />
                                 <div id="gallery" />
                               </div>
                             </div>
-                          </div> */}
+                          </div>
                           {/* <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Website</label>
                             <div className="col-sm-9">

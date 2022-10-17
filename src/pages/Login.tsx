@@ -36,7 +36,7 @@ const Login: React.FC = (props: Props) => {
     const onSignin: SubmitHandler<FormValues> = async (user: FormValues) => {
         const { data } = await signin(user);
         localStorage.setItem('user', JSON.stringify(data));
-        console.log(data.data);
+        console.log(data);
         if (data.data) {
             if (data.data.role_id == 1) {
                 navigate('/');
