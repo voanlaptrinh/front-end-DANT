@@ -122,7 +122,7 @@ const Homeemp = (props: Props) => {
     // resolver: yupResolver(schema)
   })
   const [news, setNews] = useState<any>([])
-  const [profile, setprofile] = useState<any>([])
+
 
   const oncreate: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await createNews(formData)
@@ -136,18 +136,13 @@ const Homeemp = (props: Props) => {
       console.log(data);
     }
     getNews()
-    getProfile()
   }, [])
   const getNews = async () => {
     const { data } = await listNews()
     setNews(data)
     console.log(data);
   }
-  const getProfile = async () => {
-    const { data } = await profile1()
-    setprofile(data)
-    console.log(data);
-  }
+ 
   return (
     <div>
       <div>
@@ -370,7 +365,7 @@ const Homeemp = (props: Props) => {
 
                     </div>
 
-                    {profile?.map((item: any) => (
+                    {news.user?.map((item: any) => (
                       <div className="card recuitment-card">
                         <div className="card-header recuitment-card-header" id="headingThree">
                           <h2 className="mb-0">
@@ -384,29 +379,29 @@ const Homeemp = (props: Props) => {
                         </div>
                         <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
                           <div className="card-body recuitment-body">
-                            <input type="hidden"  value={item[0].id} {...register('id_Employer', { required: true })} />
+                            <input type="hidden"  value={item.id} {...register('id_Employer', { required: true })} />
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item[0].name} {...register('nameEmployer', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item.name} {...register('nameEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item[0].email} {...register('emailEmployer', { required: true })} />
+                                <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item.email} {...register('emailEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item[0].phone} {...register('phone', { required: true })} />
+                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phone', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item[0].address} {...register('addressEmployer', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item.address} {...register('addressEmployer', { required: true })} />
                               </div>
                             </div>
                           </div>
