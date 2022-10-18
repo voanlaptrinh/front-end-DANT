@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route, Router } from 'react-router-dom'
 import './App.css'
+
 import Login from './pages/Login'
 import Signupcandidate from './pages/candidate/Signupcandidate'
 import Homecan from './pages/candidate/Homecan'
@@ -24,11 +25,11 @@ function App() {
           <Route path='/' element={<Websitelayoutcan />}>
             <Route index element={<Homecan />} />
             <Route path='search' element={<SearchITcan />} />
-            <Route path='news' element={<News />} />
             <Route path='idemployer' element={<Idemployer />} />
           </Route>
           <Route path='employer' element={<Websitelayoutemp />}>
             <Route index element={<Homeemp />} />
+            <Route path='news' element={<News />} />
           </Route>
           {/* code mới */}
           <Route path='admin' element={<AdminLayout />}>

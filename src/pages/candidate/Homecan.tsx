@@ -1,21 +1,28 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { listNewsemp } from '../../api/home'
+import { listCandidate, listNewsemp } from '../../api/home'
 import { Job } from '../../types/job'
 
 type Props = {}
 
 const Homecan = (props: Props) => {
     const [news, setNews] = useState<any>([])
+    const [profile, setprofile] = useState<any>([])
     useEffect(() => {
         const getNews = async () => {
             const { data } = await listNewsemp()
             setNews(data)
-            // console.log(data);
+            console.log(data);
         }
         getNews()
+        
     }, [])
-
+    const getNews = async () => {
+        const { data } = await listCandidate()
+        setNews(data)
+        console.log(data);
+    }
+   
     return (
         <div>
             <div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 type Props = {}
 const Headeremp = (props: Props) => {
@@ -58,7 +58,7 @@ const Headeremp = (props: Props) => {
                                 <a className="nav-link" href="#">Quản lý ứng viên</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Quản lý đăng tin</a>
+                                <Link to="/employer/news" className="nav-link" >Quản lý đăng tin</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Quản lý hồ sơ</a>
