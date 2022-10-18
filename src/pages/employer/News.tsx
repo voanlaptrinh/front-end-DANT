@@ -1,6 +1,5 @@
 import { DeleteOutlined, EditOutlined, RightOutlined } from '@ant-design/icons';
 import React from 'react'
-import * as Icon from 'react-bootstrap-icons';
 type Props = {}
 const News = (props: Props) => {
     return (

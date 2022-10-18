@@ -12,10 +12,10 @@ import Homeemp from './pages/employer/Homeemp'
 import Signupemployer from './pages/employer/Signupemployer'
 import Idemployer from './pages/candidate/Idemployer'
 import Pickpassword from './pages/Pickpassword'
-import News from './pages/candidate/News'
 import AdminLayout from './layout/AdminLayout/AdminLayout'
 import Dashboard from './pages/Admin/Dashboard'
 import Post from './pages/Admin/Post'
+import News from './pages/employer/News'
 
 function App() {
   return (
