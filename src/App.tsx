@@ -12,7 +12,10 @@ import Homeemp from './pages/employer/Homeemp'
 import Signupemployer from './pages/employer/Signupemployer'
 import Idemployer from './pages/candidate/Idemployer'
 import Pickpassword from './pages/Pickpassword'
-import News from './pages/employer/News'
+import News from './pages/candidate/News'
+import AdminLayout from './layout/AdminLayout/AdminLayout'
+import Dashboard from './pages/Admin/Dashboard'
+import Post from './pages/Admin/Post'
 
 function App() {
   return (
@@ -27,6 +30,12 @@ function App() {
           <Route path='employer' element={<Websitelayoutemp />}>
             <Route index element={<Homeemp />} />
             <Route path='news' element={<News />} />
+          </Route>
+          {/* code mới */}
+          <Route path='admin' element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='post' element={<Post />}></Route>
           </Route>
           <Route path='/login/signupcandidate' element={<Signupcandidate />} />
           <Route path='/login/signupempoly' element={<Signupemployer />} />
