@@ -193,15 +193,15 @@ const PostAdd = (props: Props) => {
                      {news.user?.map((item: any) => (
                         <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
                            <div className="card-body recuitment-body">
-                              {/* <input type="hidden" value={item.id} /> */}
+                              <input type="hidden" value={item.id} />
                               <Form.Item label="tên người liên hệ" name="end_job_time" rules={[{ required: true, message: 'bạn chưa nhập tên' }]}>
-                                 <Input />
+                                 <Input value={item.name}/>
                               </Form.Item>
                               <Form.Item label="Số điện thoại" name="end_job_time" rules={[{ required: true, message: 'bạn chưa nhập số điện thoại' }]}>
-                                 <Input />
+                                 <Input value={item.phone}/>
                               </Form.Item>
                               <Form.Item label="địa chỉ" name="end_job_time" rules={[{ required: true, message: 'bạn chưa chọn hạn nộp hồ sơ' }]}>
-                                 <Input />
+                                 <Input value={item.address}/>
                               </Form.Item>
                            </div>
                         </div>
