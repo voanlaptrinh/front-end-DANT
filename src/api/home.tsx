@@ -10,7 +10,7 @@ export const addNews = (data: any) => {
     return instance.post(url, data)
 }
 export const listNews = () => {
-    const url = `/employer/create/${token}`
+    const url = `/employer/create/${token}` 
     return instance.get(url)
 }
 export const createNews = (data: any) => {
