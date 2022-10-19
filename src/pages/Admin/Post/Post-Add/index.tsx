@@ -15,7 +15,7 @@ import {
   Upload,
 } from "antd";
 import { useNavigate } from "react-router-dom";
-import { createNews, listNews } from "../../../../api/home";
+import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
 import "../../../../js/bootstrap.min.js";
 
@@ -25,6 +25,7 @@ const { TextArea } = Input;
 type Props = {};
 
 const PostAdd = (props: Props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<any>()
   const onSuccess = (values: any) => {
     console.log(values);
   };
@@ -32,19 +33,22 @@ const PostAdd = (props: Props) => {
     console.log(errorInfo);
   };
   const navigate = useNavigate();
-  const [news, setNews] = useState<any>([]);
+  const [categories, setCategories] = useState<any>([]);
   const oncreate: SubmitHandler<any> = async (formData: any) => {
     const { data } = await createNews(formData);
     console.log(formData);
   };
   useEffect(() => {
-    const getNews = async () => {
+    const getCategories = async () => {
       const { data } = await listNews();
-      setNews(data);
-      console.log(data);
+      setCategories(data);
+      console.log(data.user);
     };
-    getNews();
+    getCategories();
   }, []);
+
+
+
 
   return (
     <div>
@@ -153,7 +157,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Chọn chuyên ngành</Select.Option>
-                      {news.profession?.map((item: any) => {
+                      {categories.profession?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -171,7 +175,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Trình độ</Select.Option>
-                      {news.lever?.map((item: any) => {
+                      {categories.lever?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -189,7 +193,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Chọn kinh nghiệm</Select.Option>
-                      {news.experience?.map((item: any) => {
+                      {categories.experience?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -207,7 +211,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Chọn giới tính</Select.Option>
-                      {news.wage?.map((item: any) => {
+                      {categories.wage?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -228,7 +232,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Hình thức làm việc</Select.Option>
-                      {news.workingform?.map((item: any) => {
+                      {categories.workingform?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -249,7 +253,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">Thời gian làm việc</Select.Option>
-                      {news.timework?.map((item: any) => {
+                      {categories.timework?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -279,7 +283,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">chọn nghành nghề</Select.Option>
-                      {news.majors?.map((item: any) => {
+                      {categories.majors?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -297,7 +301,7 @@ const PostAdd = (props: Props) => {
                   >
                     <Select>
                       <Select.Option value="">nơi làm việc</Select.Option>
-                      {news.location?.map((item: any) => {
+                      {categories.location?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -320,7 +324,7 @@ const PostAdd = (props: Props) => {
                       <Select.Option value="1">
                         chọn địa chỉ cụ thể
                       </Select.Option>
-                      {news.lever?.map((item: any) => {
+                      {categories.Address?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}
@@ -372,81 +376,63 @@ const PostAdd = (props: Props) => {
                 data-parent="#accordionExample"
               >
                 <div className="card-body recuitment-body">
-                  <Form.Item name="skill_id" valuePropName="checked">
-                    {news.skill?.map((item: any) => {
-                      return (
-                        <div className="filter-topic" key={item.id}>
-                          <Checkbox name="skill_id">{item.name}</Checkbox>
-                        </div>
-                      );
-                    })}
+                  <Form.Item name="skill_id" valuePropName="checked" rules={[{
+                    required: true,
+                    message: "bạn chưa chọn kĩ năng",
+                  }]}  >
+                    <Checkbox.Group
+                      options={categories.skill?.map((skill: any) => ({ label: skill.name, value: skill.id }))}
+                    >
+                    </Checkbox.Group>
                   </Form.Item>
                 </div>
               </div>
             </div>
 
-            <div className="card recuitment-card">
-              <div className="card-header recuitment-card-header" id="heading4">
-                <h2 className="mb-0">
-                  <a
-                    className="btn btn-link btn-block text-left collapsed recuitment-header"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse4"
-                    aria-expanded="false"
-                    aria-controls="collapse4"
-                  >
-                    Thông tin người liên hệ
-                    <span id="clickc1_advance4" className="clicksd">
-                      <i className="fa fa fa-angle-up" />
-                    </span>
-                  </a>
-                </h2>
-              </div>
-              {/* {news.user?.map((item: any) => (
-                <div
-                  id="collapseThree"
-                  className="collapse show"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordionExample"
-                >
+            {categories.user?.map((item: any) => (
+              <div className="card recuitment-card">
+                <div className="card-header recuitment-card-header" id="headingThree">
+                  <h2 className="mb-0">
+                    <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Thông tin liên hệ
+                      <span id="clickc1_advance1" className="clicksd">
+                        <i className="fa fa fa-angle-up" />
+                      </span>
+                    </a>
+                  </h2>
+                </div>
+                <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
                   <div className="card-body recuitment-body">
-                    <input type="hidden" value={item.id} />
-                    <Form.Item
-                      label="tên người liên hệ"
-                      name="end_job_time"
-                      rules={[{ required: true, message: "bạn chưa nhập tên" }]}
-                    >
-                      <Input value={item.name} />
-                    </Form.Item>
-                    <Form.Item
-                      label="Số điện thoại"
-                      name="end_job_time"
-                      rules={[
-                        {
-                          required: true,
-                          message: "bạn chưa nhập số điện thoại",
-                        },
-                      ]}
-                    >
-                      <Input value={item.phone} />
-                    </Form.Item>
-                    <Form.Item
-                      label="địa chỉ"
-                      name="end_job_time"
-                      rules={[
-                        {
-                          required: true,
-                          message: "bạn chưa chọn hạn nộp hồ sơ",
-                        },
-                      ]}
-                    >
-                      <Input value={item.address} />
-                    </Form.Item>
+                    <div className="form-group row">
+                      <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                      <div className="col-sm-9">
+                        <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item.name} {...register('nameEmployer', { required: true })} />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                      <div className="col-sm-9">
+                        <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item.email} {...register('emailEmployer', { required: true })} />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                      <div className="col-sm-9">
+                        <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phone', { required: true })} />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
+                      <div className="col-sm-9">
+                        <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item.address} {...register('addressEmployer', { required: true })} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))} */}
-            </div>
+              </div>
+            ))
+
+            }
 
             <div className="card recuitment-card">
               <div className="card-header recuitment-card-header" id="heading4">
@@ -514,7 +500,7 @@ const PostAdd = (props: Props) => {
                       <Select.Option value="1">
                         chọn quy môn nhân sự
                       </Select.Option>
-                      {news.number_member?.map((item: any) => {
+                      {categories.number_member?.map((item: any) => {
                         return (
                           <Select.Option key={item.id} value={item.id}>
                             {item.name}

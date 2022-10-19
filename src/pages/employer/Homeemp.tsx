@@ -129,7 +129,6 @@ const Homeemp = (props: Props) => {
     console.log(data);
   }
   useEffect(() => {
-
     const getNews = async () => {
       const { data } = await listNews()
       setNews(data)
@@ -137,11 +136,7 @@ const Homeemp = (props: Props) => {
     }
     getNews()
   }, [])
-  const getNews = async () => {
-    const { data } = await listNews()
-    setNews(data)
-    console.log(data);
-  }
+  
  
   return (
     <div>
