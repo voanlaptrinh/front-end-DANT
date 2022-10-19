@@ -44,8 +44,8 @@ const News = (props: Props) => {
                                                             <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
                                                         </div>
                                                         <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
+                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp còn :
+                                                                <strong>30 ngày</strong></span>
                                                         </div>
 
                                                     </div>

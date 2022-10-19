@@ -15,7 +15,7 @@ import Pickpassword from './pages/Pickpassword'
 import AdminLayout from './layout/AdminLayout/AdminLayout'
 import Dashboard from './pages/Admin/Dashboard'
 import Post from './pages/Admin/Post'
-import News from './pages/employer/News'
+import News from './pages/Admin/Post/News'
 import PostAdd from './pages/Admin/Post/Post-Add'
 
 function App() {
