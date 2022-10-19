@@ -38,6 +38,7 @@ function App() {
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='post' >
               <Route index element={<Post />} />
+              <Route path='news' element={<News />} />
               <Route path='add' element={<PostAdd />} />
             </Route>
           </Route>

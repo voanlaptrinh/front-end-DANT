@@ -12,6 +12,7 @@ const { TextArea } = Input;
 type Props = {}
 
 const PostAdd = (props: Props) => {
+
    const onSuccess = (values: any) => {
       console.log(values);
    }
@@ -52,18 +53,17 @@ const PostAdd = (props: Props) => {
                      </div>
                      <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div className="card-body recuitment-body">
-                           <Form.Item label="Tiêu đề" name="title" rules={[{ required: true, message: 'bạn chọ số lượng' }]}  >
+                           <Form.Item label="Tiêu đề" name="title" rules={[{ required: true, message: 'bạn chưa nhập tiêu đề' }]}  >
                               <Input />
                            </Form.Item>
-                           <Form.Item label="Số lượng cần tuyển" name="Quatity" rules={[{ required: true, message: 'bạn chưa chọn số lượng' }]}>
+                           <Form.Item label="Số lượng cần tuyển" name="Quatity" rules={[{ required: true, message: 'bạn chưa nhập số lượng' }]}>
                               <InputNumber min={1} />
                            </Form.Item>
-                           <Form.Item label="Select" name="sex">
+                           <Form.Item label="chọn giới tính" name="sex" rules={[{ required: true, message: 'bạn chưa chọn giới tính' }]}>
                               <Select>
                                  <Select.Option value="">Chọn giới tính</Select.Option>
                                  <Select.Option value="">nam</Select.Option>
                                  <Select.Option value="">nữ</Select.Option>
-
                               </Select>
                            </Form.Item>
                            <Form.Item label="mô tả công việc" name="describe" rules={[{ required: true, message: 'bạn chưa nhập mô tả công việc' }]}>

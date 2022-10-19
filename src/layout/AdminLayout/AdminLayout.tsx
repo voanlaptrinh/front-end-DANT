@@ -32,8 +32,9 @@ function getItem(
 const items: MenuItem[] = [
    getItem(<Link to={'dashboard'}>Dashboard</Link>, '1', <PieChartOutlined />),
    getItem('Bài tuyển dụng', '2', <DesktopOutlined />, [
-      getItem(<Link to={'post'}>Danh sách</Link>, '3'),
-      getItem(<Link to={'post/add'}>Thêm mới</Link>, '4')
+      getItem(<Link to={'post'}>Quản lý CV</Link>, '3'),
+      getItem(<Link to={'post/news'}>Quản lý đăng tin</Link>, '5'),   
+      getItem(<Link to={'post/add'}>Đăng tin tuyển dụng </Link>, '4'),
    ]),
    getItem('User', 'sub1', <UserOutlined />, [
       getItem('Tom', '5'),
