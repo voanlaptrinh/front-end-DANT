@@ -466,7 +466,7 @@ const PostAdd = (props: Props) => {
                 <div className="card-body recuitment-body">
                   <Form.Item
                     label="Tên công ty"
-                    name="name"
+                    name="nameEmployer"
                     rules={[
                       { required: true, message: "bạn chưa nhập tên công ty" },
                     ]}
@@ -537,7 +537,35 @@ const PostAdd = (props: Props) => {
                         <div style={{ marginTop: 8 }}>Upload</div>
                       </div>
                     </Upload>
+                    <Input />
                   </Form.Item> */}
+                   <Form.Item
+                    label="thêm logo "
+                    name="logo"
+                    rules={[
+                      { required: true, message: "bạn chưa thêm logo" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                   <Form.Item
+                    label="thêm logo "
+                    name="name"
+                    rules={[
+                      { required: true, message: "bạn chưa name" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                   <Form.Item
+                    label="thêm logo "
+                    name="phone"
+                    rules={[
+                      { required: true, message: "bạn chưa thêm phone" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
                 </div>
               </div>
             </div>
