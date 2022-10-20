@@ -120,7 +120,7 @@ const Homeemp = (props: Props) => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     // resolver: yupResolver(schema)
-  })
+  }) 
   const [news, setNews] = useState<any>([])
 
 

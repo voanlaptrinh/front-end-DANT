@@ -47,9 +47,11 @@ const PostAdd = (props: Props) => {
     getCategories();
   }, []);
 
+  const user = categories?.user
 
-
-
+  if (!user) {
+    return null
+  }
   return (
     <div>
       <div className="col-md-8 col-sm-12 col-12 recuitment-inner">
@@ -388,52 +390,55 @@ const PostAdd = (props: Props) => {
                 </div>
               </div>
             </div>
-
-            {categories.user?.map((item: any) => (
-              <div className="card recuitment-card">
-                <div className="card-header recuitment-card-header" id="headingThree">
-                  <h2 className="mb-0">
-                    <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Thông tin liên hệ
-                      <span id="clickc1_advance1" className="clicksd">
-                        <i className="fa fa fa-angle-up" />
-                      </span>
-                    </a>
-                  </h2>
-                </div>
-                <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div className="card-body recuitment-body">
-                    <div className="form-group row">
-                      <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item.name} {...register('nameEmployer', { required: true })} />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                      <div className="col-sm-9">
-                        <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item.email} {...register('emailEmployer', { required: true })} />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                      <div className="col-sm-9">
-                        <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phone', { required: true })} />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item.address} {...register('addressEmployer', { required: true })} />
-                      </div>
-                    </div>
+            <div className="card recuitment-card">
+              <div className="card-header recuitment-card-header" id="headingThree">
+                <h2 className="mb-0">
+                  <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Thông tin liên hệ
+                    <span id="clickc1_advance1" className="clicksd">
+                      <i className="fa fa fa-angle-up" />
+                    </span>
+                  </a>
+                </h2>
+              </div>
+              <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div className="card-body recuitment-body">
+                  <input type="hidden" />
+                  <div className="form-group row">
+                    <Form labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }} initialValues={{ name: user[0]?.name }}>
+                      <Form.Item label={"name"} name="name" >
+                        <Input />
+                      </Form.Item>
+                    </Form>
+                  </div>
+                  <div className="form-group row">
+                    <Form labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }} initialValues={{ email: user[0]?.email }}>
+                      <Form.Item label={"email"} name="email">
+                        <Input />
+                      </Form.Item>
+                    </Form>
+                  </div>
+                  <div className="form-group row">
+                    <Form labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }} initialValues={{ phone: user[0]?.phone }}>
+                      <Form.Item label={"phone"} name="phone">
+                        <Input />
+                      </Form.Item>
+                    </Form>
+                  </div>
+                  <div className="form-group row">
+                    <Form labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }} initialValues={{ address: user[0]?.address }}>
+                      <Form.Item label={"address"} name="address">
+                        <Input />
+                      </Form.Item>
+                    </Form>
                   </div>
                 </div>
               </div>
-            ))
-
-            }
-
+            </div>
             <div className="card recuitment-card">
               <div className="card-header recuitment-card-header" id="heading4">
                 <h2 className="mb-0">
