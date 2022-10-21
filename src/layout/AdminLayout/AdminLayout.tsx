@@ -10,6 +10,8 @@ import { Breadcrumb, Layout, Menu, Avatar } from 'antd';
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './AdminLayout.css';
+import 'antd/dist/antd.css';
+import '../../../src/css/style.css'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -34,7 +36,7 @@ const items: MenuItem[] = [
    getItem('Bài tuyển dụng', '2', <DesktopOutlined />, [
       getItem(<Link to={'post'}>Quản lý CV</Link>, '3'),
       getItem(<Link to={'post/news'}>Quản lý đăng tin</Link>, '5'),   
-      getItem(<Link to={'post/add'}>Đăng tin tuyển dụng </Link>, '4'),
+      getItem(<Link to={'post/add'}>Đăng tin tuyển dụng </Link>, '2'),
    ]),
    getItem('User', 'sub1', <UserOutlined />, [
       getItem('Tom', '5'),

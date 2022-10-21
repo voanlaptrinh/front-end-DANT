@@ -547,25 +547,7 @@ const PostAdd = (props: Props) => {
                     ]}
                   >
                     <Input />
-                  </Form.Item>
-                   <Form.Item
-                    label="thêm logo "
-                    name="name"
-                    rules={[
-                      { required: true, message: "bạn chưa name" },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-                   <Form.Item
-                    label="thêm logo "
-                    name="phone"
-                    rules={[
-                      { required: true, message: "bạn chưa thêm phone" },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+                  </Form.Item>                  
                 </div>
               </div>
             </div>

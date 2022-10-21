@@ -4,8 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import store from './app/store';
-import 'antd/dist/antd.css';
-import '../src/css/style.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
