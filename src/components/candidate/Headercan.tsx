@@ -10,15 +10,13 @@ type Props = {}
 
 const Headercan = (props: Props) => {
   const user = isAuthenticate();
-  console.log(user);
-
   const [candidate, setCandidate] = useState<Categories>()
   useEffect(() => {
     const getCandidate = async () => {
       const { data } = await listCandidate()
       setCandidate(data)
     }
-    // getCandidate();
+    getCandidate();
     // const getUser = async () =>{
     //   const {data} =
     // }
@@ -95,7 +93,7 @@ const Headercan = (props: Props) => {
                   {
                     user ? <li className="nav-item d-flex align-items-center">
                       <p className='text-white'>Xin chào, {user.email}</p>
-                      <button className="nav-link btn-employers" onClick={() => logout()}> Đăng xuất</button>
+                      <a className="nav-link btn-employers" onClick={() => logout()}> Đăng xuất</a>
                     </li>
                       : <li className="nav-item d-flex align-items-center">
                         <div className="nav-item">

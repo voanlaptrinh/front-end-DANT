@@ -1336,7 +1336,7 @@ pre code {
     .col-md-8 {
         -ms-flex: 0 0 66.666667%;
         flex: 0 0 66.666667%;
-        max-width: 66.666667%
+        max-width: 100%
     }
 
     .col-md-9 {
@@ -2984,7 +2984,8 @@ fieldset:disabled a.btn {
 .btn-success {
     color: #fff;
     background-color: #28a745;
-    border-color: #28a745
+    border-color: #28a745;
+    margin-left: 2px;
 }
 
 .btn-success:hover {
