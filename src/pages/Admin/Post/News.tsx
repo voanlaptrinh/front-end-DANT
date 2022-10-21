@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined, RightOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
-import { showNews } from '../../../api/home';
+import { SubmitHandler } from 'react-hook-form';
+import { removeShowNews, showNews } from '../../../api/home';
 
 type Props = {}
 
@@ -14,9 +15,16 @@ const News = (props: Props) => {
             // console.log(data);
         }
         getNews()
-    }, [])
-    console.log(news.job);
+    }, []);
 
+    const onRemove: SubmitHandler<any> = async (id: any) => {
+        const confim = window.confirm("bạn có muốn xóa không")
+        if(confim){
+            await removeShowNews(id)
+        }
+        console.log(id);
+        
+    }
     return (
         <div>
             <div>
@@ -29,8 +37,6 @@ const News = (props: Props) => {
                                 <div className="job-board-wrap">
                                     <div className="job-group">
                                         {news.job?.map((item: any) => {
-                                            console.log(item.getskill[0].name);
-                                            
                                             return <div className="job pagi" key={item.id}>
                                                 <div className="job-content">
                                                     <div className="job-logo">
@@ -44,8 +50,8 @@ const News = (props: Props) => {
                                                             <a href="#">{item.title}</a>
                                                         </div>
                                                         <div className="wrap-btn-appl">
-                                                            <a href="#" className="btn "><EditOutlined /></a>
-                                                            <a href="#" className="btn"><DeleteOutlined /></a>
+                                                            <a href="#"  className="btn "><EditOutlined /></a>
+                                                            <a href="#" onClick={() => onRemove(item.id)} className="btn"><DeleteOutlined /></a>
                                                         </div>
                                                         <div className="job-company">
                                                             <a href="#">{item.nameCompany}</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />

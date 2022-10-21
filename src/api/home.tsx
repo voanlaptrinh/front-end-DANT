@@ -13,6 +13,10 @@ export const showNews = () =>{
     const url = `/employer/show/${token}`
     return instance.get(url)
 }
+export const removeShowNews = (id:any) =>{
+    const url = `/employer/show/${token}/${id}`
+    return instance.delete(url,id)
+}
 export const listNews = () => {
     const url = `/employer/create/${token}` 
     return instance.get(url)
