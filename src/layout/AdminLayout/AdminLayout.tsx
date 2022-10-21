@@ -12,11 +12,12 @@ import { Link, Outlet } from 'react-router-dom';
 import './AdminLayout.css';
 import 'antd/dist/antd.css';
 import '../../../src/css/style.css'
+import { isAuthenticate } from '../../api/auth'
 
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
-
+const user = isAuthenticate();
 function getItem(
    label: React.ReactNode,
    key: React.Key,
@@ -63,7 +64,7 @@ const AdminLayout = (props: Props) => {
          </Sider>
          <Layout className="site-layout">
             <Header className="header site-layout-background" style={{ padding: 15 }} >
-               <p style={{ marginBottom: 0 }}>Hello, khangle2307@gmail.com</p>
+               <p style={{ marginBottom: 0 }}>Hello, {user.name}</p>
                <Avatar size="large" icon={<UserOutlined />} />
             </Header>
             <Content style={{ margin: '0 16px' }}>
