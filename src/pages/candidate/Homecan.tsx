@@ -9,20 +9,15 @@ const Homecan = (props: Props) => {
     const [news, setNews] = useState<any>([])
     const [profile, setprofile] = useState<any>([])
     useEffect(() => {
-        const getNews = async () => {
-            const { data } = await listNewsemp()
-            setNews(data)
-            console.log(data);
-        }
         getNews()
-        
     }, [])
     const getNews = async () => {
         const { data } = await listCandidate()
         setNews(data)
-        console.log(data);
     }
-   
+    console.log(news.job);
+
+
     return (
         <div>
             <div>
@@ -37,43 +32,46 @@ const Homecan = (props: Props) => {
                                     </h2>
                                     <div className="job-group">
                                         <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-                                                    <div className="job-title">
-                                                        <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
-                                                    </div>
-                                                    <div className="job-company">
-                                                        <a href="#">Fpt Software</a> |
-                                                        <a href="#" className="job-address">
-                                                            <i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng
+                                            {news?.job && news?.job.map((item: any) => {
+                                                return <div className="job-content" key={item.id}>
+                                                    <div className="job-logo">
+                                                        <a href="#">
+                                                            <img className="job-logo-ima" alt="job-logo" />
                                                         </a>
                                                     </div>
-                                                    <div className="job-inf">
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Java</a>
+                                                    <div className="job-desc">
+                                                        <div className="job-title">
+                                                            <a href="#">{item.title}</a>
                                                         </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
+                                                        <div className="job-company">
+                                                            <a href="#">Fpt Software</a> |
+                                                            <a href="#" className="job-address">
+                                                                <i className="fa fa-map-marker" aria-hidden="true" />
+                                                                Đà Nẵng
+                                                            </a>
                                                         </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
-                                                                <strong>31/12/2019</strong></span>
+                                                        <div className="job-inf">
+                                                            <div className="job-main-skill">
+                                                                <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Java</a>
+                                                            </div>
+                                                            <div className="job-salary">
+                                                                <i className="fa fa-money" aria-hidden="true" />
+                                                                <span className="salary-min">15<em className="salary-unit">triệu</em></span>
+                                                                <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
+                                                            </div>
+                                                            <div className="job-deadline">
+                                                                <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp:
+                                                                    <strong>31/12/2019</strong></span>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <div className="wrap-btn-appl">
+                                                        <NavLink to="/idemployer" className="btn btn-appl">Apply Now</NavLink>
+                                                    </div>
                                                 </div>
-                                                <div className="wrap-btn-appl">
-                                                    <NavLink to="/idemployer" className="btn btn-appl">Apply Now</NavLink>
-                                                </div>
-                                            </div>
+                                            })}
                                         </div>
+
                                         <div className="readmorestyle-wrap">
                                             <a href="#" className="readallstyle reads1">Xem tất cả</a>
                                         </div>

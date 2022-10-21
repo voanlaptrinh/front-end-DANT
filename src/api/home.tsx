@@ -1,6 +1,7 @@
 import { isAuthenticate } from "./auth";
 import { instance } from "./instance"
 const { token } = isAuthenticate();
+
 export const listCandidate = () => {
     const url = `/index/list`
     return instance.get(url)
