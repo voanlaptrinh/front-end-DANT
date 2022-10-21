@@ -18,7 +18,7 @@ const Headercan = (props: Props) => {
       const { data } = await listCandidate()
       setCandidate(data)
     }
-    // getCandidate();
+    getCandidate();
     // const getUser = async () =>{
     //   const {data} =
     // }

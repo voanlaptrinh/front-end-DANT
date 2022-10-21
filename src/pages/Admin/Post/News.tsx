@@ -1,59 +1,74 @@
 import { DeleteOutlined, EditOutlined, RightOutlined } from '@ant-design/icons';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { showNews } from '../../../api/home';
+
 type Props = {}
+
 const News = (props: Props) => {
+    const [news, setNews] = useState<any>([])
+
+    useEffect(() => {
+        const getNews = async () => {
+            const { data } = await showNews()
+            setNews(data)
+            // console.log(data);
+        }
+        getNews()
+    }, [])
+    console.log(news.job);
+
     return (
         <div>
             <div>
                 <div className="container-fluid">
                     <div className="container search-wrapper">
-                        <div className="row">
 
+                        <div className="row">
                             <div className="col-md-9 col-sm-12 col-12">
                                 <h4 className="search-find">Tìm thấy 4 việc làm đang tuyển dụng</h4>
                                 <div className="job-board-wrap">
                                     <div className="job-group">
-                                        <div className="job pagi">
-                                            <div className="job-content">
-                                                <div className="job-logo">
-                                                    <a href="#">
-                                                        <img src="img/luxoft-vietnam-logo.png" className="job-logo-ima" alt="job-logo" />
-                                                    </a>
-                                                </div>
-                                                <div className="job-desc">
-
-                                                    <div className="job-title">
-                                                        <a href="#">IVI System Test Engineer</a>
+                                        {news.job?.map((item: any) => {
+                                            console.log(item.getskill[0].name);
+                                            
+                                            return <div className="job pagi" key={item.id}>
+                                                <div className="job-content">
+                                                    <div className="job-logo">
+                                                        <a href="#">
+                                                            <img src="img/luxoft-vietnam-logo.png" className="job-logo-ima" alt="job-logo" />
+                                                        </a>
                                                     </div>
-                                                    <div className="wrap-btn-appl">
+                                                    <div className="job-desc">
+
+                                                        <div className="job-title">
+                                                            <a href="#">{item.title}</a>
+                                                        </div>
+                                                        <div className="wrap-btn-appl">
                                                             <a href="#" className="btn "><EditOutlined /></a>
                                                             <a href="#" className="btn"><DeleteOutlined /></a>
                                                         </div>
-                                                    <div className="job-company">
-                                                        <a href="#">NVG TECHNOLOGY</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
-                                                            Đà Nẵng</a>
-                                                    </div>
-                                                    <div className="job-inf">
-                                                        
-                                                        <div className="job-main-skill">
-                                                            <i className="fa fa-code" aria-hidden="true" /> <a href="#"> Javascript</a>
+                                                        <div className="job-company">
+                                                            <a href="#">{item.nameCompany}</a> | <a href="#" className="job-address"><i className="fa fa-map-marker" aria-hidden="true" />
+                                                                {item.getlocation.name}</a>
                                                         </div>
-                                                        <div className="job-salary">
-                                                            <i className="fa fa-money" aria-hidden="true" />
-                                                            <span className="salary-min">15<em className="salary-unit">triệu</em></span>
-                                                            <span className="salary-max">35 <em className="salary-unit">triệu</em></span>
+                                                        <div className="job-inf">
+                                                            <div className="job-main-skill">
+                                                                <i className="fa fa-code" aria-hidden="true" /> <a href="#"> {item.getskill[0].name}</a>
+                                                            </div>
+                                                            <div className="job-salary">
+                                                                <i className="fa fa-money" aria-hidden="true" />
+                                                                <span className="salary-min"><em className="salary-unit">{item.get_wage.name}</em></span>
+                                                            </div>
+                                                            <div className="job-deadline">
+                                                                <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp còn :
+                                                                    <strong>{item.job_time}</strong></span>
+                                                            </div>
                                                         </div>
-                                                        <div className="job-deadline">
-                                                            <span><i className="fa fa-clock-o" aria-hidden="true" /> Hạn nộp còn :
-                                                                <strong>30 ngày</strong></span>
-                                                        </div>
-
                                                     </div>
                                                 </div>
-
                                             </div>
+                                        })}
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>

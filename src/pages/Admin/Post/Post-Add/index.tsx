@@ -27,16 +27,13 @@ type Props = {};
 const PostAdd = (props: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm<any>()
   const onSuccess = (values: any) => {
-    console.log(values);
   };
   const onFailed = (errorInfo: any) => {
-    console.log(errorInfo);
   };
   const navigate = useNavigate();
   const [categories, setCategories] = useState<any>([]);
   const oncreate: SubmitHandler<any> = async (formData: any) => {
     const { data } = await createNews(formData);
-    console.log(formData);
   };
   useEffect(() => {
     const getCategories = async () => {
