@@ -42,7 +42,6 @@ const PostAdd = (props: Props) => {
     const getCategories = async () => {
       const { data } = await listNews();
       setCategories(data);
-      console.log(data.user);
     };
     getCategories();
   }, []);
@@ -62,6 +61,7 @@ const PostAdd = (props: Props) => {
           layout="horizontal"
           onFinish={oncreate}
           onFinishFailed={onFailed}
+          initialValues={{ nameEmployer: user[0]?.name,id_Employer: user[0]?.id, emailEmployer: user[0]?.email, phoneEmployer: user[0]?.phone, addressEmployer: user[0]?.address }}
         >
           <div className="accordion" id="accordionExample">
             <div className="card recuitment-card">
@@ -402,40 +402,30 @@ const PostAdd = (props: Props) => {
                 </h2>
               </div>
               <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div className="card-body recuitment-body">
-                  <input type="hidden" />
-                  <div className="form-group row">
-                    <Form labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }} initialValues={{ name: user[0]?.name }}>
-                      <Form.Item label={"name"} name="name" >
-                        <Input />
-                      </Form.Item>
-                    </Form>
-                  </div>
-                  <div className="form-group row">
-                    <Form labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }} initialValues={{ email: user[0]?.email }}>
-                      <Form.Item label={"email"} name="email">
-                        <Input />
-                      </Form.Item>
-                    </Form>
-                  </div>
-                  <div className="form-group row">
-                    <Form labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }} initialValues={{ phone: user[0]?.phone }}>
-                      <Form.Item label={"phone"} name="phone">
-                        <Input />
-                      </Form.Item>
-                    </Form>
-                  </div>
-                  <div className="form-group row">
-                    <Form labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }} initialValues={{ address: user[0]?.address }}>
-                      <Form.Item label={"address"} name="address">
-                        <Input />
-                      </Form.Item>
-                    </Form>
-                  </div>
+                <div className="form-group row">
+                  <Form.Item label={"id_Employer"} name="id_Employer" >
+                    <Input type="hidden" />
+                  </Form.Item>
+                </div>
+                <div className="form-group row">
+                  <Form.Item label={"name"} name="nameEmployer" >
+                    <Input />
+                  </Form.Item>
+                </div>
+                <div className="form-group row">
+                  <Form.Item label={"email"} name="emailEmployer">
+                    <Input />
+                  </Form.Item>
+                </div>
+                <div className="form-group row">
+                  <Form.Item label={"phone"} name="phoneEmployer">
+                    <Input />
+                  </Form.Item>
+                </div>
+                <div className="form-group row">
+                  <Form.Item label={"address"} name="addressEmployer">
+                    <Input />
+                  </Form.Item>
                 </div>
               </div>
             </div>
@@ -466,7 +456,7 @@ const PostAdd = (props: Props) => {
                 <div className="card-body recuitment-body">
                   <Form.Item
                     label="Tên công ty"
-                    name="nameEmployer"
+                    name="nameCompany"
                     rules={[
                       { required: true, message: "bạn chưa nhập tên công ty" },
                     ]}
@@ -475,7 +465,7 @@ const PostAdd = (props: Props) => {
                   </Form.Item>
                   <Form.Item
                     label="email công ty"
-                    name="eemail"
+                    name="emailCompany"
                     rules={[
                       { required: true, message: "bạn chưa email công ty" },
                     ]}
@@ -484,7 +474,7 @@ const PostAdd = (props: Props) => {
                   </Form.Item>
                   <Form.Item
                     label="địa chỉ công ty "
-                    name="address"
+                    name="addressCompany"
                     rules={[
                       { required: true, message: "bạn chưa địa chỉ công ty" },
                     ]}
@@ -516,7 +506,7 @@ const PostAdd = (props: Props) => {
                   </Form.Item>
                   <Form.Item
                     label="giới thiệu về công ty"
-                    name="Desceibe"
+                    name="DesceibeCompany"
                     rules={[
                       {
                         required: true,
@@ -539,7 +529,7 @@ const PostAdd = (props: Props) => {
                     </Upload>
                     <Input />
                   </Form.Item> */}
-                   <Form.Item
+                  <Form.Item
                     label="thêm logo "
                     name="logo"
                     rules={[
@@ -547,7 +537,7 @@ const PostAdd = (props: Props) => {
                     ]}
                   >
                     <Input />
-                  </Form.Item>                  
+                  </Form.Item>
                 </div>
               </div>
             </div>
