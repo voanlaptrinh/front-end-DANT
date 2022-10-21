@@ -9,21 +9,19 @@ const News = (props: Props) => {
     const [news, setNews] = useState<any>([])
 
     useEffect(() => {
-        const getNews = async () => {
-            const { data } = await showNews()
-            setNews(data)
-            // console.log(data);
-        }
+
         getNews()
     }, []);
-
+    const getNews = async () => {
+        const { data } = await showNews()
+        setNews(data)
+        // console.log(data);
+    }
     const onRemove: SubmitHandler<any> = async (id: any) => {
         const confim = window.confirm("bạn có muốn xóa không")
-        if(confim){
-            await removeShowNews(id)
+        if (confim) {
+            await removeShowNews(id).then(() => getNews())
         }
-        console.log(id);
-        
     }
     return (
         <div>
@@ -50,7 +48,7 @@ const News = (props: Props) => {
                                                             <a href="#">{item.title}</a>
                                                         </div>
                                                         <div className="wrap-btn-appl">
-                                                            <a href="#"  className="btn "><EditOutlined /></a>
+                                                            <a href="#" className="btn "><EditOutlined /></a>
                                                             <a href="#" onClick={() => onRemove(item.id)} className="btn"><DeleteOutlined /></a>
                                                         </div>
                                                         <div className="job-company">

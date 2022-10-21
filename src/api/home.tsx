@@ -14,8 +14,8 @@ export const showNews = () =>{
     return instance.get(url)
 }
 export const removeShowNews = (id:any) =>{
-    const url = `/employer/show/${token}/${id}`
-    return instance.delete(url,id)
+    const url = `/employer/delete/${id}`
+    return instance.delete(url)
 }
 export const listNews = () => {
     const url = `/employer/create/${token}` 
