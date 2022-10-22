@@ -27,7 +27,7 @@ function App() {
           <Route path='/' element={<Websitelayoutcan />}>
             <Route index element={<Homecan />} />
             <Route path='search' element={<SearchITcan />} />
-            <Route path='idemployer' element={<Idemployer />} />
+            <Route path='idemployer/:id' element={<Idemployer />} />
           </Route>
           <Route path='employer' element={<Websitelayoutemp />}>
             <Route index element={<Homeemp />} />

@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { detailCan } from '../../api/home';
 
 type Props = {}
 
 const Idemployer = (props: Props) => {
+    const { id } = useParams();
+    const [news, setNews] = useState<any>([])
+    useEffect(() => {
+
+        getNews(id);
+    }, []);
+    const getNews = async (id: any) => {
+        const { data } = await detailCan(id);
+        setNews(data)
+    }
+    console.log(news.job);
+
     return (
         <div>
             <div>
@@ -18,10 +32,10 @@ const Idemployer = (props: Props) => {
                                         </a>
                                     </div>
                                 </div>
-                                <div className="col-md-7 col-sm-12 col-12">
+                                <div className="col-md-7 col-sm-12 col-12" >
                                     <div className="job-detail-header-desc">
                                         <div className="job-detail-header-title">
-                                            <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>
+                                            <a href="#">xczx</a>
                                         </div>
                                         <div className="job-detail-header-company">
                                             <a href="#">Fpt Software</a>

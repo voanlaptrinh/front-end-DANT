@@ -100,7 +100,7 @@ const Homecan = (props: Props) => {
                             </div>
                             <div className="wrap-btn-appl">
                               <NavLink
-                                to="/idemployer"
+                                to={`idemployer/${item.id}`}
                                 className="btn btn-appl"
                               >
                                 Apply Now
