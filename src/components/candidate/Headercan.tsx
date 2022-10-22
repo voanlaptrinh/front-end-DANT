@@ -10,8 +10,6 @@ type Props = {}
 
 const Headercan = (props: Props) => {
   const user = isAuthenticate();
-  console.log(user);
-
   const [candidate, setCandidate] = useState<Categories>()
   useEffect(() => {
     const getCandidate = async () => {
