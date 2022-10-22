@@ -58,7 +58,7 @@ const PostAdd = (props: Props) => {
           layout="horizontal"
           onFinish={oncreate}
           onFinishFailed={onFailed}
-          initialValues={{ nameEmployer: user[0]?.name,id_Employer: user[0]?.id, emailEmployer: user[0]?.email, phoneEmployer: user[0]?.phone, addressEmployer: user[0]?.address }}
+          initialValues={{ nameEmployer: user[0]?.name, id_Employer: user[0]?.id, emailEmployer: user[0]?.email, phoneEmployer: user[0]?.phone, addressEmployer: user[0]?.address }}
         >
           <div className="accordion" id="accordionExample">
             <div className="card recuitment-card">
@@ -487,19 +487,8 @@ const PostAdd = (props: Props) => {
                         message: "bạn chưa chọn quy mô nhân sự",
                       },
                     ]}
-                  >
-                    <Select>
-                      <Select.Option value="1">
-                        chọn quy môn nhân sự
-                      </Select.Option>
-                      {categories.number_member?.map((item: any) => {
-                        return (
-                          <Select.Option key={item.id} value={item.id}>
-                            {item.name}
-                          </Select.Option>
-                        );
-                      })}
-                    </Select>
+                  >                   
+                    <InputNumber min={1} />
                   </Form.Item>
                   <Form.Item
                     label="giới thiệu về công ty"
@@ -507,7 +496,7 @@ const PostAdd = (props: Props) => {
                     rules={[
                       {
                         required: true,
-                        message: "bạn chưa nhập giới thiệu về công ty",
+                        message: "bạn chưa nhập quy môn nhân sự",
                       },
                     ]}
                   >

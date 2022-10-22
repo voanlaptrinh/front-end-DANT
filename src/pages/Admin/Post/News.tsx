@@ -16,6 +16,8 @@ const News = (props: Props) => {
     setNews(data);
     // console.log(data);
   };
+  console.log(news);
+
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {
@@ -94,7 +96,7 @@ const News = (props: Props) => {
                                   />
                                   <span className="salary-min">
                                     <em className="salary-unit">
-                                       {item.get_wage.name}
+                                      {item.get_wage.name}
                                     </em>
                                   </span>
                                 </div>
@@ -185,10 +187,11 @@ const News = (props: Props) => {
                     </a>
                   </div>
                   <div className="meta">
-                    Khi nào thì người sử dụng lao động được quyền đơn phương
-                    chấm dứt hợp đồng khi nào thì không? Cùng tham khảo bài viết
-                    sau đây để hiểu thêm về quyền lợi của người lao động Việt
-                    Nam nhé!
+                    <p className="col-2 text-truncate">Khi nào thì người sử dụng lao động được quyền đơn phương
+                      chấm dứt hợp đồng khi nào thì không? Cùng tham khảo bài viết
+                      sau đây để hiểu thêm về quyền lợi của người lao động Việt
+                      Nam nhé!</p>
+
                   </div>
                 </div>
               </div>

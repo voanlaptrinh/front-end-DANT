@@ -76,7 +76,7 @@ const Homecan = (props: Props) => {
                                   </div>
                                   )
                                 })}
-
+                                <br />
                                 <div className="job-salary">
                                   <i
                                     className="fa fa-money"
