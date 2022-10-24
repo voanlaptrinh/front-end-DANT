@@ -36,14 +36,17 @@ const PostAdd = (props: Props) => {
     const { data } = await createNews(formData);
   };
   useEffect(() => {
-    const getCategories = async () => {
-      const { data } = await listNews();
-      setCategories(data);
-    };
     getCategories();
   }, []);
+  const getCategories = async () => {
+    const { data } = await listNews();
+    setCategories(data);
+  };
+
 
   const user = categories?.user
+  const company = categories?.company
+  console.log(categories);
 
   if (!user) {
     return null
@@ -58,7 +61,20 @@ const PostAdd = (props: Props) => {
           layout="horizontal"
           onFinish={oncreate}
           onFinishFailed={onFailed}
-          initialValues={{ nameEmployer: user[0]?.name, id_Employer: user[0]?.id, emailEmployer: user[0]?.email, phoneEmployer: user[0]?.phone, addressEmployer: user[0]?.address }}
+          initialValues={{
+            nameEmployer: user[0]?.name, id_Employer: user[0]?.id,
+            emailEmployer: user[0]?.email,
+            phoneEmployer: user[0]?.phone,
+            addressEmployer: user[0]?.address,
+            nameCompany: company[0]?.namecompany ?? '',
+            emailCompany: company[0]?.email ?? '',
+            number_member: company[0]?.number_member ?? '',
+            phoneCompany: company[0]?.phone ?? '',
+            logo: company[0]?.logo ?? '',
+            DesceibeCompany: company[0]?.Desceibe ?? '',
+            addressCompany: company[0]?.address ?? '',
+            id_company: company[0]?.id_company ?? '',
+          }}
         >
           <div className="accordion" id="accordionExample">
             <div className="card recuitment-card">
@@ -400,7 +416,7 @@ const PostAdd = (props: Props) => {
               </div>
               <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div className="form-group row">
-                  <Form.Item label={"id_Employer"} name="id_Employer" >
+                  <Form.Item name="id_Employer" >
                     <Input type="hidden" />
                   </Form.Item>
                 </div>
@@ -426,6 +442,7 @@ const PostAdd = (props: Props) => {
                 </div>
               </div>
             </div>
+            {/* comapny */}
             <div className="card recuitment-card">
               <div className="card-header recuitment-card-header" id="heading4">
                 <h2 className="mb-0">
@@ -451,6 +468,11 @@ const PostAdd = (props: Props) => {
                 data-parent="#collapse4"
               >
                 <div className="card-body recuitment-body">
+                  <div className="form-group row">
+                    <Form.Item name="id_company" >
+                      <Input type="hidden" />
+                    </Form.Item>
+                  </div>
                   <Form.Item
                     label="Tên công ty"
                     name="nameCompany"
@@ -487,7 +509,7 @@ const PostAdd = (props: Props) => {
                         message: "bạn chưa chọn quy mô nhân sự",
                       },
                     ]}
-                  >                   
+                  >
                     <InputNumber min={1} />
                   </Form.Item>
                   <Form.Item

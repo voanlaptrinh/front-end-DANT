@@ -23,7 +23,6 @@ const Idemployer = (props: Props) => {
             {news.job?.map((item: any) => {
                 return (
                     <div>
-
                         <div className="container-fluid job-detail-wrap">
                             <div className="container job-detail">
                                 <div className="job-detail-header">
@@ -199,7 +198,7 @@ const Idemployer = (props: Props) => {
                                                             {item.getskill?.map((item1: any) => {
                                                                 return (
                                                                     <span className="ji-main">
-                                                                        {item1.name}, 
+                                                                        {item1.name},
                                                                     </span>
                                                                 );
                                                             })}

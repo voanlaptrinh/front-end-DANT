@@ -10,20 +10,19 @@ const Homecan = (props: Props) => {
   const [Job, JobEmployer1] = useState<any>([]);
   // const [profile, setprofile] = useState<any>([])
   useEffect(() => {
-    const getNews = async () => {
-      const { data } = await listNewsemp();
-      setNews(data);
-      console.log(data);
-    };
-    const JobEmployer = async () => {
-      const { data } = await listCandidate();
-      JobEmployer1(data);
-      console.log(data);
-    };
     JobEmployer();
     getNews();
   }, []);
-
+  const getNews = async () => {
+    const { data } = await listNewsemp();
+    setNews(data);
+    console.log(data);
+  };
+  const JobEmployer = async () => {
+    const { data } = await listCandidate();
+    JobEmployer1(data);
+    console.log(data);
+  };
   return (
     <div>
       <div>
@@ -66,14 +65,14 @@ const Homecan = (props: Props) => {
                               </div>
                               <div className="job-inf">
                                 {item.getskill?.map((item1: any) => {
-                                  return(
-                                  <div className="job-main-skill">
-                                    <i
-                                      className="fa fa-code"
-                                      aria-hidden="true"
-                                    />{" "}
-                                    <a href="#">{item1.name}</a>
-                                  </div>
+                                  return (
+                                    <div className="job-main-skill">
+                                      <i
+                                        className="fa fa-code"
+                                        aria-hidden="true"
+                                      />{" "}
+                                      <a href="#">{item1.name}</a>
+                                    </div>
                                   )
                                 })}
                                 <br />
