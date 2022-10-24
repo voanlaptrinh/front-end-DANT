@@ -17,7 +17,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
-import "../../../../js/bootstrap.min.js";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;

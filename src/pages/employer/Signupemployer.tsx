@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signup } from '../../api/auth';
-import Banner from '../../assets/images/banner-login.png';
-import Logo from '../../assets/images/logo.jpg';
 
 type Props = {}
 
@@ -55,7 +53,7 @@ const Signupemployer = (props: Props) => {
 
                 {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
                 <Link to="">
-                  <img src={Logo} alt="itwork" width={70} height={70} />
+                  {/* <img src={Logo} alt="itwork" width={70} height={70} /> */}
                 </Link>
 
                 <span className="login-breadcrumb"><em>/</em> Đăng ký Nhà tuyển dụng</span>
@@ -74,7 +72,6 @@ const Signupemployer = (props: Props) => {
               <div className="row">
                 {/* login main descriptions */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
-                  <img src={Banner} />
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">

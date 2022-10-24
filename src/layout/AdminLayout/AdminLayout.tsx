@@ -11,7 +11,6 @@ import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './AdminLayout.css';
 import 'antd/dist/antd.css';
-import '../../../src/css/style.css'
 import { isAuthenticate } from '../../api/auth'
 
 const { Header, Content, Footer, Sider } = Layout;
