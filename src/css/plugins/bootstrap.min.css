@@ -5066,11 +5066,10 @@ button.close {
 }
 
 .modal-body {
-    position: relative;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding: 15px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: auto auto;
+    text-align: center;
+    padding: 5% 0px 5% 0px;
 }
 
 .modal-footer {
