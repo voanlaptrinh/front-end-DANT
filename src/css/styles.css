@@ -56,7 +56,7 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  z-index: 9999999;
+  z-index: 999;
   background: url(../img/loader.gif) center no-repeat #ffffff;
 }
 
@@ -1607,7 +1607,6 @@ ul {
 
 .align-to-right {
   float: right;
-  letter-spacing: 0.5px;
 }
 
 .nav-header {
@@ -1895,7 +1894,7 @@ nav a:hover {
   left: 0;
   position: fixed;
   display: none;
-  z-index: 19999;
+  z-index: 199;
 }
 
 .no-scroll {
@@ -1907,7 +1906,7 @@ nav a:hover {
 .nav-search {
   height: 70px;
   float: right;
-  z-index: 19998;
+  z-index: 199;
 }
 
 .navigation-portrait .nav-search {
@@ -5662,7 +5661,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1400px) {
   #countdown ul li {
     margin: 0 0.2rem;
     padding: 0.5rem 0.6rem;
@@ -5935,4 +5934,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 #back2Top:hover {
   background-color: #ffffff;
   color: #333c56;
+}
+.can img{
+  width: 100px;
 }

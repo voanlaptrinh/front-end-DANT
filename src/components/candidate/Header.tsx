@@ -1,8 +1,32 @@
 import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
+import { isAuthenticate, logout, signin } from "../../api/auth";
+import { useAppDispatch } from "../../app/store";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const user = isAuthenticate();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const onSignin: SubmitHandler<any> = async (user: any) => {
+    const { data } = await signin(user);
+    localStorage.setItem('user', JSON.stringify(data));
+    console.log(data);
+    if (data.data) {
+      if (data.data.role_id == 1) {
+        navigate('/');
+        return true
+      }
+      if (data.data.role_id == 2) {
+        navigate('/employer');
+        return true
+      }
+    }
+  }
   return (
     <div id="main-wrapper">
       {/* <!-- Start Navigation --> */}
@@ -210,18 +234,23 @@ const Header = (props: Props) => {
               </ul>
               <ul className="nav-menu nav-menu-social align-to-right">
                 <li>
-                  <a
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#login"
-                    className="ft-medium"
-                  >
-                    <i className="lni lni-user mr-2" />
-                    Sign In
-                  </a>
+                  {
+                    user ? <li className="nav-item d-flex align-items-center">
+                      <p className='text-white'>Xin chào, {user.email}</p>
+                      <div className="nav-item">
+                        <a className="btn btn-success" onClick={() => logout()}>Đăng xuất</a>
+                      </div>
+                    </li>
+                      : <li className="nav-item d-flex align-items-center">
+                        <div className="nav-item">
+                          <a className="btn btn-success" data-toggle="modal"
+                            data-target="#login"> Đăng nhập </a>
+                        </div>
+                      </li>
+                  }
                 </li>
                 <li className="add-listing theme-bg">
-                  <a href="dashboard-post-job.html">
+                  <a data-toggle="modal" data-target="#exampleModal">
                     <i className="lni lni-circle-plus mr-1" /> Post a Job
                   </a>
                 </li>
@@ -326,13 +355,14 @@ const Header = (props: Props) => {
               <div className="text-center mb-4">
                 <h2 className="m-0 ft-regular">Login</h2>
               </div>
-              <form>
+              <form method="POST" onClick={handleSubmit(onSignin)}>
                 <div className="form-group">
-                  <label>User Name</label>
+                  <label>email</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Username*"
+                    placeholder="email*"
+                    {...register("email", { required: "bạn chưa nhập email" })}
                   />
                 </div>
                 <div className="form-group">
@@ -341,6 +371,7 @@ const Header = (props: Props) => {
                     type="password"
                     className="form-control"
                     placeholder="Password*"
+                    {...register("password", { required: "bạn chưa nhập mật khẩu" })}
                   />
                 </div>
                 <div className="form-group">
@@ -385,6 +416,49 @@ const Header = (props: Props) => {
         </div>
       </div>
       {/* End Modal */}
+
+      {/* modal đăng ký */}
+      <div>
+        {/* Modal */}
+        <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Chào bạn,
+                  <div><span>Để có được trải nghiệm tốt nhất mới bạn chọn bên mà mình muôn đăng ký</span></div>
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span className="ti-close" />
+                </button>              </div>
+              <div className="modal-body">
+                <div className='can'>
+                  <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png" alt="" />
+                </div>
+                <div className='can'>
+                  <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png" alt="" />
+                </div>
+                <div>
+                  <a href="/login/signupempoly" className="btn btn-primary">Nhà tuyển dụng</a>
+                </div>
+                <div>
+                  <a href="/login/signupcandidate" className="btn btn-primary">Ứng viên</a>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* end modal đăng ký */}
     </div>
   );
 };

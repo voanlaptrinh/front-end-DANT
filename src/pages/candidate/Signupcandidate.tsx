@@ -72,31 +72,31 @@ const Signupcandidate = (props: Props) => {
                       <h3>Đăng Ký</h3>
                     </div>
                     <input type="text" hidden value='1' {...register('id')} />
-                    <div className="input-div one">
+                    <div className="col-xl-6 col-lg-6 col-md-6">
                       <label htmlFor="fullName" className='fs-6 fw-normal py-2'>Họ và tên</label>
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='Nhập họ và tên của bạn' {...register('fullName', { required: true })} />
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='Nhập họ và tên của bạn' {...register('fullName', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.fullName?.message}</p>
                     </div>
-                    <div className="input-div one">
+                    <div className="col-xl-6 col-lg-6 col-md-6">
                       <label htmlFor="email" className='fs-6 fw-normal py-2'>Email</label>
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='Nhập email của bạn' {...register('email', { required: true })} />
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='Nhập email của bạn' {...register('email', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.email?.message}</p>
                     </div>
-                    <div className="input-div one">
+                    <div className="col-xl-6 col-lg-6 col-md-6">
                       <label htmlFor="password" className='fs-6 fw-normal py-2'>Mật khẩu</label>
-                      <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập mật khẩu của bạn' {...register('password', { required: true })} />
+                      <div className="form-group">
+                        <input type="password" className="form-control rounded" placeholder='Nhập mật khẩu của bạn' {...register('password', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.password?.message}</p>
                     </div>
-                    <div className="input-div one">
+                    <div className="col-xl-6 col-lg-6 col-md-6">
                       <label htmlFor="comfirmPassword" className='fs-6 fw-normal py-2'>Nhập lại mật khẩu</label>
-                      <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', { required: true })} />
+                      <div className="form-group">
+                        <input type="password" className="form-control rounded" placeholder='Nhập lại mật khẩu của bạn' {...register('comfirmPassword', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.comfirmPassword?.message}</p>
                     </div>

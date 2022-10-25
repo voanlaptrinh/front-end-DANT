@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Layout from './layout/candidate/Layout'
 import Search from './pages/candidate/Search'
+import'./css/plugins/bootstrap.min.css'
 
 
 function App() {
