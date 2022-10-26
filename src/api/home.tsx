@@ -1,6 +1,6 @@
 import { isAuthenticate } from "./auth";
 import { instance } from "./instance"
-const { token } = isAuthenticate();
+const data = isAuthenticate();
 
 export const listCandidate = () => {
     const url = `/index/list`
@@ -15,7 +15,7 @@ export const addNews = (data: any) => {
     return instance.post(url, data)
 }
 export const showNews = () => {
-    const url = `/employer/show/${token}`
+    const url = `/employer/show/${data.token}`
     return instance.get(url)
 }
 export const removeShowNews = (id: any) => {
@@ -23,7 +23,7 @@ export const removeShowNews = (id: any) => {
     return instance.delete(url)
 }
 export const listNews = () => {
-    const url = `/employer/create/${token}`
+    const url = `/employer/create/${data.token}`
     return instance.get(url)
 }
 export const createNews = (data: any) => {
@@ -31,6 +31,6 @@ export const createNews = (data: any) => {
     return instance.post(url, data)
 }
 export const listNewsemp = () => {
-    const url = `/employer/index/${token}`
+    const url = `/employer/index/${data.token}`
     return instance.get(url)
 }
