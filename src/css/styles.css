@@ -1838,6 +1838,14 @@ ul {
 .align-to-right {
   float: right;
 }
+.top{
+  margin-top: 1%;
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: white;
+}
+
 
 .nav-header {
   display: flex;
@@ -2788,6 +2796,7 @@ nav a {
   background: #fff;
   box-shadow: none;
   min-width: 250px;
+  width: 100%;
   left: initial !important;
   border: none;
   padding: 0rem;
