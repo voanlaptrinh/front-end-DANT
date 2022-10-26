@@ -10,7 +10,7 @@ export const isAuthenticate = () => {
       return false
    }
 }
-const { token } = isAuthenticate();
+const data = isAuthenticate();
 
 export const signup = (data: any) => {
    const url = `/user/register`
@@ -18,7 +18,7 @@ export const signup = (data: any) => {
 }
 
 export const profile1 = () => {
-   const url = `/user/user-info/${token}`
+   const url = `/user/user-info/${data.token}`
    return instance.get(url)
 }
 
