@@ -2922,11 +2922,12 @@ tbody.collapse.show {
     background-color: #f8f9fa
 }
 
+
 .dropdown-item.active,
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #007bff
+    background-color: #47b16c
 }
 
 .dropdown-item.disabled,
