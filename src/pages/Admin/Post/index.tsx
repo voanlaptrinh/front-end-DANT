@@ -80,7 +80,7 @@ const Post: React.FC = (props: Props) => {
                               </tr>
                            </thead>
                            <tbody>
-                              {news.job[0].data?.map((item: any) => {
+                              {news.job?.map((item: any) => {
                                  return (
                                     <tr key={item.id}>
                                        <td>
