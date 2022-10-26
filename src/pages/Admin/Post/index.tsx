@@ -1,76 +1,94 @@
-import { Button, Table } from 'antd';
+import { EditOutlined, FlagOutlined } from '@ant-design/icons';
+import { Divider, Radio, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+import { removeShowNews, showNews } from '../../../api/home';
 
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-}
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-  },
-];
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
 
 const Post: React.FC = () => {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+   const [news, setNews] = useState<any>([]);
 
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
+   useEffect(() => {
+      getNews();
+   }, []);
+   const getNews = async () => {
+      const { data } = await showNews();
+      setNews(data);
+   };
+   console.log(news);
+   const onRemove: SubmitHandler<any> = async (id: any) => {
+      const confim = window.confirm("bạn có muốn xóa không");
+      if (confim) {
+         await removeShowNews(id).then(() => getNews());
+      }
+   };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
+   const columns: ColumnsType<any> = [
+      {
+         title: 'Logo',
+         dataIndex: `logo`,
+         render: theImageURL => <img alt={theImageURL} src={theImageURL} width={100} />
+      },
+      {
+         title: 'Tiêu Đề',
+         dataIndex: ['title'],
+         render: (text: string) => <a>{text}</a>,
+      },
+      {
+         title: 'Vị trí làm việc',
+         dataIndex: ['getprofession', 'name'],
+      },
+      {
+         title: 'Hình thức làm việc',
+         dataIndex: ['get_time_work', 'name'],
+      },
+      {
+         title: 'Trạng Thái',
+         dataIndex: 'nháp',
+      },
+      {
+         title: 'Số lượng hồ sơ đã nhân',
+         dataIndex: 20,
+      },
+      {
+         title: 'Thời gian còn lại',
+         dataIndex: 20,
+      },
+      {
+         title: 'Thời gian đăng',
+         dataIndex: 20,
+      },
+      {
+         title: 'Action',
+         dataIndex: 'id',
+         render: (id: string) => <a className="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1" onClick={() => onRemove(id)}><i className="lni lni-trash-can" /></a>
+         ,
 
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-  const hasSelected = selectedRowKeys.length > 0;
+         // render: () => (
+         //    <Space size="middle">
+         //       <div className="dash-action">
+         //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><FlagOutlined /></a>
+         //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i className="lni lni-eye" /></a>
+         //          <a href="javascript:void(0);" className="p-2 circle text-black bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><EditOutlined /></a>
+         //       </div>
+         //    </Space>
+         // ),
+      },
+   ];
+   // console.log(news.getprofession.name);
 
-  return (
-    <div>
-      <div style={{ marginBottom: 16 }}>
-        <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
-          Reload
-        </Button>
-        <span style={{ marginLeft: 8 }}>
-          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-        </span>
+   return (
+      <div>
+         <Table
+            columns={columns}
+            dataSource={news.job}
+         >
+         </Table>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
-    </div>
-  );
+   );
 };
 
 export default Post;
