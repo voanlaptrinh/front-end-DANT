@@ -13,7 +13,7 @@ const Layout = (props: Props) => {
       <div>
         <Header2 />
       </div>
-      <main>
+      <main className="bg-light">
         <Outlet />
       </main>
       <div>
