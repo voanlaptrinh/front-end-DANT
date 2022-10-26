@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, Router } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Signupcandidate from './pages/candidate/Signupcandidate'
 import Signupemployer from './pages/employer/Signupemployer'
@@ -13,7 +13,8 @@ import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Layout from './layout/candidate/Layout'
 import Search from './pages/candidate/Search'
-import'./css/plugins/bootstrap.min.css'
+import './css/plugins/bootstrap.min.css'
+import Profile from './pages/employer/Profile/Profile'
 
 
 function App() {
@@ -21,12 +22,14 @@ function App() {
     <div className="App">
       <main>
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          {/* Default-Layout */}
           <Route path="product" element={<Layout />}>
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
+            <Route path='profile/:id' element={<Profile />} />
           </Route>
-          {/* code mới */}
+          {/* Admin-Layout */}
           <Route path='admin' element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path='dashboard' element={<Dashboard />} />
@@ -36,6 +39,7 @@ function App() {
               <Route path='add' element={<PostAdd />} />
             </Route>
           </Route>
+          {/* Auth-page */}
           <Route path='/login/signupcandidate' element={<Signupcandidate />} />
           <Route path='/login/signupempoly' element={<Signupemployer />} />
           <Route path='/login' element={<Login />} />

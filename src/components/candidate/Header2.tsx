@@ -77,7 +77,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">Find Job</a>
+                  <a href="">Find Job</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="job-search-v1.html">Job Search V1</a>
@@ -98,7 +98,7 @@ const Header2 = (props: Props) => {
                       <a href="job-list-v3.html">Job Search V6</a>
                     </li>
                     <li>
-                      <a href="javascript:void(0);">Map Styles</a>
+                      <a href="">Map Styles</a>
                       <ul className="nav-dropdown nav-submenu">
                         <li>
                           <a href="job-half-map.html">Search On Map V1</a>
@@ -115,7 +115,7 @@ const Header2 = (props: Props) => {
                       </ul>
                     </li>
                     <li>
-                      <a href="javascript:void(0);">Single Job</a>
+                      <a href="">Single Job</a>
                       <ul className="nav-dropdown nav-submenu">
                         <li>
                           <a href="single-job-1.html">Single Job V1</a>
@@ -134,7 +134,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">Candidates</a>
+                  <a href="">Candidates</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-jobs.html">Browse Jobs</a>
@@ -154,7 +154,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">Employers</a>
+                  <a href="">Employers</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-employers.html">Browse Employers V1</a>
@@ -173,7 +173,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">Pages</a>
+                  <a href="">Pages</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="blog.html">Blog Style</a>
@@ -222,7 +222,7 @@ const Header2 = (props: Props) => {
         </div>
       </div>
       {/* ======================= Searchbar Banner ======================== */}
-      <div
+      {/* <div
         className="py-5"
         style={{
           background: "#03343b url(assets/img/landing-bg.png) no-repeat",
@@ -272,7 +272,7 @@ const Header2 = (props: Props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* ======================= Searchbar Banner ======================== --
        */}
       {/* Log In Modal */}
