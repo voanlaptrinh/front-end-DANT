@@ -1,112 +1,166 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div><div>
-      <div className="container-fluid job-support-wrapper">
-        <div className="container-fluid job-support-wrap">
-          <div className="container job-support">
+    <div>
+      {/* ============================ Footer Start ================================== */}
+      <footer className="light-footer skin-light-footer style-2">
+        <div className="footer-middle">
+          <div className="container">
             <div className="row">
-              <div className="col-md-6 col-sm-12 col-12">
-                <ul className="spp-list">
-                  <li>
-                    <span><i className="fa fa-question-circle pr-2 icsp" />Hỗ trợ nhà tuyển dụng:</span>
-                  </li>
-                  <li>
-                    <span><i className="fa fa-phone pr-2 icsp" />0383850402</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-6 col-sm-12 col-12">
-                <div className="newsletter">
-                  <span className="txt6">Đăng ký nhận bản tin việc làm</span>
-                  <div className="input-group frm1">
-                    <input type="text" placeholder="Nhập email của bạn" className="newsletter-email form-control" />
-                    <a href="#" className="input-group-addon"><i className="fa fa-lg fa-envelope-o colorb" /></a>
+              <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                <div className="footer_widget">
+                  <img
+                    src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1666583733/gd/logo_pj3srq.png"
+                    className="img-footer small mb-2"
+                  />
+                  <div className="address mt-2">
+                    3298 Grant Street Longview, New Texox
+                    <br />
+                    United Kingdom 75601
                   </div>
+                  <div className="address mt-3">
+                    1-202-555-0106
+                    <br />
+                    support@workplex.com
+                  </div>
+                  <div className="address mt-2">
+                    <ul className="list-inline">
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-facebook-filled" />
+                        </a>
+                      </li>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-twitter-filled" />
+                        </a>
+                      </li>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-youtube" />
+                        </a>
+                      </li>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-instagram-filled" />
+                        </a>
+                      </li>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-linkedin-original" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">For Employers</h4>
+                  <ul className="footer-menu">
+                    <li>
+                      <a href="#">Explore Candidates</a>
+                    </li>
+                    <li>
+                      <a href="#">Job Pricing</a>
+                    </li>
+                    <li>
+                      <a href="#">Submit Job</a>
+                    </li>
+                    <li>
+                      <a href="#">Shortlisted</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">For Candidates</h4>
+                  <ul className="footer-menu">
+                    <li>
+                      <a href="#">Explore All Jobs</a>
+                    </li>
+                    <li>
+                      <a href="#">Browse Categories</a>
+                    </li>
+                    <li>
+                      <a href="#">Saved Jobs</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">About Company</h4>
+                  <ul className="footer-menu">
+                    <li>
+                      <a href="#">Who We'r?</a>
+                    </li>
+                    <li>
+                      <a href="#">Our Mission</a>
+                    </li>
+                    <li>
+                      <a href="#">Our team</a>
+                    </li>
+                    <li>
+                      <a href="#">Packages</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">Helpful Topics</h4>
+                  <ul className="footer-menu">
+                    <li>
+                      <a href="#">Site Map</a>
+                    </li>
+                    <li>
+                      <a href="#">Security</a>
+                    </li>
+                    <li>
+                      <a href="#">Contact</a>
+                    </li>
+                    <li>
+                      <a href="#">FAQ's Page</a>
+                    </li>
+                    <li>
+                      <a href="#">Privacy</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="container-fluid footer-wrap  clear-left clear-right">
-        <div className="container footer">
-          <div className="row">
-            <div className="col-md-4 col-sm-8 col-12">
-              <ul className="footer-contact">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-phone fticn" /> +0383850402
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-envelope fticn" />
-                    tvdtazan112@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-map-marker fticn" />
-                    33 Xô Viết Nghệ Tĩnh, Đà Nẵng
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-4 col-12">
-              <h2 className="footer-heading">
-                <span>Ngôn ngữ nổi bật</span>
-              </h2>
-              <ul className="footer-list">
-                <li><a href="#">Javascript</a></li>
-                <li><a href="#">Java</a></li>
-                <li><a href="#">Frontend</a></li>
-                <li><a href="#">SQL Server</a></li>
-                <li><a href="#">.NET</a></li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-6 col-12">
-              <h2 className="footer-heading">
-                <span>Tất cả ngành nghề</span>
-              </h2>
-              <ul className="footer-list">
-                <li><a href="#">Lập trình viên</a></li>
-                <li><a href="#">Kiểm thử phần mềm</a></li>
-                <li><a href="#">Kỹ sư cầu nối</a></li>
-                <li><a href="#">Quản lý dự án</a></li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-6 col-12">
-              <h2 className="footer-heading">
-                <span>Tất cả hình thức</span>
-              </h2>
-              <ul className="footer-list">
-                <li><a href="#">Nhân viên chính thức</a></li>
-                <li><a href="#">Nhân viên bán thời gian</a></li>
-                <li><a href="#">Freelancer</a></li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-12 col-12">
-              <h2 className="footer-heading">
-                <span>Tất cả tỉnh thành</span>
-              </h2>
-              <ul className="footer-list">
-                <li><a href="#">Hồ Chính Minh</a></li>
-                <li><a href="#">Hà Nội</a></li>
-                <li><a href="#">Đà Nẵng</a></li>
-                <li><a href="#">Buôn Ma Thuột</a></li>
-              </ul>
+        <div className="footer-bottom br-top">
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-lg-12 col-md-12 text-center">
+                <p className="mb-0">
+                  © 2022 Workplex. Designd By
+                  <a href="https://themezhub.com/">ThemezHub</a>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </footer>
+      {/* ============================ Footer End ================================== */}
     </div>
+  );
+};
 
-    </div>
-  )
-}
-
-export default Footer
+export default Footer;

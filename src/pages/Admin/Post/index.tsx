@@ -1,98 +1,94 @@
-import React from 'react'
-import { Space, Table, Tag } from 'antd';
+import { EditOutlined, FlagOutlined } from '@ant-design/icons';
+import { Divider, Radio, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import React, { useEffect, useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+import { removeShowNews, showNews } from '../../../api/home';
 
-interface DataType {
-   key: string;
-   name: string;
-   age: number;
-   address: string;
-   tags: string[];
-}
 
-const columns: ColumnsType<DataType> = [
-   {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: text => <a>{text}</a>,
-   },
-   {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-   },
-   {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-   },
-   {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-         <>
-            {tags.map(tag => {
-               let color = tag.length > 5 ? 'geekblue' : 'green';
-               if (tag === 'loser') {
-                  color = 'volcano';
-               }
-               return (
-                  <Tag color={color} key={tag}>
-                     {tag.toUpperCase()}
-                  </Tag>
-               );
-            })}
-         </>
-      ),
-   },
-   {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-         <Space size="middle">
-            <a>Invite {record.name}</a>
-            <a>Delete</a>
-         </Space>
-      ),
-   },
-];
 
-const data: DataType[] = [
-   {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-   },
-   {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-   },
-   {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-   },
-];
 
-type Props = {}
+const Post: React.FC = () => {
+   const [news, setNews] = useState<any>([]);
 
-const Post: React.FC = (props: Props) => {
+   useEffect(() => {
+      getNews();
+   }, []);
+   const getNews = async () => {
+      const { data } = await showNews();
+      setNews(data);
+   };
+   console.log(news);
+   const onRemove: SubmitHandler<any> = async (id: any) => {
+      const confim = window.confirm("bạn có muốn xóa không");
+      if (confim) {
+         await removeShowNews(id).then(() => getNews());
+      }
+   };
+
+   const columns: ColumnsType<any> = [
+      {
+         title: 'Logo',
+         dataIndex: `logo`,
+         render: theImageURL => <img alt={theImageURL} src={theImageURL} width={100} />
+      },
+      {
+         title: 'Tiêu Đề',
+         dataIndex: ['title'],
+         render: (text: string) => <a>{text}</a>,
+      },
+      {
+         title: 'Vị trí làm việc',
+         dataIndex: ['getprofession', 'name'],
+      },
+      {
+         title: 'Hình thức làm việc',
+         dataIndex: ['get_time_work', 'name'],
+      },
+      {
+         title: 'Trạng Thái',
+         dataIndex: 'nháp',
+      },
+      {
+         title: 'Số lượng hồ sơ đã nhân',
+         dataIndex: 20,
+      },
+      {
+         title: 'Thời gian còn lại',
+         dataIndex: 20,
+      },
+      {
+         title: 'Thời gian đăng',
+         dataIndex: 20,
+      },
+      {
+         title: 'Action',
+         dataIndex: 'id',
+         render: (id: string) => <a className="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1" onClick={() => onRemove(id)}><i className="lni lni-trash-can" /></a>
+         ,
+
+         // render: () => (
+         //    <Space size="middle">
+         //       <div className="dash-action">
+         //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><FlagOutlined /></a>
+         //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i className="lni lni-eye" /></a>
+         //          <a href="javascript:void(0);" className="p-2 circle text-black bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><EditOutlined /></a>
+         //       </div>
+         //    </Space>
+         // ),
+      },
+   ];
+   // console.log(news.getprofession.name);
+
    return (
       <div>
-         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Table columns={columns} dataSource={data} />
-         </div>
+         <Table
+            columns={columns}
+            dataSource={news.job}
+         >
+         </Table>
       </div>
-   )
-}
+   );
+};
 
-export default Post
+export default Post;

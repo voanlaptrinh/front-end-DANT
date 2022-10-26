@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signup } from '../../api/auth';
-import Banner from '../../assets/images/banner-login.png';
-import Logo from '../../assets/images/logo.jpg';
 
 type Props = {}
 
@@ -55,7 +53,7 @@ const Signupemployer = (props: Props) => {
 
                 {/* <a href="#">Tech<span class="txb-logo">Jobs.</span></a> */}
                 <Link to="">
-                  <img src={Logo} alt="itwork" width={70} height={70} />
+                  {/* <img src={Logo} alt="itwork" width={70} height={70} /> */}
                 </Link>
 
                 <span className="login-breadcrumb"><em>/</em> Đăng ký Nhà tuyển dụng</span>
@@ -74,7 +72,6 @@ const Signupemployer = (props: Props) => {
               <div className="row">
                 {/* login main descriptions */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
-                  <img src={Banner} />
                 </div>
                 {/* login main form */}
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
@@ -86,54 +83,54 @@ const Signupemployer = (props: Props) => {
                       <h3>Tài khoản</h3>
                     </div>
                     <input type="text" hidden value='2' {...register('id')} />
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='Địa Chỉ Email của công ty' {...register('email', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='Địa Chỉ Email của công ty' {...register('email', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.email?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='mật khẩu ' {...register('password', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="password" className="form-control rounded" placeholder='mật khẩu ' {...register('password', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.password?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="password" className="input form-control-lgin" placeholder='nhập lại mật khẩu' {...register('comfirmPassword', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="password" className="form-control rounded" placeholder='nhập lại mật khẩu' {...register('comfirmPassword', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.comfirmPassword?.message}</p>
                     </div>
                     <div className="reg-info">
                       <h3>Công ty</h3>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='họ tên người đăng ký' {...register('fullName', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='họ tên người đăng ký' {...register('fullName', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.fullName?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='nhập số điện thoại' {...register('phone', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='nhập số điện thoại' {...register('phone', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.phone?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='nhập tên công ty' {...register('namecompany', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='nhập tên công ty' {...register('namecompany', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.namecompany?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='nhập địa chỉ công ty' {...register('workplace', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='nhập địa chỉ công ty' {...register('workplace', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.workplace?.message}</p>
                     </div>
-                    <div className="input-div one">
-                      <div className="div lg-lable">
-                        <input type="text" className="input form-control-lgin" placeholder='nhận chức vụ trong công ty' {...register('address', { required: true })} />
+                    <div className="col-xl-6 col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <input type="text" className="form-control rounded" placeholder='nhận chức vụ trong công ty' {...register('address', { required: true })} />
                       </div>
                       <p className='text-danger pt-1'>{errors.address?.message}</p>
                     </div>
