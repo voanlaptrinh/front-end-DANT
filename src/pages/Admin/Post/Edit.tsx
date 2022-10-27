@@ -50,7 +50,6 @@ const Edit = (props: Props) => {
   const user = categories?.user;
   const company = categories?.company;
   const job = editnews?.job;
-
   console.log(job?.title);
 
   if (!user) {
@@ -459,27 +458,27 @@ const Edit = (props: Props) => {
                 aria-labelledby="headingThree"
                 data-parent="#accordionExample"
               >
-                <div className="form-group row">
+                <div>
                   <Form.Item name="id_Employer">
                     <Input type="hidden" />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"name"} name="nameEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"email"} name="emailEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"phone"} name="phoneEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"address"} name="addressEmployer">
                     <Input />
                   </Form.Item>
@@ -512,7 +511,7 @@ const Edit = (props: Props) => {
                 data-parent="#collapse4"
               >
                 <div className="card-body recuitment-body">
-                  <div className="form-group row">
+                  <div>
                     <Form.Item name="id_company">
                       <Input type="hidden" />
                     </Form.Item>
