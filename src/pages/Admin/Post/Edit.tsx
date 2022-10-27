@@ -14,24 +14,33 @@ import {
   Checkbox,
   Upload,
 } from "antd";
-import { useNavigate } from "react-router-dom";
-import { listNews, createNews } from "../../../../api/home";
+import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { createNews, editNews, listNews } from "../../../api/home";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 type Props = {};
 
-const PostAdd = (props: Props) => {
+const Edit = (props: Props) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<any>([]);
+  const [editnews, setEditNews] = useState<any>([]);
+  let { id } = useParams();
   const oncreate: SubmitHandler<any> = async (formData: any) => {
     const { data } = await createNews(formData);
   };
+
   useEffect(() => {
     getCategories();
+    getEditNews(id);
   }, []);
+
+  const getEditNews = async (id: any) => {
+    const { data } = await editNews(id);
+    setEditNews(data);
+  };
   const getCategories = async () => {
     const { data } = await listNews();
     setCategories(data);
@@ -39,7 +48,8 @@ const PostAdd = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  console.log(categories);
+  const job = editnews?.job;
+  console.log(job);
 
   if (!user) {
     return null;
@@ -54,6 +64,20 @@ const PostAdd = (props: Props) => {
           layout="horizontal"
           onFinish={oncreate}
           initialValues={{
+            title: job?.title,
+            Quatity: job?.Quatity,
+            sex: job?.sex,
+            describe: job?.describe,
+            benefit: job?.benefit,
+            Candidate_requirements: job?.Candidate_requirements,
+            getprofession: job?.getprofession.name,
+            // get_level: job?.name,
+            // get_experience: job?.name,
+            // get_wage: job?.name,
+            // getwk_form: job?.name,
+            // get_time_work: job?.name,
+            // get_majors: job?.name,
+
             nameEmployer: user[0]?.name,
             id_Employer: user[0]?.id,
             emailEmployer: user[0]?.email,
@@ -163,7 +187,7 @@ const PostAdd = (props: Props) => {
                       },
                     ]}
                   >
-                    <Select>
+                    <Select defaultValue={job.getprofession.name}>
                       <Select.Option value="">Chọn chuyên ngành</Select.Option>
                       {categories.profession?.map((item: any) => {
                         return (
@@ -578,4 +602,4 @@ const PostAdd = (props: Props) => {
   );
 };
 
-export default PostAdd;
+export default Edit;
