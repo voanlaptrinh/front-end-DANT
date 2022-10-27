@@ -16,7 +16,8 @@ import {
 } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createNews, editNews, listNews } from "../../../api/home";
+import { createNews, editNews, listNews, updateNews } from "../../../api/home";
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -28,19 +29,19 @@ const Edit = (props: Props) => {
   const [categories, setCategories] = useState<any>([]);
   const [editnews, setEditNews] = useState<any>([]);
   let { id } = useParams();
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
-    const { data } = await createNews(formData);
-  };
-
   useEffect(() => {
     getCategories();
     getEditNews(id);
   }, []);
+  const onupdate: SubmitHandler<any> = async (formData: any) => {
+    const { data } = await updateNews(formData);
+  };
 
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
     setEditNews(data);
   };
+
   const getCategories = async () => {
     const { data } = await listNews();
     setCategories(data);
@@ -49,7 +50,8 @@ const Edit = (props: Props) => {
   const user = categories?.user;
   const company = categories?.company;
   const job = editnews?.job;
-  console.log(job);
+
+  console.log(job?.title);
 
   if (!user) {
     return null;
@@ -62,7 +64,7 @@ const Edit = (props: Props) => {
           wrapperCol={{ span: 14 }}
           className="recuitment-form"
           layout="horizontal"
-          onFinish={oncreate}
+          onFinish={onupdate}
           initialValues={{
             title: job?.title,
             Quatity: job?.Quatity,
@@ -70,14 +72,7 @@ const Edit = (props: Props) => {
             describe: job?.describe,
             benefit: job?.benefit,
             Candidate_requirements: job?.Candidate_requirements,
-            getprofession: job?.getprofession.name,
-            // get_level: job?.name,
-            // get_experience: job?.name,
-            // get_wage: job?.name,
-            // getwk_form: job?.name,
-            // get_time_work: job?.name,
-            // get_majors: job?.name,
-
+            // adasdas
             nameEmployer: user[0]?.name,
             id_Employer: user[0]?.id,
             emailEmployer: user[0]?.email,
@@ -180,6 +175,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="chọn chuyên ngành"
                     name="profession_id"
+                    initialValue={job?.getprofession.name}
                     rules={[
                       {
                         required: true,
@@ -187,7 +183,7 @@ const Edit = (props: Props) => {
                       },
                     ]}
                   >
-                    <Select defaultValue={job.getprofession.name}>
+                    <Select>
                       <Select.Option value="">Chọn chuyên ngành</Select.Option>
                       {categories.profession?.map((item: any) => {
                         return (
@@ -204,6 +200,7 @@ const Edit = (props: Props) => {
                     rules={[
                       { required: true, message: "bạn chưa chọn trình độ" },
                     ]}
+                    initialValue={job?.get_level.name}
                   >
                     <Select>
                       <Select.Option value="">Trình độ</Select.Option>
@@ -217,8 +214,9 @@ const Edit = (props: Props) => {
                     </Select>
                   </Form.Item>
                   <Form.Item
-                    label="kinh nghiệp"
+                    label="kinh nghiệm"
                     name="experience_id"
+                    initialValue={job?.get_experience.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn kinh nghiệm" },
                     ]}
@@ -237,6 +235,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="chọn mức lương"
                     name="Wage_id"
+                    initialValue={job?.get_wage.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn mức lương" },
                     ]}
@@ -255,6 +254,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="Hình thức làm việc"
                     name="wk_form_id"
+                    initialValue={job?.getwk_form.name}
                     rules={[
                       {
                         required: true,
@@ -276,6 +276,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="thời gian làm việc"
                     name="time_work_id"
+                    initialValue={job?.get_time_work.name}
                     rules={[
                       {
                         required: true,
@@ -309,6 +310,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="chọn nghành nghề"
                     name="majors_id"
+                    initialValue={job?.get_majors.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn nghành nghề" },
                     ]}
@@ -327,6 +329,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     label="chọn nơi làm việc"
                     name="location_id"
+                    initialValue={job?.getlocation.name}
                     rules={[
                       { required: true, message: "bạn chưa nhập nơi làm việc" },
                     ]}
@@ -411,6 +414,7 @@ const Edit = (props: Props) => {
                   <Form.Item
                     name="skill_id"
                     valuePropName="checked"
+                    initialValue={job?.skill_id.name}
                     rules={[
                       {
                         required: true,
