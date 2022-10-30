@@ -1,4 +1,11 @@
-import { DownOutlined, FileAddFilled, LoginOutlined, UploadOutlined, UserOutlined, UserSwitchOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  FileAddFilled,
+  LoginOutlined,
+  UploadOutlined,
+  UserOutlined,
+  UserSwitchOutlined,
+} from "@ant-design/icons";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -56,47 +63,55 @@ const Header = (props: Props) => {
               <div className="nav-toggle" />
               <div className="mobile_nav">
                 <ul>
-                {user ? (
-                <>
-                  <a
-                    className="text-while"
-                    type="button"
-                    id="btnDropdownDemo"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <UserOutlined /> {user.name} <DownOutlined />
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="btnDropdownDemo"
-                  >
-                   
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <UserSwitchOutlined /> Thông tin
-                    </a>
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <FileAddFilled /> Job của bạn
-                    </a>
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <UploadOutlined />  Post a Job  
-                    </a>
-                    <button className="dropdown-item logout">
-                      <a className="" onClick={() => logout()}>
-                      <LoginOutlined /> Đăng xuất
+                  {user ? (
+                    <>
+                      <a
+                        className="text-while"
+                        type="button"
+                        id="btnDropdownDemo"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <UserOutlined /> {user.name} <DownOutlined />
                       </a>
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <li className="nav-item d-flex align-items-center">
-                  <div className="nav-item">
-                   
-                  </div>
-                </li>
-                
-              )}
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="btnDropdownDemo"
+                      >
+                        <a
+                          className="dropdown-item"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          <UserSwitchOutlined /> Thông tin
+                        </a>
+                        <a
+                          className="dropdown-item"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          <FileAddFilled /> Job của bạn
+                        </a>
+                        <a
+                          className="dropdown-item"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          <UploadOutlined /> Post a Job
+                        </a>
+                        <button className="dropdown-item logout">
+                          <a className="" onClick={() => logout()}>
+                            <LoginOutlined /> Đăng xuất
+                          </a>
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <li className="nav-item d-flex align-items-center">
+                      <div className="nav-item"></div>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -307,37 +322,61 @@ const Header = (props: Props) => {
                     className="dropdown-menu"
                     aria-labelledby="btnDropdownDemo"
                   >
-                   
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <UserSwitchOutlined /> Thông tin
+                    <a
+                      className="dropdown-item"
+                      data-toggle="modal"
+                      data-target=""
+                    >
+                      <UserSwitchOutlined /> Thông tin
                     </a>
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <FileAddFilled /> Job của bạn
+                    <a
+                      className="dropdown-item"
+                      data-toggle="modal"
+                      data-target=""
+                    >
+                      <FileAddFilled /> Job của bạn
                     </a>
-                    <a className="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                    <UploadOutlined />  Post a Job  
+                    <a
+                      className="dropdown-item"
+                      data-toggle="modal"
+                      data-target=""
+                    >
+                      <UploadOutlined /> Post a Job
                     </a>
                     <button className="dropdown-item">
                       <a className="" onClick={() => logout()}>
-                      <LoginOutlined /> Đăng xuất
+                        <LoginOutlined /> Đăng xuất
                       </a>
                     </button>
                   </div>
                 </>
               ) : (
-                <li className="nav-item d-flex align-items-center">
-                  <div className="nav-item">
-                    <a
-                      className="btn btn-success"
-                      data-toggle="modal"
-                      data-target="#login"
-                    >
-                      {" "}
-                      Đăng nhập{" "}
-                    </a>
-                  </div>
-                </li>
-                
+                <ul className="nav-menu nav-menu-social align-to-right row">
+                  <li className="nav-item d-flex align-items-center ">
+                    <div className="nav-item">
+                      <a
+                        className="btn btn-success"
+                        data-toggle="modal"
+                        data-target="#login"
+                      >
+                        {" "}
+                        Đăng nhập{" "}
+                      </a>
+                    </div>
+                  </li>
+
+                  <li className="nav-item d-flex align-items-center col-sm-4">
+                    <div className="nav-item ">
+                      <a
+                        className="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                      >
+                        Đăng kí
+                      </a>
+                    </div>
+                  </li>
+                </ul>
               )}
             </div>
           </nav>
@@ -415,88 +454,92 @@ const Header = (props: Props) => {
         </div>
       </div>
       {/* Log In Modal */}
-      <div
-        className="modal fade"
-        id="login"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="loginmodal"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-xl login-pop-form" role="document">
-          <div className="modal-content" id="loginmodal">
-            <div className="modal-headers">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span className="ti-close" />
-              </button>
-            </div>
-            <div className="modal-body p-5">
-              <div className="text-center mb-4">
-                <h2 className="m-0 ft-regular">Login</h2>
+      <div className="nav-item d-flex align-items-center">
+        <div
+          className="modal fade"
+          id="login"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="loginmodal"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog " role="document">
+            <div className="modal-content w-50 offset-md-3 " id="loginmodal">
+              <div className="modal-headers">
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span className="ti-close" />
+                </button>
               </div>
-              <form method="POST" onClick={handleSubmit(onSignin)}>
-                <div className="form-group">
-                  <label>email</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="email*"
-                    {...register("email", { required: "bạn chưa nhập email" })}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password*"
-                    {...register("password", {
-                      required: "bạn chưa nhập mật khẩu",
-                    })}
-                  />
-                </div>
-                <div className="form-group">
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div className="flex-1">
-                      <input
-                        id="dd"
-                        className="checkbox-custom"
-                        name="dd"
-                        type="checkbox"
-                      />
-                      <label htmlFor="dd" className="checkbox-custom-label">
-                        Remember Me
-                      </label>
-                    </div>
-                    <div className="eltio_k2">
-                      <a href="#" className="theme-cl">
-                        Lost Your Password?
-                      </a>
+              <div className="p-5">
+                {/* <div className="text-center mb-4">
+                <h2 className="m-0 ft-regular">Login</h2>
+              </div> */}
+                <form method="POST" onClick={handleSubmit(onSignin)}>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="email*"
+                      {...register("email", {
+                        required: "bạn chưa nhập email",
+                      })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Password*"
+                      {...register("password", {
+                        required: "bạn chưa nhập mật khẩu",
+                      })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <div className="d-flex align-items-center justify-content-between">
+                      <div className="flex-1">
+                        <input
+                          id="dd"
+                          className="checkbox-custom"
+                          name="dd"
+                          type="checkbox"
+                        />
+                        <label htmlFor="dd" className="checkbox-custom-label">
+                          Remember Me
+                        </label>
+                      </div>
+                      <div className="eltio_k2">
+                        <a href="#" className="theme-cl">
+                          Lost Your Password?
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <button
-                    type="submit"
-                    className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
-                  >
-                    Login
-                  </button>
-                </div>
-                <div className="form-group text-center mb-0">
-                  <p className="extra">
-                    Not a member?
-                    <a href="#et-register-wrap" className="text-dark">
-                      Register
-                    </a>
-                  </p>
-                </div>
-              </form>
+                  <div className="form-group">
+                    <button
+                      type="submit"
+                      className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
+                    >
+                      Login
+                    </button>
+                  </div>
+                  <div className="form-group text-center mb-0">
+                    <p className="extra">
+                      Not a member?
+                      <a href="#et-register-wrap" className="text-dark">
+                        Register
+                      </a>
+                    </p>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -522,7 +565,7 @@ const Header = (props: Props) => {
                   <div>
                     <span>
                       Để có được trải nghiệm tốt nhất mới bạn chọn bên mà mình
-                      muôn đăng ký
+                      muốn đăng ký
                     </span>
                   </div>
                 </h5>
@@ -537,18 +580,22 @@ const Header = (props: Props) => {
               </div>
               <div className="modal-body">
                 <div className="can">
-                  <img
-                    src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png"
-                    alt=""
-                  />
+                  <a href="/login/signupempoly">
+                    <img
+                      src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png"
+                      alt=""
+                    />
+                  </a>
                 </div>
                 <div className="can">
-                  <img
-                    src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1662714594/news3_bcvsak.png"
-                    alt=""
-                  />
+                  <a href="/login/signupcandidate">
+                    <img
+                      src="https://www.tranphucable.com.vn/uploads/news/thumbs/hinh-anh-dep-ve-tuyen-dung012646338.jpg"
+                      alt=""
+                    />
+                  </a>
                 </div>
-                <div>
+                <div className="btn-haz">
                   <a href="/login/signupempoly" className="btn btn-primary">
                     Nhà tuyển dụng
                   </a>
@@ -558,18 +605,6 @@ const Header = (props: Props) => {
                     Ứng viên
                   </a>
                 </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
-                </button>
               </div>
             </div>
           </div>

@@ -14,24 +14,34 @@ import {
   Checkbox,
   Upload,
 } from "antd";
-import { useNavigate } from "react-router-dom";
-import { listNews, createNews } from "../../../../api/home";
+import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { createNews, editNews, listNews, updateNews } from "../../../api/home";
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 type Props = {};
 
-const PostAdd = (props: Props) => {
+const Edit = (props: Props) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<any>([]);
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
-    const { data } = await createNews(formData);
-  };
+  const [editnews, setEditNews] = useState<any>([]);
+  let { id } = useParams();
   useEffect(() => {
     getCategories();
+    getEditNews(id);
   }, []);
+  const onupdate: SubmitHandler<any> = async (formData: any) => {
+    const { data } = await updateNews(formData);
+  };
+
+  const getEditNews = async (id: any) => {
+    const { data } = await editNews(id);
+    setEditNews(data);
+  };
+
   const getCategories = async () => {
     const { data } = await listNews();
     setCategories(data);
@@ -39,7 +49,8 @@ const PostAdd = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  console.log(categories);
+  const job = editnews?.job;
+  console.log(job?.title);
 
   if (!user) {
     return null;
@@ -52,8 +63,15 @@ const PostAdd = (props: Props) => {
           wrapperCol={{ span: 14 }}
           className="recuitment-form"
           layout="horizontal"
-          onFinish={oncreate}
+          onFinish={onupdate}
           initialValues={{
+            title: job?.title,
+            Quatity: job?.Quatity,
+            sex: job?.sex,
+            describe: job?.describe,
+            benefit: job?.benefit,
+            Candidate_requirements: job?.Candidate_requirements,
+            // adasdas
             nameEmployer: user[0]?.name,
             id_Employer: user[0]?.id,
             emailEmployer: user[0]?.email,
@@ -156,6 +174,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="chọn chuyên ngành"
                     name="profession_id"
+                    initialValue={job?.getprofession.name}
                     rules={[
                       {
                         required: true,
@@ -180,6 +199,7 @@ const PostAdd = (props: Props) => {
                     rules={[
                       { required: true, message: "bạn chưa chọn trình độ" },
                     ]}
+                    initialValue={job?.get_level.name}
                   >
                     <Select>
                       <Select.Option value="">Trình độ</Select.Option>
@@ -193,8 +213,9 @@ const PostAdd = (props: Props) => {
                     </Select>
                   </Form.Item>
                   <Form.Item
-                    label="kinh nghiệp"
+                    label="kinh nghiệm"
                     name="experience_id"
+                    initialValue={job?.get_experience.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn kinh nghiệm" },
                     ]}
@@ -213,6 +234,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="chọn mức lương"
                     name="Wage_id"
+                    initialValue={job?.get_wage.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn mức lương" },
                     ]}
@@ -231,6 +253,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="Hình thức làm việc"
                     name="wk_form_id"
+                    initialValue={job?.getwk_form.name}
                     rules={[
                       {
                         required: true,
@@ -252,6 +275,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="thời gian làm việc"
                     name="time_work_id"
+                    initialValue={job?.get_time_work.name}
                     rules={[
                       {
                         required: true,
@@ -285,6 +309,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="chọn nghành nghề"
                     name="majors_id"
+                    initialValue={job?.get_majors.name}
                     rules={[
                       { required: true, message: "bạn chưa chọn nghành nghề" },
                     ]}
@@ -303,6 +328,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     label="chọn nơi làm việc"
                     name="location_id"
+                    initialValue={job?.getlocation.name}
                     rules={[
                       { required: true, message: "bạn chưa nhập nơi làm việc" },
                     ]}
@@ -387,6 +413,7 @@ const PostAdd = (props: Props) => {
                   <Form.Item
                     name="skill_id"
                     valuePropName="checked"
+                    initialValue={job?.skill_id.name}
                     rules={[
                       {
                         required: true,
@@ -431,27 +458,27 @@ const PostAdd = (props: Props) => {
                 aria-labelledby="headingThree"
                 data-parent="#accordionExample"
               >
-                <div className="form-group row">
+                <div>
                   <Form.Item name="id_Employer">
                     <Input type="hidden" />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"name"} name="nameEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"email"} name="emailEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"phone"} name="phoneEmployer">
                     <Input />
                   </Form.Item>
                 </div>
-                <div className="form-group row">
+                <div>
                   <Form.Item label={"address"} name="addressEmployer">
                     <Input />
                   </Form.Item>
@@ -484,7 +511,7 @@ const PostAdd = (props: Props) => {
                 data-parent="#collapse4"
               >
                 <div className="card-body recuitment-body">
-                  <div className="form-group row">
+                  <div>
                     <Form.Item name="id_company">
                       <Input type="hidden" />
                     </Form.Item>
@@ -578,4 +605,4 @@ const PostAdd = (props: Props) => {
   );
 };
 
-export default PostAdd;
+export default Edit;
