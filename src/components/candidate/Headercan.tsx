@@ -65,7 +65,7 @@ const Headercan = (props: Props) => {
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalLabel">
                             Chào bạn,
-                            <div><span>Để có được trải nghiệm tốt nhất mới bạn chọn bên mà mình muôn đăng ký</span></div>
+                            <div><span>Để có được trải nghiệm tốt nhất mới bạn chọn bên mà mình muốn đăng ký</span></div>
                           </h5>
                           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                         </div>

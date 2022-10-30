@@ -1409,9 +1409,21 @@ button.close {
   cursor: pointer;
 }
 
+
 .modal.lg-modal .modal-dialog {
   max-width: 950px;
+  
+
 }
+
+@media (max-width: 620px) {
+  .can {
+    display: none !important;
+  }
+
+
+}
+
 
 /*----------- GLobal Settings: Pagination ------------------*/
 .pagination {
@@ -1825,8 +1837,11 @@ ul {
 .navigation-fixed {
   position: fixed;
   top: 0;
+  width: auto;
   left: 0;
 }
+
+
 
 .navigation-hidden {
   width: 0 !important;
@@ -1838,11 +1853,13 @@ ul {
 .align-to-right {
   float: right;
 }
-.top {
-  margin-top: 1%;
+
+.top{
+  margin-top: 0.8%;
+
   font-family: "Jost", sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 20px;
   color: white;
 }
 
@@ -5895,6 +5912,7 @@ h3.pa-name {
 }
 
 .single_widgets.widget_thumb_post ul li .left {
+ 
   display: block;
   float: left;
   width: 80px;
