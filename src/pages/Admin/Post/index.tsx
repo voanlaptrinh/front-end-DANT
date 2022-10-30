@@ -55,10 +55,11 @@ const Post: React.FC = () => {
     {
       title: "Thời gian còn lại",
       dataIndex: 20,
+      // <DatePicker defaultValue={moment('2015/01', monthFormat)} format={monthFormat} picker="month" />
     },
     {
       title: "Thời gian đăng",
-      dataIndex: 20,
+      dataIndex: "end_job_time",
     },
     {
       title: "Action",

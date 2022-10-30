@@ -377,7 +377,7 @@ const Edit = (props: Props) => {
                       },
                     ]}
                   >
-                    <DatePicker />
+                    <DatePicker/>
                   </Form.Item>
                 </div>
               </div>
