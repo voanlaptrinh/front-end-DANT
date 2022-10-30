@@ -850,6 +850,7 @@ pre code {
   max-width: 75%;
 }
 
+
 .col-10 {
   -ms-flex: 0 0 83.333333%;
   flex: 0 0 83.333333%;
@@ -1569,9 +1570,16 @@ pre code {
 .table-bordered thead th {
   border-bottom-width: 2px;
 }
+.left{
+    left: 0;
+}
+.form-group {
+    margin-bottom: 1rem
+
 
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
+
 }
 
 .table-hover tbody tr:hover {
@@ -6751,20 +6759,32 @@ a.bg-dark:hover {
     justify-content: flex-start !important;
   }
 
-  .justify-content-xl-end {
-    -ms-flex-pack: end !important;
-    justify-content: flex-end !important;
-  }
+.modal-open {
+    overflow: hidden;
+  
+}
 
-  .justify-content-xl-center {
-    -ms-flex-pack: center !important;
-    justify-content: center !important;
-  }
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0
+}
 
-  .justify-content-xl-between {
-    -ms-flex-pack: justify !important;
-    justify-content: space-between !important;
-  }
+
+.modal.fade .modal-dialog {
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    transform: translate(0, -25%)
+}
+
 
   .justify-content-xl-around {
     -ms-flex-pack: distribute !important;
@@ -6776,10 +6796,12 @@ a.bg-dark:hover {
     align-items: flex-start !important;
   }
 
-  .align-items-xl-end {
-    -ms-flex-align: end !important;
-    align-items: flex-end !important;
-  }
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px 
+}
+
 
   .align-items-xl-center {
     -ms-flex-align: center !important;
@@ -8912,9 +8934,11 @@ a.bg-dark:hover {
     padding-bottom: 1.5rem !important;
   }
 
-  .p-xl-5 {
+
+.p-5 {
     padding: 3rem !important;
-  }
+}
+
 
   .pt-xl-5 {
     padding-top: 3rem !important;
