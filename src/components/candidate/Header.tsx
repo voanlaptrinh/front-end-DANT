@@ -6,23 +6,43 @@ import {
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
-import React from "react";
+import { Select } from "antd";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { isAuthenticate, logout, signin } from "../../api/auth";
+import { listCandidate, listNews } from "../../api/home";
 import { useAppDispatch } from "../../app/store";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const [getAllSkill, setSkill] = useState<any>([]);
+  const [getAllLocation, setLocation] = useState<any>([]);
+
   const user = isAuthenticate();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    getSkill();
+    getLocation();
+  }, []);
+
+  const getSkill = async () => {
+    const { data } = await listCandidate();
+    setSkill(data);
+  };
+  const getLocation = async () => {
+    const { data } = await listCandidate();
+    setLocation(data);
+  };
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
@@ -34,7 +54,7 @@ const Header = (props: Props) => {
         return true;
       }
       if (data.data.role_id == 2) {
-        navigate("/employer");
+         navigate("/admin")
         return true;
       }
     }
@@ -101,15 +121,36 @@ const Header = (props: Props) => {
                           <UploadOutlined /> Post a Job
                         </a>
                         <button className="dropdown-item logout">
-                          <a className="" onClick={() => logout()}>
-                            <LoginOutlined /> Đăng xuất
-                          </a>
+                          <Link to="/">
+                            <a className="" onClick={() => logout()}>
+                              <LoginOutlined /> Đăng xuất
+                            </a>
+                          </Link>
                         </button>
                       </div>
                     </>
                   ) : (
                     <li className="nav-item d-flex align-items-center">
-                      <div className="nav-item"></div>
+                      <div className="nav-item row nav-menu-social align-to-right">
+                        <div className="nav-item">
+                          <button
+                            className="btn btn-success"
+                            data-toggle="modal"
+                            data-target="#login"
+                          >
+                            đăng nhập
+                          </button>
+                        </div>
+                        <div className="nav-item">
+                          <button
+                            className="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                          >
+                            đăng kí
+                          </button>
+                        </div>
+                      </div>
                     </li>
                   )}
                 </ul>
@@ -272,40 +313,8 @@ const Header = (props: Props) => {
                   </ul>
                 </li>
               </ul>
-              {/* <ul className="nav-menu nav-menu-social align-to-right">
-                <li>
-                  {user ? (
-                    <li className="nav-item d-flex align-items-center">
-                      <p className="text-white">Xin chào, {user.email}</p>
-                      <div className="nav-item">
-                        <a className="btn btn-success" onClick={() => logout()}>
-                          Đăng xuất
-                        </a>
-                      </div>
-                    </li>
-                  ) : (
-                    <li className="nav-item d-flex align-items-center">
-                      <div className="nav-item">
-                        <a
-                          className="btn btn-success"
-                          data-toggle="modal"
-                          data-target="#login"
-                        >
-                          {" "}
-                          Đăng nhập{" "}
-                        </a>
-                      </div>
-                    </li>
-                  )}
-                </li>
-                <li className="add-listing theme-bg">
-                  <a data-toggle="modal" data-target="#exampleModal">
-                    <i className="lni lni-circle-plus mr-1" /> Post a Job
-                  </a>
-                </li>
-              </ul> */}
             </div>
-            <div className="dropdown align-to-right top ">
+            <div className="dropdown align-to-right top">
               {user ? (
                 <>
                   <a
@@ -344,9 +353,11 @@ const Header = (props: Props) => {
                       <UploadOutlined /> Post a Job
                     </a>
                     <button className="dropdown-item">
-                      <a className="" onClick={() => logout()}>
-                        <LoginOutlined /> Đăng xuất
-                      </a>
+                      <Link to="/">
+                        <a className="" onClick={() => logout()}>
+                          <LoginOutlined /> Đăng xuất
+                        </a>
+                      </Link>
                     </button>
                   </div>
                 </>
@@ -414,7 +425,7 @@ const Header = (props: Props) => {
                       <i className="bnc-ico lni lni-search-alt" />
                     </div>
                   </div>
-                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                  {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                     <div className="form-group mb-0 position-relative">
                       <input
                         type="text"
@@ -423,17 +434,24 @@ const Header = (props: Props) => {
                       />
                       <i className="bnc-ico lni lni-target" />
                     </div>
+                  </div> */}
+                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <select className="custom-select lg b-0" name="" id="">
+                        <option value="">Chọn Kĩ Năng</option>
+                        {getAllSkill.skill?.map((item: any) => {
+                          return <option value={item.id}>{item.name}</option>;
+                        })}
+                      </select>
+                    </div>
                   </div>
                   <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                     <div className="form-group mb-0 position-relative">
                       <select className="custom-select lg b-0">
-                        <option value={1}>Choose Location</option>
-                        <option value={2}>Los Angeles</option>
-                        <option value={3}>San Francisco</option>
-                        <option value={4}>San Diego</option>
-                        <option value={5}>Philadelphia</option>
-                        <option value={6}>Denver</option>
-                        <option value={7}>Houston</option>
+                        <option value="">Chọn Vùng Miền</option>
+                        {getAllLocation.location?.map((item: any) => {
+                          return <option value={item.id}>{item.name}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
@@ -454,7 +472,7 @@ const Header = (props: Props) => {
         </div>
       </div>
       {/* Log In Modal */}
-      <div className="nav-item d-flex align-items-center">
+      <div className="nav-item align-items-center">
         <div
           className="modal fade"
           id="login"
@@ -463,22 +481,19 @@ const Header = (props: Props) => {
           aria-labelledby="loginmodal"
           aria-hidden="true"
         >
-          <div className="modal-dialog " role="document">
-            <div className="modal-content w-50 offset-md-3 " id="loginmodal">
+          <div className="modal-dialog row " role="document">
+            <div className="modal-content mx-auto row" id="loginmodal">
               <div className="modal-headers">
                 <button
                   type="button"
-                  className="close"
+                  className="close "
                   data-dismiss="modal"
                   aria-label="Close"
                 >
                   <span className="ti-close" />
                 </button>
               </div>
-              <div className="p-5">
-                {/* <div className="text-center mb-4">
-                <h2 className="m-0 ft-regular">Login</h2>
-              </div> */}
+              <div className="p-5 rounded mx-auto d-block ">
                 <form method="POST" onClick={handleSubmit(onSignin)}>
                   <div className="form-group">
                     <label>Email</label>
@@ -557,8 +572,8 @@ const Header = (props: Props) => {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
+          <div className="modal-dialog row mx-auto" role="document">
+            <div className="modal-content mx-auto d-block">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
                   Chào bạn,

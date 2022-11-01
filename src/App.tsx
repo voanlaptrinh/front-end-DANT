@@ -15,7 +15,9 @@ import Layout from "./layout/candidate/Layout";
 import Search from "./pages/candidate/Search";
 import "./css/plugins/bootstrap.min.css";
 import Profile from "./pages/employer/Profile/Profile";
+import GetProfile from "./pages/employer/Profile/getProfile";
 import Edit from "./pages/Admin/Post/Edit";
+
 
 function App() {
   return (
@@ -27,7 +29,8 @@ function App() {
           <Route path="product" element={<Layout />}>
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
-            <Route path="profile/:id" element={<Profile />} />
+            <Route path="getProfile" element={< GetProfile />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           {/* Admin-Layout */}
           <Route path="admin" element={<AdminLayout />}>

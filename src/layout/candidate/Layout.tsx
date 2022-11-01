@@ -1,5 +1,7 @@
+import { Header } from "antd/lib/layout/layout";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Header3 from "../../components/candidate/Header";
 import Header2 from "../../components/candidate/Header2";
 import Footer from "../../components/Footer";
 import '../../css/styles.css'
