@@ -428,7 +428,10 @@ const Edit = (props: Props) => {
                     ]}
                   >
                     {categories.skill?.map((skill: any, index: number) => (
-                      <Checkbox key={skill.id} checked={checkedSkill(skill.id)}>
+                      <Checkbox
+                        key={skill.id}
+                        defaultChecked={checkedSkill(skill.id)}
+                      >
                         {skill.name}
                       </Checkbox>
                     ))}
