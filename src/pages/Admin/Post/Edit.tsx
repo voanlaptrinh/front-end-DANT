@@ -28,6 +28,7 @@ const Edit = (props: Props) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<any>([]);
   const [editnews, setEditNews] = useState<any>([]);
+  const [skill, setSkill] = useState<any>([]);
   let { id } = useParams();
   useEffect(() => {
     getCategories();
@@ -50,7 +51,9 @@ const Edit = (props: Props) => {
   const user = categories?.user;
   const company = categories?.company;
   const job = editnews?.job;
-  console.log(job?.title);
+  const checkedSkill = (data: any) =>
+    job?.getskill.map((item: any) => item.id).includes(data);
+  const dateFormat = "YYYY/MM/DD";
 
   if (!user) {
     return null;
@@ -353,8 +356,9 @@ const Edit = (props: Props) => {
                         message: "bạn chưa nhập địa chỉ cụ thể",
                       },
                     ]}
+                    initialValue={job?.Address}
                   >
-                    <Select>
+                    {/* <Select>
                       <Select.Option value="1">
                         chọn địa chỉ cụ thể
                       </Select.Option>
@@ -365,7 +369,8 @@ const Edit = (props: Props) => {
                           </Select.Option>
                         );
                       })}
-                    </Select>
+                    </Select> */}
+                    <Input />
                   </Form.Item>
                   <Form.Item
                     label="Hạn nộp hồ sơ"
@@ -376,6 +381,7 @@ const Edit = (props: Props) => {
                         message: "bạn chưa chọn hạn nộp hồ sơ",
                       },
                     ]}
+                    initialValue={moment(job?.end_job_time, dateFormat)}
                   >
                     <DatePicker />
                   </Form.Item>
@@ -412,8 +418,8 @@ const Edit = (props: Props) => {
                 <div className="card-body recuitment-body">
                   <Form.Item
                     name="skill_id"
-                    valuePropName="checked"
-                    initialValue={job?.skill_id.name}
+                    // valuePropName="checked"
+                    // initialValue={job?.skill_id.name}
                     rules={[
                       {
                         required: true,
@@ -421,12 +427,20 @@ const Edit = (props: Props) => {
                       },
                     ]}
                   >
-                    <Checkbox.Group
+                    {categories.skill?.map((skill: any, index: number) => (
+                      <Checkbox
+                        key={skill.id}
+                        defaultChecked={checkedSkill(skill.id)}
+                      >
+                        {skill.name}
+                      </Checkbox>
+                    ))}
+                    {/* <Checkbox.Group
                       options={categories.skill?.map((skill: any) => ({
                         label: skill.name,
                         value: skill.id,
                       }))}
-                    ></Checkbox.Group>
+                    ></Checkbox.Group> */}
                   </Form.Item>
                 </div>
               </div>

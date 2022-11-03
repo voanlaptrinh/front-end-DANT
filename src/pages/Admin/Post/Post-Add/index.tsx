@@ -28,6 +28,7 @@ const PostAdd = (props: Props) => {
   const [categories, setCategories] = useState<any>([]);
   const oncreate: SubmitHandler<any> = async (formData: any) => {
     const { data } = await createNews(formData);
+    // console.log(formData);
   };
   useEffect(() => {
     getCategories();
@@ -39,7 +40,7 @@ const PostAdd = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  console.log(categories);
+  // console.log(categories);
 
   if (!user) {
     return null;
@@ -328,18 +329,7 @@ const PostAdd = (props: Props) => {
                       },
                     ]}
                   >
-                    <Select>
-                      <Select.Option value="1">
-                        chọn địa chỉ cụ thể
-                      </Select.Option>
-                      {categories.Address?.map((item: any) => {
-                        return (
-                          <Select.Option key={item.id} value={item.id}>
-                            {item.name}
-                          </Select.Option>
-                        );
-                      })}
-                    </Select>
+                    <Input />
                   </Form.Item>
                   <Form.Item
                     label="Hạn nộp hồ sơ"
