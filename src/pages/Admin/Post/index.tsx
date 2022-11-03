@@ -66,7 +66,7 @@ const Post: React.FC = () => {
       render: (id: string) => (
         <div>
           <a
-            href={`/admin/post/edit/${id}`}
+            href={`/admin/post/editnews/${id}`}
             className="p-2 circle text-black bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"
           >
             <EditOutlined />

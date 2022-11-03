@@ -17,6 +17,7 @@ import "./css/plugins/bootstrap.min.css";
 import Profile from "./pages/employer/Profile/Profile";
 import GetProfile from "./pages/employer/Profile/getProfile";
 import Edit from "./pages/Admin/Post/Edit";
+import EditNews from "./pages/Admin/Post/EditNews";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
           <Route path="product" element={<Layout />}>
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
-            <Route path="getProfile" element={< GetProfile />} />
+            <Route path="getProfile" element={<GetProfile />} />
             <Route path="profile" element={<Profile />} />
           </Route>
           {/* Admin-Layout */}
@@ -40,6 +41,7 @@ function App() {
               <Route index element={<Post />} />
               <Route path="news" element={<News />} />
               <Route path="add" element={<PostAdd />} />
+              <Route path="editNews/:id" element={<EditNews />} />
               <Route path="edit/:id" element={<Edit />} />
             </Route>
           </Route>

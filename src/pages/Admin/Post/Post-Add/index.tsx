@@ -40,7 +40,7 @@ const PostAdd = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  // console.log(categories);
+  // console.log(categories.company);
 
   if (!user) {
     return null;

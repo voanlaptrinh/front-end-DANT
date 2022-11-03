@@ -34,10 +34,10 @@ export const listNewsemp = () => {
   const url = `/employer/index/${data.token}`;
   return instance.get(url);
 };
-export const updateNews = (data: any) => {
-  const url = `/employer/edit/${data.id}`;
-  return instance.put(url, data);
-};
+// export const updateNews = (id: any) => {
+//   const url = `/employer/update/${id}`; 
+//   return instance.post(url,data);
+// };
 export const editNews = (id: any) => {
   const url = `/employer/edit/${id}`;
   return instance.get(url);

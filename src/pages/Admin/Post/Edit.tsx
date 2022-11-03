@@ -16,7 +16,7 @@ import {
 } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createNews, editNews, listNews, updateNews } from "../../../api/home";
+import { createNews, editNews, listNews } from "../../../api/home";
 import moment from "moment";
 
 const { RangePicker } = DatePicker;
@@ -34,9 +34,9 @@ const Edit = (props: Props) => {
     getCategories();
     getEditNews(id);
   }, []);
-  const onupdate: SubmitHandler<any> = async (formData: any) => {
-    const { data } = await updateNews(formData);
-  };
+  // const onupdate: SubmitHandler<any> = async (formData: any) => {
+  //   const { data } = await updateNews(formData);
+  // };
 
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
@@ -66,7 +66,7 @@ const Edit = (props: Props) => {
           wrapperCol={{ span: 14 }}
           className="recuitment-form"
           layout="horizontal"
-          onFinish={onupdate}
+          // onFinish={}
           initialValues={{
             title: job?.title,
             Quatity: job?.Quatity,
