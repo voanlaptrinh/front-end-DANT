@@ -28,7 +28,7 @@ const EditNews = (props: Props) => {
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
     reset(data.job[0])
-    setEditNews(data)
+    setEditNews(data)    
   };
 
   // console.log(editnews.job[0].getskill);
@@ -37,9 +37,8 @@ const EditNews = (props: Props) => {
     const { data } = await listNews()
     setNews(data)
   }
-  // const checkedSkill = (data: any) =>
-  //   editnews.job[0]?.getskill.map((item: any) => item.id).includes(data);
-  //   console.log(checkedSkill);
+  const checkedSkill = (data: any) =>
+    editnews.job[0]?.getskill?.map((item: any) => item.id).includes(data);
     
   return (
     <div><div>
@@ -233,7 +232,7 @@ const EditNews = (props: Props) => {
                                     <label className="label-container">
                                       <span>{skill.name}</span>
                                       <input type="checkbox" 
-                                        {...register('skill_id', { required: true })} />
+                                        {...register('skill_id', { required: true })} defaultChecked={checkedSkill(skill.id)}  value={skill.id}/>
                                       <span className="checkmark" />
                                     </label>
                                   </div>
@@ -253,7 +252,7 @@ const EditNews = (props: Props) => {
                       </div>
                     </div>
                     {news.user?.map((item: any) => (
-                      <div className="card recuitment-card">
+                      <div className="card recuitment-card" key={item.id}>
                         <div className="card-header recuitment-card-header" id="headingThree">
                           <h2 className="mb-0">
                             <a className="btn btn-link btn-block text-left collapsed recuitment-header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -309,7 +308,7 @@ const EditNews = (props: Props) => {
                         </h2>
                       </div>
                       {news.company?.map((item: any) => (
-                        <div id="collapse4" className="collapse show" aria-labelledby="heading4" data-parent="#collapse4">
+                        <div id="collapse4" className="collapse show" aria-labelledby="heading4" data-parent="#collapse4" key={item.id}>
                           <input type="hidden" value={item.id} {...register('id_company', { required: true })} />
                           <div className="card-body recuitment-body">
                             <div className="form-group row">
