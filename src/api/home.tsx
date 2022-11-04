@@ -36,7 +36,7 @@ export const listNewsemp = () => {
 };
 // export const updateNews = (id: any) => {
 //   const url = `/employer/update/${id}`; 
-//   return instance.post(url,data);
+//   return instance.put(url,data);
 // };
 export const editNews = (id: any) => {
   const url = `/employer/edit/${id}`;

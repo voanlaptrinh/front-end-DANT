@@ -1,3 +1,5 @@
+import { Checkbox } from 'antd'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -16,8 +18,8 @@ const EditNews = (props: Props) => {
     getEditNews(id);
   }, []);
 
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
-    const { data } = await createNews(formData)
+  const onupdate: SubmitHandler<any> = async (data: any) => {
+    await axios.put(`http://datnweb19.herokuapp.com/api/employer/update/${id}`, data)
   }
   useEffect(() => {
     getNews()
@@ -30,12 +32,15 @@ const EditNews = (props: Props) => {
   };
 
   // console.log(editnews.job[0].getskill);
-  
+
   const getNews = async () => {
     const { data } = await listNews()
     setNews(data)
   }
-
+  // const checkedSkill = (data: any) =>
+  //   editnews.job[0]?.getskill.map((item: any) => item.id).includes(data);
+  //   console.log(checkedSkill);
+    
   return (
     <div><div>
       <div>
@@ -45,7 +50,7 @@ const EditNews = (props: Props) => {
           <div className="container published-recuitment-content">
             <div className="row">
               <div className="col-md-8 col-sm-12 col-12 recuitment-inner">
-                <form className="recuitment-form" method='POST' onSubmit={handleSubmit(oncreate)}>
+                <form className="recuitment-form" method='POST' onSubmit={handleSubmit(onupdate)}>
                   <div className="accordion" id="accordionExample">
                     <div className="card recuitment-card">
                       <div className="card-header recuitment-card-header" id="headingOne">
@@ -222,17 +227,26 @@ const EditNews = (props: Props) => {
                         <div className="card-body recuitment-body">
                           <div className="checkboxsec" id="checkboxSection">
                             <label className="label-container">
-                              {news.skill?.map((item: any) => {
-                                return (
-                                  <div className="filter-topic">
+                              {news.skill?.map((skill: any) => 
+                                 (
+                                  <div className="filter-topic" key={skill.id}>
                                     <label className="label-container">
-                                      <span>{item.name}</span>
-                                      <input type="checkbox" defaultValue={item.id} {...register('skill_id', { required: true })} />
+                                      <span>{skill.name}</span>
+                                      <input type="checkbox" 
+                                        {...register('skill_id', { required: true })} />
                                       <span className="checkmark" />
                                     </label>
                                   </div>
                                 )
-                              })}
+                              )}
+                              {/* {news.skill?.map((skill: any, index: number) => (
+                                <Checkbox
+                                  key={skill.id}
+                                  defaultChecked={checkedSkill(skill.id)}
+                                >
+                                  {skill.name}
+                                </Checkbox>
+                              ))} */}
                             </label>
                           </div>
                         </div>
@@ -268,7 +282,7 @@ const EditNews = (props: Props) => {
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phone', { required: true })} />
+                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phoneEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
@@ -301,13 +315,13 @@ const EditNews = (props: Props) => {
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Tên công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Tên công ty" value={item.namecompany} {...register('name', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Tên công ty" value={item.namecompany} {...register('nameCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Nhập địa chỉ" value={item.address} {...register('address', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Nhập địa chỉ" value={item.address} {...register('addressCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
@@ -335,7 +349,7 @@ const EditNews = (props: Props) => {
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty" value={item.Desceibe}  {...register('Desceibe', { required: true })} />
+                                <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty" value={item.Desceibe}  {...register('DesceibeCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
