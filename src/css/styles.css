@@ -1420,6 +1420,9 @@ button.close {
   .can {
     display: none !important;
   }
+  .can1 {
+    display: none !important;
+  }
 
 
 }
@@ -3067,7 +3070,7 @@ span.expiration {
   .header.header-transparent .nav-brand:focus,
   .header.header-transparent .nav-brand:hover,
   .header.header-transparent .nav-menu > li > a {
-    color: #ffffff;
+    color: rgb(29, 215, 23);
   }
 
   .header.header-transparent.header-fixed .nav-brand,
@@ -6742,4 +6745,11 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   height: 250px;
   border-radius: 60%;
   margin-bottom: 10px;
+}
+.can1 img {
+  width: 100%;
+  height: 80%;
+  margin-top: 40px;
+  /* border-radius: 60%;
+  margin-bottom: 10px; */
 }
