@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/candidate/Header";
+import Header from "../layout/DefaultLayout/Header/Header";
 
 type Props = {};
 
