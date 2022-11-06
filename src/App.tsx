@@ -11,12 +11,11 @@ import PostAdd from "./pages/Admin/Post/Post-Add";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import Search from "./pages/candidate/Search";
-import Profile from "./pages/employer/Profile/Profile";
-import GetProfile from "./pages/employer/Profile/getProfile";
 import Edit from "./pages/Admin/Post/Edit";
 import EditNews from "./pages/Admin/Post/EditNews";
 import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
-
+import JobDetail from "./pages/employer/getProfile/JobDetail";
+import Profile from "./pages/candidate/Profile/Profile";
 
 function App() {
   return (
@@ -28,8 +27,8 @@ function App() {
           <Route path="product" element={<DefaultLayout />}>
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
-            <Route path="getProfile" element={<GetProfile />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="job/:id" element={<JobDetail />} />
+            <Route path="profile/:token" element={<Profile />} />
           </Route>
           {/* Admin-Layout */}
           <Route path="admin" element={<AdminLayout />}>
