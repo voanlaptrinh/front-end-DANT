@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signupcandidate from "./pages/candidate/Signupcandidate";
@@ -11,13 +10,12 @@ import News from "./pages/Admin/Post/News";
 import PostAdd from "./pages/Admin/Post/Post-Add";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import Layout from "./layout/candidate/Layout";
 import Search from "./pages/candidate/Search";
-import "./css/plugins/bootstrap.min.css";
 import Profile from "./pages/employer/Profile/Profile";
 import GetProfile from "./pages/employer/Profile/getProfile";
 import Edit from "./pages/Admin/Post/Edit";
 import EditNews from "./pages/Admin/Post/EditNews";
+import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 
 
 function App() {
@@ -27,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* Default-Layout */}
-          <Route path="product" element={<Layout />}>
+          <Route path="product" element={<DefaultLayout />}>
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
             <Route path="getProfile" element={<GetProfile />} />

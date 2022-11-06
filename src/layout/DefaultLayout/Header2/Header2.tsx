@@ -6,31 +6,16 @@ import {
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
-import { Select } from "antd";
-import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { isAuthenticate, logout, signin } from "../../api/auth";
-import { listCandidate, listNews } from "../../api/home";
-import { useAppDispatch } from "../../app/store";
+import { isAuthenticate, logout, signin } from "../../../api/auth";
 
 type Props = {};
 
 const Header2 = (props: Props) => {
-
-
   const user = isAuthenticate();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-
-  // console.log(getAllSkill.skill);
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
@@ -42,7 +27,7 @@ const Header2 = (props: Props) => {
         return true;
       }
       if (data.data.role_id == 2) {
-        
+
         navigate("http://127.0.0.1:5173/admin");
         return true;
       }
@@ -149,7 +134,7 @@ const Header2 = (props: Props) => {
             >
               <ul className="nav-menu ">
                 <li>
-                  <a href="#">Home</a>
+                  <a href="#" className="nav-item">Home</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="">Home 1</a>
@@ -178,7 +163,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="">Find Job</a>
+                  <a href="" className="nav-item">Find Job</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="">Job Search V1</a>
@@ -216,7 +201,7 @@ const Header2 = (props: Props) => {
                       </ul>
                     </li>
                     <li>
-                      <a href="">Single Job</a>
+                      <a href="" className="nav-item">Single Job</a>
                       <ul className="nav-dropdown nav-submenu">
                         <li>
                           <a href="single-job-1.html">Single Job V1</a>
@@ -235,7 +220,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="">Candidates</a>
+                  <a href="" className="nav-item">Candidates</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-jobs.html">Browse Jobs</a>
@@ -255,7 +240,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="">Employers</a>
+                  <a href="" className="nav-item">Employers</a>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-employers.html">Browse Employers V1</a>
@@ -274,7 +259,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li className="text-muted">
-                  <a href="">Pages</a>
+                  <a href="" className="nav-item">Pages</a>
                   <ul className="nav-dropdown nav-submenu ">
                     <li className="">
                       <a href="blog.html">Blog Style</a>
@@ -378,7 +363,7 @@ const Header2 = (props: Props) => {
           </nav>
         </div>
       </div>
-    
+
       {/* Log In Modal */}
       <div className="nav-item align-items-center">
         <div

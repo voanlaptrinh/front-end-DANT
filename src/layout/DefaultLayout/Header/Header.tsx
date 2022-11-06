@@ -6,29 +6,20 @@ import {
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
-import { Select } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { isAuthenticate, logout, signin } from "../../api/auth";
-import { listCandidate, listNews } from "../../api/home";
-import { useAppDispatch } from "../../app/store";
+import { Link, useNavigate } from "react-router-dom";
+import { isAuthenticate, logout, signin } from "../../../api/auth";
+import { listCandidate } from "../../../api/home";
 
 type Props = {};
 
 const Header = (props: Props) => {
   const [getAllSkill, setSkill] = useState<any>([]);
   const [getAllLocation, setLocation] = useState<any>([]);
-
-  const user = isAuthenticate();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const user = isAuthenticate();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
     getSkill();
@@ -54,11 +45,12 @@ const Header = (props: Props) => {
         return true;
       }
       if (data.data.role_id == 2) {
-         navigate("/admin")
+        navigate("/admin")
         return true;
       }
     }
   };
+
   return (
     <div id="main-wrapper">
       {/* <!-- Start Navigation --> */}
@@ -162,36 +154,10 @@ const Header = (props: Props) => {
             >
               <ul className="nav-menu">
                 <li>
-                  <a href="#">Home</a>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="index.html">Home 1</a>
-                    </li>
-                    <li>
-                      <a href="home-2.html">Home 2</a>
-                    </li>
-                    <li>
-                      <a href="home-3.html">Home 3</a>
-                    </li>
-                    <li>
-                      <a href="home-4.html">Home 4</a>
-                    </li>
-                    <li>
-                      <a href="home-5.html">Home 5</a>
-                    </li>
-                    <li>
-                      <a href="home-6.html">Home 6</a>
-                    </li>
-                    <li>
-                      <a href="home-7.html">Home 7</a>
-                    </li>
-                    <li>
-                      <a href="home-8.html">Home 8</a>
-                    </li>
-                  </ul>
+                  <Link to="/">Trang chủ</Link>
                 </li>
                 <li>
-                  <a href="">Find Job</a>
+                  <Link to="job" >Việc làm</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="job-search-v1.html">Job Search V1</a>
@@ -248,7 +214,7 @@ const Header = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="">Candidates</a>
+                  <Link to="company">Công ty</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-jobs.html">Browse Jobs</a>
@@ -267,8 +233,8 @@ const Header = (props: Props) => {
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <a href="">Employers</a>
+                {/* <li>
+                  <Link to="" className="nav-item">Employers</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-employers.html">Browse Employers V1</a>
@@ -287,7 +253,7 @@ const Header = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="">Pages</a>
+                  <Link to="" className="nav-item">Pages</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="blog.html">Blog Style</a>
@@ -311,7 +277,7 @@ const Header = (props: Props) => {
                       <a href="docs.html">Docs</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="dropdown align-to-right top">
@@ -325,7 +291,9 @@ const Header = (props: Props) => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <UserOutlined /> {user.name} <DownOutlined />
+                    <UserOutlined />
+                    {user.name}
+                    <DownOutlined />
                   </a>
                   <div
                     className="dropdown-menu"
