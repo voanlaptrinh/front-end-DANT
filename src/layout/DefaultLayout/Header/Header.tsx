@@ -91,33 +91,28 @@ const Header = (props: Props) => {
                         className="dropdown-menu"
                         aria-labelledby="btnDropdownDemo"
                       >
-                        <a
+                        <Link
                           className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
+                          to={`profile/index/${user.token}`}
                         >
                           <UserSwitchOutlined /> Thông tin
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
+                          to={''}
                         >
                           <FileAddFilled /> Job của bạn
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
+                          to={''}
                         >
                           <UploadOutlined /> Post a Job
-                        </a>
+                        </Link>
                         <button className="dropdown-item logout">
-                          <Link to="/">
-                            <a className="" onClick={() => logout()}>
-                              <LoginOutlined /> Đăng xuất
-                            </a>
-                          </Link>
+                          <div onClick={() => logout()}>
+                            <LoginOutlined /> Đăng xuất
+                          </div>
                         </button>
                       </div>
                     </>
@@ -299,13 +294,12 @@ const Header = (props: Props) => {
                     className="dropdown-menu"
                     aria-labelledby="btnDropdownDemo"
                   >
-                    <a
+                    <Link
                       className="dropdown-item"
-                      data-toggle="modal"
-                      data-target=""
+                      to={`profile/${user.token}`}
                     >
                       <UserSwitchOutlined /> Thông tin
-                    </a>
+                    </Link>
                     <a
                       className="dropdown-item"
                       data-toggle="modal"

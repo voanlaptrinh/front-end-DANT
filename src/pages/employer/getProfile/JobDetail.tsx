@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 type Props = {};
 
-const getProfile = (props: Props) => {
+const JobDetail = (props: Props) => {
   return (
     <div>
       <div className="clearfix"></div>
@@ -479,4 +479,4 @@ const getProfile = (props: Props) => {
     </div>
   );
 };
-export default getProfile;
+export default JobDetail;
