@@ -4,9 +4,8 @@ import type { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { removeShowNews, showNews } from "../../../api/home";
-import vi from 'date-fns/locale/vi'
+import vi from "date-fns/locale/vi";
 import { add, addMinutes, format } from "date-fns";
-import Countdown from "react-countdown";
 import { id } from "date-fns/locale";
 
 const Post: React.FC = () => {
@@ -19,11 +18,10 @@ const Post: React.FC = () => {
     const { data } = await showNews();
     setNews(data);
     console.log(data);
-    
   };
-  const startDay = new Date()
+  const startDay = new Date();
   const endDay = news.job?.[0].end_job_time;
-  console.log(endDay,startDay);
+  console.log(endDay, startDay);
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {

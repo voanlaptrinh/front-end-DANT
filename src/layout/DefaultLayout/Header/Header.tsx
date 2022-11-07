@@ -355,7 +355,11 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0" name="" id="">
                         <option value="">Chọn Kĩ Năng</option>
                         {getAllSkill.skill?.map((item: any) => {
-                          return <option value={item.id} key={item.id}>{item.name}</option>;
+                          return (
+                            <option value={item.id} key={item.id}>
+                              {item.name}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>
@@ -365,7 +369,11 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0">
                         <option value="">Chọn Vùng Miền</option>
                         {getAllLocation.location?.map((item: any) => {
-                          return <option key={item.id} value={item.id}>{item.name}</option>;
+                          return (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>

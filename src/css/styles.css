@@ -6245,7 +6245,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   }
 }
 
-@media (min-width: 993px) {
+@media (min-width: 100%) {
   .off_title {
     font-size: 55px;
   }
@@ -6769,7 +6769,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .item {
   padding: 20px 0px 15px 50px;
 }
-.icon{
+.icon {
   float: left;
-  padding-right: 10px
+  padding-right: 10px;
 }
