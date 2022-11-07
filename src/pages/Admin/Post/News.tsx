@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined, RightOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { removeShowNews, showNews } from "../../../api/home";
+import '../../../css/plugins/quanlycv.css'
 
 type Props = {};
 
@@ -28,8 +29,8 @@ const News = (props: Props) => {
   return (
     <div>
       <section className="middle">
-        <div className="container">
-          <div className="d-block border rounded mfliud-bot mb-4">
+        <div className="container1">
+          <div className="d-block1 border rounded mfliud-bot mb-4">
             <div className="cdt_author px-2 pt-5 pb-4">
               <div className="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2">
                 <img
@@ -56,12 +57,25 @@ const News = (props: Props) => {
                 <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
                   Magento
                 </span>
-                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-info bg-light-info">
-                  CSS3
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
                 </span>
-                <span className="px-2 mb-2 d-inline-flex py-1 rounded text-purple bg-light-purple">
-                  HTML5
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
                 </span>
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
+                </span>
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
+                </span>
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
+                </span>
+                <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
+                  Magento
+                </span>
+                
               </div>
             </div>
             <div className="cdt_caps">
