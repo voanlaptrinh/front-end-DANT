@@ -1,4 +1,4 @@
-import { FileJpgOutlined } from "@ant-design/icons";
+import { FileJpgOutlined, LaptopOutlined, LoadingOutlined, ManOutlined, PoundOutlined, StarOutlined, TeamOutlined, TrophyOutlined } from "@ant-design/icons";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -77,19 +77,45 @@ const Detail = (props: Props) => {
                     <h4> Thông tin chung</h4>
                     <div className="contenTTC">
                       <div className="item">
-                        <span>Mức lương</span>
+                        <div className="icon">
+                          <ManOutlined />
+                        </div>
+                        <span>Giới tính</span>
+                        <p>nam</p>
+                      </div>
+                      <div className="item">
+                        <div className="icon">
+                          <PoundOutlined />
+                        </div>
+                        <span>tiết kiệm</span>
+                        <p>nam</p>
+                      </div>
+                      <div className="item">
+                        <div className="icon">
+                          <LaptopOutlined />
+                        </div>
+                        <span>Hình thức làm việc</span>
                         <p>112222 triệu</p>
                       </div>
                       <div className="item">
-                        <span>Mức lương</span>
+                        <div className="icon">
+                          <TeamOutlined />
+                        </div>
+                        <span>số lượng tuyển</span>
                         <p>112222 triệu</p>
                       </div>
                       <div className="item">
-                        <span>Mức lương</span>
+                        <div className="icon">
+                          <TrophyOutlined />
+                        </div>
+                        <span>cấp bậc</span>
                         <p>112222 triệu</p>
                       </div>
                       <div className="item">
-                        <span>Mức lương</span>
+                        <div className="icon">
+                          <StarOutlined />
+                        </div>
+                        <span>kinh nghiệm</span>
                         <p>112222 triệu</p>
                       </div>
                     </div>

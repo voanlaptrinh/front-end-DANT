@@ -6769,3 +6769,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .item {
   padding: 20px 0px 15px 50px;
 }
+.icon{
+  float: left;
+  padding-right: 10px
+}
