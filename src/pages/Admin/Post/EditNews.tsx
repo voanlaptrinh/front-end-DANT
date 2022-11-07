@@ -21,15 +21,11 @@ const EditNews = (props: Props) => {
   const onupdate: SubmitHandler<any> = async (data: any) => {
     await axios.put(`http://datnweb19.herokuapp.com/api/employer/update/${id}`, data)
   }
-  useEffect(() => {
-    getNews()
-  }, [])
 
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
-    reset(data.job[0])
+    reset(data.job?.[0])
     setEditNews(data)
-
   };
 
   console.log(editnews.job);
@@ -38,7 +34,6 @@ const EditNews = (props: Props) => {
     const { data } = await listNews()
     setNews(data)
   }
-
 
   const checkedSkill = (data: any) =>
     editnews.job?.[0].getskill?.map((item: any) => item.id).includes(data);

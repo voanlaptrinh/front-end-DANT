@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
+import Item from "antd/lib/list/Item";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -62,9 +63,11 @@ const PostAdd = (props: Props) => {
   }, []);
   const getCategories = async () => {
     const { data } = await listNews();
-    setCategories(data);
+    // console.log(data);
+    
   };
-
+  console.log(categories);
+  
   const user = categories?.user;
   const company = categories?.company;
   // console.log(categories.company);
@@ -417,6 +420,7 @@ const PostAdd = (props: Props) => {
                       options={categories.skill?.map((skill: any) => ({
                         label: skill.name,
                         value: skill.id,
+                        
                       }))}
                     ></Checkbox.Group>
                   </Form.Item>

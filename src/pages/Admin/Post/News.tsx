@@ -80,7 +80,7 @@ const News = (props: Props) => {
                                 <div className="job-main-skill">
                                   {item.getskill?.map((item1: any) => {
                                     return (
-                                      <div className="job-main-skill">
+                                      <div className="job-main-skill" key={item1.id}>
                                         <i
                                           className="fa fa-code"
                                           aria-hidden="true"
