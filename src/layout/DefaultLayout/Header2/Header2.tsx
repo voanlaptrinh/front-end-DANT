@@ -6,16 +6,39 @@ import {
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticate, logout, signin } from "../../../api/auth";
+import { listCandidate } from "../../../api/home";
+import "./header2.css";
 
 type Props = {};
 
-const Header2 = (props: Props) => {
-  const user = isAuthenticate();
+const Header = (props: Props) => {
+  const [getAllSkill, setSkill] = useState<any>([]);
+  const [getAllLocation, setLocation] = useState<any>([]);
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const user = isAuthenticate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    getSkill();
+    getLocation();
+  }, []);
+
+  const getSkill = async () => {
+    const { data } = await listCandidate();
+    setSkill(data);
+  };
+  const getLocation = async () => {
+    const { data } = await listCandidate();
+    setLocation(data);
+  };
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
@@ -23,16 +46,16 @@ const Header2 = (props: Props) => {
     console.log(data);
     if (data.data) {
       if (data.data.role_id == 1) {
-        navigate("http://127.0.0.1:5173/");
+        navigate("/");
         return true;
       }
       if (data.data.role_id == 2) {
-
-        navigate("http://127.0.0.1:5173/admin");
+        navigate("/admin");
         return true;
       }
     }
   };
+
   return (
     <div id="main-wrapper">
       {/* <!-- Start Navigation --> */}
@@ -55,12 +78,12 @@ const Header2 = (props: Props) => {
                 />
               </a>
               <div className="nav-toggle" />
-              <div className="mobile_nav text-muted">
+              <div className="mobile_nav">
                 <ul>
                   {user ? (
                     <>
                       <a
-                        className="text-muted"
+                        className="text-while"
                         type="button"
                         id="btnDropdownDemo"
                         data-toggle="dropdown"
@@ -73,31 +96,22 @@ const Header2 = (props: Props) => {
                         className="dropdown-menu"
                         aria-labelledby="btnDropdownDemo"
                       >
-                        <a
+                        <Link
                           className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
+                          to={`profile/index/${user.token}`}
                         >
                           <UserSwitchOutlined /> Thông tin
-                        </a>
-                        <a
-                          className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                        >
+                        </Link>
+                        <Link className="dropdown-item" to={""}>
                           <FileAddFilled /> Job của bạn
-                        </a>
-                        <a
-                          className="dropdown-item"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                        >
+                        </Link>
+                        <Link className="dropdown-item" to={""}>
                           <UploadOutlined /> Post a Job
-                        </a>
+                        </Link>
                         <button className="dropdown-item logout">
-                          <a className="" onClick={() => logout()}>
+                          <div onClick={() => logout()}>
                             <LoginOutlined /> Đăng xuất
-                          </a>
+                          </div>
                         </button>
                       </div>
                     </>
@@ -132,76 +146,50 @@ const Header2 = (props: Props) => {
               className="nav-menus-wrapper"
               style={{ transitionProperty: "none" }}
             >
-              <ul className="nav-menu ">
+              <ul className="nav-menu">
                 <li>
-                  <a href="#" className="nav-item">Home</a>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="">Home 1</a>
-                    </li>
-                    <li>
-                      <a href="">Home 2</a>
-                    </li>
-                    <li>
-                      <a href="">Home 3</a>
-                    </li>
-                    <li>
-                      <a href="">Home 4</a>
-                    </li>
-                    <li>
-                      <a href="">Home 5</a>
-                    </li>
-                    <li>
-                      <a href="">Home 6</a>
-                    </li>
-                    <li>
-                      <a href="">Home 7</a>
-                    </li>
-                    <li>
-                      <a href="">Home 8</a>
-                    </li>
-                  </ul>
+                  <Link to="/">Trang chủ</Link>
                 </li>
                 <li>
-                  <a href="" className="nav-item">Find Job</a>
+                  <Link to="job">Việc làm</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
-                      <a href="">Job Search V1</a>
+                      <a href="job-search-v1.html">Job Search V1</a>
                     </li>
                     <li>
-                      <a href="">Job Search V2</a>
+                      <a href="job-search-v2.html">Job Search V2</a>
                     </li>
                     <li>
-                      <a href="">Job Search V3</a>
+                      <a href="job-search-v3.html">Job Search V3</a>
                     </li>
                     <li>
-                      <a href="">Job Search V4</a>
+                      <a href="job-list-v1.html">Job Search V4</a>
                     </li>
                     <li>
-                      <a href="">Job Search V5</a>
+                      <a href="job-list-v2.html">Job Search V5</a>
                     </li>
                     <li>
-                      <a href="">Job Search V6</a>
+                      <a href="job-list-v3.html">Job Search V6</a>
                     </li>
                     <li>
                       <a href="">Map Styles</a>
                       <ul className="nav-dropdown nav-submenu">
                         <li>
-                          <a href="">Search On Map V1</a>
+                          <a href="job-half-map.html">Search On Map V1</a>
                         </li>
                         <li>
-                          <a href="">Search On Map V2</a>
+                          <a href="job-half-map-v2.html">Search On Map V2</a>
                         </li>
                         <li>
-                          <a href="">Search On Map V3</a>
+                          <a href="job-search-map-v1.html">Search On Map V3</a>
                         </li>
                         <li>
-                          <a href="">Search On Map V4</a>
+                          <a href="job-search-map-v2.html">Search On Map V4</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="" className="nav-item">Single Job</a>
+                      <a href="">Single Job</a>
                       <ul className="nav-dropdown nav-submenu">
                         <li>
                           <a href="single-job-1.html">Single Job V1</a>
@@ -220,7 +208,7 @@ const Header2 = (props: Props) => {
                   </ul>
                 </li>
                 <li>
-                  <a href="" className="nav-item">Candidates</a>
+                  <Link to="company">Công ty</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="browse-jobs.html">Browse Jobs</a>
@@ -239,77 +227,33 @@ const Header2 = (props: Props) => {
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <a href="" className="nav-item">Employers</a>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="browse-employers.html">Browse Employers V1</a>
-                    </li>
-                    <li>
-                      <a href="browse-employers-list.html">
-                        Browse Employers V2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="employer-detail.html">Employer Detail</a>
-                    </li>
-                    <li>
-                      <a href="employer-dashboard.html">Employer Dashboard</a>
-                    </li>
-                  </ul>
-                </li>
-                <li className="text-muted">
-                  <a href="" className="nav-item">Pages</a>
-                  <ul className="nav-dropdown nav-submenu ">
-                    <li className="">
-                      <a href="blog.html">Blog Style</a>
-                    </li>
-                    <li>
-                      <a href="about-us.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Contact</a>
-                    </li>
-                    <li>
-                      <a href="404.html">404 Page</a>
-                    </li>
-                    <li>
-                      <a href="privacy.html">Privacy Policy</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="docs.html">Docs</a>
-                    </li>
-                  </ul>
-                </li>
               </ul>
             </div>
             <div className="dropdown align-to-right top">
               {user ? (
                 <>
                   <a
-                    className="text-muted"
+                    className="text-while"
                     type="button"
                     id="btnDropdownDemo"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <UserOutlined /> {user.name} <DownOutlined />
+                    <UserOutlined />
+                    {user.name}
+                    <DownOutlined />
                   </a>
                   <div
                     className="dropdown-menu"
                     aria-labelledby="btnDropdownDemo"
                   >
-                    <a
+                    <Link
                       className="dropdown-item"
-                      data-toggle="modal"
-                      data-target=""
+                      to={`profile/${user.token}`}
                     >
                       <UserSwitchOutlined /> Thông tin
-                    </a>
+                    </Link>
                     <a
                       className="dropdown-item"
                       data-toggle="modal"
@@ -325,9 +269,11 @@ const Header2 = (props: Props) => {
                       <UploadOutlined /> Post a Job
                     </a>
                     <button className="dropdown-item">
-                      <a className="" onClick={() => logout()}>
-                        <LoginOutlined /> Đăng xuất
-                      </a>
+                      <Link to="/">
+                        <a className="" onClick={() => logout()}>
+                          <LoginOutlined /> Đăng xuất
+                        </a>
+                      </Link>
                     </button>
                   </div>
                 </>
@@ -363,7 +309,84 @@ const Header2 = (props: Props) => {
           </nav>
         </div>
       </div>
-
+      {/* <!-- ======================= Home Banner ======================== --> */}
+      <div
+        className="home-banner margin-bottom-0"
+        style={{
+          background:
+            "#00ab46 url(https://res.cloudinary.com/dgeqw8b5i/image/upload/v1666583728/gd/banner-5_rnetjw.jpg) no-repeat ",
+        }}
+        data-overlay={4}
+      >
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div className="banner_caption text-center mb-5">
+                <h1 className="banner_title ft-bold mb-1">
+                  Explore More Than 10K+ Jobs
+                </h1>
+                <p className="fs-md ft-medium">
+                  Hi Friends, Your Dream Jobs is Waiting in Your Local City
+                </p>
+              </div>
+              <form className="bg-white rounded p-1">
+                <div className="row no-gutters">
+                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <input
+                        type="text"
+                        className="form-control lg left-ico"
+                        placeholder="Job Title, Keyword or Company"
+                      />
+                      <i className="bnc-ico lni lni-search-alt" />
+                    </div>
+                  </div>
+                  {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <input
+                        type="text"
+                        className="form-control lg left-ico"
+                        placeholder="Job Title, Keyword or Company"
+                      />
+                      <i className="bnc-ico lni lni-target" />
+                    </div>
+                  </div> */}
+                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <select className="custom-select lg b-0" name="" id="">
+                        <option value="">Chọn Kĩ Năng</option>
+                        {getAllSkill.skill?.map((item: any) => {
+                          return <option value={item.id}>{item.name}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <select className="custom-select lg b-0">
+                        <option value="">Chọn Vùng Miền</option>
+                        {getAllLocation.location?.map((item: any) => {
+                          return <option value={item.id}>{item.name}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                    <div className="form-group mb-0 position-relative">
+                      <button
+                        className="btn full-width custom-height-lg theme-bg text-white fs-md"
+                        type="button"
+                      >
+                        Find Job
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Log In Modal */}
       <div className="nav-item align-items-center">
         <div
@@ -523,4 +546,4 @@ const Header2 = (props: Props) => {
   );
 };
 
-export default Header2;
+export default Header;

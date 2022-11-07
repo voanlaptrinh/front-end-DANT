@@ -19,7 +19,11 @@ const Header = (props: Props) => {
   const [getAllLocation, setLocation] = useState<any>([]);
   const navigate = useNavigate();
   const user = isAuthenticate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     getSkill();
@@ -45,7 +49,7 @@ const Header = (props: Props) => {
         return true;
       }
       if (data.data.role_id == 2) {
-        navigate("/admin")
+        navigate("/admin");
         return true;
       }
     }
@@ -97,16 +101,10 @@ const Header = (props: Props) => {
                         >
                           <UserSwitchOutlined /> Thông tin
                         </Link>
-                        <Link
-                          className="dropdown-item"
-                          to={''}
-                        >
+                        <Link className="dropdown-item" to={""}>
                           <FileAddFilled /> Job của bạn
                         </Link>
-                        <Link
-                          className="dropdown-item"
-                          to={''}
-                        >
+                        <Link className="dropdown-item" to={""}>
                           <UploadOutlined /> Post a Job
                         </Link>
                         <button className="dropdown-item logout">
@@ -152,7 +150,7 @@ const Header = (props: Props) => {
                   <Link to="/">Trang chủ</Link>
                 </li>
                 <li>
-                  <Link to="job" >Việc làm</Link>
+                  <Link to="job">Việc làm</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="job-search-v1.html">Job Search V1</a>
@@ -228,51 +226,6 @@ const Header = (props: Props) => {
                     </li>
                   </ul>
                 </li>
-                {/* <li>
-                  <Link to="" className="nav-item">Employers</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="browse-employers.html">Browse Employers V1</a>
-                    </li>
-                    <li>
-                      <a href="browse-employers-list.html">
-                        Browse Employers V2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="employer-detail.html">Employer Detail</a>
-                    </li>
-                    <li>
-                      <a href="employer-dashboard.html">Employer Dashboard</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="" className="nav-item">Pages</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="blog.html">Blog Style</a>
-                    </li>
-                    <li>
-                      <a href="about-us.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Contact</a>
-                    </li>
-                    <li>
-                      <a href="404.html">404 Page</a>
-                    </li>
-                    <li>
-                      <a href="privacy.html">Privacy Policy</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="docs.html">Docs</a>
-                    </li>
-                  </ul>
-                </li> */}
               </ul>
             </div>
             <div className="dropdown align-to-right top">

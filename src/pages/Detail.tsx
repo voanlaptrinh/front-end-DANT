@@ -1,3 +1,4 @@
+import { FileJpgOutlined } from "@ant-design/icons";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -70,25 +71,49 @@ const Detail = (props: Props) => {
               </div>
               <div className="bg-white rounded mb-4">
                 <div className="jbd-01 px-3 py-4">
+                  <div className="contenCTTD">
+                    <div className="icongach"></div>
+                    <h1>Chi tiết tin tuyển dụng</h1>
+                    <h4> Thông tin chung</h4>
+                    <div className="contenTTC">
+                      <div className="item">
+                        <span>Mức lương</span>
+                        <p>112222 triệu</p>
+                      </div>
+                      <div className="item">
+                        <span>Mức lương</span>
+                        <p>112222 triệu</p>
+                      </div>
+                      <div className="item">
+                        <span>Mức lương</span>
+                        <p>112222 triệu</p>
+                      </div>
+                      <div className="item">
+                        <span>Mức lương</span>
+                        <p>112222 triệu</p>
+                      </div>
+                    </div>
+                  </div>
                   <div className="jbd-details mb-4">
-                    <h5 className="ft-medium fs-md">Job description</h5>
+                    <h5 className="ft-medium fs-md">Mô tả công việc</h5>
                     <p>
-                      We are looking for a PHP Developer responsible for
-                      managing back-end services and the interchange of data
-                      between the server and the users. Your primary focus will
-                      be the development of all server-side logic, definition
-                      and maintenance of the central database
+                      Chúng tôi đang tìm kiếm một Nhà phát triển PHP chịu trách
+                      nhiệm quản lý các dịch vụ back-end và trao đổi dữ liệu
+                      giữa máy chủ và người dùng. Trọng tâm chính của bạn sẽ là
+                      phát triển tất cả logic phía máy chủ, định nghĩa và duy
+                      trì cơ sở dữ liệu trung tâm
                     </p>
                     <p>
-                      Across our network, we strive to provide rapid,
-                      performance-based, industry-focused and technology-enabled
-                      services, which reflect a shared knowledge of global and
-                      local industries and our experience of the Indian business
-                      environment.
+                      Trên toàn mạng lưới của mình, chúng tôi cố gắng cung cấp
+                      các dịch vụ nhanh chóng, dựa trên hiệu suất, tập trung vào
+                      ngành và hỗ trợ công nghệ, phản ánh kiến ​​thức được chia
+                      sẻ về các ngành công nghiệp địa phương và toàn cầu cũng
+                      như kinh nghiệm của chúng tôi về môi trường kinh doanh Ấn
+                      Độ.
                     </p>
                   </div>
                   <div className="jbd-details mb-3">
-                    <h5>Requirements:</h5>
+                    <h5>Yêu cầu:</h5>
                     <div className="position-relative row">
                       <div className="col-lg-12 col-md-12 col-12">
                         <div className="mb-2 mr-4 ml-lg-0 mr-lg-4">
@@ -169,7 +194,7 @@ const Detail = (props: Props) => {
                     </div>
                   </div>
                   <div className="jbd-details mb-4">
-                    <h5 className="ft-medium fs-md">Skills Required</h5>
+                    <h5 className="ft-medium fs-md">Yêu cầu ứng viên</h5>
                     <div className="other-details">
                       <div className="details ft-medium">
                         <label className="text-muted">Role</label>
@@ -177,79 +202,34 @@ const Detail = (props: Props) => {
                           Database Architect / Designer
                         </span>
                       </div>
-                      <div className="details ft-medium">
-                        <label className="text-muted">Industry Type</label>
-                        <span className="text-dark">
-                          Advertising &amp; Marketing
-                        </span>
-                      </div>
-                      <div className="details ft-medium">
-                        <label className="text-muted">Functional Area</label>
-                        <span className="text-dark">
-                          Engineering - Software
-                        </span>
-                      </div>
-                      <div className="details ft-medium">
-                        <label className="text-muted">Employment Type</label>
-                        <span className="text-dark">Full Time, Permanent</span>
-                      </div>
-                      <div className="details ft-medium">
-                        <label className="text-muted">Role Category</label>
-                        <span className="text-dark">
-                          DBA / Data warehousing
-                        </span>
-                      </div>
+                      <h5 className="ft-medium fs-md">kỹ năng chính</h5>
+                      <ul className="p-0 skills_tag text-left">
+                        <li>
+                          <span className="px-2 py-1 medium skill-bg rounded text-dark">
+                            Joomla
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                  <div className="jbd-details mb-1">
-                    <h5 className="ft-medium fs-md">Key Skills</h5>
-                    <ul className="p-0 skills_tag text-left">
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          Joomla
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          WordPress
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          Javascript
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          PHP
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          HTML5
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          MS SQL
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          SQL Development
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          Dynamod
-                        </span>
-                      </li>
-                      <li>
-                        <span className="px-2 py-1 medium skill-bg rounded text-dark">
-                          Database
-                        </span>
-                      </li>
-                    </ul>
+                  <div className="jbd-details mb-4">
+                    <h5 className="ft-medium fs-md">Quyền lợi</h5>
+                    <div className="other-details">
+                      <div className="details ft-medium">
+                        <span className="text-dark">LƯƠNG VÀ THƯỞNG:</span>
+                        <h6 className="mb-0 ml-3 text-muted fs-sm">
+                          - Strong core PHP Hands on experience.
+                        </h6>
+                        <span className="text-dark">ĐÃI NGỘ & PHÚC LỢI::</span>
+                        <h6 className="mb-0 ml-3 text-muted fs-sm">
+                          - Strong core PHP Hands on experience.
+                        </h6>
+                        <span className="text-dark">CHẾ ĐỘ NGHỈ PHÉP:</span>
+                        <h6 className="mb-0 ml-3 text-muted fs-sm">
+                          - Strong core PHP Hands on experience.
+                        </h6>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="jbd-02 px-3 py-3 br-top">
@@ -300,15 +280,137 @@ const Detail = (props: Props) => {
                   </div>
                 </div>
               </div>
+              <div className="bg-white rounded px-3 py-4 mb-4">
+                <div className="contenCTTD">
+                  <div className="icongach"></div>
+                  <h1>Việc làm liên quan</h1>
+                </div>
+                <div className="jbd-01 d-flex align-items-center justify-content-between">
+                  <div className="jbd-flex d-flex align-items-center justify-content-start">
+                    <div className="jbd-01-thumb">
+                      <img
+                        src="assets/img/c-1.png"
+                        className="img-fluid"
+                        width={90}
+                      />
+                    </div>
+                    <div className="jbd-01-caption pl-3">
+                      <div className="tbd-title">
+                        <h4 className="mb-0 ft-medium fs-md">
+                          Senior UI/UX Web Designer in USA
+                        </h4>
+                      </div>
+                      <div className="jbl_location mb-3">
+                        <span>
+                          <i className="lni lni-map-marker mr-1" />
+                          San Francisco, USA
+                        </span>
+                        <span className="medium ft-medium text-warning ml-3">
+                          Part Time
+                        </span>
+                      </div>
+                      <div className="jbl_info01">
+                        <span className="px-2 py-1 ft-medium medium rounded theme-cl theme-bg-light mr-2">
+                          Magento
+                        </span>
+                        <span className="px-2 py-1 ft-medium medium rounded text-danger bg-light-danger mr-2">
+                          WordPress
+                        </span>
+                        <span className="px-2 py-1 ft-medium medium rounded text-purple bg-light-purple">
+                          Laravel
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="jbd-01-right text-right hide-1023">
+                    <div className="jbl_button mb-2">
+                      <a
+                        href="javascript:void(0);"
+                        className="btn rounded theme-bg-light theme-cl fs-sm ft-medium"
+                      >
+                        Apply This Job
+                      </a>
+                    </div>
+                    <div className="jbl_button">
+                      <a
+                        href="javascript:void(0);"
+                        className="btn rounded bg-white border fs-sm ft-medium"
+                      >
+                        View Company
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div className="jbd-01 d-flex align-items-center justify-content-between">
+                  <div className="jbd-flex d-flex align-items-center justify-content-start">
+                    <div className="jbd-01-thumb">
+                      <img
+                        src="assets/img/c-1.png"
+                        className="img-fluid"
+                        width={90}
+                      />
+                    </div>
+                    <div className="jbd-01-caption pl-3">
+                      <div className="tbd-title">
+                        <h4 className="mb-0 ft-medium fs-md">
+                          Senior UI/UX Web Designer in USA
+                        </h4>
+                      </div>
+                      <div className="jbl_location mb-3">
+                        <span>
+                          <i className="lni lni-map-marker mr-1" />
+                          San Francisco, USA
+                        </span>
+                        <span className="medium ft-medium text-warning ml-3">
+                          Part Time
+                        </span>
+                      </div>
+                      <div className="jbl_info01">
+                        <span className="px-2 py-1 ft-medium medium rounded theme-cl theme-bg-light mr-2">
+                          Magento
+                        </span>
+                        <span className="px-2 py-1 ft-medium medium rounded text-danger bg-light-danger mr-2">
+                          WordPress
+                        </span>
+                        <span className="px-2 py-1 ft-medium medium rounded text-purple bg-light-purple">
+                          Laravel
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="jbd-01-right text-right hide-1023">
+                    <div className="jbl_button mb-2">
+                      <a
+                        href="javascript:void(0);"
+                        className="btn rounded theme-bg-light theme-cl fs-sm ft-medium"
+                      >
+                        Apply This Job
+                      </a>
+                    </div>
+                    <div className="jbl_button">
+                      <a
+                        href="javascript:void(0);"
+                        className="btn rounded bg-white border fs-sm ft-medium"
+                      >
+                        View Company
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+              </div>
             </div>
             {/* Sidebar */}
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="jb-apply-form bg-white rounded py-3 px-4 box-static">
-                <h4 className="ft-medium fs-md mb-3">Intrested in this job?</h4>
+                <h4 className="ft-medium fs-md mb-3">
+                  Bạn thích công việc này
+                </h4>
                 <form className="_apply_form_form">
                   <div className="form-group">
                     <label className="text-dark mb-1 ft-medium medium">
-                      First Name
+                      Họ và tên
                     </label>
                     <input
                       type="text"
@@ -318,7 +420,7 @@ const Detail = (props: Props) => {
                   </div>
                   <div className="form-group">
                     <label className="text-dark mb-1 ft-medium medium">
-                      Your Email
+                      Email của bạn
                     </label>
                     <input
                       type="email"
@@ -328,7 +430,7 @@ const Detail = (props: Props) => {
                   </div>
                   <div className="form-group">
                     <label className="text-dark mb-1 ft-medium medium">
-                      Phone Number:
+                      Số điện thoại :
                     </label>
                     <input
                       type="text"
@@ -338,7 +440,7 @@ const Detail = (props: Props) => {
                   </div>
                   <div className="form-group">
                     <label className="text-dark mb-1 ft-medium medium">
-                      Upload Resume:<p>pdf, doc, docx</p>
+                      Tải lên CV của bạn : <p>pdf</p>
                     </label>
                     <div className="custom-file">
                       <input
@@ -347,7 +449,7 @@ const Detail = (props: Props) => {
                         id="customFile"
                       />
                       <label className="custom-file-label" htmlFor="customFile">
-                        Choose file
+                        <FileJpgOutlined />
                       </label>
                     </div>
                   </div>
