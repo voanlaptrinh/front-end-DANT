@@ -17,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
+import axios from "axios";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -25,11 +26,37 @@ type Props = {};
 
 const PostAdd = (props: Props) => {
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState("");
+
   const [categories, setCategories] = useState<any>([]);
-  const oncreate: SubmitHandler<any> = async (formData: any) => {
-    const { data } = await createNews(formData);
+
+  const oncreate: SubmitHandler<any> = async (dataform: any) => {
+    const formData = new FormData();
+    formData.append("file", avatar);
+    formData.append("upload_preset", "dtertjeta");
+    const {
+      data: { url },
+    } = await axios.post(
+      `https://api.cloudinary.com/v1_1/dtertjeta/image/upload`,
+      formData
+    );
+    const product = {
+      ...dataform,
+      logo: url,
+    };
+    const { data } = await createNews(product);
     // console.log(formData);
   };
+
+  const uploadImg = async (e: any) => {
+    setAvatar(e.target.files[0]);
+  };
+
+  // const onadd: SubmitHandler<any> = async (data: any) => {
+
+  //   dispatch(addProduct(product));
+  // };
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -41,6 +68,8 @@ const PostAdd = (props: Props) => {
   const user = categories?.user;
   const company = categories?.company;
   // console.log(categories.company);
+
+
 
   if (!user) {
     return null;
@@ -543,13 +572,24 @@ const PostAdd = (props: Props) => {
                     </Upload>
                     <Input />
                   </Form.Item> */}
-                  <Form.Item
+                  {/* <Form.Item
                     label="thêm logo "
                     name="logo"
                     rules={[{ required: true, message: "bạn chưa thêm logo" }]}
                   >
                     <Input />
-                  </Form.Item>
+                  </Form.Item> */}
+                  <div className="mb-3">
+                    <label htmlFor="exampleFormControlInput1" className="form-label">
+                      Avatar:
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      onChange={uploadImg}
+                      id="inputGroupFile02"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -16,14 +16,15 @@ const News = (props: Props) => {
     setNews(data);
     // console.log(data);
   };
-  console.log(news);
+  // console.log(news);
 
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {
       await removeShowNews(id).then(() => getNews());
     }
-  };
+  };  
+
   return (
     <div>
       <div>

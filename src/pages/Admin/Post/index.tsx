@@ -15,7 +15,9 @@ const Post: React.FC = () => {
     const { data } = await showNews();
     setNews(data);
   };
-  console.log(news);
+  const startDay = new Date()
+  const endDay = news.job?.[0].end_job_time;
+  console.log(endDay,startDay);
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {

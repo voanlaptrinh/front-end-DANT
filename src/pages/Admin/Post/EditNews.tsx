@@ -28,18 +28,21 @@ const EditNews = (props: Props) => {
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
     reset(data.job[0])
-    setEditNews(data)    
+    setEditNews(data)
+
   };
 
-  // console.log(editnews.job[0].getskill);
+  console.log(editnews.job);
 
   const getNews = async () => {
     const { data } = await listNews()
     setNews(data)
   }
+
+
   const checkedSkill = (data: any) =>
-    editnews.job[0]?.getskill?.map((item: any) => item.id).includes(data);
-    
+    editnews.job?.[0].getskill?.map((item: any) => item.id).includes(data);
+
   return (
     <div><div>
       <div>
@@ -79,7 +82,7 @@ const EditNews = (props: Props) => {
                           <div className="form-group row">
                             <label className="col-sm-3 col-form-label text-right label">Giới tính<span style={{ color: 'red' }} className="pl-2">*</span></label>
                             <div className="col-sm-9">
-                              <select typeof="number" className="form-control" defaultValue="lucy" id="jobGender"  {...register('sex', { required: true })}>
+                              <select typeof="number" className="form-control" id="jobGender"  {...register('sex', { required: true })}>
                                 <option value="">Chọn giới tính</option>
                                 <option value={0}>Không yêu cầu</option>
                                 <option value={1}>Nam</option>
@@ -226,17 +229,17 @@ const EditNews = (props: Props) => {
                         <div className="card-body recuitment-body">
                           <div className="checkboxsec" id="checkboxSection">
                             <label className="label-container">
-                              {news.skill?.map((skill: any) => 
-                                 (
-                                  <div className="filter-topic" key={skill.id}>
-                                    <label className="label-container">
-                                      <span>{skill.name}</span>
-                                      <input type="checkbox" 
-                                        {...register('skill_id', { required: true })} defaultChecked={checkedSkill(skill.id)}  value={skill.id}/>
-                                      <span className="checkmark" />
-                                    </label>
-                                  </div>
-                                )
+                              {news.skill?.map((skill: any) =>
+                              (
+                                <div className="filter-topic" key={skill.id}>
+                                  <label className="label-container">
+                                    <span>{skill.name}</span>
+                                    <input type="checkbox"
+                                      {...register('skill_id', { required: true })} defaultChecked={checkedSkill(skill.id)} value={skill.id} />
+                                    <span className="checkmark" />
+                                  </label>
+                                </div>
+                              )
                               )}
                               {/* {news.skill?.map((skill: any, index: number) => (
                                 <Checkbox
@@ -269,25 +272,25 @@ const EditNews = (props: Props) => {
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Tên người liên hệ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Tên người liên hệ" value={item.name} {...register('nameEmployer', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Tên người liên hệ" defaultValue={item.name} {...register('nameEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="mail" className="form-control" placeholder="Địa chỉ email" value={item.email} {...register('emailEmployer', { required: true })} />
+                                <input type="mail" className="form-control" placeholder="Địa chỉ email" defaultValue={item.email} {...register('emailEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Điện thoại<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" value={item.phone} {...register('phoneEmployer', { required: true })} />
+                                <input type="number" className="form-control" placeholder="Nhập số điện thoại" defaultValue={item.phone} {...register('phoneEmployer', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Nhập số điện thoại" value={item.address} {...register('addressEmployer', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Nhập số điện thoại" defaultValue={item.address} {...register('addressEmployer', { required: true })} />
                               </div>
                             </div>
                           </div>
@@ -309,24 +312,24 @@ const EditNews = (props: Props) => {
                       </div>
                       {news.company?.map((item: any) => (
                         <div id="collapse4" className="collapse show" aria-labelledby="heading4" data-parent="#collapse4" key={item.id}>
-                          <input type="hidden" value={item.id} {...register('id_company', { required: true })} />
+                          <input type="hidden" defaultValue={item.id} {...register('id_company', { required: true })} />
                           <div className="card-body recuitment-body">
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Tên công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Tên công ty" value={item.namecompany} {...register('nameCompany', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Tên công ty" defaultValue={item.namecompany} {...register('nameCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Địa chỉ<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Nhập địa chỉ" value={item.address} {...register('addressCompany', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Nhập địa chỉ" defaultValue={item.address} {...register('addressCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Email<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="email" className="form-control" placeholder="Nhập Email" value={item.email} {...register('emailCompany', { required: true })} />
+                                <input type="email" className="form-control" placeholder="Nhập Email" defaultValue={item.email} {...register('emailCompany', { required: true })} />
                               </div>
                             </div>
                             {/* <div className="form-group row">
@@ -334,7 +337,7 @@ const EditNews = (props: Props) => {
                             <div className="col-sm-9">
                               <select typeof="text" className="form-control" id="jobProvince2" {...register('addressEmployer', { required: true })}>
                                 {news.location?.map((item: any) => {
-                                  return <option key={item.id} value={item.name}>{item.name}</option>
+                                  return <option key={item.id} defaultValue={item.name}>{item.name}</option>
                                 })}
                               </select>
                             </div>
@@ -342,13 +345,13 @@ const EditNews = (props: Props) => {
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Quy mô nhân sự<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <input type="text" className="form-control" placeholder="Nhập số lượng nhân viên" value={item.number_member}  {...register('number_member', { required: true })} />
+                                <input type="text" className="form-control" placeholder="Nhập số lượng nhân viên" defaultValue={item.number_member}  {...register('number_member', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
                               <label className="col-sm-3 col-form-label text-right label">Sơ lược về công ty<span style={{ color: 'red' }} className="pl-2">*</span></label>
                               <div className="col-sm-9">
-                                <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty" value={item.Desceibe}  {...register('DesceibeCompany', { required: true })} />
+                                <textarea typeof="text" className="form-control" placeholder="Sơ lược về công ty" defaultValue={item.Desceibe}  {...register('DesceibeCompany', { required: true })} />
                               </div>
                             </div>
                             <div className="form-group row">
@@ -356,8 +359,8 @@ const EditNews = (props: Props) => {
                               <div className="col-sm-9 ">
                                 <div id="drop-area">
                                   <label style={{ cursor: 'pointer' }} htmlFor="fileElem">Tải ảnh lên hoặc kéo thả vào đây</label>
-                                  {/* <progress id="progress-bar" max={100} value={0} className="d-none" /> */}
-                                  <input type="text" className='form-control' value={item.logo} {...register('logo', { required: true })} />
+                                  {/* <progress id="progress-bar" max={100} defaultValue={0} className="d-none" /> */}
+                                  <input type="text" className='form-control' defaultValue={item.logo} {...register('logo', { required: true })} />
                                   <div id="gallery" />
                                 </div>
                               </div>
