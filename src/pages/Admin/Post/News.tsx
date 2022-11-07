@@ -28,6 +28,7 @@ const News = (props: Props) => {
 
   return (
     <div>
+      <h1>Những cv đã nộp</h1>
       <section className="middle">
         <div className="container1">
           <div className="d-block1 border rounded mfliud-bot mb-4">
@@ -75,7 +76,7 @@ const News = (props: Props) => {
                 <span className="mr-2 mb-2 d-inline-flex px-2 py-1 rounded text-danger bg-light-danger">
                   Magento
                 </span>
-                
+
               </div>
             </div>
             <div className="cdt_caps">
