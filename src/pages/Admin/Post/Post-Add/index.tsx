@@ -67,9 +67,7 @@ const PostAdd = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  // console.log(categories.company);
-
-
+  console.log(categories);
 
   if (!user) {
     return null;
@@ -580,7 +578,10 @@ const PostAdd = (props: Props) => {
                     <Input />
                   </Form.Item> */}
                   <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
+                    <label
+                      htmlFor="exampleFormControlInput1"
+                      className="form-label"
+                    >
                       Avatar:
                     </label>
                     <input
