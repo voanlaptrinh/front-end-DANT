@@ -28,8 +28,17 @@ type Props = {};
 const PostAdd = (props: Props) => {
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
-
   const [categories, setCategories] = useState<any>([]);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    const { data } = await listNews();
+    setCategories(data)
+    // console.log(data);
+  };
 
   const oncreate: SubmitHandler<any> = async (dataform: any) => {
     const formData = new FormData();
@@ -58,16 +67,9 @@ const PostAdd = (props: Props) => {
   //   dispatch(addProduct(product));
   // };
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-  const getCategories = async () => {
-    const { data } = await listNews();
-    // console.log(data);
-    
-  };
+
   console.log(categories);
-  
+
   const user = categories?.user;
   const company = categories?.company;
   console.log(categories);
@@ -418,7 +420,7 @@ const PostAdd = (props: Props) => {
                       options={categories.skill?.map((skill: any) => ({
                         label: skill.name,
                         value: skill.id,
-                        
+
                       }))}
                     ></Checkbox.Group>
                   </Form.Item>

@@ -26,15 +26,11 @@ const EditNews = (props: Props) => {
   const onupdate: SubmitHandler<any> = async (data: any) => {
     await axios.put(`http://datnweb19.herokuapp.com/api/employer/update/${id}`, data)
   }
-  useEffect(() => {
-    getNews()
-  }, [])
 
   const getEditNews = async (id: any) => {
     const { data } = await editNews(id);
     reset(data.job[0])
     setEditNews(data)
-
   };
 
   console.log(editnews.job);
