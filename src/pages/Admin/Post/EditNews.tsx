@@ -40,9 +40,9 @@ const EditNews = (props: Props) => {
     setNews(data)
   }
 
-
+  const job = editnews?.job?.[0];
   const checkedSkill = (data: any) =>
-    editnews.job?.[0].getskill?.map((item: any) => item.id).includes(data);
+    job?.getskill?.map((item: any) => item.id).includes(data);
 
   return (
     <div>
