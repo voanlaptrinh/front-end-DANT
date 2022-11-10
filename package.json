@@ -24,6 +24,7 @@
     "react-countdown": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.0",
+    "react-lazy": "^1.1.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.5.0",
