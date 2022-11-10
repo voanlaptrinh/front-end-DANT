@@ -19,6 +19,8 @@ import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import Item from "antd/lib/list/Item";
+import Countdown from "react-countdown";
+import { addDays } from "date-fns";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -37,7 +39,7 @@ const PostAdd = (props: Props) => {
   const getCategories = async () => {
     const { data } = await listNews();
     setCategories(data)
-    // console.log(data);
+    console.log(data);
   };
 
   const oncreate: SubmitHandler<any> = async (dataform: any) => {
@@ -62,14 +64,6 @@ const PostAdd = (props: Props) => {
     setAvatar(e.target.files[0]);
   };
 
-  // const onadd: SubmitHandler<any> = async (data: any) => {
-
-  //   dispatch(addProduct(product));
-  // };
-
-
-  console.log(categories);
-
   const user = categories?.user;
   const company = categories?.company;
   console.log(categories);
@@ -77,6 +71,7 @@ const PostAdd = (props: Props) => {
   if (!user) {
     return null;
   }
+
   return (
     <div>
       <div className="col-md-8 col-sm-12 col-12 recuitment-inner">

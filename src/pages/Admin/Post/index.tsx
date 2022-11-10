@@ -7,27 +7,47 @@ import { removeShowNews, showNews } from "../../../api/home";
 import vi from "date-fns/locale/vi";
 import { add, addMinutes, format } from "date-fns";
 import { id } from "date-fns/locale";
+import { formatCountdown } from "antd/lib/statistic/utils";
+import Countdown from "react-countdown";
 
 const Post: React.FC = () => {
   const [news, setNews] = useState<any>([]);
+  const [timeDays, setTimeDays] = useState<any>(false);
+
 
   useEffect(() => {
     getNews();
   }, []);
+
   const getNews = async () => {
     const { data } = await showNews();
     setNews(data);
-    console.log(data);
   };
-  const startDay = new Date();
-  // const endDay = news.job?.[0].end_job_time;
-  console.log(startDay);
+
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {
       await removeShowNews(id).then(() => getNews());
     }
   };
+
+  // const now = new Date().getTime();
+  // news.job?.map((item: any) => {
+  // const endDay = item.end_job_time
+  // const startDay = new Date(endDay).getTime();
+  // const distance = startDay - now;
+  // const days = Math.floor(distance / (24 * 60 * 60 * 1000));
+  // console.log(days);
+  // setTimeDays(false)
+  // if()
+  // })
+
+  // useEffect(() => {
+  //   startTimer();
+  // }, [])
+
+  // console.log(timeDays);
+
 
   const columns: ColumnsType<any> = [
     {
@@ -60,7 +80,7 @@ const Post: React.FC = () => {
     },
     {
       title: "Thời gian còn lại",
-      dataIndex: 20,
+      dataIndex: ["end_job_time"],
     },
     {
       title: "Thời gian đăng",
@@ -106,6 +126,7 @@ const Post: React.FC = () => {
   return (
     <div>
       <Table columns={columns} dataSource={news.job}></Table>
+      <p></p>
     </div>
   );
 };
