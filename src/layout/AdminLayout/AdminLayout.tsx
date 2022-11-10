@@ -1,6 +1,8 @@
 import {
   DesktopOutlined,
+  DownOutlined,
   FileOutlined,
+  LoginOutlined,
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
@@ -11,7 +13,7 @@ import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./AdminLayout.css";
 import "antd/dist/antd.css";
-import { isAuthenticate } from "../../api/auth";
+import { isAuthenticate, logout } from "../../api/auth";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -78,6 +80,11 @@ const AdminLayout = (props: Props) => {
         >
           <p style={{ marginBottom: 0 }}>Hello, {user.name}</p>
           <Avatar size="large" icon={<UserOutlined />} />
+          <Link to="/">
+            <a className="" onClick={() => logout()}>
+              <LoginOutlined />
+            </a>
+          </Link>
         </Header>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>

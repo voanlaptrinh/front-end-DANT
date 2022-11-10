@@ -8,6 +8,7 @@ import vi from "date-fns/locale/vi";
 import { add, addMinutes, format } from "date-fns";
 import { id } from "date-fns/locale";
 import { formatCountdown } from "antd/lib/statistic/utils";
+import ReactDOM from 'react-dom';
 import Countdown from "react-countdown";
 
 const Post: React.FC = () => {
@@ -31,6 +32,16 @@ const Post: React.FC = () => {
     }
   };
 
+  
+  var today = new Date();
+  var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+ var a =  today.setDate(today.getDate() - 6);
+  console.log(date);
+  console.log(a);
+  
+  
+
+
   // const now = new Date().getTime();
   // news.job?.map((item: any) => {
   // const endDay = item.end_job_time
@@ -50,6 +61,7 @@ const Post: React.FC = () => {
 
 
   const columns: ColumnsType<any> = [
+
     {
       title: "Logo",
       dataIndex: `logo`,
@@ -79,12 +91,17 @@ const Post: React.FC = () => {
       dataIndex: 20,
     },
     {
-      title: "Thời gian còn lại",
-      dataIndex: ["end_job_time"],
+      title:"Thời gian bắt đầu",
+      dataIndex: ["job_time"]
     },
     {
-      title: "Thời gian đăng",
-      dataIndex: 20,
+      title: "Thời gian còn lại",
+      dataIndex: [""],
+    },
+    {
+      title: "Kết thúc",
+      // dataIndex: 20,
+      dataIndex: ["end_job_time"]
     },
     {
       title: "Action",
