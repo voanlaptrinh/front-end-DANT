@@ -16,6 +16,7 @@ import EditNews from "./pages/Admin/Post/EditNews";
 import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 import JobDetail from "./pages/employer/getProfile/JobDetail";
 import Profile from "./pages/candidate/Profile/Profile";
+import ProfileDetail from "./pages/candidate/Profile/Profile";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
             <Route path="job/:id" element={<JobDetail />} />
-            <Route path="profile/:token" element={<Profile />} />
+            <Route path="profile/:token" element={<ProfileDetail />} />
           </Route>
           {/* Admin-Layout */}
           <Route path="admin" element={<AdminLayout />}>

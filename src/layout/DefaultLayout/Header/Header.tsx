@@ -149,7 +149,7 @@ const Header = (props: Props) => {
             >
               <ul className="nav-menu">
                 <li>
-                  <Link to="/">Trang chủ</Link>
+                  <Link to="/product">Trang chủ</Link>
                 </li>
                 <li>
                   <Link to="job" >Việc làm</Link>
@@ -228,51 +228,6 @@ const Header = (props: Props) => {
                     </li>
                   </ul>
                 </li>
-                {/* <li>
-                  <Link to="" className="nav-item">Employers</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="browse-employers.html">Browse Employers V1</a>
-                    </li>
-                    <li>
-                      <a href="browse-employers-list.html">
-                        Browse Employers V2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="employer-detail.html">Employer Detail</a>
-                    </li>
-                    <li>
-                      <a href="employer-dashboard.html">Employer Dashboard</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="" className="nav-item">Pages</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="blog.html">Blog Style</a>
-                    </li>
-                    <li>
-                      <a href="about-us.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Contact</a>
-                    </li>
-                    <li>
-                      <a href="404.html">404 Page</a>
-                    </li>
-                    <li>
-                      <a href="privacy.html">Privacy Policy</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="docs.html">Docs</a>
-                    </li>
-                  </ul>
-                </li> */}
               </ul>
             </div>
             <div className="dropdown align-to-right top">
@@ -315,10 +270,8 @@ const Header = (props: Props) => {
                       <UploadOutlined /> Post a Job
                     </a>
                     <button className="dropdown-item">
-                      <Link to="/">
-                        <a className="" onClick={() => logout()}>
-                          <LoginOutlined /> Đăng xuất
-                        </a>
+                      <Link to="/" onClick={() => logout()}>
+                        <LoginOutlined /> Đăng xuất
                       </Link>
                     </button>
                   </div>
@@ -402,7 +355,7 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0" name="" id="">
                         <option value="">Chọn Kĩ Năng</option>
                         {getAllSkill.skill?.map((item: any) => {
-                          return <option value={item.id}>{item.name}</option>;
+                          return <option key={item.id} value={item.id}>{item.name}</option>;
                         })}
                       </select>
                     </div>
@@ -412,7 +365,7 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0">
                         <option value="">Chọn Vùng Miền</option>
                         {getAllLocation.location?.map((item: any) => {
-                          return <option value={item.id}>{item.name}</option>;
+                          return <option key={item.id} value={item.id}>{item.name}</option>;
                         })}
                       </select>
                     </div>
