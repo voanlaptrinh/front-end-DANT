@@ -227,7 +227,7 @@ const Signupemployer = (props: Props) => {
     //                       <span>Hoặc</span>
     //                     </div>
     //                     <div className="row">
-    //                       <div className="col-sm-6 col-12 pr-7">
+    //                       <div className="col-sm-6 ">
     //                         <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
     //                           <FacebookOutlined />
     //                           <span> Đăng nhập bằng Facebook</span>
@@ -428,7 +428,7 @@ const Signupemployer = (props: Props) => {
         </footer>
       </blockquote>
       <section className="middle">
-        <div className="container">
+        <div className="container container-empoloyer">
           <div className="row">
             {/* login main descriptions */}
             <div className="col-md-6 login-main-left can1">
@@ -437,7 +437,7 @@ const Signupemployer = (props: Props) => {
             </div>
             {/* login main form */}
             <form method="POST" onSubmit={handleSubmit(onSignup)}>
-              <div className="row w-100">
+              <div className="row w-100 item-login">
                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
                   <input type="text" hidden value="2" {...register("id")} />
                   <div className="">
@@ -557,30 +557,34 @@ const Signupemployer = (props: Props) => {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-success float-right btn-login d-block w-100"
+                    className="btn float-right btn-login d-block w-100 cocaicc"
                   >
                     Đăng Ký Nhà Tuyển Dụng
                   </button>
-                  <div className="form-group d-block w-100 mt-5">
+                  
+                </div>
+                
+                <div className="form-group item-dnhap ">
+                  <br />
                     <div className="text-or text-center">
                       <span>Hoặc</span>
                     </div>
+                    <br />
                     <div className="row">
-                      <div className="col-sm-6 col-12 pr-7">
-                        <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-                          <FacebookOutlined />
-                          <span> Đăng nhập bằng Facebook</span>
+                      <div className="col ">
+                        <button className="btn  btn-login-facebook  fb-empoly">
+                          <FacebookOutlined className="fbIcon"/>
+                          <span> Facebook</span>
                         </button>
                       </div>
-                      <div className="col-sm-6 col-12 pl-7">
-                        <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-                          <GoogleOutlined />
-                          <span> Đăng nhập bằng Google</span>
+                      <div className="col ">
+                        <button className="btn  btn-login-google  gg-empoly">
+                          <GoogleOutlined className="ggIcon"/>
+                          <span>  Google</span>
                         </button>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </form>
             {/* login main form */}
@@ -602,7 +606,7 @@ const Signupemployer = (props: Props) => {
                 </div>
               </div>
               {/* login footer right */}
-              <div className="col-md-6 col-sm-12 col-12 login-footer-right">
+              <div className="col-md-6 col-sm-12 col-12 login-footer-right ml-5">
                 <ul>
                   <li>
                     <a href="#">Terms &amp; Conditions</a>

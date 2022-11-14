@@ -69,12 +69,13 @@ const Signupcandidate = (props: Props) => {
               {/* Nhét ảnh vào đây */}
             </div>
             {/* login main form */}
-            <div className="col-md-6 login-main-right w-100">
+            <div className="col-md-6 login-main w-100 item-login">
               <form
                 className="login-form reg-form"
                 method="POST"
                 onSubmit={handleSubmit(onSignup)}
               >
+                
                 <input type="text" hidden value="1" {...register("id")} />
                 <div className=" ">
                   <label htmlFor="fullName" className="fs-6 fw-normal py-2">
@@ -146,25 +147,27 @@ const Signupcandidate = (props: Props) => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary float-right btn-login d-block w-100"
+                  className=" btn float-right btn-login d-block w-100 cocaicc"
+                  
                 >
                   Đăng Ký
-                </button>
+                </button><br />
                 <div className="form-group d-block w-100 mt-5">
                   <div className="text-or text-center">
                     <span>Hoặc</span>
                   </div>
+                  <br />
                   <div className="row">
                     <div className="col-sm-6 col-12 pr-7">
-                      <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-                      <FacebookOutlined />
+                      <button className="btn  btn-login-facebook d-block w-100 float-left fb" >
+                      <FacebookOutlined className="fbIcon" />
                         <span> Facebook</span>
                       </button>
                     </div>
                    
                     <div className="col-sm-6 col-12 pl-7">
-                      <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-                      <GoogleOutlined />
+                      <button className="btn  btn-login-google btnw w-100 float-left gg">
+                      <GoogleOutlined className="ggIcon"/>
                         <span> Google</span>
                       </button>
                     </div>
@@ -190,7 +193,7 @@ const Signupcandidate = (props: Props) => {
                 </div>
               </div>
               {/* login footer right */}
-              <div className="col-md-6 col-sm-12 col-12 login-footer-right">
+              <div className="col-md-6 col-sm-12 col-12 login-footer-right ml-5 ">
                 <ul>
                   <li>
                     <a href="#">Terms &amp; Conditions</a>
