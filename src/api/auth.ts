@@ -25,12 +25,13 @@ export const profile1 = () => {
 
 export const signin = (data: User) => {
    const url = `/user/login`
+   // toast.success('Đăng Nhập thành công')
    return instance.post(url, data)
 }
 
 export const logout = () => {
    localStorage.removeItem('user');
-   toast.success('Đăng xuất thành công')
+   toast.info('Đăng xuất thành công')
 }
 
 

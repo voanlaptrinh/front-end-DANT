@@ -50,7 +50,9 @@ const Edit = (props: Props) => {
 
   const user = categories?.user;
   const company = categories?.company;
-  const job = editnews?.job;
+  const job = editnews?.job?.[0];
+  console.log(job);
+  
   const checkedSkill = (data: any) =>
     job?.getskill.map((item: any) => item.id).includes(data);
   const dateFormat = "YYYY/MM/DD";

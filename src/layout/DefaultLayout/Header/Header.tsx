@@ -1,16 +1,21 @@
 import {
+  CloseOutlined,
   DownOutlined,
   FileAddFilled,
   LoginOutlined,
+  SearchOutlined,
   UploadOutlined,
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticate, logout, signin } from "../../../api/auth";
 import { listCandidate } from "../../../api/home";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type Props = {};
 
@@ -19,7 +24,27 @@ const Header = (props: Props) => {
   const [getAllLocation, setLocation] = useState<any>([]);
   const navigate = useNavigate();
   const user = isAuthenticate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  interface FormValues {
+    email: string;
+    password: string;
+  }
+  const schema = yup
+    .object({
+      email: yup
+        .string()
+        .required("Vui lòng nhập email")
+        .email("Không đúng định dạng email"),
+      password: yup.string().required("Vui lòng nhập mật khẩu"),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     getSkill();
@@ -37,15 +62,20 @@ const Header = (props: Props) => {
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
-    localStorage.setItem("user", JSON.stringify(data));
-    console.log(data);
-    if (data.data) {
+
+  
+    if (!(data.data)) {
+     toast.error("Sai tài khoản hoặc mật khẩu");
+    }else{
+      localStorage.setItem("user", JSON.stringify(data));
       if (data.data.role_id == 1) {
-        navigate("/");
+        window.location.href ="/"
+        // navigate("/");
         return true;
       }
       if (data.data.role_id == 2) {
-        navigate("/admin")
+        window.location.href ="/admin"
+        // navigate("/admin");
         return true;
       }
     }
@@ -98,16 +128,10 @@ const Header = (props: Props) => {
                         >
                           <UserSwitchOutlined /> Thông tin
                         </Link>
-                        <Link
-                          className="dropdown-item"
-                          to={''}
-                        >
+                        <Link className="dropdown-item" to={""}>
                           <FileAddFilled /> Job của bạn
                         </Link>
-                        <Link
-                          className="dropdown-item"
-                          to={''}
-                        >
+                        <Link className="dropdown-item" to={""}>
                           <UploadOutlined /> Post a Job
                         </Link> */}
                         <button className="dropdown-item logout">
@@ -153,7 +177,7 @@ const Header = (props: Props) => {
                   <Link to="/product">Trang chủ</Link>
                 </li>
                 <li>
-                  <Link to="job" >Việc làm</Link>
+                  <Link to="job">Việc làm</Link>
                   <ul className="nav-dropdown nav-submenu">
                     <li>
                       <a href="job-search-v1.html">Job Search V1</a>
@@ -338,7 +362,8 @@ const Header = (props: Props) => {
                         className="form-control lg left-ico"
                         placeholder="Job Title, Keyword or Company"
                       />
-                      <i className="bnc-ico lni lni-search-alt" />
+                      <SearchOutlined className="bnc-ico lni lni-search-alt"  />
+          
                     </div>
                   </div>
                   {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -356,7 +381,11 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0" name="" id="">
                         <option value="">Chọn Kĩ Năng</option>
                         {getAllSkill.skill?.map((item: any) => {
-                          return <option key={item.id} value={item.id}>{item.name}</option>;
+                          return (
+                            <option value={item.id} key={item.id}>
+                              {item.name}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>
@@ -366,7 +395,11 @@ const Header = (props: Props) => {
                       <select className="custom-select lg b-0">
                         <option value="">Chọn Vùng Miền</option>
                         {getAllLocation.location?.map((item: any) => {
-                          return <option key={item.id} value={item.id}>{item.name}</option>;
+                          return (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>
@@ -406,11 +439,12 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined className="ti-close" />
+                  {/* <span  /> */}
                 </button>
               </div>
               <div className="p-5 rounded mx-auto d-block ">
-                <form method="POST" onClick={handleSubmit(onSignin)}>
+                <form method="POST">
                   <div className="form-group">
                     <label>Email</label>
                     <input
@@ -421,6 +455,7 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập email",
                       })}
                     />
+                    <p className="text-danger pt-1">{errors.email?.message}</p>
                   </div>
                   <div className="form-group">
                     <label>Password</label>
@@ -432,6 +467,9 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập mật khẩu",
                       })}
                     />
+                    <p className="text-danger pt-1">
+                      {errors.password?.message}
+                    </p>
                   </div>
                   <div className="form-group">
                     <div className="d-flex align-items-center justify-content-between">
@@ -457,6 +495,7 @@ const Header = (props: Props) => {
                     <button
                       type="submit"
                       className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
+                      onClick={handleSubmit(onSignin)}
                     >
                       Login
                     </button>
@@ -506,7 +545,8 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined className="ti-close" />
+                  {/* <span className="ti-close" /> */}
                 </button>{" "}
               </div>
               <div className="modal-body">

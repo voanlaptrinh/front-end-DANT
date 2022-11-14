@@ -18,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
+import Item from "antd/lib/list/Item";
+import { addDays } from "date-fns";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -27,8 +29,17 @@ type Props = {};
 const PostAdd = (props: Props) => {
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
-
   const [categories, setCategories] = useState<any>([]);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    const { data } = await listNews();
+    setCategories(data);
+    console.log(data);
+  };
 
   const oncreate: SubmitHandler<any> = async (dataform: any) => {
     const formData = new FormData();
@@ -52,28 +63,14 @@ const PostAdd = (props: Props) => {
     setAvatar(e.target.files[0]);
   };
 
-  // const onadd: SubmitHandler<any> = async (data: any) => {
-
-  //   dispatch(addProduct(product));
-  // };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
-  const getCategories = async () => {
-    const { data } = await listNews();
-    setCategories(data);
-  };
-
   const user = categories?.user;
   const company = categories?.company;
-  // console.log(categories.company);
-
-
+  console.log(categories);
 
   if (!user) {
     return null;
   }
+
   return (
     <div>
       <div className="col-md-8 col-sm-12 col-12 recuitment-inner">
@@ -580,7 +577,10 @@ const PostAdd = (props: Props) => {
                     <Input />
                   </Form.Item> */}
                   <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
+                    <label
+                      htmlFor="exampleFormControlInput1"
+                      className="form-label"
+                    >
                       Avatar:
                     </label>
                     <input
