@@ -48,7 +48,6 @@ const Signupcandidate = (props: Props) => {
     // navigate("/");
     window.location.href ="/"
     toast.success('Đăng kí tài khoản ứng viên thành công!');
-    
     return true;
     // console.log(data);
     // navigate("/homecan")
