@@ -3,11 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/auth";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { useDispatch } from 'react-redux'
-// import Header2 from "../../components/candidate/Header2";
-// import { signUpByUser } from '../../features/auth/authSlice'
-// import Logo from '../../assets/images/logo.jpg';
 import images from "../../images/sec-safe.png";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 
@@ -47,6 +44,12 @@ const Signupcandidate = (props: Props) => {
   });
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
+    // window.location.reload("/")
+    // navigate("/");
+    window.location.href ="/"
+    toast.success('Đăng kí tài khoản ứng viên thành công!');
+    
+    return true;
     // console.log(data);
     // navigate("/homecan")
   };
@@ -141,7 +144,7 @@ const Signupcandidate = (props: Props) => {
                 <div className="form-group d-block frm-text">
                   <a href="#" className="fg-login d-inline-block" />
 
-                  <a href="#" className="fg-login float-right d-inline-block">
+                  <a href="/" className="fg-login float-right d-inline-block">
                     Bạn đã có tài khoản? Đăng Nhập
                   </a>
                 </div>

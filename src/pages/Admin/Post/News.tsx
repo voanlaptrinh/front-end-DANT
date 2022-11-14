@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined, RightOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
+import { toast } from "react-toastify";
 import { removeShowNews, showNews } from "../../../api/home";
 import '../../../css/plugins/quanlycv.css'
 
@@ -23,6 +24,7 @@ const News = (props: Props) => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {
       await removeShowNews(id).then(() => getNews());
+      toast.success('Đã xóa thành công');
     }
   };
 

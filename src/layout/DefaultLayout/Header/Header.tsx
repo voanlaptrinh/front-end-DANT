@@ -3,6 +3,7 @@ import {
   DownOutlined,
   FileAddFilled,
   LoginOutlined,
+  SearchOutlined,
   UploadOutlined,
   UserOutlined,
   UserSwitchOutlined,
@@ -62,21 +63,19 @@ const Header = (props: Props) => {
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
 
-    localStorage.setItem("user", JSON.stringify(data));
-    if ( localStorage.get("user", JSON.stringify(data))) {
-      toast.error('lll');
-      return;
-    }
-    if (data.data) {
-      console.log(data.data.message);
-      
-     
+  
+    if (!(data.data)) {
+     toast.error("Sai tài khoản hoặc mật khẩu");
+    }else{
+      localStorage.setItem("user", JSON.stringify(data));
       if (data.data.role_id == 1) {
-        navigate("/");
+        window.location.href ="/"
+        // navigate("/");
         return true;
       }
       if (data.data.role_id == 2) {
-        navigate("/admin");
+        window.location.href ="/admin"
+        // navigate("/admin");
         return true;
       }
     }
@@ -364,7 +363,8 @@ const Header = (props: Props) => {
                         className="form-control lg left-ico"
                         placeholder="Job Title, Keyword or Company"
                       />
-                      <i className="bnc-ico lni lni-search-alt" />
+                      <SearchOutlined className="bnc-ico lni lni-search-alt"  />
+          
                     </div>
                   </div>
                   {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -445,7 +445,7 @@ const Header = (props: Props) => {
                 </button>
               </div>
               <div className="p-5 rounded mx-auto d-block ">
-                <form method="POST" onClick={handleSubmit(onSignin)}>
+                <form method="POST">
                   <div className="form-group">
                     <label>Email</label>
                     <input
@@ -496,6 +496,7 @@ const Header = (props: Props) => {
                     <button
                       type="submit"
                       className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
+                      onClick={handleSubmit(onSignin)}
                     >
                       Login
                     </button>
