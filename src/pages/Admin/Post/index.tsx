@@ -1,4 +1,4 @@
-import { EditOutlined, FlagOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, FlagOutlined } from "@ant-design/icons";
 import { Divider, Radio, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import { SubmitHandler } from "react-hook-form";
 import { removeShowNews, showNews } from "../../../api/home";
 import moment from "moment";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
+
 
 const Post: React.FC = () => {
   const [news, setNews] = useState<any>([]);
@@ -28,6 +30,7 @@ const Post: React.FC = () => {
     const confim = window.confirm("bạn có muốn xóa không");
     if (confim) {
       await removeShowNews(id).then(() => getNews());
+      toast.success("Đã xóa thành công");
     }
   };
 
@@ -88,14 +91,13 @@ const Post: React.FC = () => {
             className="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"
             onClick={() => onRemove(id)}
           >
-            <i className="lni lni-trash-can" />
+           <DeleteOutlined />
           </a>
         </div>
       ),
     },
   ];
 
-  
   const dataSource = news.job?.map((item: any) => {
     console.log(moment(item.end_job_time).format("DD"));
     const currentDate = moment().daysInMonth();
@@ -104,7 +106,7 @@ const Post: React.FC = () => {
     console.log(`end_time : ${end_job_time}`);
     console.log(`current_time : ${currentDate}`);
     console.log(`remaining_day : ${remaining_day}`);
-    
+
     return {
       id: item.id,
       logo: item.logo,
