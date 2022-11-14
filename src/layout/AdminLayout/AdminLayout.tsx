@@ -19,6 +19,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 const user = isAuthenticate();
+
 function getItem(
   label: React.ReactNode,
   key: React.Key,
@@ -56,7 +57,6 @@ type Props = {};
 
 const AdminLayout = (props: Props) => {
   const [collapsed, setCollapsed] = useState(false);
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider

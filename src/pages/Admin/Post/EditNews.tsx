@@ -24,7 +24,8 @@ const EditNews = (props: Props) => {
   }, []);
 
   const onupdate: SubmitHandler<any> = async (data: any) => {
-    await axios.put(`http://datnweb19.herokuapp.com/api/employer/update/${id}`, data)
+    await axios.put(`http://datnweb19.herokuapp.com/api/employer/update/${id}`, data);
+    navigate('/admin/post')
   }
 
   const getEditNews = async (id: any) => {

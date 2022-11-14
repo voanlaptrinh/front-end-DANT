@@ -43,7 +43,6 @@ const Header = (props: Props) => {
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
     localStorage.setItem("user", JSON.stringify(data));
-    console.log(data);
     if (data.data) {
       if (data.data.role_id == 1) {
         navigate("/");
@@ -55,7 +54,7 @@ const Header = (props: Props) => {
       }
     }
   };
-
+  
   return (
     <div id="main-wrapper">
       {/* <!-- Start Navigation --> */}

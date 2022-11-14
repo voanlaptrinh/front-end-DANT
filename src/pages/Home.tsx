@@ -1,4 +1,6 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
+import { signin } from "../api/auth";
 import Header from "../layout/DefaultLayout/Header/Header";
 
 type Props = {};
@@ -6,7 +8,6 @@ type Props = {};
 const Home = (props: Props) => {
   return (
     <div>
-      <Header />
       {/* ======================= Job List ======================== */}
       <section className="middle">
         <div className="container">
