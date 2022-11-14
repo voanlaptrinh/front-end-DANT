@@ -1,5 +1,7 @@
 import React from "react";
-import Header from "../components/candidate/Header";
+import { Navigate } from "react-router-dom";
+import { signin } from "../api/auth";
+import Header from "../layout/DefaultLayout/Header/Header";
 
 type Props = {};
 
