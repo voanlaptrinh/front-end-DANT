@@ -29,7 +29,7 @@ function App() {
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
             <Route path="job/:id" element={<JobDetail />} />
-            <Route path="profile/:token" element={<ProfileDetail />} />
+            <Route path="profile" element={<ProfileDetail />} />
           </Route>
           {/* Admin-Layout */}
           <Route path="admin" element={<AdminLayout />}>

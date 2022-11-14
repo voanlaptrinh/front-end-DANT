@@ -6,66 +6,80 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { getProfileByToken, updateProfileById } from '../../../api/profile';
 import { Experience, Lever, Profession, Profile, Timework, Wage } from '../../../types/profile';
 import './Profile.css';
-import { Button, Checkbox, Form, Input, Select } from 'antd';
+import { listNews } from '../../../api/home';
+import { User } from '../../../types/user';
 
 type Props = {}
 interface FormValues {
    name: string,
-   email: string,
    Address: string,
    Phone: string,
-   skill_id: number,
    experience_id: number,
    lever_id: number,
    wage_id: number,
-   time_work_id: number
+   time_work_id: number,
    profession_id: number
 }
 
-const schema = yup.object().shape({
+const profileSchema = yup.object().shape({
    name: yup.string().required('Vui lòng nhập họ và tên'),
-   email: yup.string().email('Vui nhập đúng định dạng email').required('Vui lòng nhập email'),
    Address: yup.string().required('Vui lòng nhập địa chỉ'),
    Phone: yup.string().required('Vui lòng nhập số điện thoại').length(10, 'Vui lòng nhập tối đa 10 chữ số'),
-   experience_id: yup.number().required('Vui lòng chọn kinh nghiệm'),
-   wage_id: yup.number().required('Vui lòng chọn mức lương '),
-   skill_id: yup.number().required('Vui lòng chọn kỹ năng'),
-   lever_id: yup.number().required('Vui lòng chọn cấp độ'),
-   time_work_id: yup.number().required('Vui lòng chọn thời gian làm việc'),
-   profession_id: yup.number().required('Vui lòng chọn chuyên ngành')
+   experience_id: yup.number().positive('Vui lòng chọn kinh nghiệm'),
+   wage_id: yup.number().positive('Vui lòng chọn mức lương '),
+   // skill_id: yup.number().positive('Vui lòng chọn kỹ năng'),
+   lever_id: yup.number().positive('Vui lòng chọn cấp độ'),
+   time_work_id: yup.number().positive('Vui lòng chọn thời gian làm việc'),
+   profession_id: yup.number().positive('Vui lòng chọn chuyên ngành')
 }).required()
 
 const ProfileDetail = (props: Props) => {
-   const { token } = useParams();
-   const [profile, setProfile] = useState<Profile | null>(null);
+   const [user, setUser] = useState<any | null>(null);
+   const [category, setCategory] = useState<any | null>(null);
    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>({
-
+      resolver: yupResolver(profileSchema),
    });
 
    useEffect(() => {
-      const getProfile = async () => {
-         try {
-            const { data } = await getProfileByToken(token);
-            console.log(data);
-            reset(data.user)
-            setProfile(data);
+      getUser();
+      getCategory();
+   }, [])
 
-         } catch (error) {
-            console.log(error);
-         }
+
+   const getUser = async () => {
+      try {
+         const { data } = await getProfileByToken();
+         setUser(data);
+         console.log(data.user.id);
+         console.log(data);
+
+      } catch (error) {
+         console.log(error);
       }
-      getProfile();
-   }, [token])
+   }
 
-   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-      // try {
-      //    await updateProfileById(data)
-      //    alert('Cập nhật thành công')
-      // } catch (error: any) {
-      //    console.log(error);
-      //    alert('Có lỗi xảy ra')
-      // }
+   const getCategory = async () => {
+      try {
+         const { data } = await listNews();
+         setCategory(data);
+         console.log(data);
+      } catch (error) {
+         console.log(error);
+      }
+   }
+
+   const Submit: SubmitHandler<FormValues> = async (data: any) => {
+      try {
+         await updateProfileById(user?.user.id, data)
+         alert('Cập nhật thành công')
+         console.log(user?.id);
+
+      } catch (error: any) {
+         console.log(error);
+         alert('Có lỗi xảy ra')
+      }
       console.log(data);
+
    }
 
    return (
@@ -94,7 +108,7 @@ const ProfileDetail = (props: Props) => {
                      </div>
 
                      <div className="_dashboard_content_body py-3 px-3">
-                        <form className="row" onSubmit={handleSubmit(onSubmit)}>
+                        <form className="row" onSubmit={handleSubmit(Submit)}>
                            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                               <div className="custom-file avater_uploads" >
                                  <input type="file" className="custom-file-input" style={{ cursor: 'pointer' }} id="customFile" />
@@ -108,7 +122,7 @@ const ProfileDetail = (props: Props) => {
                                  <div className="col-xl-6 col-lg-6">
                                     <div className="form-group">
                                        <label className="text-dark ft-medium">Họ và tên</label>
-                                       <input type="text" className="form-control rounded"  {...register('name')} placeholder='Nhập họ và tên' />
+                                       <input type="text" className="form-control rounded"   {...register('name')} placeholder='Nhập họ và tên' />
                                        <p className='text-danger'>{errors.name?.message}</p>
                                     </div>
                                  </div>
@@ -128,21 +142,14 @@ const ProfileDetail = (props: Props) => {
                                        <p className='text-danger'>{errors.Phone?.message}</p>
                                     </div>
                                  </div>
-                                 {/* email */}
-                                 <div className="col-xl-6 col-lg-6">
-                                    <div className="form-group">
-                                       <label className="text-dark ft-medium">Email</label>
-                                       <input type="email" className="form-control rounded" {...register('email')} disabled />
-                                    </div>
-                                 </div>
                                  {/* job_type */}
                                  <div className="col-xl-6 col-lg-6">
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Loại công việc</label>
                                        <select className="custom-select form-control rounded"  {...register('time_work_id')}>
-                                          <option defaultValue={0}>Chọn loại công việc</option>
-                                          {profile?.timework ? profile.timework.map((item: Timework) => {
-                                             return <option key={item.id} value={Number(item.id)} >{item.name}</option>
+                                          <option value={-1}>Chọn loại công việc</option>
+                                          {category?.timework ? category.timework.map((item: Timework) => {
+                                             return <option key={item.id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
                                        <p className="text-danger">{errors.time_work_id?.message}</p>
@@ -153,8 +160,8 @@ const ProfileDetail = (props: Props) => {
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Kinh nghiệm</label>
                                        <select className="custom-select form-control rounded" placeholder='Chọn mức kinh nghiệm'{...register('experience_id')}>
-                                          <option defaultValue={''}>Chọn kinh nghiệm</option>
-                                          {profile?.experience ? profile.experience.map((item: Experience) => {
+                                          <option value={-1} >Chọn kinh nghiệm</option>
+                                          {category?.experience ? category.experience.map((item: Experience) => {
                                              return <option key={item.id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
@@ -166,8 +173,8 @@ const ProfileDetail = (props: Props) => {
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Mức lương</label>
                                        <select className="custom-select form-control rounded" placeholder='Chọn mức lương'{...register('wage_id')}>
-                                          <option defaultValue={''}>Chọn kinh nghiệm</option>
-                                          {profile?.wage ? profile.wage.map((item: Wage) => {
+                                          <option value={-1}>Chọn kinh nghiệm</option>
+                                          {category?.wage ? category.wage.map((item: Wage) => {
                                              return <option key={item.id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
@@ -179,8 +186,8 @@ const ProfileDetail = (props: Props) => {
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Bằng cấp</label>
                                        <select className="custom-select form-control rounded" placeholder='Chọn bằng cấp'{...register('lever_id')}>
-                                          <option defaultValue={''}>Chọn bằng cấp</option>
-                                          {profile?.lever ? profile.lever.map((item: Lever) => {
+                                          <option value={-1}>Chọn bằng cấp</option>
+                                          {category?.lever ? category.lever.map((item: Lever) => {
                                              return <option key={item.id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
@@ -192,8 +199,8 @@ const ProfileDetail = (props: Props) => {
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Chuyên ngành</label>
                                        <select className="custom-select form-control rounded" {...register('lever_id')}>
-                                          <option defaultValue={''} >Chọn chuyên ngành</option>
-                                          {profile?.profession ? profile.profession.map((item: Profession) => {
+                                          <option value={-1} >Chọn chuyên ngành</option>
+                                          {category?.profession ? category.profession.map((item: Profession) => {
                                              return <option key={item.id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>

@@ -91,9 +91,10 @@ const Header = (props: Props) => {
                         className="dropdown-menu"
                         aria-labelledby="btnDropdownDemo"
                       >
-                        <Link
+                        <div>hello word</div>
+                        {/* <Link
                           className="dropdown-item"
-                          to={`profile/index/${user.token}`}
+                          to={`profile`}
                         >
                           <UserSwitchOutlined /> Thông tin
                         </Link>
@@ -108,7 +109,7 @@ const Header = (props: Props) => {
                           to={''}
                         >
                           <UploadOutlined /> Post a Job
-                        </Link>
+                        </Link> */}
                         <button className="dropdown-item logout">
                           <div onClick={() => logout()}>
                             <LoginOutlined /> Đăng xuất

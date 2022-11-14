@@ -4,7 +4,6 @@ import Footer from "./Footer/Footer";
 import '../../js/smoothproducts.js'
 import './Header2/Header2.css';
 import '../../css/styles.css'
-import Header2 from "./Header2/Header2";
 import Header from "./Header/Header";
 
 type Props = {};
