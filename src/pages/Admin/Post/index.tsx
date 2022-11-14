@@ -4,25 +4,24 @@ import type { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { removeShowNews, showNews } from "../../../api/home";
-import vi from "date-fns/locale/vi";
-import { add, addMinutes, format } from "date-fns";
-import { id } from "date-fns/locale";
-import { formatCountdown } from "antd/lib/statistic/utils";
-import ReactDOM from 'react-dom';
-import Countdown from "react-countdown";
+import moment from "moment";
+import { format } from "date-fns";
 
 const Post: React.FC = () => {
   const [news, setNews] = useState<any>([]);
-  const [timeDays, setTimeDays] = useState<any>(false);
-
 
   useEffect(() => {
     getNews();
   }, []);
 
   const getNews = async () => {
-    const { data } = await showNews();
-    setNews(data);
+    try {
+      const { data } = await showNews();
+      setNews(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onRemove: SubmitHandler<any> = async (id: any) => {
@@ -32,36 +31,7 @@ const Post: React.FC = () => {
     }
   };
 
-  
-  var today = new Date();
-  var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
- var a =  today.setDate(today.getDate() - 6);
-  console.log(date);
-  console.log(a);
-  
-  
-
-
-  // const now = new Date().getTime();
-  // news.job?.map((item: any) => {
-  // const endDay = item.end_job_time
-  // const startDay = new Date(endDay).getTime();
-  // const distance = startDay - now;
-  // const days = Math.floor(distance / (24 * 60 * 60 * 1000));
-  // console.log(days);
-  // setTimeDays(false)
-  // if()
-  // })
-
-  // useEffect(() => {
-  //   startTimer();
-  // }, [])
-
-  // console.log(timeDays);
-
-
   const columns: ColumnsType<any> = [
-
     {
       title: "Logo",
       dataIndex: `logo`,
@@ -91,17 +61,17 @@ const Post: React.FC = () => {
       dataIndex: 20,
     },
     {
-      title:"Thời gian bắt đầu",
-      dataIndex: ["job_time"]
-    },
-    {
-      title: "Thời gian còn lại",
-      dataIndex: [""],
+      title: "Thời gian bắt đầu",
+      dataIndex: ["job_time"],
     },
     {
       title: "Kết thúc",
       // dataIndex: 20,
-      dataIndex: ["end_job_time"]
+      dataIndex: ["end_job_time"],
+    },
+    {
+      title: "Thời gian còn lại",
+      dataIndex: ["remaining_day"],
     },
     {
       title: "Action",
@@ -123,26 +93,32 @@ const Post: React.FC = () => {
         </div>
       ),
     },
-    {
-      // dataIndex: "id",
-      // render: (id: string) => (
-      // ),
-      // render: () => (
-      //    <Space size="middle">
-      //       <div className="dash-action">
-      //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><FlagOutlined /></a>
-      //          <a href="javascript:void(0);" className="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i className="lni lni-eye" /></a>
-      //          <a href="javascript:void(0);" className="p-2 circle text-black bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><EditOutlined /></a>
-      //       </div>
-      //    </Space>
-      // ),
-    },
   ];
-  // console.log(news.getprofession.name);
+
+  
+  const dataSource = news.job?.map((item: any) => {
+    console.log(moment(item.end_job_time).format("DD"));
+    const currentDate = moment().daysInMonth();
+    const end_job_time = moment(item.end_job_time).daysInMonth();
+    const remaining_day = Number(end_job_time) - Number(currentDate);
+    console.log(`end_time : ${end_job_time}`);
+    console.log(`current_time : ${currentDate}`);
+    console.log(`remaining_day : ${remaining_day}`);
+    
+    return {
+      id: item.id,
+      logo: item.logo,
+      title: item.title,
+      getprofession: item.getprofession,
+      job_time: currentDate,
+      end_job_time: moment(item.end_job_time).format("DD-MM-YYYY"),
+      remaining_day: remaining_day,
+    };
+  });
 
   return (
     <div>
-      <Table columns={columns} dataSource={news.job}></Table>
+      <Table columns={columns} dataSource={dataSource}></Table>
       <p></p>
     </div>
   );

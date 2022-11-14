@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import {
   Form,
@@ -19,7 +19,6 @@ import { listNews, createNews } from "../../../../api/home";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import Item from "antd/lib/list/Item";
-import Countdown from "react-countdown";
 import { addDays } from "date-fns";
 
 const { RangePicker } = DatePicker;
@@ -38,7 +37,7 @@ const PostAdd = (props: Props) => {
 
   const getCategories = async () => {
     const { data } = await listNews();
-    setCategories(data)
+    setCategories(data);
     console.log(data);
   };
 
@@ -415,7 +414,6 @@ const PostAdd = (props: Props) => {
                       options={categories.skill?.map((skill: any) => ({
                         label: skill.name,
                         value: skill.id,
-
                       }))}
                     ></Checkbox.Group>
                   </Form.Item>

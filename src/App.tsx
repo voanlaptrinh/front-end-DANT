@@ -34,36 +34,35 @@ function App() {
       <main>
         <Routes>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          {/* Default-Layout */}
-          <Route path="/" element={<DefaultLayout />}>
-            <Route index element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="detail" element={<Detail />} />
-            <Route path="search" element={<Search />} />
-            <Route path="job/:id" element={<JobDetail />} />
-            <Route path="profile/:token" element={<Profile />} />
-            <Route path="contact" element={<Contac />} />
-          </Route>
-          {/* Admin-Layout */}
-          <Route path="admin" element={<PrivteRoute> <AdminLayout /> </PrivteRoute>}>
-            <Route index element={<Dashboard />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="post">
-              <Route index element={<Post />} />
-              <Route path="news" element={<News />} />
-              <Route path="add" element={<PostAdd />} />
-              <Route path="editNews/:id" element={<EditNews />} />
-              <Route path="edit/:id" element={<Edit />} />
+            <Route path="/" element={<Home />} />
+            {/* Default-Layout */}
+            <Route path="product" element={<DefaultLayout />}>
+              <Route path="detail" element={<Detail />} />
+              <Route path="search" element={<Search />} />
+              <Route path="job/:id" element={<JobDetail />} />
+              <Route path="profile/:token" element={<Profile />} />
+              <Route path="contact" element={<Contac />} />
             </Route>
-          </Route>
-          {/* Auth-page */}
-          <Route
-            path="/login/signupcandidate"
-            element={<Signupcandidate />}
-          />
-          <Route path="/login/signupempoly" element={<Signupemployer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/Pickpassword" element={<Pickpassword />} />
+            {/* Admin-Layout */}
+            <Route path="admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="post">
+                <Route index element={<Post />} />
+                <Route path="news" element={<News />} />
+                <Route path="add" element={<PostAdd />} />
+                <Route path="editNews/:id" element={<EditNews />} />
+                <Route path="edit/:id" element={<Edit />} />
+              </Route>
+            </Route>
+            {/* Auth-page */}
+            <Route
+              path="/login/signupcandidate"
+              element={<Signupcandidate />}
+            />
+            <Route path="/login/signupempoly" element={<Signupemployer />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Pickpassword" element={<Pickpassword />} />
           {/* </Suspense> */}
         </Routes>
       </main>
