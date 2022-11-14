@@ -8,6 +8,7 @@ type Props = {};
 const Home = (props: Props) => {
   return (
     <div>
+      <Header />
       {/* ======================= Job List ======================== */}
       <section className="middle">
         <div className="container">

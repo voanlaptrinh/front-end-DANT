@@ -23,7 +23,7 @@ import { isAuthenticate } from "./api/auth";
 function App() {
   const PrivteRoute = (props: any) => {
     const user = isAuthenticate();
-    if (!user || user.role_id == 1) {
+    if (!user || user.role_id != 2) {
       return false
     }
     return props.children
@@ -44,7 +44,7 @@ function App() {
               <Route path="contact" element={<Contac />} />
             </Route>
             {/* Admin-Layout */}
-            <Route path="admin" element={<AdminLayout />}>
+            <Route path="admin" element={<PrivteRoute> <AdminLayout /> </PrivteRoute>  }>
               <Route index element={<Dashboard />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="post">
