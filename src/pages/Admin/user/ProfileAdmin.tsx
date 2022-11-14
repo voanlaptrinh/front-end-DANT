@@ -79,7 +79,10 @@ const ProfileAdmin = (props: Props) => {
                       </div>
                       <div className="col-xl-6 col-lg-6">
                         <div className="form-group">
-                          <label className="text-dark ft-medium"> </label>
+                          <label className="text-dark ft-medium">
+                            {" "}
+                            Địa chỉ{" "}
+                          </label>
                           <input
                             type="email"
                             className="form-control rounded"
