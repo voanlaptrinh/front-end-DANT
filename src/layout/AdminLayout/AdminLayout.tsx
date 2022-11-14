@@ -40,8 +40,8 @@ const items: MenuItem[] = [
     getItem(<Link to={"post/news"}>Quản lý CV</Link>, "5"),
     getItem(<Link to={"post/add"}>Đăng tin tuyển dụng </Link>, "2"),
   ]),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "5"),
+  getItem("Tài khoản", "sub1", <UserOutlined />, [
+    getItem(<Link to={"profile"}>Tài khoản của bạn</Link>, "2"),
     getItem("Bill", "6"),
     getItem("Alex", "7"),
   ]),
