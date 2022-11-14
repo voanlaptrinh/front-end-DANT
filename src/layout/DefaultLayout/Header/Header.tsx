@@ -1,4 +1,5 @@
 import {
+  CloseOutlined,
   DownOutlined,
   FileAddFilled,
   LoginOutlined,
@@ -8,9 +9,12 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticate, logout, signin } from "../../../api/auth";
 import { listCandidate } from "../../../api/home";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type Props = {};
 
@@ -19,11 +23,27 @@ const Header = (props: Props) => {
   const [getAllLocation, setLocation] = useState<any>([]);
   const navigate = useNavigate();
   const user = isAuthenticate();
+  interface FormValues {
+    email: string;
+    password: string;
+  }
+  const schema = yup
+    .object({
+      email: yup
+        .string()
+        .required("Vui lòng nhập email")
+        .email("Không đúng định dạng email"),
+      password: yup.string().required("Vui lòng nhập mật khẩu"),
+    })
+    .required();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     getSkill();
@@ -39,11 +59,18 @@ const Header = (props: Props) => {
     setLocation(data);
   };
 
-
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
+
     localStorage.setItem("user", JSON.stringify(data));
+    if ( localStorage.get("user", JSON.stringify(data))) {
+      toast.error('lll');
+      return;
+    }
     if (data.data) {
+      console.log(data.data.message);
+      
+     
       if (data.data.role_id == 1) {
         navigate("/");
         return true;
@@ -413,7 +440,8 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined className="ti-close" />
+                  {/* <span  /> */}
                 </button>
               </div>
               <div className="p-5 rounded mx-auto d-block ">
@@ -428,6 +456,7 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập email",
                       })}
                     />
+                    <p className="text-danger pt-1">{errors.email?.message}</p>
                   </div>
                   <div className="form-group">
                     <label>Password</label>
@@ -439,6 +468,9 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập mật khẩu",
                       })}
                     />
+                    <p className="text-danger pt-1">
+                      {errors.password?.message}
+                    </p>
                   </div>
                   <div className="form-group">
                     <div className="d-flex align-items-center justify-content-between">
@@ -513,7 +545,8 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined className="ti-close" />
+                  {/* <span className="ti-close" /> */}
                 </button>{" "}
               </div>
               <div className="modal-body">

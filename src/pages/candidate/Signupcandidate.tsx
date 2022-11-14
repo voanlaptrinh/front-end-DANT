@@ -51,10 +51,11 @@ const Signupcandidate = (props: Props) => {
     // navigate("/homecan")
   };
   return (
-    <div  className="container">
+    <div className="container">
       <blockquote className="blockquote text-center ">
         <p className="mb-0">
-        Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng
+          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
+          tưởng
         </p>
         <footer className="blockquote-footer">
           Đăng kí <cite title="Source Title">Ứng viên</cite>
@@ -139,7 +140,7 @@ const Signupcandidate = (props: Props) => {
                 </div>
                 <div className="form-group d-block frm-text">
                   <a href="#" className="fg-login d-inline-block" />
-                  
+
                   <a href="#" className="fg-login float-right d-inline-block">
                     Bạn đã có tài khoản? Đăng Nhập
                   </a>
@@ -157,14 +158,14 @@ const Signupcandidate = (props: Props) => {
                   <div className="row">
                     <div className="col-sm-6 col-12 pr-7">
                       <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-                      <FacebookOutlined />
+                        <FacebookOutlined />
                         <span> Facebook</span>
                       </button>
                     </div>
-                   
+
                     <div className="col-sm-6 col-12 pl-7">
                       <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-                      <GoogleOutlined />
+                        <GoogleOutlined />
                         <span> Google</span>
                       </button>
                     </div>

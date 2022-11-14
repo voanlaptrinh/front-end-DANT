@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"
 import { isAuthenticate, logout, signin } from "../../../api/auth";
 import { listCandidate } from "../../../api/home";
 import "./header2.css";
