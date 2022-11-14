@@ -138,7 +138,6 @@ const Signupemployer = (props: Props) => {
                       {errors.comfirmPassword?.message}
                     </p>
                     </div>
-                    
                   </div>
                 </div>
                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
@@ -174,7 +173,7 @@ const Signupemployer = (props: Props) => {
                         className="form-control rounded"
                         placeholder="nhập địa chỉ công ty"
                         {...register("workplace", { required: true })}
-                      />
+                      /> 
                     <p className="text-danger pt-1">
                       {errors.workplace?.message}
                     </p>
