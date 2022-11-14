@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { listNews } from "../../../api/home";
 
 type Props = {};
 
 const ProfileAdmin = (props: Props) => {
+  const [news, setNews] = useState<any>([]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<any>({});
+  useEffect(() => {
+    getNews();
+  }, []);
+
+  const getNews = async () => {
+    const { data } = await listNews();
+    setNews(data);
+  };
+  console.log(news?.company?.[0]);
+
   return (
     <div>
       <div className="dashboard-widg-bar d-block">
@@ -33,6 +52,11 @@ const ProfileAdmin = (props: Props) => {
                   </div>
                   <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12">
                     <div className="row">
+                      <input
+                        type="hidden"
+                        value={news.user?.[0].id}
+                        {...register("id_Employer", { required: true })}
+                      />
                       <div className="col-xl-6 col-lg-6">
                         <div className="form-group">
                           <label className="text-dark ft-medium">
@@ -41,7 +65,8 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue="Full Name"
+                            defaultValue={news.user?.[0].name}
+                            {...register("name", { required: true })}
                           />
                         </div>
                       </div>
@@ -51,7 +76,7 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue="Job Name"
+                            defaultValue={news.user?.[0].workplace}
                           />
                         </div>
                       </div>
@@ -63,7 +88,7 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue="Phone"
+                            defaultValue={news.user?.[0].phone}
                           />
                         </div>
                       </div>
@@ -73,7 +98,7 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="email"
                             className="form-control rounded"
-                            defaultValue="uppcl@gmail.com"
+                            defaultValue={news.user?.[0].email}
                           />
                         </div>
                       </div>
@@ -86,20 +111,7 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="email"
                             className="form-control rounded"
-                            defaultValue="e.x Englisg, Hindi"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xl-12 col-lg-12">
-                        <div className="form-group">
-                          <label className="text-dark ft-medium">
-                            Giới thiệu cái nhân
-                          </label>
-                          <textarea
-                            className="form-control with-light"
-                            defaultValue={
-                              "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi"
-                            }
+                            defaultValue={news.user?.[0].address}
                           />
                         </div>
                       </div>
@@ -115,6 +127,7 @@ const ProfileAdmin = (props: Props) => {
                       </div>
                     </div>
                   </div>
+                  ;
                 </form>
               </div>
             </div>
@@ -177,25 +190,21 @@ const ProfileAdmin = (props: Props) => {
                   </h4>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-6">
-                <div className="form-group">
-                  <label className="d-block text-dark ft-medium">
-                    Thành phố
-                  </label>
-                  <select
-                    className="custom-select form-control rounded"
-                    placeholder="Chọn mức lương hiện tại"
-                  >
-                    <option value={1}>Hà nội</option>
-                  </select>
-                </div>
-              </div>
               <div className="_dashboard_content_body py-3 px-3">
                 <form className="row">
+                  <input
+                    type="hidden"
+                    value={news.company?.[0].id_company}
+                    {...register("id_company", { required: true })}
+                  />
                   <div className="col-xl-6 col-lg-6 col-md-12">
                     <div className="form-group">
                       <label className="text-dark ft-medium">Tên công ty</label>
-                      <input type="text" className="form-control rounded" />
+                      <input
+                        type="text"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].name}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12">
@@ -203,7 +212,11 @@ const ProfileAdmin = (props: Props) => {
                       <label className="text-dark ft-medium">
                         Email công ty
                       </label>
-                      <input type="text" className="form-control rounded" />
+                      <input
+                        type="text"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].email}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12">
@@ -211,7 +224,23 @@ const ProfileAdmin = (props: Props) => {
                       <label className="text-dark ft-medium">
                         Quy mô nhân sự
                       </label>
-                      <input type="text" className="form-control rounded" />
+                      <input
+                        type="text"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].number_member}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label className="text-dark ft-medium">
+                        số điện thoại
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].phone}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12">
@@ -219,7 +248,11 @@ const ProfileAdmin = (props: Props) => {
                       <label className="text-dark ft-medium">
                         Địa chỉ cụ thể
                       </label>
-                      <input type="text" className="form-control rounded" />
+                      <input
+                        type="text"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].address}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12">
@@ -227,7 +260,11 @@ const ProfileAdmin = (props: Props) => {
                       <label className="text-dark ft-medium">
                         logo của công ty
                       </label>
-                      <input type="file" className="form-control rounded" />
+                      <input
+                        type="file"
+                        className="form-control rounded"
+                        defaultValue={news.company?.[0].logo}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-12 col-lg-12">
@@ -235,7 +272,10 @@ const ProfileAdmin = (props: Props) => {
                       <label className="text-dark ft-medium">
                         Giới thiệu về công ty
                       </label>
-                      <textarea className="form-control with-light" />
+                      <textarea
+                        className="form-control with-light"
+                        defaultValue={news.company?.[0].Desceibe}
+                      />
                     </div>
                   </div>
                   <div className="col-xl-12 col-lg-12">
