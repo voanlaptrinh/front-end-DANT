@@ -4,9 +4,7 @@ import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { removeShowNews, showNews } from "../../../api/home";
 import '../../../css/plugins/quanlycv.css'
-
 type Props = {};
-
 const News = (props: Props) => {
   const [news, setNews] = useState<any>([]);
 
@@ -16,9 +14,9 @@ const News = (props: Props) => {
   const getNews = async () => {
     const { data } = await showNews();
     setNews(data);
-    // console.log(data);
+  
   };
-  // console.log(news);
+
 
   const onRemove: SubmitHandler<any> = async (id: any) => {
     const confim = window.confirm("bạn có muốn xóa không");
