@@ -63,14 +63,11 @@ const Header = (props: Props) => {
     const { data } = await signin(user);
 
     localStorage.setItem("user", JSON.stringify(data));
-    if ( localStorage.get("user", JSON.stringify(data))) {
-      toast.error('lll');
-      return;
-    }
-    if (data.data) {
-      console.log(data.data.message);
-      
-     
+    // console.log(localStorage.setItem("user", JSON.stringify(data)));
+    if (!(data.data)) {
+     toast.error('Tài khoản hoặc mật khẩu không chính xác');
+
+    }else{
       if (data.data.role_id == 1) {
         navigate("/");
         return true;
@@ -445,7 +442,7 @@ const Header = (props: Props) => {
                 </button>
               </div>
               <div className="p-5 rounded mx-auto d-block ">
-                <form method="POST" onClick={handleSubmit(onSignin)}>
+                <form method="POST">
                   <div className="form-group">
                     <label>Email</label>
                     <input
@@ -496,6 +493,7 @@ const Header = (props: Props) => {
                     <button
                       type="submit"
                       className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
+                      onClick={handleSubmit(onSignin)}
                     >
                       Login
                     </button>
