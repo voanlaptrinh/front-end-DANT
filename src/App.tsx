@@ -17,6 +17,9 @@ import EditNews from "./pages/Admin/Post/EditNews";
 import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 import JobDetail from "./pages/employer/getProfile/JobDetail";
 import Profile from "./pages/candidate/Profile/Profile";
+
+import ProfileDetail from "./pages/candidate/Profile/Profile";
+
 import Contac from "./pages/Contac";
 import { isAuthenticate } from "./api/auth";
 
@@ -33,6 +36,24 @@ function App() {
     <div className="App">
       <main>
         <Routes>
+          <Route path="/" element={<Home />} />
+          {/* Default-Layout */}
+          <Route path="product" element={<DefaultLayout />}>
+            <Route path="detail" element={<Detail />} />
+            <Route path="search" element={<Search />} />
+            <Route path="job/:id" element={<JobDetail />} />
+            <Route path="profile" element={<ProfileDetail />} />
+          </Route>
+          {/* Admin-Layout */}
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="post">
+              <Route index element={<Post />} />
+              <Route path="news" element={<News />} />
+              <Route path="add" element={<PostAdd />} />
+              <Route path="editNews/:id" element={<EditNews />} />
+              <Route path="edit/:id" element={<Edit />} />
           {/* <Suspense fallback={<div>Loading...</div>}> */}
             <Route path="/" element={<Home />} />
             {/* Default-Layout */}
