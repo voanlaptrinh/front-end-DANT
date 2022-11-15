@@ -20,6 +20,9 @@ import Profile from "./pages/candidate/Profile/Profile";
 import Contac from "./pages/Contac";
 import { isAuthenticate } from "./api/auth";
 import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
+import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
+moment.locale('vi'); 
 
 function App() {
   const PrivteRoute = (props: any) => {
