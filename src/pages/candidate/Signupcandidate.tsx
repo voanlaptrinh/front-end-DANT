@@ -3,8 +3,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/auth";
 import * as yup from "yup";
-import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
+// import { useDispatch } from 'react-redux'
+// import Header2 from "../../components/candidate/Header2";
+// import { signUpByUser } from '../../features/auth/authSlice'
+// import Logo from '../../assets/images/logo.jpg';
 import images from "../../images/sec-safe.png";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 
@@ -49,15 +52,11 @@ const Signupcandidate = (props: Props) => {
     window.location.href ="/"
     toast.success('Đăng kí tài khoản ứng viên thành công!');
     return true;
-    // console.log(data);
-    // navigate("/homecan")
-  };
   return (
-    <div className="container">
+    <div  className="container">
       <blockquote className="blockquote text-center ">
         <p className="mb-0">
-          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
-          tưởng
+        Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng
         </p>
         <footer className="blockquote-footer">
           Đăng kí <cite title="Source Title">Ứng viên</cite>
@@ -72,12 +71,13 @@ const Signupcandidate = (props: Props) => {
               {/* Nhét ảnh vào đây */}
             </div>
             {/* login main form */}
-            <div className="col-md-6 login-main-right w-100">
+            <div className="col-md-6 login-main w-100 item-login">
               <form
                 className="login-form reg-form"
                 method="POST"
                 onSubmit={handleSubmit(onSignup)}
               >
+                
                 <input type="text" hidden value="1" {...register("id")} />
                 <div className=" ">
                   <label htmlFor="fullName" className="fs-6 fw-normal py-2">
@@ -142,32 +142,34 @@ const Signupcandidate = (props: Props) => {
                 </div>
                 <div className="form-group d-block frm-text">
                   <a href="#" className="fg-login d-inline-block" />
-
-                  <a href="/" className="fg-login float-right d-inline-block">
+                  
+                  <a href="#" className="fg-login float-right d-inline-block">
                     Bạn đã có tài khoản? Đăng Nhập
                   </a>
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary float-right btn-login d-block w-100"
+                  className=" btn btn-success float-right btn-login d-block w-100 cocaicc"
+                  
                 >
                   Đăng Ký
-                </button>
+                </button><br />
                 <div className="form-group d-block w-100 mt-5">
                   <div className="text-or text-center">
                     <span>Hoặc</span>
                   </div>
+                  <br />
                   <div className="row">
                     <div className="col-sm-6 col-12 pr-7">
-                      <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-                        <FacebookOutlined />
+                      <button className="btn  btn-login-facebook d-block w-100 float-left fb" >
+                      <FacebookOutlined className="fbIcon" />
                         <span> Facebook</span>
                       </button>
                     </div>
-
+                   
                     <div className="col-sm-6 col-12 pl-7">
-                      <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-                        <GoogleOutlined />
+                      <button className="btn  btn-login-google btnw w-100 float-left gg">
+                      <GoogleOutlined className="ggIcon"/>
                         <span> Google</span>
                       </button>
                     </div>
@@ -193,7 +195,7 @@ const Signupcandidate = (props: Props) => {
                 </div>
               </div>
               {/* login footer right */}
-              <div className="col-md-6 col-sm-12 col-12 login-footer-right">
+              <div className="col-md-6 col-sm-12 col-12 login-footer-right ml-5 ">
                 <ul>
                   <li>
                     <a href="#">Terms &amp; Conditions</a>

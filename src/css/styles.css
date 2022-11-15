@@ -6773,3 +6773,58 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   float: left;
   padding-right: 10px;
 }
+.cocaicc{
+  width: 100%;
+  
+  border:  beige;
+  border-radius: 5px;
+  color: white;
+}
+.fb{
+  background: white;
+  border:  beige;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid #dcdfe6;
+}
+.fbIcon{
+ color: #006cff;
+ font-size: large;
+}
+.gg{
+    background: white;
+  border:  beige;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid #dcdfe6;
+}
+.ggIcon{
+ color: #dc3545;
+ font-size: large;
+}
+.item-login{
+  margin-left: 10%;
+}
+.gg-empoly{
+  background: white;
+  border:  beige;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid #dcdfe6;
+  
+ width: 100%;
+}
+.fb-empoly{
+  background: white;
+  border:  beige;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid #dcdfe6;
+  float: right;
+  width: 100%;
+  
+}
+.item-dnhap{
+  width: 86%;
+  margin-left: 2%;
+}
