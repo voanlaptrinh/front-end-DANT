@@ -19,6 +19,7 @@ import JobDetail from "./pages/employer/getProfile/JobDetail";
 import Profile from "./pages/candidate/Profile/Profile";
 import Contac from "./pages/Contac";
 import { isAuthenticate } from "./api/auth";
+import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
 
 function App() {
   const PrivteRoute = (props: any) => {
@@ -54,6 +55,7 @@ function App() {
                 <Route path="editNews/:id" element={<EditNews />} />
                 <Route path="edit/:id" element={<Edit />} />
               </Route>
+              <Route path="profile" element={<ProfileAdmin />} />
             </Route>
             {/* Auth-page */}
             <Route

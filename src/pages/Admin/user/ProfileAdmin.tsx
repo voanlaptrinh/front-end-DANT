@@ -1,11 +1,14 @@
+import axios from "axios";
+import { id } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { listNews } from "../../../api/home";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Navigate, useParams } from "react-router-dom";
+import { listNews, listprofile } from "../../../api/home";
 
 type Props = {};
 
 const ProfileAdmin = (props: Props) => {
-  const [news, setNews] = useState<any>([]);
+  const [profile, setProfile] = useState<any>([]);
   const {
     register,
     handleSubmit,
@@ -15,13 +18,15 @@ const ProfileAdmin = (props: Props) => {
   useEffect(() => {
     getNews();
   }, []);
+  let { id } = useParams();
 
   const getNews = async () => {
-    const { data } = await listNews();
-    setNews(data);
+    const { data } = await listprofile();
+    setProfile(data);
   };
-  console.log(news?.company?.[0]);
-
+  const onupdate: SubmitHandler<any> = async (data: any) => {
+    // await axios.put(`http://datnweb19.herokuapp.com/api/profile/update/${token}`, data);
+  }
   return (
     <div>
       <div className="dashboard-widg-bar d-block">
@@ -37,13 +42,13 @@ const ProfileAdmin = (props: Props) => {
                 </div>
               </div>
               <div className="_dashboard_content_body py-3 px-3">
-                <form className="row">
+                <form className="row" onSubmit={handleSubmit(onupdate)}>
                   <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                     <div className="custom-file avater_uploads">
                       <input
                         type="file"
                         className="custom-file-input"
-                        id="customFile"
+                      // {...register('avatar', { required: true })}
                       />
                       <label className="custom-file-label" htmlFor="customFile">
                         <i className="fa fa-user" />
@@ -52,11 +57,6 @@ const ProfileAdmin = (props: Props) => {
                   </div>
                   <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12">
                     <div className="row">
-                      <input
-                        type="hidden"
-                        value={news.user?.[0].id}
-                        {...register("id_Employer", { required: true })}
-                      />
                       <div className="col-xl-6 col-lg-6">
                         <div className="form-group">
                           <label className="text-dark ft-medium">
@@ -65,9 +65,9 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue={news.user?.[0].name}
-                            {...register("name", { required: true })}
-                          />
+                            {...register("nameEmployer", {
+                              required: true,
+                            })} />
                         </div>
                       </div>
                       <div className="col-xl-6 col-lg-6">
@@ -76,7 +76,8 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue={news.user?.[0].workplace}
+                            {...register('workplace', { required: true })}
+
                           />
                         </div>
                       </div>
@@ -88,7 +89,9 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="text"
                             className="form-control rounded"
-                            defaultValue={news.user?.[0].phone}
+                            {...register("phoneEmployer", {
+                              required: true,
+                            })}
                           />
                         </div>
                       </div>
@@ -98,7 +101,9 @@ const ProfileAdmin = (props: Props) => {
                           <input
                             type="email"
                             className="form-control rounded"
-                            defaultValue={news.user?.[0].email}
+                            {...register("emailEmployer", {
+                              required: true,
+                            })}
                           />
                         </div>
                       </div>
@@ -109,9 +114,11 @@ const ProfileAdmin = (props: Props) => {
                             Địa chỉ{" "}
                           </label>
                           <input
-                            type="email"
+                            type="text"
                             className="form-control rounded"
-                            defaultValue={news.user?.[0].address}
+                            {...register("addressEmployer", {
+                              required: true,
+                            })}
                           />
                         </div>
                       </div>
@@ -121,7 +128,7 @@ const ProfileAdmin = (props: Props) => {
                             type="submit"
                             className="btn btn-md ft-medium text-light rounded theme-bg"
                           >
-                            Save Changes
+                            gui
                           </button>
                         </div>
                       </div>
@@ -194,8 +201,6 @@ const ProfileAdmin = (props: Props) => {
                 <form className="row">
                   <input
                     type="hidden"
-                    value={news.company?.[0].id_company}
-                    {...register("id_company", { required: true })}
                   />
                   <div className="col-xl-6 col-lg-6 col-md-12">
                     <div className="form-group">
@@ -203,8 +208,9 @@ const ProfileAdmin = (props: Props) => {
                       <input
                         type="text"
                         className="form-control rounded"
-                        defaultValue={news.company?.[0].name}
-                      />
+                        {...register("nameCompany", {
+                          required: true,
+                        })} />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12">
@@ -215,7 +221,9 @@ const ProfileAdmin = (props: Props) => {
                       <input
                         type="text"
                         className="form-control rounded"
-                        defaultValue={news.company?.[0].email}
+                        {...register("emailCompany", {
+                          required: true,
+                        })}
                       />
                     </div>
                   </div>
@@ -227,19 +235,9 @@ const ProfileAdmin = (props: Props) => {
                       <input
                         type="text"
                         className="form-control rounded"
-                        defaultValue={news.company?.[0].number_member}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-12">
-                    <div className="form-group">
-                      <label className="text-dark ft-medium">
-                        số điện thoại
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control rounded"
-                        defaultValue={news.company?.[0].phone}
+                        {...register("number_member", {
+                          required: true,
+                        })}
                       />
                     </div>
                   </div>
@@ -251,7 +249,9 @@ const ProfileAdmin = (props: Props) => {
                       <input
                         type="text"
                         className="form-control rounded"
-                        defaultValue={news.company?.[0].address}
+                        {...register("addressCompany", {
+                          required: true,
+                        })}
                       />
                     </div>
                   </div>
@@ -263,7 +263,8 @@ const ProfileAdmin = (props: Props) => {
                       <input
                         type="file"
                         className="form-control rounded"
-                        defaultValue={news.company?.[0].logo}
+                        {...register('logo', { required: true })}
+
                       />
                     </div>
                   </div>
@@ -274,7 +275,9 @@ const ProfileAdmin = (props: Props) => {
                       </label>
                       <textarea
                         className="form-control with-light"
-                        defaultValue={news.company?.[0].Desceibe}
+                        {...register("DesceibeCompany", {
+                          required: true,
+                        })}
                       />
                     </div>
                   </div>
