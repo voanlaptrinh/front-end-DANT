@@ -62,8 +62,6 @@ const Header = (props: Props) => {
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
-
-  
     if (!(data.data)) {
      toast.error("Sai tài khoản hoặc mật khẩu");
     }else{
