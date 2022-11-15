@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 // import BannerLogin from '../assets/images/banner-login.png';
-import { RootState, useAppDispatch } from '../app/store';
+import { RootState, useAppDispatch } from '../redux/app/store';
 import { useSelector } from 'react-redux';
-import { signInByUser } from '../features/auth/authSlice';
+import { signInByUser } from '../redux/features/authSlice';
 import { toast } from 'react-toastify';
 // import Logo from '../assets/images/logo.jpg';
 import { signin } from '../api/auth';
@@ -33,7 +33,7 @@ const Login: React.FC = (props: Props) => {
         resolver: yupResolver(schema)
     })
 
-    const onSignin: SubmitHandler<FormValues> = async (user: FormValues) => {
+    const onSignin: SubmitHandler<FormValues> = async (user: any) => {
         const { data } = await signin(user);
         localStorage.setItem('user', JSON.stringify(data));
         console.log(data);

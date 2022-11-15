@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Header2 from "../../layout/DefaultLayout/Header2/Header2";
 import { signup } from "../../api/auth";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
-import images from "../../images/sec-safe.png";
+import images from "../../assets/images/sec-safe.png";
 
 type Props = {};
 
@@ -562,30 +562,30 @@ const Signupemployer = (props: Props) => {
                   >
                     Đăng Ký Nhà Tuyển Dụng
                   </button>
-                  
+
                 </div>
-                
+
                 <div className="form-group item-dnhap ">
                   <br />
-                    <div className="text-or text-center">
-                      <span>Hoặc</span>
+                  <div className="text-or text-center">
+                    <span>Hoặc</span>
+                  </div>
+                  <br />
+                  <div className="row">
+                    <div className="col ">
+                      <button className="btn  btn-login-facebook  fb-empoly">
+                        <FacebookOutlined className="fbIcon" />
+                        <span> Facebook</span>
+                      </button>
                     </div>
-                    <br />
-                    <div className="row">
-                      <div className="col ">
-                        <button className="btn  btn-login-facebook  fb-empoly">
-                          <FacebookOutlined className="fbIcon"/>
-                          <span> Facebook</span>
-                        </button>
-                      </div>
-                      <div className="col ">
-                        <button className="btn  btn-login-google  gg-empoly">
-                          <GoogleOutlined className="ggIcon"/>
-                          <span>  Google</span>
-                        </button>
-                      </div>
+                    <div className="col ">
+                      <button className="btn  btn-login-google  gg-empoly">
+                        <GoogleOutlined className="ggIcon" />
+                        <span>  Google</span>
+                      </button>
                     </div>
                   </div>
+                </div>
               </div>
             </form>
             {/* login main form */}
