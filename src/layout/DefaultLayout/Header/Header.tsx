@@ -121,9 +121,10 @@ const Header = (props: Props) => {
                         className="dropdown-menu"
                         aria-labelledby="btnDropdownDemo"
                       >
-                        <Link
+                        <div>hello word</div>
+                        {/* <Link
                           className="dropdown-item"
-                          to={`profile/index/${user.token}`}
+                          to={`profile`}
                         >
                           <UserSwitchOutlined /> Thông tin
                         </Link>
@@ -132,7 +133,7 @@ const Header = (props: Props) => {
                         </Link>
                         <Link className="dropdown-item" to={""}>
                           <UploadOutlined /> Post a Job
-                        </Link>
+                        </Link> */}
                         <button className="dropdown-item logout">
                           <div onClick={() => logout()}>
                             <LoginOutlined /> Đăng xuất
@@ -173,7 +174,7 @@ const Header = (props: Props) => {
             >
               <ul className="nav-menu">
                 <li>
-                  <Link to="/">Trang chủ</Link>
+                  <Link to="/product">Trang chủ</Link>
                 </li>
                 <li>
                   <Link to="job">Việc làm</Link>
@@ -294,10 +295,8 @@ const Header = (props: Props) => {
                       <UploadOutlined /> Post a Job
                     </a>
                     <button className="dropdown-item">
-                      <Link to="/">
-                        <a className="" onClick={() => logout()}>
-                          <LoginOutlined /> Đăng xuất
-                        </a>
+                      <Link to="/" onClick={() => logout()}>
+                        <LoginOutlined /> Đăng xuất
                       </Link>
                     </button>
                   </div>

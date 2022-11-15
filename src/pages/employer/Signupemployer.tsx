@@ -529,6 +529,7 @@ const Signupemployer = (props: Props) => {
                         {...register("workplace", { required: true })}
                       />
                     </div>
+
                     <p className="text-danger pt-1">
                       {errors.workplace?.message}
                     </p>

@@ -47,9 +47,11 @@ const Signupcandidate = (props: Props) => {
   });
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
-    // console.log(data);
-    // navigate("/homecan")
-  };
+    // window.location.reload("/")
+    // navigate("/");
+    window.location.href ="/"
+    toast.success('Đăng kí tài khoản ứng viên thành công!');
+    return true;
   return (
     <div  className="container">
       <blockquote className="blockquote text-center ">

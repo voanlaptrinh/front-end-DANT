@@ -23,13 +23,13 @@ import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
 
 function App() {
   const PrivteRoute = (props: any) => {
+    
     const user = isAuthenticate();
     if (!user || user.role_id != 2) {
       return false
     }
     return props.children
   }
-
   return (
     <div className="App">
       <main>
@@ -49,6 +49,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<ProfileAdmin />} />
+
             <Route path="post">
               <Route index element={<Post />} />
               <Route path="news" element={<News />} />
@@ -68,7 +69,7 @@ function App() {
           {/* </Suspense> */}
         </Routes>
       </main>
-    </div>
+    </div> 
   );
 }
 
