@@ -48,6 +48,8 @@ function App() {
           <Route path="admin" element={<PrivteRoute> <AdminLayout /> </PrivteRoute>}>
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="profile" element={<ProfileAdmin />} />
+
             <Route path="post">
               <Route index element={<Post />} />
               <Route path="news" element={<News />} />
@@ -55,7 +57,6 @@ function App() {
               <Route path="editNews/:id" element={<EditNews />} />
               <Route path="edit/:id" element={<Edit />} />
             </Route>
-            <Route path="profile" element={<ProfileAdmin />} />
           </Route>
           {/* Auth-page */}
           <Route
