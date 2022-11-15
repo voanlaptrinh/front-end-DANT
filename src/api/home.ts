@@ -42,18 +42,16 @@ export const listNewsemp = () => {
   const url = `/employer/index/${data.token}`;
   return instance.get(url);
 };
-<<<<<<< HEAD
+
 export const listprofile = () => {
   const url = `/employer/profile/${data.token}`;
   return instance.get(url);
 };
-=======
 
 // export const updateNews = (id: any) => {
 //   const url = `/employer/update/${id}`; 
 //   return instance.put(url,data);
 // };
->>>>>>> 26d404c4577e9868a5ebb25a78702acb308df165
 
 export const editNews = (id: any) => {
   const url = `/employer/edit/${id}`;
