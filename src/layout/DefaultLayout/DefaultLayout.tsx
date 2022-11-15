@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./Footer/Footer";
 
 import "../../assets/js/smoothproducts.js";
-import "../../css/styles.css";
+import "../../assets/styles.css";
 import Header from "./Header/Header";
 import Header2 from "./Header2/Header2";
 import { isAuthenticate } from "../../api/auth";
@@ -15,7 +15,7 @@ const DefaultLayout = (props: Props) => {
   // const navigate = useNavigate()
   // const user = isAuthenticate();
   // if (!user) {
-    // console.log(1);
+  // console.log(1);
   //   navigate('/admin')
   // }
   // if (user.role_id != 2) {

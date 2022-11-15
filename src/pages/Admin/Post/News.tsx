@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { removeShowNews, showNews } from "../../../api/home";
-import '../../../css/plugins/quanlycv.css'
+import '../../../assets/plugins/quanlycv.css'
 type Props = {};
 const News = (props: Props) => {
   const [news, setNews] = useState<any>([]);
@@ -14,7 +14,7 @@ const News = (props: Props) => {
   const getNews = async () => {
     const { data } = await showNews();
     setNews(data);
-  
+
   };
 
 
