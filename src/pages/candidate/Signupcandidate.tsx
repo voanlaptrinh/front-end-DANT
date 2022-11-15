@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 // import Logo from '../../assets/images/logo.jpg';
 import images from "../../images/sec-safe.png";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
 
 type Props = {};
 interface FormValues {
@@ -52,6 +53,7 @@ const Signupcandidate = (props: Props) => {
     window.location.href ="/"
     toast.success('Đăng kí tài khoản ứng viên thành công!');
     return true;
+  }
   return (
     <div  className="container">
       <blockquote className="blockquote text-center ">
