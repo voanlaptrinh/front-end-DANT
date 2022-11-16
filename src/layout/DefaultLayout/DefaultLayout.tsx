@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./Footer/Footer";
 
-import "../../js/smoothproducts.js";
-import "../../css/styles.css";
+import "../../assets/js/smoothproducts.js";
+import "../../assets/styles.css";
 import Header from "./Header/Header";
 import Header2 from "./Header2/Header2";
 import { isAuthenticate } from "../../api/auth";
