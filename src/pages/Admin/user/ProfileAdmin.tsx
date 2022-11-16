@@ -30,7 +30,7 @@ const ProfileAdmin = (props: Props) => {
   console.log(profile);
 
   const onupdate: SubmitHandler<any> = async (formData: any) => {
-    await updateProfileemp(data.token, formData) 
+    await updateProfileemp(data.token, formData)
   }
   return (
     <div>
@@ -50,6 +50,10 @@ const ProfileAdmin = (props: Props) => {
                 <div className="_dashboard_content_body py-3 px-3">
                   <form className="row" onSubmit={handleSubmit(onupdate)}>
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                      <div>
+                        <input type="hidden" {...register('id', { required: true })}
+                          defaultValue={employer.id} />
+                      </div>
                       <div className="custom-file avater_uploads">
                         <input
                           type="file"
@@ -165,7 +169,7 @@ const ProfileAdmin = (props: Props) => {
           </div>
         </div>
 
-        {/* <div className="row">
+        <div className="row">
           <div className="col-lg-12 col-md-12">
             <div className="_dashboard_content bg-white rounded mb-4">
               <div className="_dashboard_content_header br-bottom py-3 px-3">
@@ -224,7 +228,7 @@ const ProfileAdmin = (props: Props) => {
               </div>
               {profile.company?.map((company: any) => (
                 <div className="_dashboard_content_body py-3 px-3">
-                  <form className="row">
+                  <form className="row" onSubmit={handleSubmit(onupdate)}>
                     <input
                       type="hidden"
                     />
@@ -325,10 +329,9 @@ const ProfileAdmin = (props: Props) => {
                   </form>
                 </div>
               ))}
-
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
