@@ -19,7 +19,7 @@ export const updateProfileById = (id: number | undefined, data: any) => {
    });
 }
 export const updateProfileemp = (id: number | undefined, data: any) => {
-   return instance.put(`/employer/profile/update/${id}`, data, {      
+   return instance.post(`/employer/profile/update/${id}`, data, {
       headers: {
          Authorization: `Bearer ${data.token}`
       }

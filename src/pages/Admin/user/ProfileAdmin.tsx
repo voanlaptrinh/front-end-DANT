@@ -30,7 +30,7 @@ const ProfileAdmin = (props: Props) => {
   console.log(profile);
 
   const onupdate: SubmitHandler<any> = async (formData: any) => {
-    await updateProfileemp(data.id, formData)
+    await updateProfileemp(data.token, formData) 
   }
   return (
     <div>
