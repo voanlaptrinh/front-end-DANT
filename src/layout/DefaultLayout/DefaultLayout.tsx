@@ -12,18 +12,6 @@ import { die } from "immer/dist/internal";
 type Props = {};
 
 const DefaultLayout = (props: Props) => {
-  // const navigate = useNavigate()
-  // const user = isAuthenticate();
-  // if (!user) {
-  // console.log(1);
-  //   navigate('/admin')
-  // }
-  // if (user.role_id != 2) {
-  //   navigate('/admin')
-  // }
-  // if(!user || user.role_id != 2){
-  //   console.log(1);
-  // }
 
   return (
     <div>

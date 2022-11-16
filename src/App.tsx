@@ -22,6 +22,7 @@ import { isAuthenticate } from "./api/auth";
 import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment';
+import Package from "./pages/Admin/user/Package";
 moment.locale('vi'); 
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<ProfileAdmin />} />
-
+            <Route path="package" element={<Package />} />
             <Route path="post">
               <Route index element={<Post />} />
               <Route path="news" element={<News />} />
