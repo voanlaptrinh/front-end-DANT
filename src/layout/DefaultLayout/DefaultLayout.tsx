@@ -3,11 +3,10 @@ import Footer from "./Footer/Footer";
 
 import "../../assets/js/smoothproducts.js";
 import "../../assets/styles.css";
-import Header from "./Header/Header";
-import Header2 from "./Header2/Header2";
 import { isAuthenticate } from "../../api/auth";
 import { Router } from "react-bootstrap-icons";
 import { die } from "immer/dist/internal";
+import Header from "./Header/Header";
 
 type Props = {};
 
@@ -16,7 +15,7 @@ const DefaultLayout = (props: Props) => {
   return (
     <div>
       <div>
-        <Header2 />
+        <Header />
       </div>
       <main className="bg-light">
         <Outlet />

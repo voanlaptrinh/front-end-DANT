@@ -1,21 +1,18 @@
 import {
-  CloseOutlined,
   DownOutlined,
   FileAddFilled,
   LoginOutlined,
-  SearchOutlined,
   UploadOutlined,
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"
 import { isAuthenticate, logout, signin } from "../../../api/auth";
 import { listCandidate } from "../../../api/home";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import "./header.css";
 
 type Props = {};
 
@@ -24,27 +21,11 @@ const Header = (props: Props) => {
   const [getAllLocation, setLocation] = useState<any>([]);
   const navigate = useNavigate();
   const user = isAuthenticate();
-  interface FormValues {
-    email: string;
-    password: string;
-  }
-  const schema = yup
-    .object({
-      email: yup
-        .string()
-        .required("Vui lòng nhập email")
-        .email("Không đúng định dạng email"),
-      password: yup.string().required("Vui lòng nhập mật khẩu"),
-    })
-    .required();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    resolver: yupResolver(schema),
-  });
+  } = useForm();
 
   useEffect(() => {
     getSkill();
@@ -62,18 +43,14 @@ const Header = (props: Props) => {
 
   const onSignin: SubmitHandler<any> = async (user: any) => {
     const { data } = await signin(user);
-    if (!(data.data)) {
-     toast.error("Sai tài khoản hoặc mật khẩu");
-    }else{
-      localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("user", JSON.stringify(data));
+    if (data.data) {
       if (data.data.role_id == 1) {
-        window.location.href ="/"
-        // navigate("/");
+        navigate("/");
         return true;
       }
       if (data.data.role_id == 2) {
-        window.location.href ="/admin"
-        // navigate("/admin");
+        navigate("/admin");
         return true;
       }
     }
@@ -82,7 +59,7 @@ const Header = (props: Props) => {
   return (
     <div id="main-wrapper">
       {/* <!-- Start Navigation --> */}
-      <div className="header header-transparent change-logo">
+      <div className="header header-light dark-text">
         <div className="container">
           <nav id="navigation" className="navigation navigation-landscape">
             <div className="nav-header">
@@ -119,10 +96,9 @@ const Header = (props: Props) => {
                         className="dropdown-menu"
                         aria-labelledby="btnDropdownDemo"
                       >
-                        <div>hello word</div>
-                        {/* <Link
+                        <Link
                           className="dropdown-item"
-                          to={`profile`}
+                          to={`profile/index/${user.token}`}
                         >
                           <UserSwitchOutlined /> Thông tin
                         </Link>
@@ -131,7 +107,7 @@ const Header = (props: Props) => {
                         </Link>
                         <Link className="dropdown-item" to={""}>
                           <UploadOutlined /> Post a Job
-                        </Link> */}
+                        </Link>
                         <button className="dropdown-item logout">
                           <div onClick={() => logout()}>
                             <LoginOutlined /> Đăng xuất
@@ -166,258 +142,178 @@ const Header = (props: Props) => {
                 </ul>
               </div>
             </div>
-            <div
-              className="nav-menus-wrapper"
-              style={{ transitionProperty: "none" }}
-            >
-              <ul className="nav-menu">
-                <li>
-                  <Link to="/product">Trang chủ</Link>
-                </li>
-                <li>
-                  <Link to="job">Việc làm</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="job-search-v1.html">Job Search V1</a>
-                    </li>
-                    <li>
-                      <a href="job-search-v2.html">Job Search V2</a>
-                    </li>
-                    <li>
-                      <a href="job-search-v3.html">Job Search V3</a>
-                    </li>
-                    <li>
-                      <a href="job-list-v1.html">Job Search V4</a>
-                    </li>
-                    <li>
-                      <a href="job-list-v2.html">Job Search V5</a>
-                    </li>
-                    <li>
-                      <a href="job-list-v3.html">Job Search V6</a>
-                    </li>
-                    <li>
-                      <a href="">Map Styles</a>
-                      <ul className="nav-dropdown nav-submenu">
-                        <li>
-                          <a href="job-half-map.html">Search On Map V1</a>
-                        </li>
-                        <li>
-                          <a href="job-half-map-v2.html">Search On Map V2</a>
-                        </li>
-                        <li>
-                          <a href="job-search-map-v1.html">Search On Map V3</a>
-                        </li>
-                        <li>
-                          <a href="job-search-map-v2.html">Search On Map V4</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="">Single Job</a>
-                      <ul className="nav-dropdown nav-submenu">
-                        <li>
-                          <a href="single-job-1.html">Single Job V1</a>
-                        </li>
-                        <li>
-                          <a href="single-job-2.html">Single Job V2</a>
-                        </li>
-                        <li>
-                          <a href="single-job-3.html">Single Job V3</a>
-                        </li>
-                        <li>
-                          <a href="single-job-4.html">Single Job V4</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="company">Công ty</Link>
-                  <ul className="nav-dropdown nav-submenu">
-                    <li>
-                      <a href="browse-jobs.html">Browse Jobs</a>
-                    </li>
-                    <li>
-                      <a href="browse-resumes.html">Browse Resumes</a>
-                    </li>
-                    <li>
-                      <a href="browse-category.html">Browse Categories</a>
-                    </li>
-                    <li>
-                      <a href="candidate-detail.html">Candidate Detail</a>
-                    </li>
-                    <li>
-                      <a href="candidate-dashboard.html">Candidate Dashboard</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div className="dropdown align-to-right top">
-              {user ? (
-                <>
-                  <a
-                    className="text-while"
-                    type="button"
-                    id="btnDropdownDemo"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <UserOutlined />
-                    {user.name}
-                    <DownOutlined />
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="btnDropdownDemo"
-                  >
-                    <Link
-                      className="dropdown-item"
-                      to={`profile/${user.token}`}
-                    >
-                      <UserSwitchOutlined /> Thông tin
-                    </Link>
-                    <a
-                      className="dropdown-item"
-                      data-toggle="modal"
-                      data-target=""
-                    >
-                      <FileAddFilled /> Job của bạn
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      data-toggle="modal"
-                      data-target=""
-                    >
-                      <UploadOutlined /> Post a Job
-                    </a>
-                    <button className="dropdown-item">
-                      <Link to="/" onClick={() => logout()}>
-                        <LoginOutlined /> Đăng xuất
-                      </Link>
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <ul className="nav-menu nav-menu-social align-to-right row">
-                  <li className="nav-item d-flex align-items-center ">
-                    <div className="nav-item">
-                      <a
-                        className="btn btn-success"
-                        data-toggle="modal"
-                        data-target="#login"
-                      >
-                        {" "}
-                        Đăng nhập{" "}
-                      </a>
-                    </div>
+            <div className="d-flex align-items-center justify-content-between">
+              <div
+                className="nav-menus-wrapper"
+                style={{ transitionProperty: "none" }}
+              >
+                <ul className="nav-menu">
+                  <li>
+                    <Link to="/">Trang chủ</Link>
                   </li>
-
-                  <li className="nav-item d-flex align-items-center col-sm-4">
-                    <div className="nav-item ">
-                      <a
-                        className="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#exampleModal"
-                      >
-                        Đăng kí
-                      </a>
-                    </div>
+                  <li>
+                    <Link to="job">Việc làm</Link>
+                    <ul className="nav-dropdown nav-submenu">
+                      <li>
+                        <a href="job-search-v1.html">Job Search V1</a>
+                      </li>
+                      <li>
+                        <a href="job-search-v2.html">Job Search V2</a>
+                      </li>
+                      <li>
+                        <a href="job-search-v3.html">Job Search V3</a>
+                      </li>
+                      <li>
+                        <a href="job-list-v1.html">Job Search V4</a>
+                      </li>
+                      <li>
+                        <a href="job-list-v2.html">Job Search V5</a>
+                      </li>
+                      <li>
+                        <a href="job-list-v3.html">Job Search V6</a>
+                      </li>
+                      <li>
+                        <a href="">Map Styles</a>
+                        <ul className="nav-dropdown nav-submenu">
+                          <li>
+                            <a href="job-half-map.html">Search On Map V1</a>
+                          </li>
+                          <li>
+                            <a href="job-half-map-v2.html">Search On Map V2</a>
+                          </li>
+                          <li>
+                            <a href="job-search-map-v1.html">Search On Map V3</a>
+                          </li>
+                          <li>
+                            <a href="job-search-map-v2.html">Search On Map V4</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="">Single Job</a>
+                        <ul className="nav-dropdown nav-submenu">
+                          <li>
+                            <a href="single-job-1.html">Single Job V1</a>
+                          </li>
+                          <li>
+                            <a href="single-job-2.html">Single Job V2</a>
+                          </li>
+                          <li>
+                            <a href="single-job-3.html">Single Job V3</a>
+                          </li>
+                          <li>
+                            <a href="single-job-4.html">Single Job V4</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <Link to="company">Công ty</Link>
+                    <ul className="nav-dropdown nav-submenu">
+                      <li>
+                        <a href="browse-jobs.html">Browse Jobs</a>
+                      </li>
+                      <li>
+                        <a href="browse-resumes.html">Browse Resumes</a>
+                      </li>
+                      <li>
+                        <a href="browse-category.html">Browse Categories</a>
+                      </li>
+                      <li>
+                        <a href="candidate-detail.html">Candidate Detail</a>
+                      </li>
+                      <li>
+                        <a href="candidate-dashboard.html">Candidate Dashboard</a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
-              )}
+              </div>
+              <div className="nav-menu nav-menu-social align-to-right">
+                {user ? (
+                  <>
+                    <a
+                      className="text-while d-flex align-items-center gap-4"
+                      type="button"
+                      id="btnDropdownDemo"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <p className="m-0 fs-3">
+                        Xin chào,{user.name}
+                      </p>
+                      <DownOutlined />
+                    </a>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="btnDropdownDemo"
+                    >
+                      <Link
+                        className="dropdown-item"
+                        to={`profile/${user.token}`}
+                      >
+                        <UserSwitchOutlined /> Thông tin
+                      </Link>
+                      <a
+                        className="dropdown-item"
+                        data-toggle="modal"
+                        data-target=""
+                      >
+                        <FileAddFilled /> Job của bạn
+                      </a>
+                      <a
+                        className="dropdown-item"
+                        data-toggle="modal"
+                        data-target=""
+                      >
+                        <UploadOutlined /> Post a Job
+                      </a>
+                      <button className="dropdown-item">
+                        <Link to="/">
+                          <a className="" onClick={() => logout()}>
+                            <LoginOutlined /> Đăng xuất
+                          </a>
+                        </Link>
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <ul className="nav-menu nav-menu-social align-to-right row">
+                    <li className="nav-item d-flex align-items-center ">
+                      <div className="nav-item">
+                        <a
+                          className="btn btn-success"
+                          data-toggle="modal"
+                          data-target="#login"
+                        >
+                          {" "}
+                          Đăng nhập{" "}
+                        </a>
+                      </div>
+                    </li>
+
+                    <li className="nav-item d-flex align-items-center col-sm-4">
+                      <div className="nav-item ">
+                        <a
+                          className="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          Đăng kí
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </div>
+
           </nav>
         </div>
       </div>
-      {/* <!-- ======================= Home Banner ======================== --> */}
-      <div
-        className="home-banner margin-bottom-0"
-        style={{
-          background:
-            "#00ab46 url(https://res.cloudinary.com/dgeqw8b5i/image/upload/v1666583728/gd/banner-5_rnetjw.jpg) no-repeat ",
-        }}
-        data-overlay={4}
-      >
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-              <div className="banner_caption text-center mb-5">
-                <h1 className="banner_title ft-bold mb-1">
-                  Explore More Than 10K+ Jobs
-                </h1>
-                <p className="fs-md ft-medium">
-                  Hi Friends, Your Dream Jobs is Waiting in Your Local City
-                </p>
-              </div>
-              <form className="bg-white rounded p-1">
-                <div className="row no-gutters">
-                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                    <div className="form-group mb-0 position-relative">
-                      <input
-                        type="text"
-                        className="form-control lg left-ico"
-                        placeholder="Job Title, Keyword or Company"
-                      />
-                      <SearchOutlined className="bnc-ico lni lni-search-alt"  />
-          
-                    </div>
-                  </div>
-                  {/* <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div className="form-group mb-0 position-relative">
-                      <input
-                        type="text"
-                        className="form-control lg left-ico"
-                        placeholder="Job Title, Keyword or Company"
-                      />
-                      <i className="bnc-ico lni lni-target" />
-                    </div>
-                  </div> */}
-                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div className="form-group mb-0 position-relative">
-                      <select className="custom-select lg b-0" name="" id="">
-                        <option value="">Chọn Kĩ Năng</option>
-                        {getAllSkill.skill?.map((item: any) => {
-                          return (
-                            <option value={item.id} key={item.id}>
-                              {item.name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                    <div className="form-group mb-0 position-relative">
-                      <select className="custom-select lg b-0">
-                        <option value="">Chọn Vùng Miền</option>
-                        {getAllLocation.location?.map((item: any) => {
-                          return (
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                    <div className="form-group mb-0 position-relative">
-                      <button
-                        className="btn full-width custom-height-lg theme-bg text-white fs-md"
-                        type="button"
-                      >
-                        Find Job
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+   
       {/* Log In Modal */}
       <div className="nav-item align-items-center">
         <div
@@ -437,12 +333,11 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <CloseOutlined className="ti-close" />
-                  {/* <span  /> */}
+                  <span className="ti-close" />
                 </button>
               </div>
               <div className="p-5 rounded mx-auto d-block ">
-                <form method="POST">
+                <form method="POST" onClick={handleSubmit(onSignin)}>
                   <div className="form-group">
                     <label>Email</label>
                     <input
@@ -453,7 +348,6 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập email",
                       })}
                     />
-                    <p className="text-danger pt-1">{errors.email?.message}</p>
                   </div>
                   <div className="form-group">
                     <label>Password</label>
@@ -465,9 +359,6 @@ const Header = (props: Props) => {
                         required: "bạn chưa nhập mật khẩu",
                       })}
                     />
-                    <p className="text-danger pt-1">
-                      {errors.password?.message}
-                    </p>
                   </div>
                   <div className="form-group">
                     <div className="d-flex align-items-center justify-content-between">
@@ -493,7 +384,6 @@ const Header = (props: Props) => {
                     <button
                       type="submit"
                       className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
-                      onClick={handleSubmit(onSignin)}
                     >
                       Login
                     </button>
@@ -543,8 +433,7 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <CloseOutlined className="ti-close" />
-                  {/* <span className="ti-close" /> */}
+                  <span className="ti-close" />
                 </button>{" "}
               </div>
               <div className="modal-body">

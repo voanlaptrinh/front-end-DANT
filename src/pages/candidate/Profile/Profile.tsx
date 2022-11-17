@@ -34,7 +34,7 @@ const profileSchema = yup.object().shape({
 }).required()
 
 const ProfileDetail = (props: Props) => {
-   const [user, setUser] = useState<any | null>(null);
+   const { token } = useParams();
    const [category, setCategory] = useState<any | null>(null);
    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>({
       resolver: yupResolver(profileSchema),
@@ -42,37 +42,26 @@ const ProfileDetail = (props: Props) => {
 
    useEffect(() => {
       getUser();
-      getCategory();
    }, [])
 
 
    const getUser = async () => {
       try {
-         const { data } = await getProfileByToken();
-         setUser(data);
-         console.log(data.user.id);
-         console.log(data);
-
-      } catch (error) {
-         console.log(error);
-      }
-   }
-
-   const getCategory = async () => {
-      try {
-         const { data } = await listNews();
+         const { data } = await getProfileByToken(token);
          setCategory(data);
+         reset(category ? category.seeker : undefined)
+         console.log(category?.seeker);
          console.log(data);
       } catch (error) {
          console.log(error);
       }
    }
+
 
    const Submit: SubmitHandler<FormValues> = async (data: any) => {
       try {
-         await updateProfileById(user?.user.id, data)
+         await updateProfileById(category.user.id, data)
          alert('Cập nhật thành công')
-         console.log(user?.id);
 
       } catch (error: any) {
          console.log(error);
@@ -122,7 +111,7 @@ const ProfileDetail = (props: Props) => {
                                  <div className="col-xl-6 col-lg-6">
                                     <div className="form-group">
                                        <label className="text-dark ft-medium">Họ và tên</label>
-                                       <input type="text" className="form-control rounded"   {...register('name')} placeholder='Nhập họ và tên' />
+                                       <input type="text" className="form-control rounded" defaultValue={category?.user?.name}  {...register('name')} placeholder='Nhập họ và tên' />
                                        <p className='text-danger'>{errors.name?.message}</p>
                                     </div>
                                  </div>
@@ -149,7 +138,7 @@ const ProfileDetail = (props: Props) => {
                                        <select className="custom-select form-control rounded"  {...register('time_work_id')}>
                                           <option value={-1}>Chọn loại công việc</option>
                                           {category?.timework ? category.timework.map((item: Timework) => {
-                                             return <option key={item.id} value={+item.id} >{item.name}</option>
+                                             return <option key={item.id} defaultValue={category?.seeker?.timework_id} value={+item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
                                        <p className="text-danger">{errors.time_work_id?.message}</p>
@@ -159,7 +148,7 @@ const ProfileDetail = (props: Props) => {
                                  <div className="col-xl-6 col-lg-6">
                                     <div className="form-group">
                                        <label className="d-block text-dark ft-medium">Kinh nghiệm</label>
-                                       <select className="custom-select form-control rounded" placeholder='Chọn mức kinh nghiệm'{...register('experience_id')}>
+                                       <select className="custom-select form-control rounded"  {...register('experience_id')}>
                                           <option value={-1} >Chọn kinh nghiệm</option>
                                           {category?.experience ? category.experience.map((item: Experience) => {
                                              return <option key={item.id} value={+item.id} >{item.name}</option>
@@ -201,7 +190,7 @@ const ProfileDetail = (props: Props) => {
                                        <select className="custom-select form-control rounded" {...register('lever_id')}>
                                           <option value={-1} >Chọn chuyên ngành</option>
                                           {category?.profession ? category.profession.map((item: Profession) => {
-                                             return <option key={item.id} value={+item.id} >{item.name}</option>
+                                             return <option key={item.id} value={item.id} >{item.name}</option>
                                           }) : null}
                                        </select>
                                        <p className="text-danger">{errors.lever_id?.message}</p>
