@@ -17,17 +17,17 @@ import EditNews from "./pages/Admin/Post/EditNews";
 import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 import JobDetail from "./pages/employer/getProfile/JobDetail";
 import Profile from "./pages/candidate/Profile/Profile";
-import Contac from "./pages/Contac";
+import Contact from "./pages/Contact";
 import { isAuthenticate } from "./api/auth";
 import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment';
 import Package from "./pages/Admin/user/Package";
-moment.locale('vi'); 
+moment.locale('vi');
 
 function App() {
   const PrivteRoute = (props: any) => {
-    
+
     const user = isAuthenticate();
     if (!user || user.role_id != 2) {
       return false
@@ -42,11 +42,13 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* Default-Layout */}
           <Route path="product" element={<DefaultLayout />}>
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
             <Route path="detail" element={<Detail />} />
             <Route path="search" element={<Search />} />
             <Route path="job/:id" element={<JobDetail />} />
             <Route path="profile/:token" element={<Profile />} />
-            <Route path="contact" element={<Contac />} />
+            <Route path="contact" element={<Contact />} />
           </Route>
           {/* Admin-Layout */}
           <Route path="admin" element={<PrivteRoute> <AdminLayout /> </PrivteRoute>}>
@@ -73,7 +75,7 @@ function App() {
           {/* </Suspense> */}
         </Routes>
       </main>
-    </div> 
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const Contac = (props: Props) => {
+const Contact = (props: Props) => {
   return (
     <div>
       <section className="middle">
@@ -95,4 +95,4 @@ const Contac = (props: Props) => {
   );
 };
 
-export default Contac;
+export default Contact;

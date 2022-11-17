@@ -3,8 +3,8 @@ import { instance } from "./instance"
 const data = isAuthenticate();
 
 
-export const getProfileByToken = () => {
-   return instance.get(`seeker/index`, {
+export const getProfileByToken = (token: string | undefined) => {
+   return instance.get(`seeker/index/${token}`, {
       headers: {
          Authorization: `Bearer ${data.token}`
       }
