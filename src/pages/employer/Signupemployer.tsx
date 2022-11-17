@@ -6,6 +6,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Header2 from "../../layout/DefaultLayout/Header2/Header2";
 import { signup } from "../../api/auth";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import images from "../../assets/images/sec-safe.png";
 
 type Props = {};
@@ -58,374 +60,29 @@ const Signupemployer = (props: Props) => {
   });
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
-    // console.log(data);
-    // navigate("/homecan")
+    console.log(data.message);
+    // window.location.href = "/"
+    if (data.status == 200) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Đăng kí thành công!',
+        text: 'Ấn Oke để tiếp tục đăng kí!',
+        footer: '<a href="/">Mời bạn đăng nhập </a>'
+      })
+  
+      return true;
+    } else {
+      toast.error(data.message);
+    }
   };
   return (
-    // <div className="container float-right btn-login d-block w-100">
-    //   <div className="container-fluid">
-    //     <div className="container-fluid login-fluid clear-right">
-    //       <div className="">
-    //         {/* login header */}
-    //         <div className="container">
-    //           <div className="login-header">
-    //             <div className="container w-login m-auto">
-    //               {/*  */}
-    //               <div className="container">
-    //                 <Header2 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //           <blockquote className="blockquote text-center">
-    //             <p className="mb-0">
-    //               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    //               Integer posuere erat a ante.
-    //             </p>
-    //             {/* <footer className="blockquote-footer">
-    //               Someone famous in
-    //               <cite title="Source Title">Source Title</cite>
-    //             </footer> */}
-    //           </blockquote>
-    //         </div>
-    //         {/* (end) login header */}
-    //         <div className="clearfix" />
-    //         <div className="padding-top-100" />
-    //         {/* login main */}
-    //         <div className="login-main">
-    //           <div className=" w-login m-auto">
-    //             <div>
-
-    //             </div>
-    //             {/* login main descriptions */}
-    //             <form method="POST" onSubmit={handleSubmit(onSignup)}>
-    //               <div className="row w-100">
-    //                 <div className="col-md-6 col-sm-12 col-12 login-main-left">
-    //                   <input type="text" hidden value="2" {...register("id")} />
-    //                   <div className="">
-    //                     <div className="">
-    //                       <div className="form-group">
-    //                         <input
-    //                           type="text"
-    //                           className="form-control rounded"
-    //                           placeholder="họ tên người đăng ký"
-    //                           {...register("fullName", { required: true })}
-    //                         />
-    //                       </div>
-    //                       <p className="text-danger pt-1">
-    //                         {errors.fullName?.message}
-    //                       </p>
-    //                     </div>
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="Địa Chỉ Email của công ty"
-    //                         {...register("email", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.email?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="password"
-    //                         className="form-control rounded"
-    //                         placeholder="mật khẩu "
-    //                         {...register("password", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.password?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="password"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập lại mật khẩu"
-    //                         {...register("comfirmPassword", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.comfirmPassword?.message}
-    //                     </p>
-    //                   </div>
-    //                 </div>
-    //                 <div className="col-md-6 col-sm-12 col-12 login-main-right">
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập số điện thoại"
-    //                         {...register("phone", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.phone?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập tên công ty"
-    //                         {...register("namecompany", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.namecompany?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập địa chỉ công ty"
-    //                         {...register("workplace", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.workplace?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhận chức vụ trong công ty"
-    //                         {...register("address", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.address?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="form-group d-block frm-text">
-    //                     <a href="#" className="fg-login d-inline-block" />
-    //                     <a
-    //                       href="#"
-    //                       className="fg-login float-right d-inline-block"
-    //                     >
-    //                       Bạn đã có tài khoản? Đăng Nhập
-    //                     </a>
-    //                   </div>
-    //                   <button
-    //                     type="submit"
-    //                     className="btn btn-success float-right btn-login d-block w-100"
-    //                   >
-    //                     Đăng Ký Nhà Tuyển Dụng
-    //                   </button>
-    //                   <div className="form-group d-block w-100 mt-5">
-    //                     <div className="text-or text-center">
-    //                       <span>Hoặc</span>
-    //                     </div>
-    //                     <div className="row">
-    //                       <div className="col-sm-6 ">
-    //                         <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-    //                           <FacebookOutlined />
-    //                           <span> Đăng nhập bằng Facebook</span>
-    //                         </button>
-    //                       </div>
-    //                       <div className="col-sm-6 col-12 pl-7">
-    //                         <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-    //                           <GoogleOutlined />
-    //                           <span> Đăng nhập bằng Google</span>
-    //                         </button>
-    //                       </div>
-    //                     </div>
-    //                   </div>
-    //                 </div>
-    //               </div>
-    //             </form>
-    //             {/* login main form */}
-    //             {/* <div className="col-md-6 col-sm-12 col-12 login-main-right">
-    //                 <form
-    //                   className="login-form reg-form"
-    //                   method="POST"
-    //                   onSubmit={handleSubmit(onSignup)}
-    //                 >
-    //                   <div className="login-main-header">
-    //                     <h3>Đăng Ký Tài Khoản Nhà Tuyển Dụng</h3>
-    //                   </div>
-    //                   <div className="reg-info">
-    //                     <h3>Tài khoản</h3>
-    //                   </div>
-
-    //                   <input type="text" hidden value="2" {...register("id")} />
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="Địa Chỉ Email của công ty"
-    //                         {...register("email", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.email?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="password"
-    //                         className="form-control rounded"
-    //                         placeholder="mật khẩu "
-    //                         {...register("password", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.password?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="password"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập lại mật khẩu"
-    //                         {...register("comfirmPassword", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.comfirmPassword?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="reg-info">
-    //                     <h3>Công ty</h3>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="họ tên người đăng ký"
-    //                         {...register("fullName", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.fullName?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập số điện thoại"
-    //                         {...register("phone", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.phone?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập tên công ty"
-    //                         {...register("namecompany", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.namecompany?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhập địa chỉ công ty"
-    //                         {...register("workplace", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.workplace?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="col-xl-6 col-lg-6 col-md-6">
-    //                     <div className="form-group">
-    //                       <input
-    //                         type="text"
-    //                         className="form-control rounded"
-    //                         placeholder="nhận chức vụ trong công ty"
-    //                         {...register("address", { required: true })}
-    //                       />
-    //                     </div>
-    //                     <p className="text-danger pt-1">
-    //                       {errors.address?.message}
-    //                     </p>
-    //                   </div>
-    //                   <div className="form-group d-block frm-text">
-    //                     <a href="#" className="fg-login d-inline-block" />
-    //                     <a
-    //                       href="#"
-    //                       className="fg-login float-right d-inline-block"
-    //                     >
-    //                       Bạn đã có tài khoản? Đăng Nhập
-    //                     </a>
-    //                   </div>
-    //                   <button
-    //                     type="submit"
-    //                     className="btn btn-success float-right btn-login d-block w-100"
-    //                   >
-    //                     Đăng Ký Nhà Tuyển Dụng
-    //                   </button>
-    //                   <div className="form-group d-block w-100 mt-5">
-    //                     <div className="text-or text-center">
-    //                       <span>Hoặc</span>
-    //                     </div>
-    //                     <div className="row">
-    //                       <div className="col-sm-6 col-12 pr-7">
-    //                         <button className="btn btn-primary btn-login-facebook btnw w-100 float-left">
-    //                         <FacebookOutlined />
-    //                           <span> Đăng nhập bằng Facebook</span>
-    //                         </button>
-    //                       </div>
-    //                       <div className="col-sm-6 col-12 pl-7">
-    //                         <button className="btn btn-danger btn-login-google btnw w-100 float-left">
-    //                           <GoogleOutlined/>
-    //                           <span> Đăng nhập bằng Google</span>
-    //                         </button>
-    //                       </div>
-    //                     </div>
-    //                   </div>
-    //                 </form>
-    //               </div> */}
-    //           </div>
-    //         </div>
-    //         {/* (end) login main */}
-    //       </div>
-    //     </div>
-    //     <footer className="login-footer">
-    //       <div className="w-login m-auto">
-    //         <div className="row">
-    //           {/* login footer left */}
-
-    //           {/* login footer right */}
-    //         </div>
-    //       </div>
-    //     </footer>
-    //   </div>
-    // </div>
     <div className="container">
       <blockquote className="blockquote text-center ">
         <p className="mb-0">
-          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng
+          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
+          tưởng
         </p>
-        <footer className="blockquote-footer">
-          Đăng kí nhà tuyển dụng
-        </footer>
+        <footer className="blockquote-footer">Đăng kí nhà tuyển dụng</footer>
       </blockquote>
       <section className="middle">
         <div className="container container-empoloyer">
@@ -462,9 +119,7 @@ const Signupemployer = (props: Props) => {
                         {...register("email", { required: true })}
                       />
                     </div>
-                    <p className="text-danger pt-1">
-                      {errors.email?.message}
-                    </p>
+                    <p className="text-danger pt-1">{errors.email?.message}</p>
                   </div>
                   <div className="">
                     <div className="form-group">
@@ -503,9 +158,7 @@ const Signupemployer = (props: Props) => {
                         {...register("phone", { required: true })}
                       />
                     </div>
-                    <p className="text-danger pt-1">
-                      {errors.phone?.message}
-                    </p>
+                    <p className="text-danger pt-1">{errors.phone?.message}</p>
                   </div>
                   <div className="">
                     <div className="form-group">
@@ -549,23 +202,19 @@ const Signupemployer = (props: Props) => {
                   </div>
                   <div className="form-group d-block frm-text">
                     <a href="#" className="fg-login d-inline-block" />
-                    <a
-                      href="#"
-                      className="fg-login float-right d-inline-block"
-                    >
+                    <a href="/" className="fg-login float-right d-inline-block">
                       Bạn đã có tài khoản? Đăng Nhập
                     </a>
                   </div>
-                  <button
-                    type="submit"
-                    className=" btn btn-success float-right btn-login d-block w-100 cocaicc"
-                  >
-                    Đăng Ký Nhà Tuyển Dụng
-                  </button>
-
                 </div>
 
                 <div className="form-group item-dnhap ">
+                  <button
+                    type="submit"
+                    className=" btn btn-success btn-login d-block cocaicc"
+                  >
+                    Đăng Ký Nhà Tuyển Dụng
+                  </button>
                   <br />
                   <div className="text-or text-center">
                     <span>Hoặc</span>
@@ -581,7 +230,7 @@ const Signupemployer = (props: Props) => {
                     <div className="col ">
                       <button className="btn  btn-login-google  gg-empoly">
                         <GoogleOutlined className="ggIcon" />
-                        <span>  Google</span>
+                        <span> Google</span>
                       </button>
                     </div>
                   </div>
