@@ -69,7 +69,7 @@ const Signupemployer = (props: Props) => {
         text: 'Ấn Oke để tiếp tục đăng kí!',
         footer: '<a href="/">Mời bạn đăng nhập </a>'
       })
-  
+
       return true;
     } else {
       toast.error(data.message);

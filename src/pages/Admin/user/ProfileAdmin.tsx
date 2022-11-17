@@ -3,14 +3,14 @@ import { id } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
-import { string } from "yup";
+import { number, string } from "yup";
 import { isAuthenticate } from "../../../api/auth";
 import { listNews, listprofile } from "../../../api/home";
 import { updateProfileemp } from "../../../api/profile";
 
 type Props = {};
 
-type formDataEmp = {
+type fromdata = {
   avatar: string,
   nameEmployer: string,
   id: number
@@ -40,12 +40,15 @@ const ProfileAdmin = (props: Props) => {
   // function handleSubmi(formDataEmp: any) {
   //   updateProfileemp(data.id, formDataEmp)
   // }
+  const fromdata = profile?.employer
+  const onupdateEmp: SubmitHandler<any> = async (fromdata: any) => {
 
-  const onupdateEmp: SubmitHandler<any> = async () => {
-    const fromdata = profile?.employer
+    // const product = {
+    //   name: "nameEmployer",
+    //   phone: 0
+    // };
     await updateProfileemp(data.id, fromdata)
     console.log(fromdata);
-
   }
   const onupdateCom: SubmitHandler<any> = async (formData: any) => {
     await updateProfileemp(data.id, formData)
