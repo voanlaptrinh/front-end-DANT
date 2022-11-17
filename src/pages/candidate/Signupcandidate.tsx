@@ -4,10 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { useDispatch } from 'react-redux'
-// import Header2 from "../../components/candidate/Header2";
-// import { signUpByUser } from '../../features/auth/authSlice'
-// import Logo from '../../assets/images/logo.jpg';
+import Swal from "sweetalert2";
 import images from "../../assets/images/sec-safe.png";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
@@ -49,7 +46,13 @@ const Signupcandidate = (props: Props) => {
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
     if (data.status == 200) {
-      window.location.href = "/";
+      // window.location.href = "/";
+      Swal.fire({
+        icon: 'success',
+        title: 'Đăng kí thành công!',
+        text: 'Ấn Oke để tiếp tục đăng kí!',
+        footer: '<a href="/">Mời bạn đăng nhập </a>'
+    });
      
       return true;
     } else {
@@ -63,6 +66,7 @@ const Signupcandidate = (props: Props) => {
           Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
           tưởng
         </p>
+       
         <footer className="blockquote-footer">
           Đăng kí <cite title="Source Title">Ứng viên</cite>
         </footer>

@@ -7,6 +7,7 @@ import Header2 from "../../layout/DefaultLayout/Header2/Header2";
 import { signup } from "../../api/auth";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import images from "../../assets/images/sec-safe.png";
 
 type Props = {};
@@ -62,7 +63,13 @@ const Signupemployer = (props: Props) => {
     console.log(data.message);
     // window.location.href = "/"
     if (data.status == 200) {
-      window.location.href = "/";
+      Swal.fire({
+        icon: 'success',
+        title: 'Đăng kí thành công!',
+        text: 'Ấn Oke để tiếp tục đăng kí!',
+        footer: '<a href="/">Mời bạn đăng nhập </a>'
+      })
+  
       return true;
     } else {
       toast.error(data.message);
