@@ -51,7 +51,7 @@ const Signupcandidate = (props: Props) => {
     // window.location.reload("/")
     // navigate("/");
     window.location.href = "/"
-    toast.success('Đăng kí tài khoản ứng viên thành công!');
+    // toast.success('Đăng kí tài khoản ứng viên thành công!');
     return true;
   }
   return (
