@@ -7,6 +7,7 @@ import { getProfileByToken, updateProfileById } from '../../../api/profile';
 import { Experience, Lever, Profession, Profile, Timework, Wage } from '../../../types/profile';
 import './Profile.css';
 import { listNews } from '../../../api/home';
+import { toast } from "react-toastify";
 import { User } from '../../../types/user';
 
 type Props = {}
@@ -60,12 +61,12 @@ const ProfileDetail = (props: Props) => {
 
    const Submit: SubmitHandler<FormValues> = async (data: any) => {
       try {
-         await updateProfileById(category.user.id, data)
-         alert('Cập nhật thành công')
-
+         await updateProfileById(user?.user.id, data)
+         toast.success('Cập nhật thành công!');
+         console.log(user?.id);
       } catch (error: any) {
          console.log(error);
-         alert('Có lỗi xảy ra')
+         toast.error('Có lỗi xảy ra!');
       }
       console.log(data);
 
