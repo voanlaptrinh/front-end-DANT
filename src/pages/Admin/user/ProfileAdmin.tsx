@@ -3,11 +3,19 @@ import { id } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
+import { string } from "yup";
 import { isAuthenticate } from "../../../api/auth";
 import { listNews, listprofile } from "../../../api/home";
 import { updateProfileemp } from "../../../api/profile";
 
 type Props = {};
+
+type formDataEmp = {
+  avatar: string,
+  nameEmployer: string,
+  id: number
+}
+
 
 const ProfileAdmin = (props: Props) => {
   const [profile, setProfile] = useState<any>([]);
@@ -29,9 +37,24 @@ const ProfileAdmin = (props: Props) => {
   };
   console.log(profile);
 
-  const onupdate: SubmitHandler<any> = async (formData: any) => {
-    await updateProfileemp(data.token, formData)
+  // function handleSubmi(formDataEmp: any) {
+  //   updateProfileemp(data.id, formDataEmp)
+  // }
+
+  const onupdateEmp: SubmitHandler<any> = async () => {
+    const fromdata = profile?.employer
+    await updateProfileemp(data.id, fromdata)
+    console.log(fromdata);
+
   }
+  const onupdateCom: SubmitHandler<any> = async (formData: any) => {
+    await updateProfileemp(data.id, formData)
+  }
+  // handleAlert(){
+
+  // }
+
+
   return (
     <div>
       <div className="dashboard-widg-bar d-block">
@@ -48,7 +71,10 @@ const ProfileAdmin = (props: Props) => {
               </div>
               {profile.employer?.map((employer: any) => (
                 <div className="_dashboard_content_body py-3 px-3">
-                  <form className="row" onSubmit={handleSubmit(onupdate)}>
+                  <form className="row"
+                    onSubmit={handleSubmit(onupdateEmp)}
+                    method="POST"
+                  >
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                       <div>
                         <input type="hidden" {...register('id', { required: true })}
@@ -59,7 +85,7 @@ const ProfileAdmin = (props: Props) => {
                           type="file"
                           className="custom-file-input"
                           {...register('avatar', { required: true })}
-                          defaultValue={employer.avatar}
+                        // defaultValue={employer.avatar ?? ""} 
                         />
                         <label className="custom-file-label" htmlFor="customFile">
                           <i className="fa fa-user" />
@@ -228,8 +254,12 @@ const ProfileAdmin = (props: Props) => {
               </div>
               {profile.company?.map((company: any) => (
                 <div className="_dashboard_content_body py-3 px-3">
-                  <form className="row" onSubmit={handleSubmit(onupdate)}>
+                  <form className="row">
                     <input
+                      defaultValue={company.id}
+                      {...register("id", {
+                        required: true,
+                      })}
                       type="hidden"
                     />
                     <div className="col-xl-6 col-lg-6 col-md-12">
