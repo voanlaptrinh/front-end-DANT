@@ -59,21 +59,23 @@ const Signupemployer = (props: Props) => {
   });
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
-    // console.log(data);
-    window.location.href = "/"
-    toast.success('Đăng kí tài khoản ứng viên thành công!');
-
+    console.log(data.message);
+    // window.location.href = "/"
+    if (data.status == 200) {
+      window.location.href = "/";
+      return true;
+    } else {
+      toast.error(data.message);
+    }
   };
   return (
-   
     <div className="container">
       <blockquote className="blockquote text-center ">
         <p className="mb-0">
-          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng
+          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
+          tưởng
         </p>
-        <footer className="blockquote-footer">
-          Đăng kí nhà tuyển dụng
-        </footer>
+        <footer className="blockquote-footer">Đăng kí nhà tuyển dụng</footer>
       </blockquote>
       <section className="middle">
         <div className="container container-empoloyer">
@@ -110,9 +112,7 @@ const Signupemployer = (props: Props) => {
                         {...register("email", { required: true })}
                       />
                     </div>
-                    <p className="text-danger pt-1">
-                      {errors.email?.message}
-                    </p>
+                    <p className="text-danger pt-1">{errors.email?.message}</p>
                   </div>
                   <div className="">
                     <div className="form-group">
@@ -151,9 +151,7 @@ const Signupemployer = (props: Props) => {
                         {...register("phone", { required: true })}
                       />
                     </div>
-                    <p className="text-danger pt-1">
-                      {errors.phone?.message}
-                    </p>
+                    <p className="text-danger pt-1">{errors.phone?.message}</p>
                   </div>
                   <div className="">
                     <div className="form-group">
@@ -197,23 +195,19 @@ const Signupemployer = (props: Props) => {
                   </div>
                   <div className="form-group d-block frm-text">
                     <a href="#" className="fg-login d-inline-block" />
-                    <a
-                      href="#"
-                      className="fg-login float-right d-inline-block"
-                    >
+                    <a href="/" className="fg-login float-right d-inline-block">
                       Bạn đã có tài khoản? Đăng Nhập
                     </a>
                   </div>
-                  <button
-                    type="submit"
-                    className=" btn btn-success float-right btn-login d-block w-100 cocaicc"
-                  >
-                    Đăng Ký Nhà Tuyển Dụng
-                  </button>
-
                 </div>
 
                 <div className="form-group item-dnhap ">
+                  <button
+                    type="submit"
+                    className=" btn btn-success btn-login d-block cocaicc"
+                  >
+                    Đăng Ký Nhà Tuyển Dụng
+                  </button>
                   <br />
                   <div className="text-or text-center">
                     <span>Hoặc</span>
@@ -229,7 +223,7 @@ const Signupemployer = (props: Props) => {
                     <div className="col ">
                       <button className="btn  btn-login-google  gg-empoly">
                         <GoogleOutlined className="ggIcon" />
-                        <span>  Google</span>
+                        <span> Google</span>
                       </button>
                     </div>
                   </div>

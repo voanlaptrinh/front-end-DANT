@@ -48,17 +48,20 @@ const Signupcandidate = (props: Props) => {
   });
   const onSignup: SubmitHandler<FormValues> = async (formData: any) => {
     const { data } = await signup(formData);
-    // window.location.reload("/")
-    // navigate("/");
-    window.location.href = "/"
-    // toast.success('Đăng kí tài khoản ứng viên thành công!');
-    return true;
-  }
+    if (data.status == 200) {
+      window.location.href = "/";
+     
+      return true;
+    } else {
+      toast.error(data.message);
+    }
+  };
   return (
     <div className="container">
       <blockquote className="blockquote text-center ">
         <p className="mb-0">
-          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng
+          Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý
+          tưởng
         </p>
         <footer className="blockquote-footer">
           Đăng kí <cite title="Source Title">Ứng viên</cite>
@@ -79,7 +82,6 @@ const Signupcandidate = (props: Props) => {
                 method="POST"
                 onSubmit={handleSubmit(onSignup)}
               >
-
                 <input type="text" hidden value="1" {...register("id")} />
                 <div className=" ">
                   <label htmlFor="fullName" className="fs-6 fw-normal py-2">
@@ -152,10 +154,10 @@ const Signupcandidate = (props: Props) => {
                 <button
                   type="submit"
                   className=" btn btn-success float-right btn-login d-block w-100 cocaicc"
-
                 >
                   Đăng Ký
-                </button><br />
+                </button>
+                <br />
                 <div className="form-group d-block w-100 mt-5">
                   <div className="text-or text-center">
                     <span>Hoặc</span>
@@ -163,7 +165,7 @@ const Signupcandidate = (props: Props) => {
                   <br />
                   <div className="row">
                     <div className="col-sm-6 col-12 pr-7">
-                      <button className="btn  btn-login-facebook d-block w-100 float-left fb" >
+                      <button className="btn  btn-login-facebook d-block w-100 float-left fb">
                         <FacebookOutlined className="fbIcon" />
                         <span> Facebook</span>
                       </button>
