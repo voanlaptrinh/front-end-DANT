@@ -39,7 +39,6 @@ function App() {
       <main>
         <Routes>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          <Route path="/" element={<Home />} />
           {/* Default-Layout */}
           <Route path="/" element={<DefaultLayout />}>
             <Route index element={<Home />} />

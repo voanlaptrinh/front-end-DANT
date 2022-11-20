@@ -70,13 +70,6 @@ const Header = (props: Props) => {
                   alt=""
                 />
               </a>
-              <a className="nav-brand fixed-logo" href="#">
-                <img
-                  src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1666583733/gd/logo-light_gmshg5.png"
-                  className="logo"
-                  alt=""
-                />
-              </a>
               <div className="nav-toggle" />
               <div className="mobile_nav">
                 <ul>
