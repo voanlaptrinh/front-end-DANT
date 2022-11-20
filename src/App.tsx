@@ -41,7 +41,7 @@ function App() {
           {/* <Suspense fallback={<div>Loading...</div>}> */}
           <Route path="/" element={<Home />} />
           {/* Default-Layout */}
-          <Route path="product" element={<DefaultLayout />}>
+          <Route path="/" element={<DefaultLayout />}>
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="detail" element={<Detail />} />
