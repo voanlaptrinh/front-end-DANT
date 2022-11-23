@@ -173,12 +173,12 @@ const EditNews = (props: Props) => {
                             },
                           ]}
                         >
-                          <Checkbox.Group
+                          {/* <Checkbox.Group
                             options={categories.skill?.map((skill: any) => ({
                               label: skill.name,
                               value: skill.id,
                             }))}
-                          ></Checkbox.Group>
+                          ></Checkbox.Group> */}
                         </Form.Item>
                       </div>
 

@@ -226,7 +226,6 @@ const PostAdd = (props: Props) => {
                         </Form.Item>
                       </div>
 
-
                     </div>
                   </div>
                 </div>
