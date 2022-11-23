@@ -39,11 +39,13 @@ const Login: React.FC = (props: Props) => {
         console.log(data);
         if (data.data) {
             if (data.data.role_id == 1) {
-                navigate('/');
+                // navigate('/');
+                // window.location.href = "/"
                 return true
             }
             if (data.data.role_id == 2) {
-                navigate('/employer');
+                // navigate('/employer');
+                // window.location.href = "/employer"
                 return true
             }
         }

@@ -43,10 +43,7 @@ export const listNewsemp = () => {
   return instance.get(url);
 };
 
-export const listprofile = () => {
-  const url = `/employer/profile/${data.token}`;
-  return instance.get(url);
-};
+
 
 // export const updateNews = (id: any) => {
 //   const url = `/employer/update/${id}`; 

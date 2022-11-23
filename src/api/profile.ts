@@ -18,6 +18,7 @@ export const updateProfileById = (id: number | undefined, data: any) => {
       }
    });
 }
+
 export const updateProfileemp = (id: number | undefined, data: any) => {
    return instance.post(`/employer/profile/update/${id}`, data, {
       headers: {
@@ -26,3 +27,7 @@ export const updateProfileemp = (id: number | undefined, data: any) => {
    });
 }
 
+export const listprofileAdmin = () => {
+   const url = `/employer/profile/${data.token}`;
+   return instance.get(url);
+ };

@@ -5,17 +5,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
 import { number, string } from "yup";
 import { isAuthenticate } from "../../../api/auth";
-import { listNews, listprofile } from "../../../api/home";
-import { updateProfileemp } from "../../../api/profile";
+import { listprofileAdmin, updateProfileemp } from "../../../api/profile";
 
 type Props = {};
-
-type fromdata = {
-  avatar: string,
-  nameEmployer: string,
-  id: number
-}
-
 
 const ProfileAdmin = (props: Props) => {
   const [profile, setProfile] = useState<any>([]);
@@ -27,12 +19,13 @@ const ProfileAdmin = (props: Props) => {
     formState: { errors },
     reset,
   } = useForm<any>({});
+
   useEffect(() => {
     getNews();
   }, []);
 
   const getNews = async () => {
-    const { data } = await listprofile();
+    const { data } = await listprofileAdmin();
     setProfile(data);
   };
   console.log(profile);
@@ -197,9 +190,38 @@ const ProfileAdmin = (props: Props) => {
             </div>
           </div>
         </div>
+        <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1667559672/cld-sample-2.jpg" alt="" />
+        <div>
+          {/* Button trigger modal */}
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+          </button>
+          {/* Modal */}
+          <div className="modal fade show"  id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">  
+                  <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                      
+                    </span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  ...
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" className="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <div className="row">
-          <div className="col-lg-12 col-md-12">
+        {/* <div className="row"> */}
+        {/* <div className="col-lg-12 col-md-12">
             <div className="_dashboard_content bg-white rounded mb-4">
               <div className="_dashboard_content_header br-bottom py-3 px-3">
                 <div className="_dashboard__header_flex">
@@ -244,8 +266,8 @@ const ProfileAdmin = (props: Props) => {
                 </form>
               </div>
             </div>
-          </div>
-          <div className="col-lg-12 col-md-12">
+          </div> */}
+        {/* <div className="col-lg-12 col-md-12">
             <div className="_dashboard_content bg-white rounded mb-4">
               <div className="_dashboard_content_header br-bottom py-3 px-3">
                 <div className="_dashboard__header_flex">
@@ -363,8 +385,8 @@ const ProfileAdmin = (props: Props) => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

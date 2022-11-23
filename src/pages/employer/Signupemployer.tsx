@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Header2 from "../../layout/DefaultLayout/Header/Header2";
 import { signup } from "../../api/auth";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";

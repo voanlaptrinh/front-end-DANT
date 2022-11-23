@@ -46,11 +46,13 @@ const Header = (props: Props) => {
     localStorage.setItem("user", JSON.stringify(data));
     if (data.data) {
       if (data.data.role_id == 1) {
-        navigate("/");
+        // navigate("/");
+        window.location.href = "/"
         return true;
       }
       if (data.data.role_id == 2) {
-        navigate("/admin");
+        // navigate("/admin");
+        window.location.href = "/admin"
         return true;
       }
     }
@@ -306,7 +308,7 @@ const Header = (props: Props) => {
           </nav>
         </div>
       </div>
-   
+
       {/* Log In Modal */}
       <div className="nav-item align-items-center">
         <div
@@ -331,7 +333,7 @@ const Header = (props: Props) => {
               </div>
               <div className="p-5 rounded mx-auto d-block ">
                 <form method="POST" onClick={handleSubmit(onSignin)}>
-                  <div className="form-group">
+                  <div className="">
                     <label>Email</label>
                     <input
                       type="text"
