@@ -162,7 +162,7 @@ const EditNews = (props: Props) => {
                     <div className="mb-4">
                       <label className="form-label"> Kỹ năng</label>
 
-                      {/* <div className="card-body recuitment-body check-box-employer">
+                      <div className="card-body recuitment-body check-box-employer">
                         <Form.Item
                           name="skill_id"
                           valuePropName="checked"
@@ -180,7 +180,7 @@ const EditNews = (props: Props) => {
                             }))}
                           ></Checkbox.Group>
                         </Form.Item>
-                      </div> */}
+                      </div>
 
 
                     </div>

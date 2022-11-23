@@ -233,6 +233,7 @@ const PostAdd = (props: Props) => {
                 <div className="rec-submit">
                   <button type="button" className="btn btn-primary">Đăng Tin</button>
                 </div>
+                
               </div>
             </div>
           </div>
