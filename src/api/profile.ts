@@ -30,4 +30,4 @@ export const updateProfileemp = (id: number | undefined, data: any) => {
 export const listprofileAdmin = () => {
    const url = `/employer/profile/${data.token}`;
    return instance.get(url);
- };
+};
