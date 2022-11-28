@@ -22,6 +22,7 @@ const PostAdd = (props: Props) => {
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
   const [categories, setCategories] = useState<any>([]);
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   useEffect(() => {
     getCategories();
@@ -30,7 +31,6 @@ const PostAdd = (props: Props) => {
   const getCategories = async () => {
     const { data } = await listNews();
     setCategories(data);
-    console.log(data);
   };
 
   const oncreate: SubmitHandler<any> = async (dataform: any) => {
@@ -48,48 +48,21 @@ const PostAdd = (props: Props) => {
       logo: url,
     };
     const { data } = await createNews(product);
-    // console.log(formData);
   };
 
   const uploadImg = async (e: any) => {
     setAvatar(e.target.files[0]);
   };
 
-  const user = categories?.user;
-  const company = categories?.company;
   console.log(categories);
-
-  if (!user) {
-    return null;
-  }
 
   return (
     <div>
       <div className="col-12 recuitment-inner">
-        <Form
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
+        <form
           className="recuitment-form"
-          layout="horizontal"
-          onFinish={oncreate}
-          initialValues={{
-            nameEmployer: user[0]?.name,
-            id_Employer: user[0]?.id,
-            emailEmployer: user[0]?.email,
-            phoneEmployer: user[0]?.phone,
-            addressEmployer: user[0]?.address,
-            nameCompany: company[0]?.namecompany ?? "",
-            emailCompany: company[0]?.email ?? "",
-            number_member: company[0]?.number_member ?? "",
-            phoneCompany: company[0]?.phone ?? "",
-            logo: company[0]?.logo ?? "",
-            DesceibeCompany: company[0]?.Desceibe ?? "",
-            addressCompany: company[0]?.address ?? "",
-            id_company: company[0]?.id_company ?? "",
-          }}
+          onSubmit={handleSubmit(oncreate)}
         >
-
-
           {/* new form create employer */}
 
           <div className="card-create-employer">
@@ -100,143 +73,136 @@ const PostAdd = (props: Props) => {
               <div className="card-body">
                 <div className="row">
                   <div className="col-6">
-
                     <div className="mb-4">
                       <label className="form-label">Tiêu đề<span className="required-lable">*</span></label>
-                      <input type="email" className="form-control" />
+                      <input type="text" className="form-control" {...register("title", { required: true })} />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Số lượng cần tuyển<span className="required-lable">*</span></label>
-                      <input type="number" className="form-control" min="0" />
+                      <input type="number" className="form-control" min="0"  {...register("Quatity", { required: true })} />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Giới tính<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Chọn giới tính</option>
+                      <select className="form-control" required aria-label="select example"  {...register("sex", { required: true })}>
+                        <option value="">chọn giới tính</option>
+                        <option value="0">không yêu cầu giới tính</option>
                         <option value="1">Nam</option>
                         <option value="2">Nữ</option>
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Mô tả công việc<span className="required-lable">*</span></label>
-                      <textarea className="form-control" ></textarea>
+                      <textarea className="form-control" {...register("describe", { required: true })}></textarea>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Yêu cầu công việc<span className="required-lable">*</span></label>
-                      <textarea className="form-control" ></textarea>
+                      <textarea className="form-control"  {...register("Candidate_requirements", { required: true, })}></textarea>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Quyền lơi công việc<span className="required-lable">*</span></label>
-                      <textarea className="form-control" ></textarea>
+                      <textarea className="form-control"  {...register("benefit", { required: true })}></textarea>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Chọn nghành nghề<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Chọn nghành nghề</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example"  {...register("wk_form_id", { required: true, })}>
+                        {categories.workingform?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Chọn nơi làm việc<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Chọn nơi làm việc</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example" {...register("location_id", { required: true, })}>
+                        {categories.location?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Chọn địa chỉ cụ thể<span className="required-lable">*</span></label>
-                      <input type="text" className="form-control" />
+                      <input type="text" className="form-control" {...register("Address", { required: true })} />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Hạn nộp hồ sơ<span className="required-lable">*</span></label>
-                      <input type="date" className="form-control" />
+                      <input type="date" className="form-control"  {...register("end_job_time", { required: true, })} />
                     </div>
                   </div>
                   <div className="col-6">
                     <div className="mb-4">
                       <label className="form-label">Chọn chuyên ngành<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Chọn chuyên ngành</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example" {...register("profession_id", { required: true, })}>
+                        {categories.majors?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">chọn trình độ<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">chọn trình độ</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example" {...register("level_id", { required: true })}>
+                        {categories.lever?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">chọn kinh nghiệm<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">chọn kinh nghiệm</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example"  {...register("experience_id", { required: true, })}>
+                        {categories.experience?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">chọn mức lương<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">chọn mức lương</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                      </select>
-                    </div>
-                    <div className="mb-4">
-                      <label className="form-label">Hình thức làm việc<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Hình thức làm việc</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example"  {...register("Wage_id", { required: true })}>
+                        {categories.wage?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Thời gian làm việc<span className="required-lable">*</span></label>
-                      <select className="form-control" required aria-label="select example" >
-                        <option value="">Thời gian làm việc</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                      <select className="form-control" required aria-label="select example" {...register("time_work_id", { required: true, })}>
+                        {categories.timework?.map((item: any) => (
+                          <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="mb-4">
                       <label className="form-label"> Kỹ năng</label>
-
-                      <div className="card-body recuitment-body check-box-employer">
-                        <Form.Item
-                          name="skill_id"
-                          valuePropName="checked"
-                          rules={[
-                            {
-                              required: true,
-                              message: "bạn chưa chọn kĩ năng",
-                            },
-                          ]}
-                        >
-                          <Checkbox.Group
-                            options={categories.skill?.map((skill: any) => ({
-                              label: skill.name,
-                              value: skill.id,
-                            }))}
-                          ></Checkbox.Group>
-                        </Form.Item>
+                      <div className="checkboxsec" id="checkboxSection">
+                        <label className="label-container">
+                          {categories.skill?.map((skill: any) => (
+                            <div className="filter-topic" key={skill.id}>
+                              <label className="label-container">
+                                <span>{skill.name}</span>
+                                <input
+                                  type="checkbox"
+                                  {...register("skill_id", {
+                                    required: true,
+                                  })}
+                                  value={skill.id}
+                                />
+                                <span className="checkmark" />
+                              </label>
+                            </div>
+                          ))}
+                        </label>
                       </div>
-
+                    </div>
+                    <div>
+                      <div>logo</div>
+                      <input type="file" className="form-control" onChange={uploadImg} />
                     </div>
                   </div>
                 </div>
                 <div className="rec-submit">
-                  <button type="button" className="btn btn-primary">Đăng Tin</button>
+                  <button type="submit" className="btn btn-primary">Đăng Tin</button>
                 </div>
-
               </div>
             </div>
           </div>
-        </Form>
+        </form>
       </div >
     </div >
   );
