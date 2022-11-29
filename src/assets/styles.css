@@ -1822,6 +1822,7 @@ ul {
 .nav-toggle,
 .navigation-hidden .nav-header {
   display: none;
+  margin-left: 95%;
 }
 
 .navigation-portrait {
@@ -1847,7 +1848,7 @@ ul {
 
 .align-to-right {
   float: right;
-}
+    }
 
 .top {
   margin-top: 0.8%;
@@ -3114,6 +3115,7 @@ span.expiration {
 
   .mobile_nav {
     display: none;
+    
   }
 
   li._my_prt_list a {

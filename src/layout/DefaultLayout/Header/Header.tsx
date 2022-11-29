@@ -1,4 +1,5 @@
 import {
+  CloseOutlined,
   DownOutlined,
   FileAddFilled,
   LoginOutlined,
@@ -115,7 +116,7 @@ const Header = (props: Props) => {
                       <div className="nav-item row nav-menu-social align-to-right">
                         <div className="nav-item">
                           <button
-                            className="btn btn-success"
+                            className="btn btn-success bg-white"
                             data-toggle="modal"
                             data-target="#login"
                           >
@@ -328,11 +329,11 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined  className="ti-close" />
                 </button>
               </div>
-              <div className="p-5 rounded mx-auto d-block ">
-                <form method="POST" onClick={handleSubmit(onSignin)}>
+              <div className="p-5 rounded mx-auto d-block icofont-cop-badge-pill w-100 ">
+                <form method="POST" >
                   <div className="">
                     <label>Email</label>
                     <input
@@ -356,11 +357,11 @@ const Header = (props: Props) => {
                     />
                   </div>
                   <div className="form-group">
-                    <div className="d-flex align-items-center justify-content-between">
+                    <div className="d-flex align-items-center justify-content-between container">
                       <div className="flex-1">
                         <input
                           id="dd"
-                          className="checkbox-custom"
+                          className="checkbox"
                           name="dd"
                           type="checkbox"
                         />
@@ -379,6 +380,7 @@ const Header = (props: Props) => {
                     <button
                       type="submit"
                       className="btn btn-md full-width theme-bg text-light fs-md ft-medium"
+                      onClick={handleSubmit(onSignin)}
                     >
                       Login
                     </button>
@@ -428,7 +430,7 @@ const Header = (props: Props) => {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span className="ti-close" />
+                  <CloseOutlined className="ti-close" />
                 </button>{" "}
               </div>
               <div className="modal-body">

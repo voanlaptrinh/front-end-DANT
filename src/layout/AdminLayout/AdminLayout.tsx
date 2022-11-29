@@ -78,9 +78,9 @@ const AdminLayout = (props: Props) => {
           className="header site-layout-background"
           style={{ padding: 15 }}
         >
-          <p style={{ marginBottom: 0 }}>Hello, {user.name}</p>
+          <p style={{ marginBottom: 0}}>Hello, {user.name}</p>
           <Avatar size="large" icon={<UserOutlined />} />
-          <Link to="/">
+          <Link to="/" >
             <a className="" onClick={() => logout()}>
               <LoginOutlined />
             </a>

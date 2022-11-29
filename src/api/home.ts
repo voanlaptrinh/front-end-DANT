@@ -42,7 +42,10 @@ export const listNewsemp = () => {
   const url = `/employer/index/${data.token}`;
   return instance.get(url);
 };
-
+ export const searchJob = () => {
+  const url = `/index/keyword`;
+  return instance.get(url);
+ };
 
 
 // export const updateNews = (id: any) => {

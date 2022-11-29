@@ -1,8 +1,30 @@
-import React from "react";
+import { ArrowRightOutlined, DollarCircleOutlined, GlobalOutlined, HeartOutlined, LikeOutlined, LoadingOutlined, LockOutlined, MoneyCollectOutlined, UserAddOutlined, VerticalLeftOutlined, VerticalRightOutlined } from "@ant-design/icons";
+import { format } from "date-fns/esm";
+import React, { useEffect, useState } from "react";
+import { searchJob } from "../../api/home";
+// import Moment from 'moment';
 
 type Props = {};
 
 const Search = (props: Props) => {
+  const [getAllJob, setJob] = useState<any>([]);
+  // const [getAllLocation, setLocation] = useState<any>([]);
+
+  
+  // const currentPage = this.state.currentPage;  //trang hiện tại
+  // const newsPerPage = this.state.newsPerPage; //tin tức mỗi trang
+  // const indexOfLastNews = currentPage * newsPerPage; //index(vị trí) tin tức cuối cùng của trang hiện tại trong mảng dữ liệu newsList
+  // const indexOfFirstNews = indexOfLastNews - newsPerPage; //index(vị trí) tin tức đầu tiên của trang hiện tại trong mảng dữ liệu newsList
+  // const currentTodos = newsList.slice(indexOfFirstNews, indexOfLastNews); //*cắt* dữ liệu ban đầu, lấy ra 1 mảng dữ liệu mới cho trang hiện tại
+
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    const { data } = await searchJob();
+    setJob(data);
+    // setLocation(data)
+  };
   return (
     <div>
       {/* ============================ Main Section Start ================================== */}
@@ -1065,149 +1087,83 @@ const Search = (props: Props) => {
               {/* row */}
               <div className="row align-items-center">
                 {/* Single */}
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                  <div className="job_grid border rounded ">
-                    <div className="position-absolute ab-left">
-                      <button
-                        type="button"
-                        className="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
-                      >
-                        <i className="lni lni-heart-filled position-absolute snackbar-wishlist" />
-                      </button>
-                    </div>
-                    <div className="position-absolute ab-right">
-                      <span className="medium theme-cl theme-bg-light px-2 py-1 rounded">
-                        Full Time
-                      </span>
-                    </div>
-                    <div className="job_grid_thumb mb-2 pt-4 px-3">
-                      <a
-                        href="job-detail.html"
-                        className="d-block text-center m-auto"
-                      >
-                        <img
-                          src="assets/img/c-1.png"
-                          className="img-fluid"
-                          width={70}
-                        />
-                      </a>
-                    </div>
-                    <div className="job_grid_caption text-center pb-3 px-3">
-                      <h4 className="mb-0 ft-medium medium">
-                        <a
-                          href="employer-detail.html"
-                          className="text-dark fs-md"
-                        >
-                          UI/UX Web Designer
-                        </a>
-                      </h4>
-                      <div className="jbl_location">
-                        <i className="lni lni-map-marker mr-1" />
-                        <span>San Francisco</span>
-                      </div>
-                    </div>
-                    <div className="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-                      <div className="row">
-                        <div className="df-1 text-muted col-6 mb-2">
-                          <i className="lni lni-briefcase mr-1" />
-                          Full Time
-                        </div>
-                        <div className="df-1 text-muted col-6 mb-2">
-                          <i className="lni lni-wallet mr-1" />
-                          3-4 Lakhs
-                        </div>
-                        <div className="df-1 text-muted col-6">
-                          <i className="lni lni-users mr-1" />
-                          02 Opp.
-                        </div>
-                        <div className="df-1 text-muted col-6">
-                          <i className="lni lni-timer mr-1" />3 days ago
-                        </div>
-                        <div className="df-1 text-dark ft-medium col-12 mt-3">
-                          <a
-                            href="job-detail.html"
-                            className="btn gray apply-btn rounded full-width"
+                {getAllJob.data?.map((item: any) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                      <div className="job_grid border rounded ">
+                        <div className="position-absolute ab-left">
+                          <button
+                            type="button"
+                            className="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
                           >
-                            Apply Job
-                            <i className="lni lni-arrow-right-circle ml-1" />
+                            <HeartOutlined  className="lni lni-heart-filled position-absolute snackbar-wishlist"  />
+                          </button>
+                        </div>
+                        <div className="position-absolute ab-right">
+                          <span className="medium theme-cl theme-bg-light px-2 py-1 rounded">
+                            {item.get_time_work.name}
+                          </span>
+                        </div>
+                        <div className="job_grid_thumb mb-2 pt-4 px-3">
+                          <a
+                            href="#"
+                            className="d-block text-center m-auto"
+                          >
+                            <img
+                              src="https://tse1.mm.bing.net/th?id=OIP.xVzByFYN9GIFEL3IyBPppwHaIP&pid=Api&P=0"
+                              className="img-fluid"
+                              width={70}
+                            />
                           </a>
                         </div>
+                        <div className="job_grid_caption text-center pb-3 px-3">
+                          <h4 className="mb-0 ft-medium medium">
+                            <a
+                              href="employer-detail.html"
+                              className="text-dark fs-md"
+                            >
+                              {item.title}
+                            </a>
+                          </h4>
+                          <div className="jbl_location">
+                          <GlobalOutlined className="lni lni-map-marker mr-1" />
+                            <span>{item.nameCompany}</span>
+                          </div>
+                        </div>
+                        <div className="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
+                          <div className="row">
+                            <div className="df-1 text-muted col-6 mb-2">
+                            <LoadingOutlined className="lni"  />
+                              : {item.getwk_form.name}
+                            </div>
+                            <div className="df-1 text-muted col-6 mb-2">
+                            <DollarCircleOutlined  className="lni lni-wallet mr-1" />
+                              {item.get_wage.name}
+                            </div>
+                            <div className="df-1 text-muted col-6">
+                            <UserAddOutlined className="lni lni-users mr-1"  />
+                              {item.Quatity} Opp.
+                            </div>
+                            <div className="df-1 text-muted col-6">
+                            <LockOutlined  className="lni lni-timer mr-1"/>
+                             {item.end_job_time}
+                            </div>
+                            <div className="df-1 text-dark ft-medium col-12 mt-3">
+                              <a
+                                href="job-detail.html"
+                                className="btn gray apply-btn rounded full-width"
+                              >
+                                Apply Job
+                                <ArrowRightOutlined  className="lni lni-arrow-right-circle ml-1"/>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  );
+                })}
                 {/* Single */}
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                  <div className="job_grid border rounded ">
-                    <div className="position-absolute ab-left">
-                      <button
-                        type="button"
-                        className="p-3 border circle d-flex align-items-center justify-content-center bg-white text-gray"
-                      >
-                        <i className="lni lni-heart-filled position-absolute snackbar-wishlist" />
-                      </button>
-                    </div>
-                    <div className="position-absolute ab-right">
-                      <span className="medium bg-light-danger text-danger px-2 py-1 rounded">
-                        Enternship
-                      </span>
-                    </div>
-                    <div className="job_grid_thumb mb-2 pt-4 px-3">
-                      <a
-                        href="job-detail.html"
-                        className="d-block text-center m-auto"
-                      >
-                        <img
-                          src="assets/img/c-12.png"
-                          className="img-fluid"
-                          width={70}
-                        />
-                      </a>
-                    </div>
-                    <div className="job_grid_caption text-center pb-3 px-3">
-                      <h4 className="mb-0 ft-medium medium">
-                        <a
-                          href="employer-detail.html"
-                          className="text-dark fs-md"
-                        >
-                          UI/UX Web Designer
-                        </a>
-                      </h4>
-                      <div className="jbl_location">
-                        <i className="lni lni-map-marker mr-1" />
-                        <span>San Francisco</span>
-                      </div>
-                    </div>
-                    <div className="job_grid_footer pt-2 pb-4 px-3 d-flex align-items-center justify-content-between">
-                      <div className="row">
-                        <div className="df-1 text-muted col-6 mb-2">
-                          <i className="lni lni-briefcase mr-1" />
-                          Full Time
-                        </div>
-                        <div className="df-1 text-muted col-6 mb-2">
-                          <i className="lni lni-wallet mr-1" />
-                          3-4 Lakhs
-                        </div>
-                        <div className="df-1 text-muted col-6">
-                          <i className="lni lni-users mr-1" />
-                          02 Opp.
-                        </div>
-                        <div className="df-1 text-muted col-6">
-                          <i className="lni lni-timer mr-1" />3 days ago
-                        </div>
-                        <div className="df-1 text-dark ft-medium col-12 mt-3">
-                          <a
-                            href="job-detail.html"
-                            className="btn gray apply-btn rounded full-width"
-                          >
-                            Apply Job
-                            <i className="lni lni-arrow-right-circle ml-1" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               {/* row */}
               <div className="row">
@@ -1215,8 +1171,7 @@ const Search = (props: Props) => {
                   <ul className="pagination">
                     <li className="page-item">
                       <a className="page-link" href="#" aria-label="Previous">
-                        <span className="fas fa-arrow-circle-right" />
-                        <span className="sr-only">Previous</span>
+                      <VerticalRightOutlined className="fas fa-arrow-circle-right"/>
                       </a>
                     </li>
                     <li className="page-item">
@@ -1246,8 +1201,8 @@ const Search = (props: Props) => {
                     </li>
                     <li className="page-item">
                       <a className="page-link" href="#" aria-label="Next">
-                        <span className="fas fa-arrow-circle-right" />
-                        <span className="sr-only">Next</span>
+                      <VerticalLeftOutlined className="fas fa-arrow-circle-right" />
+
                       </a>
                     </li>
                   </ul>
