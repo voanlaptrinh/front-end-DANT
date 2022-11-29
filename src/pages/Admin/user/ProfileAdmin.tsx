@@ -33,16 +33,7 @@ const ProfileAdmin = (props: Props) => {
   // function handleSubmi(formDataEmp: any) {
   //   updateProfileemp(data.id, formDataEmp)
   // }
-  const fromdata = profile?.employer
-  const onupdateEmp: SubmitHandler<any> = async (fromdata: any) => {
 
-    // const product = {
-    //   name: "nameEmployer",
-    //   phone: 0
-    // };
-    await updateProfileemp(data.id, fromdata)
-    console.log(fromdata);
-  }
   const onupdateCom: SubmitHandler<any> = async (formData: any) => {
     await updateProfileemp(data.id, formData)
   }
@@ -68,7 +59,7 @@ const ProfileAdmin = (props: Props) => {
               {profile.employer?.map((employer: any) => (
                 <div className="_dashboard_content_body py-3 px-3">
                   <form className="row"
-                    onSubmit={handleSubmit(onupdateEmp)}
+                    onSubmit={handleSubmit(onupdateCom)}
                     method="POST"
                   >
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
@@ -190,36 +181,6 @@ const ProfileAdmin = (props: Props) => {
             </div>
           </div>
         </div>
-        <img src="https://res.cloudinary.com/dgeqw8b5i/image/upload/v1667559672/cld-sample-2.jpg" alt="" />
-        <div>
-          {/* Button trigger modal */}
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-          </button>
-          {/* Modal */}
-          <div className="modal fade show"  id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">  
-                  <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                      
-                    </span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  ...
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* <div className="row"> */}
         {/* <div className="col-lg-12 col-md-12">
             <div className="_dashboard_content bg-white rounded mb-4">
