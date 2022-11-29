@@ -53,6 +53,7 @@ const Search = (props: Props) => {
                               role="button"
                             >
                               Job Categories
+                              
                             </a>
                           </h4>
                         </div>
