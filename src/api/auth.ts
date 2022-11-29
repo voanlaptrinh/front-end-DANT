@@ -31,6 +31,7 @@ export const signin = (data: User) => {
 
 export const logout = () => {
    localStorage.removeItem('user');
+   window.location.href='/';
    toast.info('Đăng xuất thành công')
 }
 

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { ExpandOutlined, SearchOutlined } from "@ant-design/icons";
+import React, { useEffect, useRef, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { signin } from "../api/auth";
-import { listCandidate } from "../api/home";
+import { listCandidate, searchJob } from "../api/home";
+import PropTypes from "prop-types";
 
 type Props = {};
 
 const Home = (props: Props) => {
   const [getAllSkill, setSkill] = useState<any>([]);
   const [getAllLocation, setLocation] = useState<any>([]);
+  // const [search, setSearch] = useState("");
+  // console.log(search);
 
   useEffect(() => {
     getData();
@@ -15,9 +19,11 @@ const Home = (props: Props) => {
 
   const getData = async () => {
     const { data } = await listCandidate();
+    // const { data } = await searchJob();
     setSkill(data);
-    setLocation(data)
+    setLocation(data);
   };
+
 
   return (
     <div>
@@ -47,10 +53,12 @@ const Home = (props: Props) => {
                     <div className="form-group mb-0 position-relative">
                       <input
                         type="text"
+                        // name="key"
                         className="form-control lg left-ico"
                         placeholder="Job Title, Keyword or Company"
+                        // onChange={(e) => setSearch(e.target.value)}
                       />
-                      <i className="bnc-ico lni lni-search-alt" />
+                      <SearchOutlined className="bnc-ico lni lni-search-alt" />
                     </div>
                   </div>
                   <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -58,7 +66,7 @@ const Home = (props: Props) => {
                       <select className="custom-select lg b-0" name="" id="">
                         <option value="">Chọn Kĩ Năng</option>
                         {getAllSkill.skill?.map((item: any) => {
-                          return <option value={item.id}>{item.name}</option>;
+                          return <option value={item.id}>{item.name}</option>
                         })}
                       </select>
                     </div>
@@ -89,6 +97,7 @@ const Home = (props: Props) => {
           </div>
         </div>
       </div>
+
       {/* ======================= Job List ======================== */}
       <section className="middle">
         <div className="container">
@@ -384,11 +393,11 @@ const Home = (props: Props) => {
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div className="position-relative text-center">
                 <a
-                  href="job-search-v1.html"
+                  href="/search"
                   className="btn btn-md text-light rounded theme-bg"
                 >
                   Explore More Jobs
-                  <i className="lni lni-arrow-right-circle ml-2" />
+                  <ExpandOutlined className="lni lni-arrow-right-circle ml-2" />
                 </a>
               </div>
             </div>
