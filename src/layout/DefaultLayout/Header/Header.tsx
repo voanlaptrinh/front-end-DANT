@@ -20,7 +20,6 @@ type Props = {};
 const Header = (props: Props) => {
   const [getAllSkill, setSkill] = useState<any>([]);
   const [getAllLocation, setLocation] = useState<any>([]);
-  const navigate = useNavigate();
   const user = isAuthenticate();
   const {
     register,

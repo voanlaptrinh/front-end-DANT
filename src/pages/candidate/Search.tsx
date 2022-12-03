@@ -1,15 +1,16 @@
+
 import { ArrowRightOutlined, DollarCircleOutlined, GlobalOutlined, HeartOutlined, LikeOutlined, LoadingOutlined, LockOutlined, MoneyCollectOutlined, UserAddOutlined, VerticalLeftOutlined, VerticalRightOutlined } from "@ant-design/icons";
 import { format } from "date-fns/esm";
 import React, { useEffect, useState } from "react";
 import { searchJob } from "../../api/home";
 // import Moment from 'moment';
 
+
 type Props = {};
 
 const Search = (props: Props) => {
   const [getAllJob, setJob] = useState<any>([]);
   // const [getAllLocation, setLocation] = useState<any>([]);
-
   
   // const currentPage = this.state.currentPage;  //trang hiện tại
   // const newsPerPage = this.state.newsPerPage; //tin tức mỗi trang
@@ -25,6 +26,7 @@ const Search = (props: Props) => {
     setJob(data);
     // setLocation(data)
   };
+  
   return (
     <div>
       {/* ============================ Main Section Start ================================== */}
