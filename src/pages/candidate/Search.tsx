@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 type Props = {};
 
 const Search = (props: Props) => {
+  const [post, setPost] = useState<any>();
+  const [params] = useSearchParams()
+  console.log(params.entries());
+
+  useEffect(() => {
+    let param = [];
+    for (let entry of params.entries()) {
+      console.log(entry);
+      param.push(entry);
+      
+    }
+
+    // const searchPost = async () => {
+    //   try {
+    //     const res = await searchPost();
+    //     console.log(res);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+
+    // }
+    // searchPost();
+  }, [])
+
   return (
     <div>
       {/* ============================ Main Section Start ================================== */}

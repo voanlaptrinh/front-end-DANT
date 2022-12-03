@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getProfileByToken, updateProfileById } from '../../../api/profile';
-import { Experience, Lever, Profession, Profile, Timework, Wage } from '../../../types/profile';
-import './Profile.css';
-import { listNews } from '../../../api/home';
+import { Experience, Lever, Profession, Timework, Wage } from '../../../types/profile';
 import { toast } from "react-toastify";
-import { User } from '../../../types/user';
+import * as yup from 'yup';
+import './Profile.css';
 
 type Props = {}
 interface FormValues {
@@ -42,34 +40,28 @@ const ProfileDetail = (props: Props) => {
    });
 
    useEffect(() => {
+      const getUser = async () => {
+         try {
+            const { data } = await getProfileByToken(token);
+            setCategory(data);
+            reset(category.seeker)
+            console.log(category?.user);
+         } catch (error) {
+            console.log(error);
+         }
+      }
       getUser();
    }, [])
 
-
-   const getUser = async () => {
-      try {
-         const { data } = await getProfileByToken(token);
-         setCategory(data);
-         reset(category ? category.seeker : undefined)
-         console.log(category?.seeker);
-         console.log(data);
-      } catch (error) {
-         console.log(error);
-      }
-   }
-
-
    const Submit: SubmitHandler<FormValues> = async (data: any) => {
       try {
-         await updateProfileById(user?.user.id, data)
+         await updateProfileById(category.user?.id, data)
          toast.success('Cập nhật thành công!');
-         console.log(user?.id);
       } catch (error: any) {
          console.log(error);
          toast.error('Có lỗi xảy ra!');
       }
       console.log(data);
-
    }
 
    return (
