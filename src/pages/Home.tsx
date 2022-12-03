@@ -1,9 +1,11 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signin } from "../api/auth";
 import { listCandidate } from "../api/home";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { SearchOutlined } from "@ant-design/icons";
+
 
 type Props = {};
 interface FormValues {
@@ -17,6 +19,7 @@ const Home = (props: Props) => {
   const [getAllLocation, setLocation] = useState<any>([]);
   const { register, handleSubmit } = useForm<FormValues>();
 
+
   const navigate = useNavigate()
   useEffect(() => {
     getData();
@@ -24,8 +27,9 @@ const Home = (props: Props) => {
 
   const getData = async () => {
     const { data } = await listCandidate();
+    // const { data } = await searchJob();
     setSkill(data);
-    setLocation(data)
+    setLocation(data);
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
@@ -63,6 +67,7 @@ const Home = (props: Props) => {
                     <div className="form-group mb-0 position-relative">
                       <input
                         type="text"
+                        // name="key"
                         className="form-control lg left-ico"
                         placeholder="Công việc,kỹ năng..."
                         {...register('keyword')}
@@ -106,6 +111,7 @@ const Home = (props: Props) => {
           </div>
         </div>
       </div>
+
       {/* ======================= Job List ======================== */}
       <section className="middle">
         <div className="container">
@@ -401,11 +407,11 @@ const Home = (props: Props) => {
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div className="position-relative text-center">
                 <a
-                  href="job-search-v1.html"
+                  href="/search"
                   className="btn btn-md text-light rounded theme-bg"
                 >
                   Explore More Jobs
-                  <i className="lni lni-arrow-right-circle ml-2" />
+                  <ExpandOutlined className="lni lni-arrow-right-circle ml-2" />
                 </a>
               </div>
             </div>

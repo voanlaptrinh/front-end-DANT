@@ -21,7 +21,14 @@ export const updateProfileById = (id: number | undefined, data: any) => {
 }
 
 export const updateProfileemp = (id: number | undefined, data: any) => {
-   return instance.put(`/employer/profile/update/${data.id}`, data, {
+   return instance.put(`/employer/profile/update/${tokenAuth.token}`, data, {
+      headers: {
+         Authorization: `Bearer ${tokenAuth.token}`
+      }
+   });
+}
+export const updateProfilecom = (id: number | undefined, data: any) => {
+   return instance.put(`/employer/profile/company/update/${id}`, data, {
       headers: {
          Authorization: `Bearer ${tokenAuth.token}`
       }
@@ -35,3 +42,12 @@ export const listprofileAdmin = () => {
       }
    });
 };
+
+export const listprofileAdmincom = () => {
+   return instance.get(`/employer/profile/company`, {
+      headers: {
+         Authorization: `Bearer ${tokenAuth.token}`
+      }
+   });
+};
+

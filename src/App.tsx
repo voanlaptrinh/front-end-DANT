@@ -23,6 +23,7 @@ import ProfileAdmin from "./pages/Admin/user/ProfileAdmin";
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment';
 import Package from "./pages/Admin/user/Package";
+import ProfileCompany from "./pages/Admin/user/ProfileCompany";
 moment.locale('vi');
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<ProfileAdmin />} />
+            <Route path="profileCompany" element={<ProfileCompany />} />
             <Route path="package" element={<Package />} />
             <Route path="post">
               <Route index element={<Post />} />

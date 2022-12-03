@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
 import { number, string } from "yup";
 import { isAuthenticate } from "../../../api/auth";
-import { listprofileAdmin, updateProfileemp } from "../../../api/profile";
+import { listprofileAdmin, listprofileAdmincom, updateProfileemp } from "../../../api/profile";
 
 type Props = {};
 
@@ -21,26 +21,17 @@ const ProfileAdmin = (props: Props) => {
   } = useForm<any>({});
 
   useEffect(() => {
-    getNews();
+    getprofileEmp();
   }, []);
 
-  const getNews = async () => {
+  const getprofileEmp = async () => {
     const { data } = await listprofileAdmin();
     setProfile(data);
   };
-  console.log(profile);
-
-  // function handleSubmi(formDataEmp: any) {
-  //   updateProfileemp(data.id, formDataEmp)
-  // }
 
   const onupdateCom: SubmitHandler<any> = async (formData: any) => {
     await updateProfileemp(data.id, formData)
   }
-  // handleAlert(){
-
-  // }
-
 
   return (
     <div>
@@ -116,13 +107,12 @@ const ProfileAdmin = (props: Props) => {
                               Số điện thoại
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               className="form-control rounded"
                               {...register("phoneEmployer", {
                                 required: true,
                               })}
                               defaultValue={employer.phone}
-
                             />
                             {errors?.phoneEmployer && <span> khong được để trông</span>}
 
@@ -227,8 +217,8 @@ const ProfileAdmin = (props: Props) => {
                 </form>
               </div>
             </div>
-          </div> */}
-        {/* <div className="col-lg-12 col-md-12">
+          </div>
+        <div className="col-lg-12 col-md-12">
             <div className="_dashboard_content bg-white rounded mb-4">
               <div className="_dashboard_content_header br-bottom py-3 px-3">
                 <div className="_dashboard__header_flex">
@@ -238,7 +228,7 @@ const ProfileAdmin = (props: Props) => {
                   </h4>
                 </div>
               </div>
-              {profile.company?.map((company: any) => (
+              {profileCom.company?.map((company: any) => (
                 <div className="_dashboard_content_body py-3 px-3">
                   <form className="row">
                     <input
